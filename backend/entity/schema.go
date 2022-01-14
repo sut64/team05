@@ -44,6 +44,15 @@ type RepairRequest struct {
 	RepairRequest  []RepairRequest `gorm:"references:id"`
 }
 
+type Employee struct {
+	gorm.Model
+	Name string
+	// 1 employee can create many Workrecive
+	Workrecives []Workrecive `gorm:"foreignkey:WorkreciveID`
+	// 1 employee can create many RecieptHistory
+	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID`
+}
+
 type Workrecive struct {
 	gorm.Model
 	WorkCode     string

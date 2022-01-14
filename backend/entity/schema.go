@@ -46,3 +46,4 @@ type RecieptHistory struct {
 	PaidByID     *uint
 	PaidBy       PaidBy
 }
+

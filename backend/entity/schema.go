@@ -44,7 +44,6 @@ type RepairRequest struct {
 	RepairRequest  []RepairRequest `gorm:"references:id"`
 }
 
-<<<<<<< HEAD
 type Workrecive struct {
 	gorm.Model
 	WorkCode     string
@@ -76,6 +75,3 @@ type RecieptHistory struct {
 	PaidByID     *uint
 	PaidBy       PaidBy
 }
-
-=======
->>>>>>> origin/main

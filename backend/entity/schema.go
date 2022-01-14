@@ -6,44 +6,41 @@ import (
 	"gorm.io/gorm"
 )
 
-type Employee struct {
+type Customer struct {
 	gorm.Model
-	Name string
-	// 1 employee can create many Workrecive
-	Workrecives []Workrecive `gorm:"foreignkey:WorkreciveID`
-	// 1 employee can create many RecieptHistory
-	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID`
+	Name           string
+	ID_Customer    string `gorm:"uniqueIndex"`
+	Password       string
+	RepairRequests []RepairRequest `gorm:"foreignKey:CustomerID"`
 }
-
-type Workrecive struct {
+type RepairType struct {
 	gorm.Model
-	WorkCode     string
-	Detail       string
-	Wages        float32
-	FinishedDate time.Time
-
-	EmployeeID       *uint
-	Employee         Employee
-	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID`
+	Name           string
+	RepairRequests []RepairRequest `gorm:"foreignKey:CustomerID"`
 }
-
-type PaidBy struct {
+type Urgency struct {
 	gorm.Model
-	Name             string
-	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID`
+	Name           string
+	RepairRequests []RepairRequest `gorm:"foreignKey:CustomerID"`
 }
-
-type RecieptHistory struct {
+type RepairRequest struct {
 	gorm.Model
-	RecipetID    string
-	RecieptPrice uint
-	RecieptDate  time.Time
 
-	EmployeeID   *uint
-	Employee     Employee
-	WorkreciveID *uint
-	Workrecive   Workrecive
-	PaidByID     *uint
-	PaidBy       PaidBy
+	Device      string
+	lifetime    uint
+	issue       string
+	RequestDate time.Time
+
+	CustomerID *uint
+	Customer   Customer `gorm:"references:id"`
+
+	RepairTypeID *uint
+	RepairType   RepairType `gorm:"references:id"`
+
+	UrgencyID *uint
+	Urgency   Urgency `gorm:"references:id"`
+
+	RepairRequstID *uint
+	RepairRequest  []RepairRequest `gorm:"references:id"`
 }
 

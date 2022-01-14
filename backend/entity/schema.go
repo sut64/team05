@@ -6,15 +6,45 @@ import (
 	"gorm.io/gorm"
 )
 
-type Employee struct {
+type Customer struct {
 	gorm.Model
-	Name string
-	// 1 employee can create many Workrecive
-	Workrecives []Workrecive `gorm:"foreignkey:WorkreciveID`
-	// 1 employee can create many RecieptHistory
-	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID`
+	Name           string
+	ID_Customer    string `gorm:"uniqueIndex"`
+	Password       string
+	RepairRequests []RepairRequest `gorm:"foreignKey:CustomerID"`
+}
+type RepairType struct {
+	gorm.Model
+	Name           string
+	RepairRequests []RepairRequest `gorm:"foreignKey:CustomerID"`
+}
+type Urgency struct {
+	gorm.Model
+	Name           string
+	RepairRequests []RepairRequest `gorm:"foreignKey:CustomerID"`
+}
+type RepairRequest struct {
+	gorm.Model
+
+	Device      string
+	lifetime    uint
+	issue       string
+	RequestDate time.Time
+
+	CustomerID *uint
+	Customer   Customer `gorm:"references:id"`
+
+	RepairTypeID *uint
+	RepairType   RepairType `gorm:"references:id"`
+
+	UrgencyID *uint
+	Urgency   Urgency `gorm:"references:id"`
+
+	RepairRequstID *uint
+	RepairRequest  []RepairRequest `gorm:"references:id"`
 }
 
+<<<<<<< HEAD
 type Workrecive struct {
 	gorm.Model
 	WorkCode     string
@@ -47,3 +77,5 @@ type RecieptHistory struct {
 	PaidBy       PaidBy
 }
 
+=======
+>>>>>>> origin/main

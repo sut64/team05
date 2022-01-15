@@ -40,8 +40,8 @@ type RepairRequest struct {
 	UrgencyID *uint
 	Urgency   Urgency `gorm:"references:id"`
 
-	// RepairRequstID *uint
-	// RepairRequest  []RepairRequest `gorm:"references:id"`
+	//RepairRequstID *uint
+	//RepairRequest  []RepairRequest `gorm:"references:id"`
 }
 
 type Employee struct {

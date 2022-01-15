@@ -92,5 +92,18 @@ type PurchasingCompany struct{
 }
 
 type PartsPurchase struct{
-	
+	gorm.Model
+	parts 			string
+	quantity		uint
+	partsPrice 		float32
+	purchaseTime 	time.Time
+	//ความสัมพันธ์กับ PurchasingCompany, Workrecive, Employee
+	PurchasingCompanyID *uint
+	PurchasingCompany PurchasingCompany
+
+	WorkreciveID 	*uint
+	Workrecive		Workrecive
+
+	EmployeeID 		*uint
+	Employee		Employee
 }

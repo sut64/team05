@@ -40,6 +40,9 @@ type RepairRequest struct {
 	UrgencyID *uint
 	Urgency   Urgency `gorm:"references:id"`
 
+	//1 editor can be in many repairHistories
+	RepairHistory []RepairHistory `gorm:"foreignKey:EditorID"`
+	
 	//RepairRequstID *uint
 	//RepairRequest  []RepairRequest `gorm:"references:id"`
 }
@@ -47,12 +50,19 @@ type RepairRequest struct {
 type Employee struct {
 	gorm.Model
 	Name string
+	Age         uint
+	Email       string
+	Password    string
+	PhoneNumber string
+
 	// 1 employee can create many Workrecive
 	Workrecives []Workrecive `gorm:"foreignKey:EmployeeID"`
 	// 1 employee can create many RecieptHistory
 	RecieptHistories []RecieptHistory `gorm:"foreignKey:EmployeeID"`
 	// foreignkey to PartsPurchase
 	PartsPurchases []PartsPurchase `gorm:"foreignKey:EditorID"`
+	//1 editor can be in many repairHistories
+	RepairHistory []RepairHistory `gorm:"foreignKey:EditorID"`
 }
 
 type Workrecive struct {
@@ -111,4 +121,27 @@ type PartsPurchase struct{
 
 	EditorID 		*uint
 	Editor			Employee `gorm:"references:id"`
+}
+
+type Difficulty struct {
+	gorm.Model
+	Name string
+
+	//1 difficulty can be in many repairHistories
+	RepairHistory []RepairHistory `gorm:"foreignKey:DifficultyID"`
+}
+
+type RepairHistory struct {
+	gorm.Model
+	Problem   string
+	Solution  string
+	Success   bool
+	Timestamp time.Time
+
+	RepairRequestID *uint
+	RepairRequest   RepairRequest `gorm:"references:ID"`
+	EditorID        *uint
+	Editor          Employee `gorm:"references:ID"`
+	DifficultyID    *uint
+	Difficulty      Difficulty `gorm:"references:ID"`
 }

@@ -128,6 +128,7 @@ type Difficulty struct {
 	Name string
 
 	//1 difficulty can be in many repairHistories
+	//edit to commit again
 	RepairHistory []RepairHistory `gorm:"foreignKey:DifficultyID"`
 }
 

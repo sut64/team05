@@ -40,19 +40,19 @@ type RepairRequest struct {
 	UrgencyID *uint
 	Urgency   Urgency `gorm:"references:id"`
 
-	RepairRequstID *uint
-	RepairRequest  []RepairRequest `gorm:"references:id"`
+	// RepairRequstID *uint
+	// RepairRequest  []RepairRequest `gorm:"references:id"`
 }
 
 type Employee struct {
 	gorm.Model
 	Name string
 	// 1 employee can create many Workrecive
-	Workrecives []Workrecive `gorm:"foreignkey:WorkreciveID"`
+	Workrecives []Workrecive `gorm:"foreignKey:EmployeeID"`
 	// 1 employee can create many RecieptHistory
-	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID"`
+	RecieptHistories []RecieptHistory `gorm:"foreignKey:EmployeeID"`
 	// foreignkey to PartsPurchase
-	PartsPurchases []PartsPurchase `gorm:"foreignkey:PartsPurchaseID"`
+	PartsPurchases []PartsPurchase `gorm:"foreignKey:EditorID"`
 }
 
 type Workrecive struct {
@@ -63,17 +63,17 @@ type Workrecive struct {
 	FinishedDate time.Time
 
 	EmployeeID       *uint
-	Employee         Employee
-	
-	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID"`
+	Employee         Employee `gorm:"references:id"`
+
+	RecieptHistories []RecieptHistory `gorm:"foreignKey:WorkreciveID"`
 	// foreignkey to PartsPurchase
-	PartsPurchases []PartsPurchase `gorm:"foreignkey:PartsPurchaseID"`
+	PartsPurchases []PartsPurchase `gorm:"foreignKey:WorkreciveID"`
 }
 
 type PaidBy struct {
 	gorm.Model
 	Name             string
-	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID"`
+	RecieptHistories []RecieptHistory `gorm:"foreignKey:PaidByID"`
 }
 
 type RecieptHistory struct {
@@ -83,17 +83,17 @@ type RecieptHistory struct {
 	RecieptDate  time.Time
 
 	EmployeeID   *uint
-	Employee     Employee
+	Employee     Employee `gorm:"references:id"`
 	WorkreciveID *uint
-	Workrecive   Workrecive
+	Workrecive   Workrecive `gorm:"references:id"`
 	PaidByID     *uint
-	PaidBy       PaidBy
+	PaidBy       PaidBy `gorm:"references:id"`
 }
 
 type PurchasingCompany struct{
 	gorm.Model
 	Name 	string
-	PartsPurchases []PartsPurchase `gorm:"foreignkey:PartsPurchaseID"`
+	PartsPurchases []PartsPurchase `gorm:"foreignKey:ShoppingID"`
 }
 
 type PartsPurchase struct{
@@ -103,12 +103,12 @@ type PartsPurchase struct{
 	partsPrice 		float32
 	purchaseTime 	time.Time
 	//ความสัมพันธ์กับ PurchasingCompany, Workrecive, Employee
-	PurchasingCompanyID *uint
-	PurchasingCompany PurchasingCompany
+	ShoppingID *uint
+	Shopping 	PurchasingCompany `gorm:"references:id"`
 
 	WorkreciveID 	*uint
-	Workrecive		Workrecive
+	Workrecive		Workrecive `gorm:"references:id"`
 
-	EmployeeID 		*uint
-	Employee		Employee
+	EditorID 		*uint
+	Editor			Employee `gorm:"references:id"`
 }

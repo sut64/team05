@@ -51,6 +51,8 @@ type Employee struct {
 	Workrecives []Workrecive `gorm:"foreignkey:WorkreciveID"`
 	// 1 employee can create many RecieptHistory
 	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID"`
+	// foreignkey to PartsPurchase
+	PartsPurchases []PartsPurchase `gorm:"foreignkey:PartsPurchaseID"`
 }
 
 type Workrecive struct {
@@ -62,7 +64,10 @@ type Workrecive struct {
 
 	EmployeeID       *uint
 	Employee         Employee
+	
 	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID"`
+	// foreignkey to PartsPurchase
+	PartsPurchases []PartsPurchase `gorm:"foreignkey:PartsPurchaseID"`
 }
 
 type PaidBy struct {

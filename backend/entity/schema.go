@@ -76,7 +76,6 @@ type WorkPlace struct {
 type WorkRecive struct {
 	gorm.Model
 	WorkCode     string
-	Detail       string
 	Wages        float32
 	FinishedDate time.Time
 

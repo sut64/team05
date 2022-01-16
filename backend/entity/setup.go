@@ -1,6 +1,7 @@
 package entity
 
 import (
+	"golang.org/x/crypto/bcrypt"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -68,43 +69,54 @@ func SetupDatabase() {
 	}
 	db.Model(&Difficulty{}).Create(&none)
 
-/*	//RepairRequest Data
-	RR001 := RepairRequest{
-		Device:      "Acer Computer",
-		lifetime:    3,
-		issue:       "คอมพิวเตอร์เปิดไม่ติด",
-		RequestDate: time.Date(2021, 12, 27, 9, 18, 00, 000, time.UTC),
+	/*	//RepairRequest Data
+		RR001 := RepairRequest{
+			Device:      "Acer Computer",
+			lifetime:    3,
+			issue:       "คอมพิวเตอร์เปิดไม่ติด",
+			RequestDate: time.Date(2021, 12, 27, 9, 18, 00, 000, time.UTC),
+		}
+		db.Model(&RepairRequest{}).Create(&RR001)
+
+		RR002 := RepairRequest{
+			Device:      "Brother CPx703 Printer",
+			Lifetime:    1,
+			Issue:       "Printer ถ่ายเอกสาร แล้วตัวอักษรเพี้ยน",
+			RequestDate: time.Date(2021, 12, 30, 15, 40, 55, 000, time.UTC),
+		}
+		db.Model(&RepairRequest{}).Create(&RR002)
+
+		//RepairHistory
+		db.Model(&RepairHistory{}).Create(&RepairHistory{
+			Problem:       "Powersupplyเสีย ต้องเปลี่ยนทดแทนของใหม่",
+			Solution:      "เบิก Powersupply เปลี่ยน 1 ตัว",
+			Success:       true,
+			Timestamp:     time.Date(2021, 12, 20, 17, 30, 00, 000, time.UTC),
+			RepairRequest: RR001,
+			Difficulty:    easy,
+			Editor:        rinrada,
+		})
+
+		db.Model(&RepairHistory{}).Create(&RepairHistory{
+			Problem:       "ตัวสแกนและสายแพรชำรุด",
+			Solution:      "เปลี่ยนเซ็นเซอร์ใช้สแกน และเปลี่ยนสายแพรใหม่",
+			Success:       true,
+			Timestamp:     time.Date(2022, 01, 07, 10, 55, 37, 000, time.UTC),
+			RepairRequest: RR002,
+			Difficulty:    average,
+			Editor:        rinrada,
+		})
+	*/
+	workplace1 := WorkPlace{
+		Name: "On site",
 	}
-	db.Model(&RepairRequest{}).Create(&RR001)
-
-	RR002 := RepairRequest{
-		Device:      "Brother CPx703 Printer",
-		Lifetime:    1,
-		Issue:       "Printer ถ่ายเอกสาร แล้วตัวอักษรเพี้ยน",
-		RequestDate: time.Date(2021, 12, 30, 15, 40, 55, 000, time.UTC),
+	db.Model(&WorkPlace{}).Create(&workplace1)
+	workplace2 := WorkPlace{
+		Name: "Off site",
 	}
-	db.Model(&RepairRequest{}).Create(&RR002)
-
-	//RepairHistory
-	db.Model(&RepairHistory{}).Create(&RepairHistory{
-		Problem:       "Powersupplyเสีย ต้องเปลี่ยนทดแทนของใหม่",
-		Solution:      "เบิก Powersupply เปลี่ยน 1 ตัว",
-		Success:       true,
-		Timestamp:     time.Date(2021, 12, 20, 17, 30, 00, 000, time.UTC),
-		RepairRequest: RR001,
-		Difficulty:    easy,
-		Editor:        rinrada,
-	})
-
-	db.Model(&RepairHistory{}).Create(&RepairHistory{
-		Problem:       "ตัวสแกนและสายแพรชำรุด",
-		Solution:      "เปลี่ยนเซ็นเซอร์ใช้สแกน และเปลี่ยนสายแพรใหม่",
-		Success:       true,
-		Timestamp:     time.Date(2022, 01, 07, 10, 55, 37, 000, time.UTC),
-		RepairRequest: RR002,
-		Difficulty:    average,
-		Editor:        rinrada,
-	})
-*/
-
+	db.Model(&WorkPlace{}).Create(&workplace2)
+	workplace3 := WorkPlace{
+		Name: "Remote",
+	}
+	db.Model(&WorkPlace{}).Create(&workplace3)
 }

@@ -42,14 +42,14 @@ type RepairRequest struct {
 
 	//1 editor can be in many repairHistories
 	RepairHistory []RepairHistory `gorm:"foreignKey:EditorID"`
-	
+
 	//RepairRequstID *uint
 	//RepairRequest  []RepairRequest `gorm:"references:id"`
 }
 
 type Employee struct {
 	gorm.Model
-	Name string
+	Name        string
 	Age         uint
 	Email       string
 	Password    string
@@ -65,6 +65,12 @@ type Employee struct {
 	RepairHistory []RepairHistory `gorm:"foreignKey:EditorID"`
 }
 
+type WorkPlace struct {
+	gorm.Model
+	Name        string
+	WorkRecives []Workrecive `gorm:"foreignKey:WorkPlaceID"`
+}
+
 type Workrecive struct {
 	gorm.Model
 	WorkCode     string
@@ -72,8 +78,8 @@ type Workrecive struct {
 	Wages        float32
 	FinishedDate time.Time
 
-	EmployeeID       *uint
-	Employee         Employee `gorm:"references:id"`
+	EmployeeID *uint
+	Employee   Employee `gorm:"references:id"`
 
 	RecieptHistories []RecieptHistory `gorm:"foreignKey:WorkreciveID"`
 	// foreignkey to PartsPurchase
@@ -100,27 +106,27 @@ type RecieptHistory struct {
 	PaidBy       PaidBy `gorm:"references:id"`
 }
 
-type PurchasingCompany struct{
+type PurchasingCompany struct {
 	gorm.Model
-	Name 	string
+	Name           string
 	PartsPurchases []PartsPurchase `gorm:"foreignKey:ShoppingID"`
 }
 
-type PartsPurchase struct{
+type PartsPurchase struct {
 	gorm.Model
-	parts 			string
-	quantity		uint
-	partsPrice 		float32
-	purchaseTime 	time.Time
+	parts        string
+	quantity     uint
+	partsPrice   float32
+	purchaseTime time.Time
 	//ความสัมพันธ์กับ PurchasingCompany, Workrecive, Employee
 	ShoppingID *uint
-	Shopping 	PurchasingCompany `gorm:"references:id"`
+	Shopping   PurchasingCompany `gorm:"references:id"`
 
-	WorkreciveID 	*uint
-	Workrecive		Workrecive `gorm:"references:id"`
+	WorkreciveID *uint
+	Workrecive   Workrecive `gorm:"references:id"`
 
-	EditorID 		*uint
-	Editor			Employee `gorm:"references:id"`
+	EditorID *uint
+	Editor   Employee `gorm:"references:id"`
 }
 
 type Difficulty struct {

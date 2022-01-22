@@ -180,13 +180,14 @@ type Warrantee struct {
 
 	// WarranteeTypeID is foreignkey
 	WarranteeTypeID *uint
-	WarranteeType   []WarranteeType `gorm:"foreignKey:WarranteeType"`
+	WarranteeType   WarranteeType
 }
 
 type WarranteeType struct {
 	gorm.Model
 	Description string
 
+	// 1 Warrantee can have many WarranteeType
 	Warrrantee []Warrantee
 }
 

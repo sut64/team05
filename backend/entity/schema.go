@@ -162,7 +162,7 @@ type RepairHistory struct {
 	Difficulty      Difficulty `gorm:"references:ID"`
 }
 
-// ohm.
+// ohm
 type Warrantee struct {
 	gorm.Model
 	ID_Warrantee   string `gorm:"uniqueIndex"`
@@ -183,4 +183,4 @@ type Warrantee struct {
 	WarranteeType   []WarranteeType `gorm:"foreignKey:WarranteeType"`
 }
 
-// ohm.
+// ohm

@@ -109,7 +109,6 @@ func SetupDatabase() {
 			Editor:        rinrada,
 		})
 	*/
-
 	workplace1 := WorkPlace{
 		Name: "On site",
 	}

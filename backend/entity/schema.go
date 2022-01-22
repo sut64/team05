@@ -183,4 +183,12 @@ type Warrantee struct {
 	WarranteeType   WarranteeType
 }
 
+type WarranteeType struct {
+	gorm.Model
+	Description string
+
+	// 1 Warrantee can have many WarranteeType
+	Warrrantee []Warrantee
+}
+
 // ohm

@@ -65,6 +65,8 @@ type Employee struct {
 	PartsPurchases []PartsPurchase `gorm:"foreignKey:EditorID"`
 	//1 editor can be in many repairHistories
 	RepairHistory []RepairHistory `gorm:"foreignKey:EditorID"`
+	// (ohm) 1 Warrantee can have many Employee
+	Warrantee []Warrantee `gorm:"foreignKey:WarranteeID"`
 }
 
 type WorkPlace struct {
@@ -179,6 +181,13 @@ type Warrantee struct {
 	// WarranteeTypeID is foreignkey
 	WarranteeTypeID *uint
 	WarranteeType   []WarranteeType `gorm:"foreignKey:WarranteeType"`
+}
+
+type WarranteeType struct {
+	gorm.Model
+	Description string
+
+	Warrrantee []Warrantee
 }
 
 // ohm

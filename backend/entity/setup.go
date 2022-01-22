@@ -32,6 +32,7 @@ func SetupDatabase() {
 		&PartsPurchase{},
 		&Difficulty{},
 		&RepairHistory{},
+		&Warrantee{},
 	)
 
 	db = database

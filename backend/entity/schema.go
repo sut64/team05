@@ -16,12 +16,12 @@ type Customer struct {
 type RepairType struct {
 	gorm.Model
 	Name           string
-	RepairRequests []RepairRequest `gorm:"foreignKey:CustomerID"`
+	RepairRequests []RepairRequest `gorm:"foreignKey:RepairTypeID"`
 }
 type Urgency struct {
 	gorm.Model
 	Name           string
-	RepairRequests []RepairRequest `gorm:"foreignKey:CustomerID"`
+	RepairRequests []RepairRequest `gorm:"foreignKey:UrgencyID"`
 }
 type RepairRequest struct {
 	gorm.Model

@@ -159,3 +159,26 @@ type RepairHistory struct {
 	DifficultyID    *uint
 	Difficulty      Difficulty `gorm:"references:ID"`
 }
+
+// ohm
+type Warrantee struct {
+	gorm.Model
+	ID_Warrantee   string `gorm:"uniqueIndex"`
+	EndOfWarrantee time.Time
+	WarrantyPart   string
+	MaximumAmount  float32 `sql:"type:decimal(10,2);"`
+
+	// WorkReciveID is foreignkey
+	WorkReciveID *uint
+	WorkRecive   WorkRecive
+
+	// EmployeeID is foreignkey
+	EmployeeID *uint
+	Employee   Employee
+
+	// WarranteeTypeID is foreignkey
+	WarranteeTypeID *uint
+	WarranteeType   []WarranteeType `gorm:"foreignKey:WarranteeType"`
+}
+
+// ohm

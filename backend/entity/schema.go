@@ -65,6 +65,8 @@ type Employee struct {
 	PartsPurchases []PartsPurchase `gorm:"foreignKey:EditorID"`
 	//1 editor can be in many repairHistories
 	RepairHistory []RepairHistory `gorm:"foreignKey:EditorID"`
+	// (ohm) 1 Warrantee can have many Employee
+	Warrantee []Warrantee `gorm:"foreignKey:WarranteeID"`
 }
 
 type WorkPlace struct {
@@ -159,3 +161,26 @@ type RepairHistory struct {
 	DifficultyID    *uint
 	Difficulty      Difficulty `gorm:"references:ID"`
 }
+
+// ohm
+type Warrantee struct {
+	gorm.Model
+	ID_Warrantee   string `gorm:"uniqueIndex"`
+	EndOfWarrantee time.Time
+	WarrantyPart   string
+	MaximumAmount  float32 `sql:"type:decimal(10,2);"`
+
+	// WorkReciveID is foreignkey
+	WorkReciveID *uint
+	WorkRecive   WorkRecive
+
+	// EmployeeID is foreignkey
+	EmployeeID *uint
+	Employee   Employee
+
+	// WarranteeTypeID is foreignkey
+	WarranteeTypeID *uint
+	WarranteeType   WarranteeType
+}
+
+// ohm

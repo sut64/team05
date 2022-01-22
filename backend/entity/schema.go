@@ -180,7 +180,7 @@ type Warrantee struct {
 
 	// WarranteeTypeID is foreignkey
 	WarranteeTypeID *uint
-	WarranteeType   []WarranteeType `gorm:"foreignKey:WarranteeType"`
+	WarranteeType   WarranteeType
 }
 
 // ohm

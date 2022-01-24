@@ -66,7 +66,7 @@ type Employee struct {
 	//1 editor can be in many repairHistories
 	RepairHistory []RepairHistory `gorm:"foreignKey:EditorID"`
 	// (ohm) 1 Warrantee can have many Employee
-	Warrantee []Warrantee `gorm:"foreignKey:WarranteeID"`
+	Warrantee []Warrantee `gorm:"foreignKey:EmployeeID"`
 }
 
 type WorkPlace struct {
@@ -188,7 +188,7 @@ type WarranteeType struct {
 	Description string
 
 	// 1 Warrantee can have many WarranteeType
-	Warrrantee []Warrantee `gorm:"foreignKey:WarranteeTypeID"`
+	Warrrantee []Warrantee
 }
 
 // ohm

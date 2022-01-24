@@ -188,7 +188,7 @@ type WarranteeType struct {
 	Description string
 
 	// 1 Warrantee can have many WarranteeType
-	Warrrantee []Warrantee `gorm:"foreignKey:WarranteeTypeID"`
+	Warrrantee []Warrantee
 }
 
 // ohm

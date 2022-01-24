@@ -191,4 +191,4 @@ type WarranteeType struct {
 	Warrrantee []Warrantee `gorm:"foreignKey:WarranteeTypeID"`
 }
 
-// ohm.
+// ohm

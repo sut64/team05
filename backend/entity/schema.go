@@ -172,15 +172,15 @@ type Warrantee struct {
 
 	// WorkReciveID is foreignkey
 	WorkReciveID *uint
-	WorkRecive   WorkRecive
+	WorkRecive   WorkRecive `gorm:"references:ID"`
 
 	// EmployeeID is foreignkey
 	EmployeeID *uint
-	Employee   Employee
+	Employee   Employee `gorm:"references:ID"`
 
 	// WarranteeTypeID is foreignkey
 	WarranteeTypeID *uint
-	WarranteeType   WarranteeType
+	WarranteeType   WarranteeType `gorm:"references:ID"`
 }
 
 type WarranteeType struct {

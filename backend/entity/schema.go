@@ -93,6 +93,8 @@ type WorkRecive struct {
 	RecieptHistories []RecieptHistory `gorm:"foreignKey:WorkreciveID"`
 	// foreignkey to PartsPurchase
 	PartsPurchases []PartsPurchase `gorm:"foreignKey:WorkreciveID"`
+	// (ohm) foreignkey to Warrantee
+	Warrantee Warrantee `gorm:"references:ID"`
 }
 
 type PaidBy struct {

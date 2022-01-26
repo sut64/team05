@@ -123,10 +123,10 @@ type PurchasingCompany struct {
 
 type PartsPurchase struct {
 	gorm.Model
-	parts        string
-	quantity     uint
-	partsPrice   float32
-	purchaseTime time.Time
+	Parts        string
+	Quantity     uint
+	PartsPrice   float32
+	PurchaseTime time.Time
 	//ความสัมพันธ์กับ PurchasingCompany, Workrecive, Employee
 	ShoppingID *uint
 	Shopping   PurchasingCompany `gorm:"references:id"`

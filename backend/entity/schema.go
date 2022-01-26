@@ -46,7 +46,7 @@ type RepairRequest struct {
 	//RepairRequstID *uint
 	//RepairRequest  []RepairRequest `gorm:"references:id"`
 
-	WorkRecives []WorkRecive `gorm:"foreignKey:RepairRequestID"`
+	WorkReceives []WorkReceive `gorm:"foreignKey:RepairRequestID"`
 }
 
 type Employee struct {
@@ -58,7 +58,7 @@ type Employee struct {
 	PhoneNumber string
 
 	// 1 employee can create many Workrecive
-	Workrecives []WorkRecive `gorm:"foreignKey:EmployeeID"`
+	Workrecives []WorkReceive `gorm:"foreignKey:EmployeeID"`
 	// 1 employee can create many RecieptHistory
 	RecieptHistories []RecieptHistory `gorm:"foreignKey:EmployeeID"`
 	// foreignkey to PartsPurchase
@@ -71,11 +71,11 @@ type Employee struct {
 
 type WorkPlace struct {
 	gorm.Model
-	Name        string
-	WorkRecives []WorkRecive `gorm:"foreignKey:WorkPlaceID"`
+	Name         string
+	WorkReceives []WorkReceive `gorm:"foreignKey:WorkPlaceID"`
 }
 
-type WorkRecive struct {
+type WorkReceive struct {
 	gorm.Model
 	WorkCode     string
 	Wages        float32
@@ -110,7 +110,7 @@ type RecieptHistory struct {
 	EmployeeID   *uint
 	Employee     Employee `gorm:"references:id"`
 	WorkreciveID *uint
-	Workrecive   WorkRecive `gorm:"references:id"`
+	Workrecive   WorkReceive `gorm:"references:id"`
 	PaidByID     *uint
 	PaidBy       PaidBy `gorm:"references:id"`
 }
@@ -132,7 +132,7 @@ type PartsPurchase struct {
 	Shopping   PurchasingCompany `gorm:"references:id"`
 
 	WorkreciveID *uint
-	Workrecive   WorkRecive `gorm:"references:id"`
+	Workrecive   WorkReceive `gorm:"references:id"`
 
 	EditorID *uint
 	Editor   Employee `gorm:"references:id"`
@@ -170,9 +170,9 @@ type Warrantee struct {
 	WarrantyPart   string
 	MaximumAmount  float32 `sql:"type:decimal(10,2);"`
 
-	// WorkReciveID is foreignkey
-	WorkReciveID *uint
-	WorkRecive   WorkRecive `gorm:"references:ID"`
+	// WorkReceiveID is foreignkey
+	WorkReceiveID *uint
+	WorkReceive   WorkReceive `gorm:"references:ID"`
 
 	// EmployeeID is foreignkey
 	EmployeeID *uint

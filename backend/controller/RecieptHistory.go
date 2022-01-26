@@ -11,7 +11,7 @@ import (
 // POST /RecieptHistory
 func CreateRecieptHistory(c *gin.Context) {
 	var employee entity.Employee
-	var workrecive entity.Workrecive
+	var workrecive entity.WorkRecive
 	var paidby entity.PaidBy
 	var reciepthistory entity.RecieptHistory
 
@@ -28,7 +28,7 @@ func CreateRecieptHistory(c *gin.Context) {
 	}
 
 	// 11: ค้นหา workrecive ด้วย id
-	if tx := entity.DB().Where("id = ?", reciepthistory.WorkreciveID).First(&workrecive); tx.RowsAffected == 0 {
+	if tx := entity.DB().Where("id = ?", reciepthistory.WorkReciveID).First(&workrecive); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "workrecive not found"})
 		return
 	}
@@ -48,7 +48,7 @@ func CreateRecieptHistory(c *gin.Context) {
 	// 13: สร้าง RecieptHistory
 	RH := entity.RecieptHistory{
 		Employee:     employee,
-		Workrecive:   workrecive,
+		WorkRecive:   workrecive,
 		PaidBy:       paidby,
 		RecipetCode:  reciepthistory.RecipetCode,
 		RecieptPrice: reciepthistory.RecieptPrice,

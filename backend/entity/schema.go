@@ -6,6 +6,8 @@ import (
 	"gorm.io/gorm"
 )
 
+
+
 type Customer struct {
 	gorm.Model
 	Name           string
@@ -49,35 +51,26 @@ type RepairRequest struct {
 	WorkRecives []WorkRecive `gorm:"foreignKey:RepairRequestID"`
 }
 
+
+
+//bank
 type Employee struct {
 	gorm.Model
 	Name        string
 	Age         uint
 	Email       string
+	Phonenumber string
 	Password    string
-	PhoneNumber string
-
 	// 1 employee can create many Workrecive
-	Workrecives []WorkRecive `gorm:"foreignKey:EmployeeID"`
+	Workrecives []Workrecive `gorm:"foreignkey:WorkreciveID`
 	// 1 employee can create many RecieptHistory
-	RecieptHistories []RecieptHistory `gorm:"foreignKey:EmployeeID"`
-	// foreignkey to PartsPurchase
-	PartsPurchases []PartsPurchase `gorm:"foreignKey:EditorID"`
-	//1 editor can be in many repairHistories
-	RepairHistory []RepairHistory `gorm:"foreignKey:EditorID"`
-	// (ohm) 1 Warrantee can have many Employee
-	Warrantee []Warrantee `gorm:"foreignKey:EmployeeID"`
+	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID`
 }
 
-type WorkPlace struct {
-	gorm.Model
-	Name        string
-	WorkRecives []WorkRecive `gorm:"foreignKey:WorkPlaceID"`
-}
-
-type WorkRecive struct {
+type Workrecive struct {
 	gorm.Model
 	WorkCode     string
+	Detail       string
 	Wages        float32
 	FinishedDate time.Time
 
@@ -98,19 +91,19 @@ type WorkRecive struct {
 type PaidBy struct {
 	gorm.Model
 	Name             string
-	RecieptHistories []RecieptHistory `gorm:"foreignKey:PaidByID"`
+	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID`
 }
 
 type RecieptHistory struct {
 	gorm.Model
-	RecipetID    string
-	RecieptPrice uint
-	RecieptDate  time.Time
+	RecipetCode  string    
+	RecieptPrice float32   
+	RecieptDate  time.Time 
 
 	EmployeeID   *uint
-	Employee     Employee `gorm:"references:id"`
+	Employee     Employee
 	WorkreciveID *uint
-	Workrecive   WorkRecive `gorm:"references:id"`
+	Workrecive   Workrecive
 	PaidByID     *uint
 	PaidBy       PaidBy `gorm:"references:id"`
 }
@@ -192,3 +185,4 @@ type WarranteeType struct {
 }
 
 // ohm
+

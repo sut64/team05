@@ -28,12 +28,12 @@ func CreateRepairRequest(c *gin.Context) {
 
 	// 11: ค้นหา urgency ด้วย id
 	if tx := entity.DB().Where("id = ?", repairrequest.UrgencyID).First(&urgency); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "activity not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "urgency not found"})
 		return
 	}
 	// 12: ค้นหา repairtype ด้วย id
 	if tx := entity.DB().Where("id = ?", repairrequest.RepairTypeID).First(&repairtype); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "joinstatus not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "repairtype not found"})
 		return
 	}
 

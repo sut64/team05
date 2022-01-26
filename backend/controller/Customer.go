@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/offoneway/team05/entity"
+	"github.com/sut64/team05/entity"
 )
 
 // POST /customers

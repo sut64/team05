@@ -51,6 +51,44 @@ func SetupDatabase() {
 	var rinrada Employee
 	db.Raw("SELECT * FROM employees WHERE email = ?", "rinrada_lady27@outlook.com").Scan(&rinrada)
 
+	db.Model(&Customer{}).Create(&Customer{
+		Name:        "RinRin",
+		ID_Customer: "rinrin123",
+		Password:    string(password),
+	})
+	db.Model(&Customer{}).Create(&Customer{
+		Name:        "Dada",
+		ID_Customer: "dada123",
+		Password:    string(password),
+	})
+	software := RepairType{
+		Name: "software",
+	}
+	db.Model(&RepairType{}).Create(&software)
+	hardware := RepairType{
+		Name: "hardware",
+	}
+	db.Model(&RepairType{}).Create(&hardware)
+	softwareandhardware := RepairType{
+		Name: "software and hardware",
+	}
+	db.Model(&RepairType{}).Create(&softwareandhardware)
+	other := RepairType{
+		Name: "other",
+	}
+	db.Model(&RepairType{}).Create(&other)
+	nonurgency := Urgency{
+		Name: "nonurgency",
+	}
+	db.Model(&Urgency{}).Create(&nonurgency)
+	semiurgency := Urgency{
+		Name: "semi-urgency",
+	}
+	db.Model(&Urgency{}).Create(&semiurgency)
+	urgency := Urgency{
+		Name: "urgency",
+	}
+	db.Model(&Urgency{}).Create(&urgency)
 	//Difficulty Data
 	easy := Difficulty{
 		Name: "easy",

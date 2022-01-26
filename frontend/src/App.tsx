@@ -1,8 +1,8 @@
 import React from 'react';
-import NavBar from './components/NavBar';
+import NavBar from './components/NavBar_employee';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignIn from './components/SignIn';
-import Home from './components/Home';
+import HomeEmployee from './components/Home_employee';
 
 
 function App() {
@@ -10,7 +10,8 @@ function App() {
     <Router>
       <div>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomeEmployee />} />
+          <Route path="/" element={<HomeEmployee />} />
           <Route path="/SignIn" element={<SignIn />} />
         </Routes>
       </div>

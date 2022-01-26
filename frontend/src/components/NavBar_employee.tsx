@@ -23,6 +23,8 @@ import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 import HomeIcon from '@material-ui/icons/Home';
 import BuildIcon from '@material-ui/icons/Build';
 
+
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -88,7 +90,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function NavBar() {
+export default function NavBarEmployee() {
   const menu = [
     { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
     { name: "ระบบที่ 1", icon: <LabelImportantIcon />, path: "/" },

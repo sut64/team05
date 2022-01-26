@@ -11,20 +11,50 @@ import (
 // POST /warrantee
 func CreateWarrantee(c *gin.Context) {
 	var warrantee entity.Warrantee
+	var employee entity.Employee
+	var workRecive entity.WorkRecive
+	var warranteeType entity.WarranteeType
 
-	// fmt.Println(c)
-
+	// ผลลัพธ์จะถูก bind เข้าตัวแปร warrantee
 	if err := c.ShouldBindJSON(&warrantee); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	if err := entity.DB().Create(&warrantee).Error; err != nil {
+	// ค้นหา employee ด้วย id
+	if tx := entity.DB().Where("id = ?", warrantee.EmployeeID).First(&employee); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "employee not found"})
+		return
+	}
+
+	// ค้นหา workRecive ด้วย id
+	if tx := entity.DB().Where("id = ?", warrantee.WorkReciveID).First(&workRecive); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "work receicve not found"})
+		return
+	}
+
+	// ค้นหา warranteeType ด้วย id
+	if tx := entity.DB().Where("id = ?", warrantee.WarranteeTypeID).First(&warranteeType); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "warrantee type not found"})
+		return
+	}
+
+	// สร้าง Warrantee
+	w := entity.Warrantee{
+		Employee:       employee,                 // โยงความสัมพันธ์กับ Entity Employee
+		WorkRecive:     workRecive,               // โยงความสัมพันธ์กับ Entity WorkRecive
+		WarranteeType:  warranteeType,            // โยงความสัมพันธ์กับ Entity WarranteeType
+		WarrantyPart:   warrantee.WarrantyPart,   // ตั้งค่าฟิลด์ WarrantyPart
+		MaximumAmount:  warrantee.MaximumAmount,  // ตั้งค่าฟิลด์ MaximumAmount
+		EndOfWarrantee: warrantee.EndOfWarrantee, // ตั้งค่าฟิลด์ EndOfWarrantee
+	}
+
+	if err := entity.DB().Save(&w).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"data": warrantee})
+	c.JSON(http.StatusOK, gin.H{"data": w})
 }
 
 // GET /warrantee/:id

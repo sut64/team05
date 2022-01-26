@@ -8,9 +8,9 @@ import (
 )
 
 // POST /users
-func CreateWorkRecive(c *gin.Context) {
+func CreateWorkReceive(c *gin.Context) {
 
-	var workRecive entity.WorkRecive
+	var workRecive entity.WorkReceive
 	var workPlace entity.WorkPlace
 	var employee entity.Employee
 	var repairRequest entity.RepairRequest
@@ -36,8 +36,8 @@ func CreateWorkRecive(c *gin.Context) {
 		return
 	}
 
-	// 12: สร้าง WorkRecive
-	wr := entity.WorkRecive{
+	// 12: สร้าง WorkReceive
+	wr := entity.WorkReceive{
 		FinishedDate: workRecive.FinishedDate,
 		Wages:        workRecive.Wages,
 		WorkCode:     workRecive.WorkCode,
@@ -55,8 +55,8 @@ func CreateWorkRecive(c *gin.Context) {
 }
 
 // GET /user/:id
-func GetWorkRecive(c *gin.Context) {
-	var workrecive entity.WorkRecive
+func GetWorkReceive(c *gin.Context) {
+	var workrecive entity.WorkReceive
 	id := c.Param("id")
 	if err := entity.DB().Raw("SELECT * FROM work_recives WHERE id = ?", id).Scan(&workrecive).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -67,8 +67,8 @@ func GetWorkRecive(c *gin.Context) {
 }
 
 // GET /users
-func ListWorkRecives(c *gin.Context) {
-	var workrecive []entity.WorkRecive
+func ListWorkReceives(c *gin.Context) {
+	var workrecive []entity.WorkReceive
 	if err := entity.DB().Preload("Employee").Preload("WorkPlace").Preload("RepairRequest").Raw("SELECT * FROM work_recives").Find(&workrecive).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -78,7 +78,7 @@ func ListWorkRecives(c *gin.Context) {
 }
 
 // DELETE /users/:id
-func DeleteWorkRecive(c *gin.Context) {
+func DeleteWorkReceive(c *gin.Context) {
 	id := c.Param("id")
 	if tx := entity.DB().Exec("DELETE FROM work_recives WHERE id = ?", id); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "work not found"})
@@ -89,8 +89,8 @@ func DeleteWorkRecive(c *gin.Context) {
 }
 
 // PATCH /users
-func UpdateWorkRecive(c *gin.Context) {
-	var workrecive entity.WorkRecive
+func UpdateWorkReceive(c *gin.Context) {
+	var workrecive entity.WorkReceive
 	if err := c.ShouldBindJSON(&workrecive); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return

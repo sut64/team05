@@ -12,7 +12,7 @@ import (
 func CreateWarrantee(c *gin.Context) {
 	var warrantee entity.Warrantee
 	var employee entity.Employee
-	var workRecive entity.WorkRecive
+	var workRecive entity.WorkReceive
 	var warranteeType entity.WarranteeType
 
 	// ผลลัพธ์จะถูก bind เข้าตัวแปร warrantee
@@ -28,7 +28,7 @@ func CreateWarrantee(c *gin.Context) {
 	}
 
 	// ค้นหา workRecive ด้วย id
-	if tx := entity.DB().Where("id = ?", warrantee.WorkReciveID).First(&workRecive); tx.RowsAffected == 0 {
+	if tx := entity.DB().Where("id = ?", warrantee.WorkReceiveID).First(&workRecive); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "work receicve not found"})
 		return
 	}
@@ -42,7 +42,7 @@ func CreateWarrantee(c *gin.Context) {
 	// สร้าง Warrantee
 	w := entity.Warrantee{
 		Employee:       employee,                 // โยงความสัมพันธ์กับ Entity Employee
-		WorkRecive:     workRecive,               // โยงความสัมพันธ์กับ Entity WorkRecive
+		WorkReceive:    workRecive,               // โยงความสัมพันธ์กับ Entity WorkReceive
 		WarranteeType:  warranteeType,            // โยงความสัมพันธ์กับ Entity WarranteeType
 		WarrantyPart:   warrantee.WarrantyPart,   // ตั้งค่าฟิลด์ WarrantyPart
 		MaximumAmount:  warrantee.MaximumAmount,  // ตั้งค่าฟิลด์ MaximumAmount

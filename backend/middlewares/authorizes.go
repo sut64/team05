@@ -38,7 +38,7 @@ func Authorizes() gin.HandlerFunc {
 		}
 
 		c.Set("email", claims.Email)
-		c.Set("uid", claims.Id)
+		// c.Set("uid", claims.Id)
 
 		c.Next()
 

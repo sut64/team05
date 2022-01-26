@@ -84,35 +84,3 @@ func ListRecieptHistorys(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"data": reciepthistorys})
 }
-
-// DELETE /RecieptHistory/:id
-func DeleteBudgetProposal(c *gin.Context) {
-	id := c.Param("id")
-	if tx := entity.DB().Exec("DELETE FROM reciept_histories WHERE id = ?", id); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "reciepthistory not found"})
-		return
-	}
-
-	c.JSON(http.StatusOK, gin.H{"data": id})
-}
-
-// PATCH /RecieptHistory
-func UpdateBudgetProposal(c *gin.Context) {
-	var reciepthistory entity.RecieptHistory
-	if err := c.ShouldBindJSON(&reciepthistory); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-
-	if tx := entity.DB().Where("id = ?", reciepthistory.ID).First(&reciepthistory); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "reciepthistory not found"})
-		return
-	}
-
-	if err := entity.DB().Save(&reciepthistory).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-
-	c.JSON(http.StatusOK, gin.H{"data": reciepthistory})
-}

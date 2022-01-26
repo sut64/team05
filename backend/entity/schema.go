@@ -74,9 +74,18 @@ type Workrecive struct {
 	Wages        float32
 	FinishedDate time.Time
 
-	EmployeeID       *uint
-	Employee         Employee
-	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID`
+	EmployeeID *uint
+	Employee   Employee `gorm:"references:id"`
+
+	WorkPlaceID *uint
+	WorkPlace   WorkPlace `gorm:"references:id"`
+
+	RepairRequestID *uint
+	RepairRequest   RepairRequest `gorm:"references:id"`
+
+	RecieptHistories []RecieptHistory `gorm:"foreignKey:WorkreciveID"`
+	// foreignkey to PartsPurchase
+	PartsPurchases []PartsPurchase `gorm:"foreignKey:WorkreciveID"`
 }
 
 type PaidBy struct {
@@ -87,19 +96,15 @@ type PaidBy struct {
 
 type RecieptHistory struct {
 	gorm.Model
-	RecipetCode  string    `valid:"matches(^[R]\\d{4}$)"`
-	RecieptPrice float32   `valid:"float~RecieptPrice must be >= 0"`
-	RecieptDate  time.Time `valid:"notpast~RecieptDate must be in the past"`
+	RecipetCode  string    
+	RecieptPrice float32   
+	RecieptDate  time.Time 
 
 	EmployeeID   *uint
 	Employee     Employee
 	WorkreciveID *uint
 	Workrecive   Workrecive
 	PaidByID     *uint
-
-	PaidBy       PaidBy
-}
-=======
 	PaidBy       PaidBy `gorm:"references:id"`
 }
 

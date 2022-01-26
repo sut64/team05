@@ -1,3 +1,4 @@
+import React from 'react';
 import NavBarEmployee from './NavBar_employee';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 

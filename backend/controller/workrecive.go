@@ -58,7 +58,7 @@ func CreateWorkReceive(c *gin.Context) {
 func GetWorkReceive(c *gin.Context) {
 	var workrecive entity.WorkReceive
 	id := c.Param("id")
-	if err := entity.DB().Raw("SELECT * FROM work_recives WHERE id = ?", id).Scan(&workrecive).Error; err != nil {
+	if err := entity.DB().Raw("SELECT * FROM work_receives WHERE id = ?", id).Scan(&workrecive).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -69,7 +69,7 @@ func GetWorkReceive(c *gin.Context) {
 // GET /users
 func ListWorkReceives(c *gin.Context) {
 	var workrecive []entity.WorkReceive
-	if err := entity.DB().Preload("Employee").Preload("WorkPlace").Preload("RepairRequest").Raw("SELECT * FROM work_recives").Find(&workrecive).Error; err != nil {
+	if err := entity.DB().Preload("Employee").Preload("WorkPlace").Preload("RepairRequest").Raw("SELECT * FROM work_receives").Find(&workrecive).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -80,7 +80,7 @@ func ListWorkReceives(c *gin.Context) {
 // DELETE /users/:id
 func DeleteWorkReceive(c *gin.Context) {
 	id := c.Param("id")
-	if tx := entity.DB().Exec("DELETE FROM work_recives WHERE id = ?", id); tx.RowsAffected == 0 {
+	if tx := entity.DB().Exec("DELETE FROM work_receives WHERE id = ?", id); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "work not found"})
 		return
 	}
@@ -106,5 +106,14 @@ func UpdateWorkReceive(c *gin.Context) {
 		return
 	}
 
+	c.JSON(http.StatusOK, gin.H{"data": workrecive})
+}
+func GetWorkrecivewithEmployee(c *gin.Context) {
+	var workrecive []entity.WorkReceive
+	employeeid := c.Param("employeeid")
+	if err := entity.DB().Preload("Employee").Raw("SELECT * FROM work_receives WHERE employee_id = ?", employeeid).Find(&workrecive).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
 	c.JSON(http.StatusOK, gin.H{"data": workrecive})
 }

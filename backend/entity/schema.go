@@ -73,9 +73,8 @@ type WorkPlace struct {
 
 type WorkReceive struct {
 	gorm.Model
-	WorkCode     string
-	Detail       string
-	Wages        float32
+	WorkCode     string  `gorm:"uniqueIndex"`
+	Wages        float32 `sql:"type:decimal(7,2);"`
 	FinishedDate time.Time
 
 	EmployeeID *uint

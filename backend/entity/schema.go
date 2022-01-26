@@ -6,8 +6,6 @@ import (
 	"gorm.io/gorm"
 )
 
-
-
 type Customer struct {
 	gorm.Model
 	Name           string
@@ -51,15 +49,13 @@ type RepairRequest struct {
 	WorkReceives []WorkReceive `gorm:"foreignKey:RepairRequestID"`
 }
 
-
-
 //bank
 type Employee struct {
 	gorm.Model
 	Name        string
 	Age         uint
 	Email       string
-	Phonenumber string
+	PhoneNumber string
 	Password    string
 	// 1 employee can create many Workrecive
 
@@ -69,15 +65,13 @@ type Employee struct {
 	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID`
 }
 
-
 type WorkPlace struct {
 	gorm.Model
 	Name         string
 	WorkReceives []WorkReceive `gorm:"foreignKey:WorkPlaceID"`
 }
 
-type WorkReceives struct {
-
+type WorkReceive struct {
 	gorm.Model
 	WorkCode     string
 	Detail       string
@@ -106,17 +100,17 @@ type PaidBy struct {
 
 type RecieptHistory struct {
 	gorm.Model
-	RecipetCode  string    
-	RecieptPrice float32   
-	RecieptDate  time.Time 
+	RecipetCode  string
+	RecieptPrice float32
+	RecieptDate  time.Time
 
 	EmployeeID   *uint
 	Employee     Employee
 	WorkreciveID *uint
 
-	Workrecive   WorkReceive `gorm:"references:id"`
-	PaidByID     *uint
-	PaidBy       PaidBy `gorm:"references:id"`
+	Workrecive WorkReceive `gorm:"references:id"`
+	PaidByID   *uint
+	PaidBy     PaidBy `gorm:"references:id"`
 }
 
 type PurchasingCompany struct {
@@ -196,4 +190,3 @@ type WarranteeType struct {
 }
 
 // ohm
-

@@ -27,8 +27,8 @@ type RepairRequest struct {
 	gorm.Model
 
 	Device      string
-	lifetime    uint
-	issue       string
+	Lifetime    uint
+	Issue       string
 	RequestDate time.Time
 
 	CustomerID *uint

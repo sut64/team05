@@ -1,4 +1,5 @@
-import NavBar from "./NavBar";
+import React from 'react';
+import NavBarCustomer from './NavBar_Customer';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
@@ -15,11 +16,11 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export default function Home() {
+export default function HomeCustomer() {
     const classes = useStyles();
     return (
         <div>
-            <NavBar />
+            <NavBarCustomer />
             <div className={classes.drawerHeader}/>
             <h1>หน้า Home</h1>
         </div>

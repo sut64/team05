@@ -25,6 +25,12 @@ import BuildIcon from '@material-ui/icons/Build';
 
 const drawerWidth = 240;
 
+const signout = () => {
+  localStorage.clear();
+  window.location.href = "/";
+};
+
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -89,14 +95,17 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function NavBar() {
+  
+  
+
   const menu = [
     { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
     { name: "ระบบที่ 1", icon: <LabelImportantIcon />, path: "/" },
     { name: "ระบบที่ 2", icon: <LabelImportantIcon />, path: "/" },
-    { name: "ระบบที่ 3", icon: <LabelImportantIcon />, path: "/" },
+    { name: "ระบบที่ 3", icon: <LabelImportantIcon />, path: "/recipt_histories" },
     { name: "ระบบที่ 4", icon: <LabelImportantIcon />, path: "/" },
     { name: "ระบบที่ 5", icon: <LabelImportantIcon />, path: "/" },
-    { name: "ออกจากระบบ", icon: <ExitToAppIcon />, path: "/SignIn" },
+    { name: "ออกจากระบบ", icon: <ExitToAppIcon />,path: "/", },
   ];
   const classes = useStyles();
   const theme = useTheme();
@@ -144,7 +153,7 @@ export default function NavBar() {
         }}
       >
         <div className={classes.drawerHeader}>
-          <BuildIcon />พนักงานรร้านซ่อมคอมพิวเตอร์
+          <BuildIcon />พนักงานร้านซ่อมคอมพิวเตอร์
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>

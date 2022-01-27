@@ -31,7 +31,7 @@ import { RepairRequestsInterface } from "../models/IRepairRequest";
 import { format } from 'date-fns'
 
 
-import NavBar from "./NavBar_Customer";
+import NavBarEmployee from "./NavBar_employee";
 
 const useStyles = makeStyles((theme: Theme) =>
 
@@ -93,7 +93,7 @@ function RepairRequestTable() {
     <div>
       
       <Container className={classes.container} maxWidth="md">
-      <NavBar />
+      <NavBarEmployee />
       <Typography component="div" style={{ height: '13vh' }} />
         <Box display="flex">
           <Box flexGrow={1}>

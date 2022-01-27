@@ -9,6 +9,10 @@ import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Box from '@material-ui/core/Box';
 
 import { SigninInterface } from "../models/ISignIn";
 
@@ -16,7 +20,46 @@ function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: any;
+  value: any;
+}
+
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+function a11yProps(index: any) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
+
+
 const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -41,8 +84,13 @@ function SignIn() {
   const [signin, setSignin] = useState<Partial<SigninInterface>>({});
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [value, setValue] = React.useState(0);
 
-  const login = () => {
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+    setValue(newValue);
+  };
+
+  const login_employee = () => {
     const apiUrl = "http://localhost:8080/login_employee";
     const requestOptions = {
       method: "POST",
@@ -56,7 +104,31 @@ function SignIn() {
           setSuccess(true);
           localStorage.setItem("token", res.data.token);//ยืนยัน
           localStorage.setItem("uid", res.data.id);
-          localStorage.setItem("name", res.data.name);//ส่ง id มาพร้อมกับ token
+          localStorage.setItem("name", res.data.name);
+          localStorage.setItem("role", "employee");//ส่ง id มาพร้อมกับ token
+          window.location.reload()
+        } else {
+          setError(true);
+        }
+      });
+  };
+
+  const login_customer = () => {
+    const apiUrl = "http://localhost:8080/login_customer";
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(signin),
+    };
+    fetch(apiUrl, requestOptions)
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.data) {
+          setSuccess(true);
+          localStorage.setItem("token", res.data.token);//ยืนยัน
+          localStorage.setItem("uid", res.data.id);
+          localStorage.setItem("name", res.data.name);
+          localStorage.setItem("role", "customer");//ส่ง id มาพร้อมกับ token
           window.location.reload()
         } else {
           setError(true);
@@ -101,44 +173,95 @@ function SignIn() {
           Sign in
 
         </Typography>
-         *employee:rinrada_lady27@outlook.com password:232345*
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="Email"
-            label="Email "
-            name="Email"
-            autoComplete="current-email"
-            autoFocus
-            value={signin.Email || ""}
-            onChange={handleInputChange}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="Password"
-            label="Password"
-            type="password"
-            id="Password"
-            autoComplete="current-password"
-            value={signin.Password || ""}
-            onChange={handleInputChange}
-          />
-          <Button
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={login}
-          >
-            Sign In
-          </Button>
-        </form>
+        <div className={classes.root}>
+          <AppBar position="static">
+            <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+              <Tab label="พนักงาน" {...a11yProps(0)} />
+              <Tab label="ลูกค้า" {...a11yProps(1)} />
+            </Tabs>
+          </AppBar>
+          <TabPanel value={value} index={0}>
+
+            <form className={classes.form} noValidate>
+            <p>*employee:rinrada_lady27@outlook.com password:232345*</p>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="Email"
+                label="Email "
+                name="Email"
+                autoComplete="current-email"
+                autoFocus
+                value={signin.Email || ""}
+                onChange={handleInputChange}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="Password"
+                label="Password"
+                type="password"
+                id="Password"
+                autoComplete="current-password"
+                value={signin.Password || ""}
+                onChange={handleInputChange}
+              />
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={login_employee}
+              >
+                Sign In
+              </Button>
+            </form>
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+          <form className={classes.form} noValidate>   
+        <p>*rinrin123@hotmail.com password:232345*</p>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="Email"
+                label="Email "
+                name="Email"
+                autoComplete="current-email"
+                autoFocus
+                value={signin.Email || ""}
+                onChange={handleInputChange}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="Password"
+                label="Password"
+                type="password"
+                id="Password"
+                autoComplete="current-password"
+                value={signin.Password || ""}
+                onChange={handleInputChange}
+              />
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={login_customer}
+              >
+                Sign In
+              </Button>
+            </form>
+          </TabPanel>
+        </div>
       </div>
     </Container>
   );

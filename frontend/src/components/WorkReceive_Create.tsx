@@ -203,10 +203,10 @@ console.log(requestOptions);
   }
 return (
     <div>
-        <NavBarEmployee/>
         <div className={classes.drawerHeader}/>
     
     <Container className={classes.container} maxWidth="md">
+    <NavBarEmployee/>
              <Snackbar open={success} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">
           บันทึกข้อมูลสำเร็จ

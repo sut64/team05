@@ -8,9 +8,9 @@ import (
 
 type Customer struct {
 	gorm.Model
-	Name           string
-	ID_Customer    string `gorm:"uniqueIndex"`
-	Password       string
+	Name           	string
+	Email    		string `gorm:"uniqueIndex"`
+	Password       	string
 	RepairRequests []RepairRequest `gorm:"foreignKey:CustomerID"`
 }
 type RepairType struct {

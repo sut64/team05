@@ -14,7 +14,8 @@ import { RepairRequestsInterface } from "../models/IRepairRequest";
 import { RepairTypesInterface } from "../models/IRepairType";
 import { UrgenciesInterface } from '../models/IUrgency';
 import { Button, Divider, Snackbar, TextField} from '@material-ui/core';
-import NavBar from "./NavBar_Customer";
+import NavBarEmployee from './NavBar_employee';
+
 import {
   MuiPickersUtilsProvider,
   KeyboardDateTimePicker,
@@ -178,7 +179,7 @@ const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }
   console.log(repairrequest)
   return (
     <Container className={classes.container} maxWidth="md">
-      <NavBar />
+      <NavBarEmployee />
       <Snackbar open={success} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">
           บันทึกการขอเเจ้งซ่อมคอมพิวเตอร์สำเร็จ

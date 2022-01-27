@@ -13,7 +13,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { WorkReceiveInterface } from "../models/IWorkReceive";
-import NavBarEmployee from './NavBar_employee';
+import NavBarEmployee from "./NavBar_employee";
 
 import moment from 'moment';
  
@@ -66,9 +66,9 @@ function WorkReceive() {
  
  return (
    <div>
-     <NavBarEmployee/>
      <div className={classes.drawerHeader}/>
      <Container className={classes.container} maxWidth="md">
+     <NavBarEmployee />
        <Box display="flex">
          <Box flexGrow={1}>
            <Typography

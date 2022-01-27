@@ -1,4 +1,4 @@
-import React, { useEffect ,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
@@ -32,11 +32,12 @@ import StorefrontIcon from '@material-ui/icons/Storefront';
 import WorkTwoToneIcon from '@material-ui/icons/WorkTwoTone';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
+import SignIn from './SignIn';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
-  createStyles ({
+  createStyles({
 
 
     root: {
@@ -56,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "center",
       alignItems: 'center',
-  
+
     },
 
     iconcenter: {
@@ -131,12 +132,12 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function NavBar_Employee() {
+export default function NavBarEmployee() {
 
-const [employeeName, setEmployeeName] = React.useState<String>("");
-const [token, setToken] = React.useState<String>("");
+  const [employeeName, setEmployeeName] = React.useState<String>("");
+  const [token, setToken] = React.useState<String>("");
+  const [role, setRole] = React.useState<String>("");
 
-  
   const menu = [
     { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
     { name: "ระบบรับงานซ่อม", icon: <WorkTwoToneIcon />, path: "/WorkReceive" },
@@ -146,6 +147,10 @@ const [token, setToken] = React.useState<String>("");
     { name: "ระบบบันทึกประวัติซ่อม", icon: <SaveRoundedIcon />, path: "/repair_histories" },
   ];
 
+  const menu2 = [
+    { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
+    { name: "ระบบแจ้งซ่อม", icon: <WorkTwoToneIcon />, path: "/RepairRequestTable" },
+  ];
 
   const classes = useStyles();
   const theme = useTheme();
@@ -154,19 +159,21 @@ const [token, setToken] = React.useState<String>("");
   useEffect(() => {
 
     const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
     const employeeName = localStorage.getItem("name");
     if (token && employeeName) {
       setToken(token);
       setEmployeeName(employeeName);
-    //  {console.log(localStorage.getItem("name"));
-    // console.log(employeeName);}
+      //  {console.log(localStorage.getItem("name"));
+      // console.log(employeeName);}
     }
-  
-  
+    if (role){
+      setRole(role);
+    }
   }, []);
 
-  
-  
+
+
   const signout = () => {
     localStorage.clear();
     window.location.href = "/";
@@ -180,109 +187,214 @@ const [token, setToken] = React.useState<String>("");
     setOpen(false);
   };
 
-  
-  
+  if (role === "employee") {
+    return (
+      <div className={classes.root}>
 
-  return (
-    <div className={classes.root}>
+        <CssBaseline />
+        <AppBar
+          position="fixed"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
+          <Toolbar>
 
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
-          
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap  style={{ flexGrow: 1 }} >
-            ระบบแจ้งซ่อมคอมพิวเตอร์
-          </Typography>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap style={{ flexGrow: 1 }} >
+              ระบบแจ้งซ่อมคอมพิวเตอร์
+            </Typography>
 
-          <Tooltip arrow
-                     
-          
-            className={classes.tooltip} interactive
-
-            title={
-              <Container>
-
-                <Grid className={classes.center}>
-                  
-
-                  <Avatar className={classes.large} > {employeeName.substring(0, 1)} </Avatar>
-                </Grid>
-
-                <Grid className={classes.center}>
-                  <Typography variant="subtitle2" gutterBottom> Login as: พนักงานร้าน</Typography>
-                </Grid>
-
-                <Grid className={classes.center}>
-                  <Typography variant="subtitle1" gutterBottom
-                  > 
-                  {employeeName}
-                  </Typography>
-                </Grid>
+            <Tooltip arrow
 
 
-                <Grid className={classes.center}>
-                  <Button className={classes.container}
-                    variant="contained"
-                    color="default"
-                    size="medium"
-                    onClick={signout}>
-                    
-                    Logout</Button>
-                </Grid>
+              className={classes.tooltip} interactive
 
-              </Container>
+              title={
+                <Container>
 
-            }
-          >
+                  <Grid className={classes.center}>
 
-            <Avatar className={classes.container} > {employeeName.substring(0, 1)} </Avatar>
-            
-          </Tooltip>
-          
-        </Toolbar>
-      </AppBar>
-      
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <BuildIcon className={classes.iconcenter} /> พนักงานร้านซ่อมคอมพิวเตอร์
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          {menu.map((item) => (
-            <Link to={item.path} key={item.name} className={classes.a}>
-              <ListItem button key={item.name}>
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.name} />
-              </ListItem>
-            </Link>
-          ))}
-        </List>
-      </Drawer>
-    </div>
-  );
+
+                    <Avatar className={classes.large} > {employeeName.substring(0, 1)} </Avatar>
+                  </Grid>
+
+                  <Grid className={classes.center}>
+                    <Typography variant="subtitle2" gutterBottom> Login as: พนักงานร้าน</Typography>
+                  </Grid>
+
+                  <Grid className={classes.center}>
+                    <Typography variant="subtitle1" gutterBottom
+                    >
+                      {employeeName}
+                    </Typography>
+                  </Grid>
+
+
+                  <Grid className={classes.center}>
+                    <Button className={classes.container}
+                      variant="contained"
+                      color="default"
+                      size="medium"
+                      onClick={signout}>
+
+                      Logout</Button>
+                  </Grid>
+
+                </Container>
+
+              }
+            >
+
+              <Avatar className={classes.container} > {employeeName.substring(0, 1)} </Avatar>
+
+            </Tooltip>
+
+          </Toolbar>
+        </AppBar>
+
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.drawerHeader}>
+            <BuildIcon className={classes.iconcenter} /> พนักงานร้านซ่อมคอมพิวเตอร์
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
+          </div>
+          <Divider />
+          <List>
+            {menu.map((item) => (
+              <Link to={item.path} key={item.name} className={classes.a}>
+                <ListItem button key={item.name}>
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.name} />
+                </ListItem>
+              </Link>
+            ))}
+          </List>
+        </Drawer>
+      </div>
+    );
+  }
+  if (role === "customer") {
+
+    return (
+      <div className={classes.root}>
+
+        <CssBaseline />
+        <AppBar
+          position="fixed"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
+          <Toolbar>
+
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap style={{ flexGrow: 1 }} >
+              ระบบแจ้งซ่อมคอมพิวเตอร์
+            </Typography>
+
+            <Tooltip arrow
+
+
+              className={classes.tooltip} interactive
+
+              title={
+                <Container>
+
+                  <Grid className={classes.center}>
+
+
+                    <Avatar className={classes.large} > {employeeName.substring(0, 1)} </Avatar>
+                  </Grid>
+
+                  <Grid className={classes.center}>
+                    <Typography variant="subtitle2" gutterBottom> Login as: ลูกค้า</Typography>
+                  </Grid>
+
+                  <Grid className={classes.center}>
+                    <Typography variant="subtitle1" gutterBottom
+                    >
+                      {employeeName}
+                    </Typography>
+                  </Grid>
+
+
+                  <Grid className={classes.center}>
+                    <Button className={classes.container}
+                      variant="contained"
+                      color="default"
+                      size="medium"
+                      onClick={signout}>
+
+                      Logout</Button>
+                  </Grid>
+
+                </Container>
+
+              }
+            >
+
+              <Avatar className={classes.container} > {employeeName.substring(0, 1)} </Avatar>
+
+            </Tooltip>
+
+          </Toolbar>
+        </AppBar>
+
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.drawerHeader}>
+            <BuildIcon className={classes.iconcenter} /> ลูกค้า
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
+          </div>
+          <Divider />
+          <List>
+            {menu2.map((item) => (
+              <Link to={item.path} key={item.name} className={classes.a}>
+                <ListItem button key={item.name}>
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.name} />
+                </ListItem>
+              </Link>
+            ))}
+          </List>
+        </Drawer>
+      </div>
+    );
+  }
+  return <SignIn />;
 }

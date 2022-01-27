@@ -14,7 +14,8 @@ import { RepairRequestsInterface } from "../models/IRepairRequest";
 import { RepairTypesInterface } from "../models/IRepairType";
 import { UrgenciesInterface } from '../models/IUrgency';
 import { Button, Divider, Snackbar, TextField} from '@material-ui/core';
-import NavBar from "./NavBar_Customer";
+import NavBarEmployee from './NavBar_employee';
+
 import {
   MuiPickersUtilsProvider,
   KeyboardDateTimePicker,
@@ -92,6 +93,7 @@ const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }
       ...repairrequest,
       [name]: event.target.value,
     });
+    console.log(repairrequest)
   };
   const handleDateChange = (date: Date | null) => {
     console.log(date);
@@ -159,7 +161,7 @@ const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }
     const requestOptionsPost = {
       method: "POST",
       headers: { 
-        //Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json", },
       body: JSON.stringify(data),
     };
@@ -170,6 +172,7 @@ const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }
         if (res.data) {
           setSuccess(true);
         } else {
+          console.log(res)
           setError(true);
         }
       });
@@ -178,7 +181,7 @@ const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }
   console.log(repairrequest)
   return (
     <Container className={classes.container} maxWidth="md">
-      <NavBar />
+      <NavBarEmployee />
       <Snackbar open={success} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">
           บันทึกการขอเเจ้งซ่อมคอมพิวเตอร์สำเร็จ

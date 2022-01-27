@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect ,useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
@@ -16,22 +16,63 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-
-//---------Icon----------- 
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import Grid from "@material-ui/core/Grid";
+import Tooltip from '@material-ui/core/Tooltip';
+import Container from "@material-ui/core/Container";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 import HomeIcon from '@material-ui/icons/Home';
 import BuildIcon from '@material-ui/icons/Build';
-
+import SaveRoundedIcon from '@material-ui/icons/SaveRounded';
+import ReceiptIcon from '@material-ui/icons/Receipt';
+import StorefrontIcon from '@material-ui/icons/Storefront';
+import WorkTwoToneIcon from '@material-ui/icons/WorkTwoTone';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
+  createStyles ({
+
+
     root: {
       display: 'flex',
     },
+    navlink: { color: "white", textDecoration: "none" },
+
+    tooltip: {
+      backgroundColor: '#f5f5f9',
+      color: 'rgba(0, 0, 0, 0.87)',
+      maxWidth: 3000,
+      fontSize: theme.typography.pxToRem(12),
+      border: '1px solid #dadde9',
+    },
+
+    center: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: 'center',
+  
+    },
+
+    iconcenter: {
+      justifyContent: "center",
+      alignItems: 'center',
+      margin: theme.spacing(2)
+    },
+
+    large: {
+      width: theme.spacing(12),
+      height: theme.spacing(12),
+      margin: theme.spacing(2)
+    },
+
+    container: { margin: theme.spacing(1) },
+
     appBar: {
       transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.sharp,
@@ -90,15 +131,42 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function NavBarCustomer() {
+export default function NavBar_Customer() {
+
+const [customerName, setcustomerName] = React.useState<String>("");
+const [token, setToken] = React.useState<String>("");
+
+  
   const menu = [
     { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
-    { name: "ระบบที่ 1", icon: <LabelImportantIcon />, path: "/" },
-    { name: "ออกจากระบบ", icon: <ExitToAppIcon />, path: "/SignIn" },
+    { name: "ระบบแจ้งซ่อม", icon: <WorkTwoToneIcon />, path: "/RepairRequestTable" },
   ];
+
+
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+
+  useEffect(() => {
+
+    const token = localStorage.getItem("token");
+    const customerName = localStorage.getItem("name");
+    if (token && customerName) {
+      setToken(token);
+      setcustomerName(customerName);
+    //  {console.log(localStorage.getItem("name"));
+    // console.log(employeeName);}
+    }
+  
+  
+  }, []);
+
+  
+  
+  const signout = () => {
+    localStorage.clear();
+    window.location.href = "/";
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -108,8 +176,12 @@ export default function NavBarCustomer() {
     setOpen(false);
   };
 
+  
+  
+
   return (
     <div className={classes.root}>
+
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -118,6 +190,7 @@ export default function NavBarCustomer() {
         })}
       >
         <Toolbar>
+          
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -127,11 +200,58 @@ export default function NavBarCustomer() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" noWrap  style={{ flexGrow: 1 }} >
             ระบบแจ้งซ่อมคอมพิวเตอร์
           </Typography>
+
+          <Tooltip arrow
+                     
+          
+            className={classes.tooltip} interactive
+
+            title={
+              <Container>
+
+                <Grid className={classes.center}>
+                  
+
+                  <Avatar className={classes.large} > {customerName.substring(0, 1)} </Avatar>
+                </Grid>
+
+                <Grid className={classes.center}>
+                  <Typography variant="subtitle2" gutterBottom> Login as: ลูกค้า</Typography>
+                </Grid>
+
+                <Grid className={classes.center}>
+                  <Typography variant="subtitle1" gutterBottom
+                  > 
+                  {customerName}
+                  </Typography>
+                </Grid>
+
+
+                <Grid className={classes.center}>
+                  <Button className={classes.container}
+                    variant="contained"
+                    color="default"
+                    size="medium"
+                    onClick={signout}>
+                    
+                    Logout</Button>
+                </Grid>
+
+              </Container>
+
+            }
+          >
+
+            <Avatar className={classes.container} > {customerName.substring(0, 1)} </Avatar>
+            
+          </Tooltip>
+          
         </Toolbar>
       </AppBar>
+      
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -142,7 +262,7 @@ export default function NavBarCustomer() {
         }}
       >
         <div className={classes.drawerHeader}>
-          <BuildIcon />ลูกค้า
+          <BuildIcon className={classes.iconcenter} /> ลูกค้าร้านซ่อมคอมพิวเตอร์
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>

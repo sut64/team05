@@ -97,7 +97,8 @@ func main() {
 
 		// Authentication Routes
 		r.POST("/login_employee", controller.LoginByEmployee)
-
+		r.POST("/login_customer", controller.LoginByCustomer)
+		
 		//Run server
 		r.Run()
 	}

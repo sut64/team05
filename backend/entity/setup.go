@@ -82,13 +82,13 @@ func SetupDatabase() {
 	//Customer Data
 
 	db.Model(&Customer{}).Create(&Customer{
-		Name:        "RinRin",
-		ID_Customer: "rinrin123",
-		Password:    string(password),
+		Name:     "RinRin",
+		Email:    "rinrin123@hotmail.com",
+		Password: string(password),
 	})
 	db.Model(&Customer{}).Create(&Customer{
 		Name:        "Dada",
-		ID_Customer: "dada123",
+		Email: "dada123@hotmail.com",
 		Password:    string(password),
 	})
 	software := RepairType{

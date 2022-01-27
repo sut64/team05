@@ -26,7 +26,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 import HomeIcon from '@material-ui/icons/Home';
 import BuildIcon from '@material-ui/icons/Build';
-
+import SaveRoundedIcon from '@material-ui/icons/SaveRounded';
 
 
 const drawerWidth = 240;
@@ -55,7 +55,11 @@ const useStyles = makeStyles((theme: Theme) =>
   
     },
 
-
+    iconcenter: {
+      justifyContent: "center",
+      alignItems: 'center',
+      margin: theme.spacing(2)
+    },
 
     large: {
       width: theme.spacing(12),
@@ -135,7 +139,7 @@ const [token, setToken] = React.useState<String>("");
     { name: "ระบบที่ 2", icon: <LabelImportantIcon />, path: "/PartsPurchase" },
     { name: "ระบบที่ 3", icon: <LabelImportantIcon />, path: "/" },
     { name: "ระบบที่ 4", icon: <LabelImportantIcon />, path: "/" },
-    { name: "ระบบที่ 5", icon: <LabelImportantIcon />, path: "/" },
+    { name: "ระบบบันทึกประวัติซ่อม", icon: <SaveRoundedIcon />, path: "/repair_histories" },
   ];
 
 
@@ -258,7 +262,7 @@ const [token, setToken] = React.useState<String>("");
         }}
       >
         <div className={classes.drawerHeader}>
-          <BuildIcon />พนักงานร้านซ่อมคอมพิวเตอร์
+          <BuildIcon className={classes.iconcenter} /> พนักงานร้านซ่อมคอมพิวเตอร์
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>

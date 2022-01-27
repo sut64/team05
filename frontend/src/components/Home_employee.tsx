@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBarEmployee from './NavBar_employee';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import Container from "@material-ui/core/Container";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme: Theme) =>
@@ -13,6 +14,11 @@ const useStyles = makeStyles((theme: Theme) =>
         ...theme.mixins.toolbar,
         justifyContent: 'flex-end',
       },
+
+      container: {
+        marginTop: theme.spacing(2),
+      },
+
     })
 );
 
@@ -22,7 +28,13 @@ export default function HomeEmployee() {
         <div>
             <NavBarEmployee />
             <div className={classes.drawerHeader}/>
-            <h1>หน้า Home</h1>
+
+            <Container className={classes.container} maxWidth="md">
+            <h1 style={{ textAlign: "center" }}>ระบบบันทึกประวัติการซ่อมคอมพิวเตอร์</h1>
+            <h2>Requirements</h2>
+                  <p> This is a หน้า Home
+          </p>
+          </Container>
         </div>
     );
 }

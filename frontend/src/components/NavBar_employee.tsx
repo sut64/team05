@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect ,useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
@@ -16,8 +16,12 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-
-//---------Icon----------- 
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import Grid from "@material-ui/core/Grid";
+import Tooltip from '@material-ui/core/Tooltip';
+import Container from "@material-ui/core/Container";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 import HomeIcon from '@material-ui/icons/Home';
@@ -28,10 +32,39 @@ import BuildIcon from '@material-ui/icons/Build';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
+  createStyles ({
+
+
     root: {
       display: 'flex',
     },
+    navlink: { color: "white", textDecoration: "none" },
+
+    tooltip: {
+      backgroundColor: '#f5f5f9',
+      color: 'rgba(0, 0, 0, 0.87)',
+      maxWidth: 3000,
+      fontSize: theme.typography.pxToRem(12),
+      border: '1px solid #dadde9',
+    },
+
+    center: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: 'center',
+  
+    },
+
+
+
+    large: {
+      width: theme.spacing(12),
+      height: theme.spacing(12),
+      margin: theme.spacing(2)
+    },
+
+    container: { margin: theme.spacing(1) },
+
     appBar: {
       transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.sharp,
@@ -90,7 +123,12 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function NavBarEmployee() {
+export default function NavBar_Employee() {
+
+const [employeeName, setEmployeeName] = React.useState<String>("");
+const [token, setToken] = React.useState<String>("");
+
+  
   const menu = [
     { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
     { name: "ระบบที่ 1", icon: <LabelImportantIcon />, path: "/" },
@@ -98,11 +136,33 @@ export default function NavBarEmployee() {
     { name: "ระบบที่ 3", icon: <LabelImportantIcon />, path: "/" },
     { name: "ระบบที่ 4", icon: <LabelImportantIcon />, path: "/" },
     { name: "ระบบที่ 5", icon: <LabelImportantIcon />, path: "/" },
-    { name: "ออกจากระบบ", icon: <ExitToAppIcon />, path: "/SignIn" },
   ];
+
+
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+
+  useEffect(() => {
+
+    const token = localStorage.getItem("token");
+    const employeeName = localStorage.getItem("name");
+    if (token && employeeName) {
+      setToken(token);
+      setEmployeeName(employeeName);
+    //  {console.log(localStorage.getItem("name"));
+    // console.log(employeeName);}
+    }
+  
+  
+  }, []);
+
+  
+  
+  const signout = () => {
+    localStorage.clear();
+    window.location.href = "/";
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -112,8 +172,12 @@ export default function NavBarEmployee() {
     setOpen(false);
   };
 
+  
+  
+
   return (
     <div className={classes.root}>
+
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -122,6 +186,7 @@ export default function NavBarEmployee() {
         })}
       >
         <Toolbar>
+          
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -131,11 +196,58 @@ export default function NavBarEmployee() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" noWrap  style={{ flexGrow: 1 }} >
             ระบบแจ้งซ่อมคอมพิวเตอร์
           </Typography>
+
+          <Tooltip arrow
+                     
+          
+            className={classes.tooltip} interactive
+
+            title={
+              <Container>
+
+                <Grid className={classes.center}>
+                  
+
+                  <Avatar className={classes.large} > {employeeName.substring(0, 1)} </Avatar>
+                </Grid>
+
+                <Grid className={classes.center}>
+                  <Typography variant="subtitle2" gutterBottom> Login as: พนักงานร้าน</Typography>
+                </Grid>
+
+                <Grid className={classes.center}>
+                  <Typography variant="subtitle1" gutterBottom
+                  > 
+                  {employeeName}
+                  </Typography>
+                </Grid>
+
+
+                <Grid className={classes.center}>
+                  <Button className={classes.container}
+                    variant="contained"
+                    color="default"
+                    size="medium"
+                    onClick={signout}>
+                    
+                    Logout</Button>
+                </Grid>
+
+              </Container>
+
+            }
+          >
+
+            <Avatar className={classes.container} > {employeeName.substring(0, 1)} </Avatar>
+            
+          </Tooltip>
+          
         </Toolbar>
       </AppBar>
+      
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -146,7 +258,7 @@ export default function NavBarEmployee() {
         }}
       >
         <div className={classes.drawerHeader}>
-          <BuildIcon />พนักงานรร้านซ่อมคอมพิวเตอร์
+          <BuildIcon />พนักงานร้านซ่อมคอมพิวเตอร์
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>

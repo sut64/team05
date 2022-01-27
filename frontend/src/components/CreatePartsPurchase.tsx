@@ -24,9 +24,14 @@ import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 
 import NavBarEmployee from './NavBar_employee';
 
+import { WorkReceiveInterface } from '../models/IWorkReceive';
+import { EmployeeInterface } from '../models/IEmployee';
+import { PurchasingCompanyInterface } from '../models/IPurchasingCompany';
+import { PartsPurchaseInterface } from '../models/IPartsPurchase';
+
 const Alert = (props: AlertProps) => {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
-  };
+};
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -74,21 +79,131 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function CreatePartsPurchase() {
     const classes = useStyles();
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+    const [WorkReceive, setWorkReceive] = useState<WorkReceiveInterface[]>([]);
+    const [Editor, setEditor] = useState<EmployeeInterface>();
+    const [PurchasingCompany, setPurchasingCompany] = useState<PurchasingCompanyInterface[]>([]);
+    const [PartsPurchase, setPartsPurchase] = useState<Partial<PartsPurchaseInterface>>({});
 
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
-    
+
     const handleDateChange = (date: Date | null) => {
         console.log(date);
         setSelectedDate(date);
     };
     const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
         if (reason === "clickaway") {
-          return;
+            return;
         }
         setSuccess(false);
         setError(false);
-      };
+    };
+    const handleChange = (
+        event: React.ChangeEvent<{ name?: string; value: unknown }>
+    ) => {
+        const name = event.target.name as keyof typeof PartsPurchase;
+        setPartsPurchase({
+            ...PartsPurchase,
+            [name]: event.target.value,
+        });
+        console.log(PartsPurchase);
+    };
+
+    const apiUrl = "http://localhost:8080";
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+        },
+    };
+
+    const getWorkReceive = async () => {
+        fetch(`${apiUrl}/WorkReceives`, requestOptions)
+            .then((response) => response.json())
+            .then((res) => {
+                if (res.data) {
+                    setWorkReceive(res.data);
+                } else {
+                    console.log("else");
+                }
+            });
+    };
+
+    const getPurchasingCompany = async () => {
+        fetch(`${apiUrl}/purchasingCompany`, requestOptions)
+            .then((response) => response.json())
+            .then((res) => {
+                if (res.data) {
+                    setPurchasingCompany(res.data);
+                } else {
+                    console.log("else");
+                }
+            });
+    };
+
+    const getEmployees = async () => {
+        let uid = localStorage.getItem("uid");
+        fetch(`${apiUrl}/employee/${uid}`, requestOptions)
+            .then((response) => response.json())
+            .then((res) => {
+                PartsPurchase.EditorID = res.data.ID
+                if (res.data) {
+                    setEditor(res.data);
+                } else {
+                    console.log("else");
+                }
+            });
+    };
+
+    useEffect(() => {
+        getEmployees();
+        getPurchasingCompany();
+        getWorkReceive();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const convertType = (data: string | number | undefined) => {
+        let val = typeof data === "string" ? parseInt(data) : data;
+        return val;
+    };
+    const convertType2Float = (data: string | number | undefined) => {
+        let val = typeof data === "string" ? parseFloat(data) : data;
+        return val;
+    };
+
+    function submit() {
+        let data = {
+            Parts: PartsPurchase.Parts,
+            Quantity: convertType(PartsPurchase.Quantity),
+            PartsPrice: convertType2Float(PartsPurchase.PartsPrice),
+            PurchaseTime: selectedDate,
+            ShoppingID: convertType(PartsPurchase.ShoppingID),
+            WorkReceiveID: convertType(PartsPurchase.WorkReceiveID),
+            EditorID: convertType(PartsPurchase.EditorID)
+        };
+        console.log(data)
+        const requestOptionsPost = {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        };
+
+        fetch(`${apiUrl}/partsPurchase`, requestOptionsPost)
+            .then((response) => response.json())
+            .then((res) => {
+                if (res.data) {
+                    setSuccess(true);
+                } else {
+                    setError(true);
+                    console.log(res)
+                }
+            });
+    }
 
     return (
         <Container className={classes.Container} maxWidth="md">
@@ -108,11 +223,14 @@ export default function CreatePartsPurchase() {
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="left" width="20%">
-                                No. workreceive 
+                            <TableCell align="left" width="10%">
+                                WorkCode
                             </TableCell>
-                            <TableCell align="center" width="40%">
-                                workreceive name
+                            <TableCell align="left" width="20%">
+                                Device
+                            </TableCell>
+                            <TableCell align="center" width="30%">
+                                Issue
                             </TableCell>
                             <TableCell align="center" width="40%">
                                 repairer
@@ -120,7 +238,14 @@ export default function CreatePartsPurchase() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-
+                        {WorkReceive.map((item: WorkReceiveInterface) => (
+                            <TableRow key={item.ID}>
+                                <TableCell align="left" >{item.WorkCode}</TableCell>
+                                <TableCell align="left" >{item.RepairRequest.Device}</TableCell>
+                                <TableCell align="left" >{item.RepairRequest.Issue}</TableCell>
+                                <TableCell align="center" >{item.Employee.Name}</TableCell>
+                            </TableRow>
+                        ))}
                     </TableBody>
                 </Table>
             </TableContainer><br />
@@ -137,19 +262,14 @@ export default function CreatePartsPurchase() {
                         <Grid item xs={9}>
                             <FormControl className={classes.formControl} disabled>
                                 <NativeSelect
-                                    //value={clubs.AdderID}
-                                    //onChange={handleChange}
+                                    value={PartsPurchase.EditorID}
                                     inputProps={{
-                                        name: 'AdderID',
-                                        id: 'Adder-native-disabled',
+                                        name: 'EditorID',
                                     }}
                                 >
-                                    {/* {studentCouncils.map((item: StudentCouncilInterface) => (
-                                        <option value={item.ID} key={item.ID}>
-                                            {item.Name}
-                                        </option>
-                                    ))} */}
-                                    <option value={1}>ปริณ สามัญ</option>
+                                    <option value={Editor?.ID} key={Editor?.ID}>
+                                        {Editor?.Name}
+                                    </option>
                                 </NativeSelect>
                                 <FormHelperText>Disabled</FormHelperText>
                             </FormControl>
@@ -160,20 +280,20 @@ export default function CreatePartsPurchase() {
                         <Grid item xs={9}>
                             <FormControl className={classes.formControl}>
                                 <NativeSelect
-                                    //value={clubs.AdderID}
-                                    //onChange={handleChange}
+                                    value={PartsPurchase.WorkReceiveID}
+                                    onChange={handleChange}
                                     inputProps={{
-                                        name: 'AdderID',
-                                        id: 'Adder-native-disabled',
+                                        name: 'WorkReceiveID',
                                     }}
                                 >
-                                    {/* {studentCouncils.map((item: StudentCouncilInterface) => (
+                                    <option aria-label="None" value="">
+                                        กรุณาเลือกงานที่ทำการซ่อม
+                                    </option>
+                                    {WorkReceive.map((item: WorkReceiveInterface) => (
                                         <option value={item.ID} key={item.ID}>
-                                            {item.Name}
+                                            {item.WorkCode} | {item.RepairRequest.Device}
                                         </option>
-                                    ))} */}
-                                    <option value={1}>display</option>
-                                    <option value={2}>asd</option>
+                                    ))}
                                 </NativeSelect>
                             </FormControl>
                         </Grid>
@@ -183,12 +303,16 @@ export default function CreatePartsPurchase() {
                         <Grid item xs={8}>
                             <FormControl fullWidth variant="outlined">
                                 <TextField
-                                    id="Name-Club-Text"
+                                    id="Parts"
                                     label="ชื่ออะไหล่"
                                     type="string"
-                                    //value= {nameClub}
-                                    variant="outlined"
-                                //onChange = {handleInputChange}
+                                    inputProps={{
+                                        name: 'Parts',
+                                    }}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    onChange={handleChange}
                                 />
                             </FormControl>
                         </Grid>
@@ -198,12 +322,17 @@ export default function CreatePartsPurchase() {
                         <Grid item xs={3} >
                             <FormControl fullWidth variant="outlined">
                                 <TextField
-                                    id="Name-Club-Text"
+                                    id="Quantity"
                                     label="จำนวน"
-                                    type="int"
-                                    //value= {nameClub}
+                                    type="number"
                                     variant="outlined"
-                                //onChange = {handleInputChange}
+                                    inputProps={{
+                                        name: 'Quantity',
+                                    }}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    onChange={handleChange}
                                 />
                             </FormControl>
                         </Grid>
@@ -213,12 +342,17 @@ export default function CreatePartsPurchase() {
                         <Grid item xs={3}>
                             <FormControl fullWidth variant="outlined">
                                 <TextField
-                                    id="Name-Club-Text"
+                                    id="PartsPrice"
                                     label="ราคา"
-                                    type="float"
-                                    //value= {nameClub}
+                                    type="number"
                                     variant="outlined"
-                                //onChange = {handleInputChange}
+                                    inputProps={{
+                                        name: 'PartsPrice',
+                                    }}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    onChange={handleChange}
                                 />
                             </FormControl>
                         </Grid>
@@ -228,20 +362,20 @@ export default function CreatePartsPurchase() {
                         <Grid item xs={9}>
                             <FormControl className={classes.formControl}>
                                 <NativeSelect
-                                    //value={clubs.AdderID}
-                                    //onChange={handleChange}
+                                    value={PartsPurchase.ShoppingID}
+                                    onChange={handleChange}
                                     inputProps={{
-                                        name: 'AdderID',
-                                        id: 'Adder-native-disabled',
+                                        name: 'ShoppingID',
                                     }}
                                 >
-                                    {/* {studentCouncils.map((item: StudentCouncilInterface) => (
+                                    <option aria-label="None" value="">
+                                        กรุณาเลือกร้านที่ทำการซื้ออะไหล่
+                                    </option>
+                                    {PurchasingCompany.map((item: PurchasingCompanyInterface) => (
                                         <option value={item.ID} key={item.ID}>
                                             {item.Name}
                                         </option>
-                                    ))} */}
-                                    <option value={1}>Advice</option>
-                                    <option value={2}>banana</option>
+                                    ))}
                                 </NativeSelect>
                             </FormControl>
                         </Grid>
@@ -252,7 +386,7 @@ export default function CreatePartsPurchase() {
                             <FormControl fullWidth variant="outlined">
                                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                     <KeyboardDateTimePicker
-                                        name="WatchedTime"
+                                        name="PurchaseTime"
                                         value={selectedDate}
                                         onChange={handleDateChange}
                                         label="กรุณาเลือกวันที่และเวลา"
@@ -276,7 +410,7 @@ export default function CreatePartsPurchase() {
                 <Button
                     variant="contained"
                     className={classes.button}
-                // onClick={submit}
+                    onClick={submit}
                 >
                     ตกลง
                 </Button>

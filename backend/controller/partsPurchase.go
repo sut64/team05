@@ -30,7 +30,7 @@ func CreatePartsPurchase(c *gin.Context) {
 	}
 
 	if tx := entity.DB().Where("id = ?", partsPurchase.EditorID).First(&editor); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Employee council not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Employee not found"})
 		return
 	}
 

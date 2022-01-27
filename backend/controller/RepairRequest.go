@@ -110,3 +110,12 @@ func UpdateRepairRequest(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"data": repairrequest})
 }
+func ListRepairRequestNotINWorkReceive(c *gin.Context) {
+	var repairrequest []entity.RepairRequest
+	if err := entity.DB().Raw("SELECT * FROM repair_requests WHERE ID NOT IN (SELECT repair_request_id FROM work_receives)").Find(&repairrequest).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"data": repairrequest})
+}

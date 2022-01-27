@@ -31,7 +31,7 @@ import { RepairRequestsInterface } from "../models/IRepairRequest";
 import { format } from 'date-fns'
 
 
-import NavBar from "./NavBar";
+import NavBar from "./NavBar_Customer";
 
 const useStyles = makeStyles((theme: Theme) =>
 

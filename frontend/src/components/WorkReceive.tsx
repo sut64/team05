@@ -96,7 +96,7 @@ function WorkReceive() {
            <TableHead>
              <TableRow>
                <TableCell align="center" width="5%">
-                 ID
+                 ลำดับที่
                </TableCell>
                <TableCell align="center" width="15%">
                  รหัสงานซ่อม

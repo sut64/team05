@@ -125,7 +125,7 @@ function RepairHistories() {
               variant="contained"
               color="primary"
             >
-              สร้างประวัติกการซ่อมคอมพิวเตอร์
+              สร้างประวัติการซ่อมคอมพิวเตอร์
             </Button>
             </Box>
           

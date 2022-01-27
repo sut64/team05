@@ -304,7 +304,7 @@ function RepairHistoryCreate() {
                 }}
               >
                 <option aria-label="None" value="">
-                  กรุณาเลือกกิจกรรมที่เข้าร่วม
+                  กรุณาเลือกรายการแจ้งซ่อม
                 </option>
                 {RepairRequests.map((item: RepairRequestsInterface) => (
                   <option value={item.ID} key={item.ID}>

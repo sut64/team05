@@ -438,7 +438,7 @@ return (
           <Box padding={4}>
           <Button
               component={RouterLink}
-              to="/WorkRecive"
+              to="/WorkReceive"
               variant="contained"
             >
               กลับ

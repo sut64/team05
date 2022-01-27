@@ -15,6 +15,7 @@ import RecieptTable from './components/RecieptTable'
 import RecieptCreate from './components/RecieptCreate'
 import WorkReceive from './components/WorkReceive';
 import WorkReceive_C from './components/WorkReceive_Create';
+import RepairRequestTable from './components/RepairRequestTable';
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="/" element={<HomeEmployee />} /> 
           <Route path="/customer" element={<HomeCustomer />} />
           <Route path="/RepairRequest" element={<RepairRequest />} /> 
+          <Route path="/RepairRequestTable" element={<RepairRequestTable />} /> 
           <Route path="/PartsPurchase" element={<PartsPurchase />} /> 
           <Route path="/PartsPurchase/create" element={<CreatePartsPurchase />} />
           <Route path="/warrantee" element={<Warrantee/>}/> 

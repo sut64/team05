@@ -24,9 +24,14 @@ import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 
 import NavBarEmployee from './NavBar_employee';
 
+import { WorkReceiveInterface } from '../models/IWorkReceive';
+import { EmployeeInterface } from '../models/IEmployee';
+import { PurchasingCompanyInterface } from '../models/IPurchasingCompany';
+import { PartsPurchaseInterface } from '../models/IPartsPurchase';
+
 const Alert = (props: AlertProps) => {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
-  };
+};
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -74,21 +79,38 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function CreatePartsPurchase() {
     const classes = useStyles();
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+    const [WorkRececive, setWorkRececive] = useState<WorkReceiveInterface[]>([]);
+    const [Editor, setEditor] = useState<EmployeeInterface>();
+    const [PurchasingCompany, setPurchasingCompany] = useState<PurchasingCompanyInterface[]>([]);
+    const [PartsPurchase, setPartsPurchase] = useState<Partial<PartsPurchaseInterface>>({});
+
+    const [part, setpart] = React.useState('');
+    const [quantity, setquantity] = React.useState('');
 
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
-    
+
     const handleDateChange = (date: Date | null) => {
         console.log(date);
         setSelectedDate(date);
     };
     const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
         if (reason === "clickaway") {
-          return;
+            return;
         }
         setSuccess(false);
         setError(false);
-      };
+    };
+
+    const apiUrl = "http://localhost:8080";
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+        },
+    };
+
 
     return (
         <Container className={classes.Container} maxWidth="md">
@@ -109,7 +131,7 @@ export default function CreatePartsPurchase() {
                     <TableHead>
                         <TableRow>
                             <TableCell align="left" width="20%">
-                                No. workreceive 
+                                No. workreceive
                             </TableCell>
                             <TableCell align="center" width="40%">
                                 workreceive name

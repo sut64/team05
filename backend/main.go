@@ -21,33 +21,33 @@ func main() {
 		{
 
 			//RepairRequest Routes
-			r.GET("/repair_requests", controller.ListRepairRequests)
-			r.GET("/repair_request/:id", controller.GetRepairRequest)
-			r.POST("/repair_requests", controller.CreateRepairRequest)
-			r.PATCH("/repair_requests", controller.UpdateRepairRequest)
-			r.DELETE("/repair_requests/:id", controller.DeleteRepairRequest)
+			protected.GET("/repair_requests", controller.ListRepairRequests)
+			protected.GET("/repair_request/:id", controller.GetRepairRequest)
+			protected.POST("/repair_requests", controller.CreateRepairRequest)
+			protected.PATCH("/repair_requests", controller.UpdateRepairRequest)
+			protected.DELETE("/repair_requests/:id", controller.DeleteRepairRequest)
 
 			// RepairType Routes
-			r.GET("/repair_types", controller.ListRepairtypes)
-			r.GET("/repair_type/:id", controller.GetRepairtype)
-			r.POST("/repair_types", controller.CreateRepairtype)
-			r.PATCH("/repair_types", controller.UpdateRepairtype)
-			r.DELETE("/repair_types/:id", controller.DeleteRepairtype)
+			protected.GET("/repair_types", controller.ListRepairtypes)
+			protected.GET("/repair_type/:id", controller.GetRepairtype)
+			protected.POST("/repair_types", controller.CreateRepairtype)
+			protected.PATCH("/repair_types", controller.UpdateRepairtype)
+			protected.DELETE("/repair_types/:id", controller.DeleteRepairtype)
 
 			// Urgency Routes
-			r.GET("/urgencies", controller.ListUrgencies)
-			r.GET("/urgency/:id", controller.GetUrgency)
-			r.POST("/urgencies", controller.CreateUrgency)
-			r.PATCH("/urgencies", controller.UpdateUrgency)
-			r.DELETE("/urgencies/:id", controller.DeleteUrgency)
+			protected.GET("/urgencies", controller.ListUrgencies)
+			protected.GET("/urgency/:id", controller.GetUrgency)
+			protected.POST("/urgencies", controller.CreateUrgency)
+			protected.PATCH("/urgencies", controller.UpdateUrgency)
+			protected.DELETE("/urgencies/:id", controller.DeleteUrgency)
 
 			// Customer Routes
-			r.GET("/customers", controller.ListCustomers)
-			r.GET("/customer/:id", controller.GetCustomer)
-			r.GET("/customer/find_with_customerID/:id_customer", controller.GetCustomerWithCustomerID)
-			r.POST("/customers", controller.CreateCustomer)
-			r.PATCH("/customers", controller.UpdateCustomer)
-			r.DELETE("/customers/:id", controller.DeleteCustomer)
+			protected.GET("/customers", controller.ListCustomers)
+			protected.GET("/customer/:id", controller.GetCustomer)
+			protected.GET("/customer/find_with_customerID/:id_customer", controller.GetCustomerWithCustomerID)
+			protected.POST("/customers", controller.CreateCustomer)
+			protected.PATCH("/customers", controller.UpdateCustomer)
+			protected.DELETE("/customers/:id", controller.DeleteCustomer)
 
 			//Difficulty Routes
 			protected.GET("/difficulties", controller.ListDifficulties)

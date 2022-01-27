@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link as RouterLink } from "react-router-dom";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -320,6 +321,13 @@ const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }
             </FormControl>
           </Grid>
           <Grid item xs={12}>
+          <Button
+              component={RouterLink}
+              to="/RepairRequestTable"
+              variant="contained"
+            >
+              ย้อนกลับ
+            </Button>
             <Button
               style={{ float: "right" }}
               variant="contained"

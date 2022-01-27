@@ -72,8 +72,8 @@ func main() {
 
 			//WorkReceive Routes
 			protected.GET("/workreceives/employees/:employeeid", controller.GetWorkreceivewithEmployee)
-			protected.GET("/WorkReceives", controller.ListWorkRecives)
-			protected.POST("/WorkReceives", controller.CreateWorkRecive)
+			protected.GET("/WorkReceives", controller.ListWorkReceives)
+			protected.POST("/WorkReceives", controller.CreateWorkReceive)
 			protected.GET("/WorkPlaces", controller.ListWorkPlace)
 			protected.GET("/RepairRequestsNotInWorkReceive", controller.ListRepairRequestNotINWorkReceive)
 

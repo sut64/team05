@@ -109,7 +109,7 @@ func UpdateWorkReceive(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"data": workrecive})
 }
-func GetWorkrecivewithEmployee(c *gin.Context) {
+func GetWorkreceivewithEmployee(c *gin.Context) {
 	var workrecive []entity.WorkReceive
 	employeeid := c.Param("employeeid")
 	if err := entity.DB().Preload("Employee").Raw("SELECT * FROM work_receives WHERE employee_id = ?", employeeid).Find(&workrecive).Error; err != nil {

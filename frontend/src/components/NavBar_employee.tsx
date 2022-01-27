@@ -132,8 +132,8 @@ const [token, setToken] = React.useState<String>("");
   const menu = [
     { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
     { name: "ระบบที่ 1", icon: <LabelImportantIcon />, path: "/" },
-    { name: "ระบบที่ 2", icon: <LabelImportantIcon />, path: "/" },
-    { name: "ระบบที่ 3", icon: <LabelImportantIcon />, path: "/reciept_histories" },
+    { name: "ระบบที่ 2", icon: <LabelImportantIcon />, path: "/PartsPurchase" },
+    { name: "ระบบที่ 3", icon: <LabelImportantIcon />, path: "/" },
     { name: "ระบบที่ 4", icon: <LabelImportantIcon />, path: "/" },
     { name: "ระบบที่ 5", icon: <LabelImportantIcon />, path: "/" },
   ];

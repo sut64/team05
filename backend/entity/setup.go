@@ -1,6 +1,8 @@
 package entity
 
 import (
+	"time"
+
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -8,11 +10,13 @@ import (
 
 var db *gorm.DB
 
+//จริงๆ ครับ จริงๆ ของจริงสุดๆ
 func DB() *gorm.DB {
 	return db
 }
 
 func SetupDatabase() {
+	v := true
 	database, err := gorm.Open(sqlite.Open("schema.db"), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
@@ -40,16 +44,42 @@ func SetupDatabase() {
 	password, err := bcrypt.GenerateFromPassword([]byte("232345"), 14)
 
 	//Employee Data
-	db.Model(&Employee{}).Create(&Employee{
+
+	Employee1 := Employee{
 		Name:        "Rinrada Wattan",
 		Age:         21,
 		Email:       "rinrada_lady27@outlook.com",
-		Password:    string(password),
 		PhoneNumber: "0985855271",
-	})
+		Password:    string(password),
+	}
+	db.Model(&Employee{}).Create(&Employee1)
 
-	var rinrada Employee
-	db.Raw("SELECT * FROM employees WHERE email = ?", "rinrada_lady27@outlook.com").Scan(&rinrada)
+	Employee2 := Employee{
+		Name:        "Bunyarith Sukmongkhon",
+		Age:         18,
+		Email:       "eoozassqq@hotmail.com",
+		PhoneNumber: "0635166895",
+		Password:    string(password),
+	}
+	db.Model(&Employee{}).Create(&Employee2)
+
+	Employee3 := Employee{
+		Name:        "Prayut Pumipon",
+		Age:         59,
+		Email:       "Prayutguys@hotmail.com",
+		PhoneNumber: "0833794989",
+		Password:    string(password),
+	}
+	db.Model(&Employee{}).Create(&Employee3)
+
+	var em1 Employee
+	var em2 Employee
+	var em3 Employee
+	db.Raw("Select * from employees where email = ?", "eoozassqq@hotmail.com").Scan((&em1))
+	db.Raw("Select * from employees where email = ?", "bunyarith@hotmail.com").Scan((&em2))
+	db.Raw("SELECT * FROM employees WHERE email = ?", "rinrada_lady27@outlook.com").Scan(&em3)
+
+	//Customer Data
 
 	db.Model(&Customer{}).Create(&Customer{
 		Name:        "RinRin",
@@ -110,44 +140,44 @@ func SetupDatabase() {
 	}
 	db.Model(&Difficulty{}).Create(&none)
 
-	/*	//RepairRequest Data
-		RR001 := RepairRequest{
-			Device:      "Acer Computer",
-			lifetime:    3,
-			issue:       "คอมพิวเตอร์เปิดไม่ติด",
-			RequestDate: time.Date(2021, 12, 27, 9, 18, 00, 000, time.UTC),
-		}
-		db.Model(&RepairRequest{}).Create(&RR001)
+	//RepairRequest Data
+	RR001 := RepairRequest{
+		Device:      "Acer Computer",
+		Lifetime:    3,
+		Issue:       "คอมพิวเตอร์เปิดไม่ติด",
+		RequestDate: time.Date(2021, 12, 27, 9, 18, 00, 000, time.UTC),
+	}
+	db.Model(&RepairRequest{}).Create(&RR001)
 
-		RR002 := RepairRequest{
-			Device:      "Brother CPx703 Printer",
-			Lifetime:    1,
-			Issue:       "Printer ถ่ายเอกสาร แล้วตัวอักษรเพี้ยน",
-			RequestDate: time.Date(2021, 12, 30, 15, 40, 55, 000, time.UTC),
-		}
-		db.Model(&RepairRequest{}).Create(&RR002)
+	RR002 := RepairRequest{
+		Device:      "Brother CPx703 Printer",
+		Lifetime:    1,
+		Issue:       "Printer ถ่ายเอกสาร แล้วตัวอักษรเพี้ยน",
+		RequestDate: time.Date(2021, 12, 30, 15, 40, 55, 000, time.UTC),
+	}
+	db.Model(&RepairRequest{}).Create(&RR002)
 
-		//RepairHistory
-		db.Model(&RepairHistory{}).Create(&RepairHistory{
-			Problem:       "Powersupplyเสีย ต้องเปลี่ยนทดแทนของใหม่",
-			Solution:      "เบิก Powersupply เปลี่ยน 1 ตัว",
-			Success:       true,
-			Timestamp:     time.Date(2021, 12, 20, 17, 30, 00, 000, time.UTC),
-			RepairRequest: RR001,
-			Difficulty:    easy,
-			Editor:        rinrada,
-		})
+	//RepairHistory
+	db.Model(&RepairHistory{}).Create(&RepairHistory{
+		Problem:       "Powersupplyเสีย ต้องเปลี่ยนทดแทนของใหม่",
+		Solution:      "เบิก Powersupply เปลี่ยน 1 ตัว",
+		Success:       &v,
+		Timestamp:     time.Date(2021, 12, 20, 17, 30, 00, 000, time.UTC),
+		RepairRequest: RR001,
+		Difficulty:    easy,
+		Editor:        em1,
+	})
 
-		db.Model(&RepairHistory{}).Create(&RepairHistory{
-			Problem:       "ตัวสแกนและสายแพรชำรุด",
-			Solution:      "เปลี่ยนเซ็นเซอร์ใช้สแกน และเปลี่ยนสายแพรใหม่",
-			Success:       true,
-			Timestamp:     time.Date(2022, 01, 07, 10, 55, 37, 000, time.UTC),
-			RepairRequest: RR002,
-			Difficulty:    average,
-			Editor:        rinrada,
-		})
-	*/
+	db.Model(&RepairHistory{}).Create(&RepairHistory{
+		Problem:       "ตัวสแกนและสายแพรชำรุด",
+		Solution:      "เปลี่ยนเซ็นเซอร์ใช้สแกน และเปลี่ยนสายแพรใหม่",
+		Success:       &v,
+		Timestamp:     time.Date(2022, 01, 07, 10, 55, 37, 000, time.UTC),
+		RepairRequest: RR002,
+		Difficulty:    average,
+		Editor:        em1,
+	})
+
 	workplace1 := WorkPlace{
 		Name: "On site",
 	}
@@ -160,14 +190,93 @@ func SetupDatabase() {
 		Name: "Remote",
 	}
 	db.Model(&WorkPlace{}).Create(&workplace3)
-	// workrecive1 := WorkReceive{
-	// 	FinishedDate:   time.Now(),
-	// 	Wages:          120,
-	// 	WorkReceiveCode: "W1234",
 
-	// 	WorkPlace:     workplace1,
-	// 	Employee:      emp1,
-	// 	RepairRequest: work1,
-	// }
-	// db.Model(&WorkReceive{}).Create(&workrecive1)
+	rwork1 := RepairRequest{
+		Device:      "ACER",
+		Lifetime:    1,
+		Issue:       "Don't Know",
+		RequestDate: time.Now(),
+	}
+	db.Model(&RepairRequest{}).Create(&rwork1)
+	rwork2 := RepairRequest{
+		Device:      "ACER2",
+		Lifetime:    1,
+		Issue:       "Don't Know",
+		RequestDate: time.Now(),
+	}
+	db.Model(&RepairRequest{}).Create(&rwork2)
+	rwork3 := RepairRequest{
+		Device:      "ACER3",
+		Lifetime:    1,
+		Issue:       "Don't Know",
+		RequestDate: time.Now(),
+	}
+	db.Model(&RepairRequest{}).Create(&rwork3)
+	rwork4 := RepairRequest{
+		Device:      "ACER4",
+		Lifetime:    1,
+		Issue:       "Don't Know",
+		RequestDate: time.Now(),
+	}
+	db.Model(&RepairRequest{}).Create(&rwork4)
+	workrecive1 := WorkReceive{
+		FinishedDate: time.Date(2022, 05, 01, 00, 00, 00, 000, time.UTC),
+		Wages:        120,
+		WorkCode:     "W1234",
+
+		WorkPlace:     workplace1,
+		Employee:      Employee3,
+		RepairRequest: rwork1,
+	}
+	db.Model(&WorkReceive{}).Create(&workrecive1)
+
+	//WorkRecieveData
+
+	work1 := WorkReceive{
+		WorkCode:     "W6789",
+		Wages:        50.50,
+		FinishedDate: time.Now(),
+		Employee:     Employee1,
+	}
+	db.Model(&WorkReceive{}).Create(&work1)
+
+	work2 := WorkReceive{
+		WorkCode:     "W2525",
+		Wages:        100.25,
+		FinishedDate: time.Now(),
+		Employee:     Employee2,
+	}
+	db.Model(&WorkReceive{}).Create(&work2)
+
+	//RecieptHistory
+	pay1 := PaidBy{
+		Name: "banking",
+	}
+	db.Model(&PaidBy{}).Create(&pay1)
+
+	pay2 := PaidBy{
+		Name: "prompay",
+	}
+	db.Model(&PaidBy{}).Create(&pay2)
+
+	reciept1 := RecieptHistory{
+		RecieptCode:  "R1234",
+		RecieptPrice: 1000.50,
+		RecieptDate:  time.Now(),
+		Employee:     Employee1,
+		WorkReceive:  work1,
+		PaidBy:       pay1,
+	}
+	db.Model(&RecieptHistory{}).Create(&reciept1)
+
+	reciept2 := RecieptHistory{
+		RecieptCode:  "R4321",
+		RecieptPrice: 5000.25,
+		RecieptDate:  time.Now(),
+		Employee:     Employee2,
+		WorkReceive:  work2,
+		PaidBy:       pay2,
+	}
+	db.Model(&RecieptHistory{}).Create(&reciept2)
+
 }

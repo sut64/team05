@@ -7,6 +7,7 @@ import (
 	"github.com/sut64/team05/middlewares"
 )
 
+//อันนี้ก็จริงครับ
 func main() {
 
 	entity.SetupDatabase()
@@ -68,6 +69,23 @@ func main() {
 			protected.POST("/repair_histories", controller.CreateRepairHistory)
 			protected.PATCH("/repair_histories", controller.UpdateRepairHistory)
 			protected.DELETE("/repair_histories/:id", controller.DeleteRepairHistory)
+
+			//WorkReceive Routes
+			protected.GET("/workreceives/employees/:employeeid", controller.GetWorkreceivewithEmployee)
+			protected.GET("/WorkReceives", controller.ListWorkRecives)
+			protected.POST("/WorkReceives", controller.CreateWorkRecive)
+			protected.GET("/WorkPlaces", controller.ListWorkPlace)
+			protected.GET("/RepairRequestsNotInWorkReceive", controller.ListRepairRequestNotINWorkReceive)
+
+			// paidby Routes
+			protected.GET("/paidbies", controller.ListPaidBies)
+			protected.GET("/paidby/:id", controller.GetPaidBy)
+			protected.POST("/paidbies", controller.CreatePaidBy)
+
+			// reciethistory Routes
+			protected.GET("/reciept_histories", controller.ListRecieptHistorys)
+			protected.GET("/reciept_historie/:id", controller.GetRecieptHistory)
+			protected.POST("/reciept_histories", controller.CreateRecieptHistory)
 
 		}
 	}

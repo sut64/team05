@@ -62,7 +62,7 @@ type Employee struct {
 	Workrecives []WorkReceive `gorm:"foreignKey:EmployeeID"`
 
 	// 1 employee can create many RecieptHistory
-	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID`
+	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID"`
 }
 
 type WorkPlace struct {
@@ -94,7 +94,7 @@ type WorkReceive struct {
 type PaidBy struct {
 	gorm.Model
 	Name             string
-	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID`
+	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID"`
 }
 
 type RecieptHistory struct {
@@ -148,7 +148,7 @@ type RepairHistory struct {
 	gorm.Model
 	Problem   string
 	Solution  string
-	Success   bool
+	Success   *bool
 	Timestamp time.Time
 
 	RepairRequestID *uint

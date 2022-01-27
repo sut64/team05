@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { Container } from "@material-ui/core"
 import { Box } from "@material-ui/core"
 import { Typography } from "@material-ui/core"
@@ -11,8 +12,10 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { format } from 'date-fns'
 
 import NavBarEmployee from "./NavBar_employee";
+import { PartsPurchaseInterface } from "../models/IPartsPurchase";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -32,6 +35,35 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function PartsPurchase() {
     const classes = useStyles();
+    const [PartsPurchases, setPartsPurchases] = React.useState<PartsPurchaseInterface[]>([]);
+
+    const apiUrl = "http://localhost:8080";
+    const requestOptions = {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+        },
+    };
+
+    const getPartsPurchases = async () => {
+        fetch(`${apiUrl}/partsPurchase`, requestOptions)
+            .then((response) => response.json())
+            .then((res) => {
+                console.log(res.data);
+                if (res.data) {
+                    setPartsPurchases(res.data);
+                } else {
+                    console.log("else");
+                }
+            });
+    };
+
+    useEffect(() => {
+
+        getPartsPurchases();
+
+    }, []);
+
     return (
         <div>
             <NavBarEmployee />
@@ -87,7 +119,17 @@ export default function PartsPurchase() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            
+                            {PartsPurchases.map((item: PartsPurchaseInterface) => (
+                                <TableRow key={item.ID}>
+                                    <TableCell align="left" >{item.WorkReceive.WorkCode}</TableCell>
+                                    <TableCell align="left" >{item.Parts}</TableCell>
+                                    <TableCell align="center" >{item.Quantity}</TableCell>
+                                    <TableCell align="center" >{item.PartsPrice}</TableCell>
+                                    <TableCell align="center" >{item.Shopping.Name}</TableCell>
+                                    <TableCell align="center" >{item.Editor.Name}</TableCell>
+                                    <TableCell align="center" >{format((new Date(item.PurchaseTime)), 'dd MMMM yyyy hh:mm a')}</TableCell>
+                                </TableRow>
+                            ))}
                         </TableBody>
                     </Table>
                 </TableContainer>

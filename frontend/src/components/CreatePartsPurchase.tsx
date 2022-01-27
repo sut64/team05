@@ -168,18 +168,22 @@ export default function CreatePartsPurchase() {
         let val = typeof data === "string" ? parseInt(data) : data;
         return val;
     };
+    const convertType2Float = (data: string | number | undefined) => {
+        let val = typeof data === "string" ? parseFloat(data) : data;
+        return val;
+    };
 
     function submit() {
         let data = {
             Parts: PartsPurchase.Parts,
-            Quantity: PartsPurchase.Quantity,
-            PartsPrice: PartsPurchase.PartsPrice,
+            Quantity: convertType(PartsPurchase.Quantity),
+            PartsPrice: convertType2Float(PartsPurchase.PartsPrice),
             PurchaseTime: selectedDate,
             ShoppingID: convertType(PartsPurchase.ShoppingID),
             WorkReceiveID: convertType(PartsPurchase.WorkReceiveID),
             EditorID: convertType(PartsPurchase.EditorID)
         };
-
+        console.log(data)
         const requestOptionsPost = {
             method: "POST",
             headers: {
@@ -196,6 +200,7 @@ export default function CreatePartsPurchase() {
                     setSuccess(true);
                 } else {
                     setError(true);
+                    console.log(res)
                 }
             });
     }
@@ -218,11 +223,14 @@ export default function CreatePartsPurchase() {
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="left" width="20%">
-                                No. workreceive
+                            <TableCell align="left" width="10%">
+                                WorkCode
                             </TableCell>
-                            <TableCell align="center" width="40%">
-                                workreceive name
+                            <TableCell align="left" width="20%">
+                                Device
+                            </TableCell>
+                            <TableCell align="center" width="30%">
+                                Issue
                             </TableCell>
                             <TableCell align="center" width="40%">
                                 repairer
@@ -230,7 +238,14 @@ export default function CreatePartsPurchase() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-
+                        {WorkReceive.map((item: WorkReceiveInterface) => (
+                            <TableRow key={item.ID}>
+                                <TableCell align="left" >{item.WorkCode}</TableCell>
+                                <TableCell align="left" >{item.RepairRequest.Device}</TableCell>
+                                <TableCell align="left" >{item.RepairRequest.Issue}</TableCell>
+                                <TableCell align="center" >{item.Employee.Name}</TableCell>
+                            </TableRow>
+                        ))}
                     </TableBody>
                 </Table>
             </TableContainer><br />
@@ -371,7 +386,7 @@ export default function CreatePartsPurchase() {
                             <FormControl fullWidth variant="outlined">
                                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                     <KeyboardDateTimePicker
-                                        name="WatchedTime"
+                                        name="PurchaseTime"
                                         value={selectedDate}
                                         onChange={handleDateChange}
                                         label="กรุณาเลือกวันที่และเวลา"

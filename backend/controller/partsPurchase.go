@@ -55,7 +55,7 @@ func CreatePartsPurchase(c *gin.Context) {
 // GET /partsPurchase
 func ListPartsPurchase(c *gin.Context) {
 	var partsPurchase []entity.PartsPurchase
-	if err := entity.DB().Preload("Shopping").Preload("WorkRecive").Preload("Editor").Raw("SELECT * FROM parts_purchases").Find(&partsPurchase).Error; err != nil {
+	if err := entity.DB().Preload("Shopping").Preload("WorkReceive").Preload("Editor").Raw("SELECT * FROM parts_purchases").Find(&partsPurchase).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}

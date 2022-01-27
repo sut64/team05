@@ -279,4 +279,28 @@ func SetupDatabase() {
 	}
 	db.Model(&RecieptHistory{}).Create(&reciept2)
 
+	shopping1 := PurchasingCompany{
+		Name: "KoratPart4U",
+	}
+	db.Model(&PurchasingCompany{}).Create(&shopping1)
+
+	shopping2 := PurchasingCompany{
+		Name: "BananaIT",
+	}
+	db.Model(&PurchasingCompany{}).Create(&shopping2)
+
+	shopping3 := PurchasingCompany{
+		Name: "A&Acomputer service",
+	}
+	db.Model(&PurchasingCompany{}).Create(&shopping3)
+
+	shopping4 := PurchasingCompany{
+		Name: "IT CITY สาขาไอที พลาซ่า นครราชสีมา",
+	}
+	db.Model(&PurchasingCompany{}).Create(&shopping4)
+	
+	shopping5 := PurchasingCompany{
+		Name: "KSSKORATจำหน่ายอุปกรณ์คอมพิวเตอร์",
+	}
+	db.Model(&PurchasingCompany{}).Create(&shopping5)
 }

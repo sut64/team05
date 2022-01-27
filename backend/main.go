@@ -87,14 +87,20 @@ func main() {
 			protected.GET("/reciept_historie/:id", controller.GetRecieptHistory)
 			protected.POST("/reciept_histories", controller.CreateRecieptHistory)
 
+			//partsPurchase Routes
+			protected.GET("/partsPurchase", controller.ListPartsPurchase)
+			protected.POST("/partsPurchase", controller.CreatePartsPurchase)
+
+			//purchasingCompany
+			protected.GET("/purchasingCompany", controller.ListPurchasingCompany)
 		}
+
+		// Authentication Routes
+		r.POST("/login_employee", controller.LoginByEmployee)
+
+		//Run server
+		r.Run()
 	}
-
-	// Authentication Routes
-	r.POST("/login_employee", controller.LoginByEmployee)
-
-	//Run server
-	r.Run()
 }
 
 func CORSMiddleware() gin.HandlerFunc {

@@ -80,7 +80,7 @@ function WorkReceive() {
          <Box>
            <Button
              component={RouterLink}
-             to="/WorkRecive_C"
+             to="/WorkReceive_C"
              variant="contained"
              color="primary"
            >

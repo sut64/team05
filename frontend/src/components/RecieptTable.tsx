@@ -28,10 +28,9 @@ import TableRow from "@material-ui/core/TableRow";
 
 import moment from 'moment';
 
-import { EmployeesInterface } from "../models/IEmployee"
-import { PaidBiesInterface } from "../models/IPaidBy"
+import { EmployeeInterface } from "../models/IEmployee"
 import { RecieptHistorysInterface } from "../models/IRecieptHistory"
-import { WorkReceivesInterface } from "../models/IWorkReceive"
+import NavBarEmployee from "./NavBar_employee";
 import { format } from 'date-fns'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -56,7 +55,7 @@ function History() {
 
   const [RecieptHistories, setRecieptHistories] = React.useState<RecieptHistorysInterface[]>([]);
 
-  const [CheckPaidby, setCheckPaidby] = React.useState<EmployeesInterface>();
+  const [CheckPaidby, setCheckPaidby] = React.useState<EmployeeInterface>();
 
   const apiUrl = "http://localhost:8080";
 
@@ -95,7 +94,7 @@ function History() {
 
   return (
     <div>
-      
+      <NavBarEmployee />
       <Typography component="div" style={{ height: '12vh' }} />
 
       <Container className={classes.container} maxWidth="md">
@@ -128,7 +127,7 @@ function History() {
                 <TableCell align="center" width="5%">
                   Order
                 </TableCell>
-                <TableCell align="center" width="15%">
+                <TableCell align="center" width="20%">
                   Employee
                 </TableCell>
                 <TableCell align="center" width="15%">

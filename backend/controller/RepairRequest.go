@@ -28,12 +28,12 @@ func CreateRepairRequest(c *gin.Context) {
 
 	// 11: ค้นหา urgency ด้วย id
 	if tx := entity.DB().Where("id = ?", repairrequest.UrgencyID).First(&urgency); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "activity not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "urgency not found"})
 		return
 	}
 	// 12: ค้นหา repairtype ด้วย id
 	if tx := entity.DB().Where("id = ?", repairrequest.RepairTypeID).First(&repairtype); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "joinstatus not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "repairtype not found"})
 		return
 	}
 
@@ -104,6 +104,16 @@ func UpdateRepairRequest(c *gin.Context) {
 	}
 
 	if err := entity.DB().Save(&repairrequest).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"data": repairrequest})
+}
+
+func ListRepairRequestNotINWorkReceive(c *gin.Context) {
+	var repairrequest []entity.RepairRequest
+	if err := entity.DB().Raw("SELECT * FROM repair_requests WHERE ID NOT IN (SELECT repair_request_id FROM work_receives)").Find(&repairrequest).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}

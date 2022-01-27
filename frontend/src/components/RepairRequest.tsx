@@ -93,6 +93,7 @@ const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }
       ...repairrequest,
       [name]: event.target.value,
     });
+    console.log(repairrequest)
   };
   const handleDateChange = (date: Date | null) => {
     console.log(date);
@@ -160,7 +161,7 @@ const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }
     const requestOptionsPost = {
       method: "POST",
       headers: { 
-        //Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json", },
       body: JSON.stringify(data),
     };
@@ -171,6 +172,7 @@ const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }
         if (res.data) {
           setSuccess(true);
         } else {
+          console.log(res)
           setError(true);
         }
       });

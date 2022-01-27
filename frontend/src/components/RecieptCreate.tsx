@@ -167,7 +167,7 @@ function ReciptHistory() {
       WorkReceiveID: RecieptHistory.WorkReceiveID,
       PaidByID: RecieptHistory.PaidByID,
       RecieptCode: RecieptHistory.RecieptCode ,
-      RecieptPrice: convertType(RecieptHistory.RecieptPrice),
+      RecieptPrice: typeof RecieptHistory.RecieptPrice === "string" ? parseFloat(RecieptHistory.RecieptPrice) : 0,
       RecieptDate: selectedDate,
     };
 

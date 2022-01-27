@@ -9,6 +9,8 @@ import RepairRequest from './components/RepairRequest';
 import NavBar_Employee from "./components/NavBar_employee";
 import PartsPurchase from './components/PartsPurchase';
 import CreatePartsPurchase from './components/CreatePartsPurchase';
+import RepairHis from "./components/RepairHis";
+import RepairHisCreate from "./components/RepairHisCreate";
 
 function App() {
 
@@ -35,6 +37,9 @@ function App() {
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="/warrantee" element={<Warrantee/>}/>
           <Route path="/warrantee/create" element={<WarranteeCreate/>}/>
+          <Route path="/repair_histories" element={<RepairHis/>}/>
+          <Route path="/repair_histories/create" element={<RepairHisCreate/>}/>
+
         </Routes>
       </div>
     </Router>

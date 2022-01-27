@@ -69,6 +69,7 @@ func GetWorkReceive(c *gin.Context) {
 // GET /users
 func ListWorkReceives(c *gin.Context) {
 	var workrecive []entity.WorkReceive
+
 	if err := entity.DB().Preload("Employee").Preload("WorkPlace").Preload("RepairRequest").Raw("SELECT * FROM work_receives").Find(&workrecive).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return

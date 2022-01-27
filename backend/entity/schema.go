@@ -99,17 +99,17 @@ type PaidBy struct {
 
 type RecieptHistory struct {
 	gorm.Model
-	RecipetCode  string
+	RecieptCode  string
 	RecieptPrice float32
 	RecieptDate  time.Time
 
-	EmployeeID   *uint
-	Employee     Employee
-	WorkreciveID *uint
+	EmployeeID *uint
+	Employee   Employee
 
-	Workrecive WorkReceive `gorm:"references:id"`
-	PaidByID   *uint
-	PaidBy     PaidBy `gorm:"references:id"`
+	WorkReceiveID *uint
+	WorkReceive   WorkReceive `gorm:"references:id"`
+	PaidByID      *uint
+	PaidBy        PaidBy `gorm:"references:id"`
 }
 
 type PurchasingCompany struct {

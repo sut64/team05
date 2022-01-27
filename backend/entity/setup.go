@@ -25,7 +25,7 @@ func SetupDatabase() {
 		&RepairRequest{},
 		&Employee{},
 		&WorkPlace{},
-		&WorkRecive{},
+		&WorkReceive{},
 		&PaidBy{},
 		&RecieptHistory{},
 		&PurchasingCompany{},
@@ -160,14 +160,14 @@ func SetupDatabase() {
 		Name: "Remote",
 	}
 	db.Model(&WorkPlace{}).Create(&workplace3)
-	// workrecive1 := WorkRecive{
+	// workrecive1 := WorkReceive{
 	// 	FinishedDate:   time.Now(),
 	// 	Wages:          120,
-	// 	WorkReciveCode: "W1234",
+	// 	WorkReceiveCode: "W1234",
 
 	// 	WorkPlace:     workplace1,
 	// 	Employee:      emp1,
 	// 	RepairRequest: work1,
 	// }
-	// db.Model(&WorkRecive{}).Create(&workrecive1)
+	// db.Model(&WorkReceive{}).Create(&workrecive1)
 }

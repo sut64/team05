@@ -3,15 +3,15 @@ package controller
 import (
 	"net/http"
 
-	"github.com/sut64/team05/entity"
 	"github.com/gin-gonic/gin"
+	"github.com/sut64/team05/entity"
 )
 
 // POST /partsPurchase
 func CreatePartsPurchase(c *gin.Context) {
 	var partsPurchase entity.PartsPurchase
 	var shopping entity.PurchasingCompany
-	var workrecive entity.WorkRecive
+	var workrecive entity.WorkReceive
 	var editor entity.Employee
 
 	if err := c.ShouldBindJSON(&partsPurchase); err != nil {
@@ -25,7 +25,7 @@ func CreatePartsPurchase(c *gin.Context) {
 	}
 
 	if tx := entity.DB().Where("id = ?", partsPurchase.WorkreciveID).First(&workrecive); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "WorkRecive not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "WorkReceive not found"})
 		return
 	}
 
@@ -35,13 +35,13 @@ func CreatePartsPurchase(c *gin.Context) {
 	}
 
 	newPartsPurchase := entity.PartsPurchase{
-		Parts : partsPurchase.Parts,
-		Quantity : partsPurchase.Quantity,
-		PartsPrice : partsPurchase.PartsPrice,
-		PurchaseTime : partsPurchase.PurchaseTime,
-		Shopping : shopping,
-		Workrecive : workrecive,
-		Editor : editor,
+		Parts:        partsPurchase.Parts,
+		Quantity:     partsPurchase.Quantity,
+		PartsPrice:   partsPurchase.PartsPrice,
+		PurchaseTime: partsPurchase.PurchaseTime,
+		Shopping:     shopping,
+		Workrecive:   workrecive,
+		Editor:       editor,
 	}
 
 	//12 save

@@ -8,7 +8,7 @@ import (
 )
 
 // POST /repairrequests
-func CreateRepairrequest(c *gin.Context) {
+func CreateRepairRequest(c *gin.Context) {
 	var repairrequest entity.RepairRequest
 	var urgency entity.Urgency
 	var repairtype entity.RepairType
@@ -28,12 +28,12 @@ func CreateRepairrequest(c *gin.Context) {
 
 	// 11: ค้นหา urgency ด้วย id
 	if tx := entity.DB().Where("id = ?", repairrequest.UrgencyID).First(&urgency); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "activity not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "urgency not found"})
 		return
 	}
 	// 12: ค้นหา repairtype ด้วย id
 	if tx := entity.DB().Where("id = ?", repairrequest.RepairTypeID).First(&repairtype); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "joinstatus not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "repairtype not found"})
 		return
 	}
 
@@ -57,7 +57,7 @@ func CreateRepairrequest(c *gin.Context) {
 }
 
 // GET /repairrequest/:id
-func GetRepairrequest(c *gin.Context) {
+func GetRepairRequest(c *gin.Context) {
 	var repairrequest entity.RepairRequest
 	id := c.Param("id")
 	if err := entity.DB().Raw("SELECT * FROM repair_requests WHERE id = ?", id).Scan(&repairrequest).Error; err != nil {
@@ -69,7 +69,7 @@ func GetRepairrequest(c *gin.Context) {
 }
 
 // GET /repairrequests
-func ListRepairrequests(c *gin.Context) {
+func ListRepairRequests(c *gin.Context) {
 	var repairrequests []entity.RepairRequest
 	if err := entity.DB().Raw("SELECT * FROM repair_requests").Scan(&repairrequests).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -80,7 +80,7 @@ func ListRepairrequests(c *gin.Context) {
 }
 
 // DELETE /repairrequests/:id
-func DeleteRepairrequest(c *gin.Context) {
+func DeleteRepairRequest(c *gin.Context) {
 	id := c.Param("id")
 	if tx := entity.DB().Exec("DELETE FROM repair_requests WHERE id = ?", id); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "repairrequest not found"})
@@ -91,7 +91,7 @@ func DeleteRepairrequest(c *gin.Context) {
 }
 
 // PATCH /repairrequests
-func UpdateRepairrequest(c *gin.Context) {
+func UpdateRepairRequest(c *gin.Context) {
 	var repairrequest entity.RepairRequest
 	if err := c.ShouldBindJSON(&repairrequest); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -104,6 +104,16 @@ func UpdateRepairrequest(c *gin.Context) {
 	}
 
 	if err := entity.DB().Save(&repairrequest).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"data": repairrequest})
+}
+
+func ListRepairRequestNotINWorkReceive(c *gin.Context) {
+	var repairrequest []entity.RepairRequest
+	if err := entity.DB().Raw("SELECT * FROM repair_requests WHERE ID NOT IN (SELECT repair_request_id FROM work_receives)").Find(&repairrequest).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}

@@ -27,6 +27,10 @@ import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 import HomeIcon from '@material-ui/icons/Home';
 import BuildIcon from '@material-ui/icons/Build';
 import SaveRoundedIcon from '@material-ui/icons/SaveRounded';
+import ReceiptIcon from '@material-ui/icons/Receipt';
+import StorefrontIcon from '@material-ui/icons/Storefront';
+import WorkTwoToneIcon from '@material-ui/icons/WorkTwoTone';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 
 const drawerWidth = 240;
@@ -135,10 +139,10 @@ const [token, setToken] = React.useState<String>("");
   
   const menu = [
     { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
-    { name: "ระบบที่ 1", icon: <LabelImportantIcon />, path: "/" },
-    { name: "ระบบที่ 2", icon: <LabelImportantIcon />, path: "/PartsPurchase" },
-    { name: "ระบบที่ 3", icon: <LabelImportantIcon />, path: "/" },
-    { name: "ระบบที่ 4", icon: <LabelImportantIcon />, path: "/" },
+    { name: "ระบบรับงานซ่อม", icon: <WorkTwoToneIcon />, path: "/WorkReceive" },
+    { name: "ระบบบันทึกการใช้อะไหล่ในการซ่อมคอมพิวเตอร์", icon: <StorefrontIcon />, path: "/PartsPurchase" },
+    { name: "ระบบบันทึกใบแจ้งชำระเงิน", icon: <ReceiptIcon />, path: "/reciept_histories" },
+    { name: "ระบบบันทึกข้อมูลรับประกันการซ่อม", icon: <AssignmentIcon />, path: "/warrantee" },
     { name: "ระบบบันทึกประวัติซ่อม", icon: <SaveRoundedIcon />, path: "/repair_histories" },
   ];
 

@@ -6,6 +6,7 @@ import DateFnsUtils from "@date-io/date-fns"
 import {Link as RouterLink} from "react-router-dom"
 
 import { WarranteeInterface } from "../models/IWarrantee";
+import NavBarEmployee from "./NavBar_employee";
 
 function Alert(props: AlertProps) {
     return <MuiAlert elevation={6} variant="filled" {...props}/>
@@ -105,6 +106,7 @@ function WarranteeCreate() {
                 <Divider/>
 
                 <Grid container spacing={3} className={classes.root}>
+                <NavBarEmployee />
                     
                     <Grid item xs={6}>
                         <p>ผู้บันทึกข้อมูล</p>

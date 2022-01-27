@@ -28,7 +28,7 @@ import { EmployeeInterface } from "../models/IEmployee"
 import { PaidBiesInterface } from "../models/IPaidBy"
 import { RecieptHistorysInterface } from "../models/IRecieptHistory"
 import { WorkReceiveInterface } from "../models/IWorkReceive"
-import { SignInsInterface } from "../models/ISignIn";
+import NavBarEmployee from "./NavBar_employee";
 
 const Alert = (props: AlertProps) => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -196,8 +196,10 @@ function ReciptHistory() {
 
 
   return (
+    
 
     <Container className={classes.container} maxWidth="md"> 
+    <NavBarEmployee />
       <Snackbar open={success} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">
           บันทึกข้อมูลสำเร็จ

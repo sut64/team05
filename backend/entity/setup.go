@@ -192,36 +192,43 @@ func SetupDatabase() {
 	db.Model(&WorkPlace{}).Create(&workplace3)
 
 	rwork1 := RepairRequest{
-		Device:      "ACER",
+		Device:      "ACER Monitor",
 		Lifetime:    1,
-		Issue:       "Don't Know",
+		Issue:       "ไม่ทราบปัญหา",
 		RequestDate: time.Now(),
 	}
 	db.Model(&RepairRequest{}).Create(&rwork1)
 	rwork2 := RepairRequest{
-		Device:      "ACER2",
+		Device:      "ASUS Monitor",
 		Lifetime:    1,
-		Issue:       "Don't Know",
+		Issue:       "ไม่ทราบปัญหา",
 		RequestDate: time.Now(),
 	}
 	db.Model(&RepairRequest{}).Create(&rwork2)
 	rwork3 := RepairRequest{
-		Device:      "ACER3",
+		Device:      "ACER Printer",
 		Lifetime:    1,
-		Issue:       "Don't Know",
+		Issue:       "ไม่ทราบปัญหา",
 		RequestDate: time.Now(),
 	}
 	db.Model(&RepairRequest{}).Create(&rwork3)
 	rwork4 := RepairRequest{
-		Device:      "ACER4",
+		Device:      "Razor Mouse",
 		Lifetime:    1,
-		Issue:       "Don't Know",
+		Issue:       "ไม่ทราบปัญหา",
 		RequestDate: time.Now(),
 	}
 	db.Model(&RepairRequest{}).Create(&rwork4)
+	rwork5 := RepairRequest{
+		Device:      "Razor Keyboard",
+		Lifetime:    1,
+		Issue:       "ไม่ทราบปัญหา",
+		RequestDate: time.Now(),
+	}
+	db.Model(&RepairRequest{}).Create(&rwork5)
 	workrecive1 := WorkReceive{
 		FinishedDate: time.Date(2022, 05, 01, 00, 00, 00, 000, time.UTC),
-		Wages:        120,
+		Wages:        120.00,
 		WorkCode:     "W1234",
 
 		WorkPlace:     workplace1,
@@ -233,18 +240,22 @@ func SetupDatabase() {
 	//WorkRecieveData
 
 	work1 := WorkReceive{
-		WorkCode:     "W6789",
-		Wages:        50.50,
-		FinishedDate: time.Now(),
-		Employee:     Employee1,
+		WorkCode:      "W6789",
+		Wages:         50.50,
+		FinishedDate:  time.Now(),
+		WorkPlace:     workplace1,
+		Employee:      Employee1,
+		RepairRequest: rwork2,
 	}
 	db.Model(&WorkReceive{}).Create(&work1)
 
 	work2 := WorkReceive{
-		WorkCode:     "W2525",
-		Wages:        100.25,
-		FinishedDate: time.Now(),
-		Employee:     Employee2,
+		WorkCode:      "W2525",
+		Wages:         100.25,
+		FinishedDate:  time.Now(),
+		WorkPlace:     workplace1,
+		Employee:      Employee2,
+		RepairRequest: rwork3,
 	}
 	db.Model(&WorkReceive{}).Create(&work2)
 
@@ -298,7 +309,7 @@ func SetupDatabase() {
 		Name: "IT CITY สาขาไอที พลาซ่า นครราชสีมา",
 	}
 	db.Model(&PurchasingCompany{}).Create(&shopping4)
-	
+
 	shopping5 := PurchasingCompany{
 		Name: "KSSKORATจำหน่ายอุปกรณ์คอมพิวเตอร์",
 	}

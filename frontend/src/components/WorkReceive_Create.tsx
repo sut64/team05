@@ -80,13 +80,13 @@ function WorkReceiveCreate() {
   const [error, setError] = useState(false);
     
   const apiUrl = "http://localhost:8080";
-//   const loginUser = localStorage.getItem("stdid");
+  const loginEmp = localStorage.getItem("uid");
 
 
   const requestOptions = {
     method: "GET",
     headers: {
-        //  Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
     },
 }
@@ -119,31 +119,8 @@ console.log(requestOptions);
     setSelectedDate(date);
   };
 
-//   const getClub= async (id: any) => {
-//     fetch(`${apiUrl}/club/${id}`, requestOptions)
-//       .then((response) => response.json())
-//       .then((res) => {
-//         if (res.data) {
-//             setClub(res.data);
-//         } else {
-//           console.log("else");
-//         }
-//       });
-//   };
-//   const getClubCommittees= async () => {
-//     fetch(`${apiUrl}/club_committees/std/${loginUser}`, requestOptions)
-//       .then((response) => response.json())
-//       .then((res) => {
-//         if (res.data) {
-//             getClub(res.data.ClubID);
-//             setClubCommittees(res.data);
-//         } else {
-//           console.log("else");
-//         }
-//       });
-//   };
   const getRepairRequest = async () => {
-    fetch(`${apiUrl}/RepairRequests`, requestOptions)
+    fetch(`${apiUrl}/RepairRequestsNotInWorkReceive`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
         if (res.data) {
@@ -165,7 +142,7 @@ console.log(requestOptions);
       });
   };
   const getEmployee = async () => {
-    fetch(`${apiUrl}/employee/1`, requestOptions)
+    fetch(`${apiUrl}/employee/${loginEmp}`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
         if (res.data) {
@@ -207,7 +184,7 @@ console.log(requestOptions);
     const requestOptionsPost = {
       method: "POST",
       headers: {
-        // Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
@@ -420,13 +397,6 @@ return (
            <Box pl={1}>
             <FormControl  variant="outlined"> 
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                {/* <KeyboardDateTimePicker
-                  name="DateStart"
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                  minDate={new Date()}
-                  format="yyyy/MM/dd  "
-                /> */}
                 <DatePicker value={selectedDate} onChange={handleDateChange}  format="dd/MM/yyyy"/>
               </MuiPickersUtilsProvider>
             </FormControl>

@@ -37,13 +37,16 @@ const useStyles = makeStyles((theme: Theme) =>
 function WorkReceive() {
  const classes = useStyles();
  const [workreceives, setWorkReceive] = React.useState<WorkReceiveInterface[]>([]);
- 
- const getUsers = async () => {
+ const requestOptions = {
+
+  method: "GET",
+  headers: {  
+  Authorization: `Bearer ${localStorage.getItem("token")}`,
+  "Content-Type": "application/json", },
+
+};
+ const getData = async () => {
    const apiUrl = "http://localhost:8080/WorkReceives";
-   const requestOptions = {
-     method: "GET",
-     headers: { "Content-Type": "application/json" },
-   };
  
    fetch(apiUrl, requestOptions)
      .then((response) => response.json())
@@ -58,7 +61,7 @@ function WorkReceive() {
  };
  
  useEffect(() => {
-   getUsers();
+  getData();
  }, []);
  
  return (
@@ -93,7 +96,7 @@ function WorkReceive() {
            <TableHead>
              <TableRow>
                <TableCell align="center" width="5%">
-                 ID
+                 ลำดับที่
                </TableCell>
                <TableCell align="center" width="15%">
                  รหัสงานซ่อม

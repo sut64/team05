@@ -11,7 +11,7 @@ import (
 func CreatePartsPurchase(c *gin.Context) {
 	var partsPurchase entity.PartsPurchase
 	var shopping entity.PurchasingCompany
-	var workrecive entity.WorkReceive
+	var workreceive entity.WorkReceive
 	var editor entity.Employee
 
 	if err := c.ShouldBindJSON(&partsPurchase); err != nil {
@@ -24,7 +24,7 @@ func CreatePartsPurchase(c *gin.Context) {
 		return
 	}
 
-	if tx := entity.DB().Where("id = ?", partsPurchase.WorkreciveID).First(&workrecive); tx.RowsAffected == 0 {
+	if tx := entity.DB().Where("id = ?", partsPurchase.WorkReceiveID).First(&workreceive); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "WorkReceive not found"})
 		return
 	}
@@ -40,7 +40,7 @@ func CreatePartsPurchase(c *gin.Context) {
 		PartsPrice:   partsPurchase.PartsPrice,
 		PurchaseTime: partsPurchase.PurchaseTime,
 		Shopping:     shopping,
-		Workrecive:   workrecive,
+		WorkReceive:  workreceive,
 		Editor:       editor,
 	}
 
@@ -55,7 +55,7 @@ func CreatePartsPurchase(c *gin.Context) {
 // GET /partsPurchase
 func ListPartsPurchase(c *gin.Context) {
 	var partsPurchase []entity.PartsPurchase
-	if err := entity.DB().Preload("Shopping").Preload("Workrecive").Preload("Editor").Raw("SELECT * FROM parts_purchases").Find(&partsPurchase).Error; err != nil {
+	if err := entity.DB().Preload("Shopping").Preload("WorkRecive").Preload("Editor").Raw("SELECT * FROM parts_purchases").Find(&partsPurchase).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}

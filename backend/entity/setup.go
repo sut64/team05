@@ -278,4 +278,5 @@ func SetupDatabase() {
 		PaidBy:       pay2,
 	}
 	db.Model(&RecieptHistory{}).Create(&reciept2)
+
 }

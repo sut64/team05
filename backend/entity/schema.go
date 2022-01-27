@@ -62,12 +62,12 @@ type Employee struct {
 	Phonenumber string
 	Password    string
 	// 1 employee can create many Workrecive
-	Workrecives []Workrecive `gorm:"foreignkey:WorkreciveID`
+	Workrecives []WorkRecive `gorm:"foreignkey:WorkreciveID`
 	// 1 employee can create many RecieptHistory
 	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID`
 }
 
-type Workrecive struct {
+type WorkRecive struct {
 	gorm.Model
 	WorkCode     string
 	Detail       string
@@ -103,7 +103,7 @@ type RecieptHistory struct {
 	EmployeeID   *uint
 	Employee     Employee
 	WorkreciveID *uint
-	Workrecive   Workrecive
+	Workrecive   WorkRecive
 	PaidByID     *uint
 	PaidBy       PaidBy `gorm:"references:id"`
 }

@@ -199,7 +199,7 @@ function WarranteeCreate() {
                 <Divider/>
 
                 <Grid container spacing={3} className={classes.root}>
-                <NavBarEmployee />
+                <NavBar/>
                     
                     <Grid container xs={4} direction="column" alignItems="center" justifyContent="center" style={{marginTop: "5%"}}>
                         <Typography

@@ -51,7 +51,7 @@ function Warrantee() {
         <div>
             <NavBar/>
             <Container className={classes.container} maxWidth="md">
-            <NavBarEmployee />
+            <NavBar/>
                 <Box display="flex">
                     <Box flexGrow={1}>
                         <Typography

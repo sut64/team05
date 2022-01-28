@@ -90,7 +90,7 @@ func SetupDatabase() {
 		Password: string(password),
 	}
 	db.Model(&Customer{}).Create(&rinrin)
-  
+
 	dada := Customer{
 		Name:     "Dada",
 		Email:    "dada123@hotmail.com",
@@ -287,17 +287,6 @@ func SetupDatabase() {
 	}
 	db.Model(&WorkReceive{}).Create(&work2)
 
-	// ohm
-	work3 := WorkReceive{
-		WorkCode:      "W2535",
-		Wages:         75.50,
-		FinishedDate:  time.Now(),
-		WorkPlace:     workplace2,
-		Employee:      Employee1,
-		RepairRequest: rwork1,
-	}
-	db.Model(&WorkReceive{}).Create(&work3)
-
 	work4 := WorkReceive{
 		WorkCode:      "W2595",
 		Wages:         95.00,
@@ -307,8 +296,6 @@ func SetupDatabase() {
 		RepairRequest: rwork4,
 	}
 	db.Model(&WorkReceive{}).Create(&work4)
-
-	// ohm
 
 	//RecieptHistory
 	pay1 := PaidBy{
@@ -412,35 +399,35 @@ func SetupDatabase() {
 
 	// boom
 	db.Model(&PartsPurchase{}).Create(&PartsPurchase{
-		Parts: "Anet Part Step Motor",     
-		Quantity: 2, 
-		PartsPrice: 1250.50,
-		PurchaseTime : time.Date(2022, 01, 8, 13, 45, 34, 000, time.UTC),
+		Parts:        "Anet Part Step Motor",
+		Quantity:     2,
+		PartsPrice:   1250.50,
+		PurchaseTime: time.Date(2022, 01, 8, 13, 45, 34, 000, time.UTC),
 
-		Shopping: shopping3,
+		Shopping:    shopping3,
 		WorkReceive: work2,
-		Editor: Employee2,
+		Editor:      Employee2,
 	})
 
 	db.Model(&PartsPurchase{}).Create(&PartsPurchase{
-		Parts: "Anet Part Nozzle Brass 0.4",     
-		Quantity: 12, 
-		PartsPrice: 384.50,
-		PurchaseTime : time.Date(2022, 01, 9, 11, 00, 23, 000, time.UTC),
+		Parts:        "Anet Part Nozzle Brass 0.4",
+		Quantity:     12,
+		PartsPrice:   384.50,
+		PurchaseTime: time.Date(2022, 01, 9, 11, 00, 23, 000, time.UTC),
 
-		Shopping: shopping4,
+		Shopping:    shopping4,
 		WorkReceive: work2,
-		Editor: Employee2,
+		Editor:      Employee2,
 	})
 
 	db.Model(&PartsPurchase{}).Create(&PartsPurchase{
-		Parts: "A61L-0001-0093 Fanuc CRT Display Module",     
-		Quantity: 1, 
-		PartsPrice: 4232.00,
-		PurchaseTime : time.Date(2022, 01, 12, 14, 32, 10, 000, time.UTC),
+		Parts:        "A61L-0001-0093 Fanuc CRT Display Module",
+		Quantity:     1,
+		PartsPrice:   4232.00,
+		PurchaseTime: time.Date(2022, 01, 12, 14, 32, 10, 000, time.UTC),
 
-		Shopping: shopping2,
+		Shopping:    shopping2,
 		WorkReceive: work1,
-		Editor: Employee1,
+		Editor:      Employee1,
 	})
 }

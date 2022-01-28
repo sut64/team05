@@ -47,7 +47,7 @@ type RepairRequest struct {
 	//RepairRequest  []RepairRequest `gorm:"references:id"`
 
 	//fix 1to1
-	//WorkReceives WorkReceive `gorm:"foreignKey:RepairRequestID"`
+	WorkReceives *WorkReceive `gorm:"foreignKey:RepairRequestID"`
 }
 
 //bank
@@ -84,8 +84,8 @@ type WorkReceive struct {
 	WorkPlaceID *uint
 	WorkPlace   WorkPlace `gorm:"references:id"`
 
-	RepairRequestID *uint
-	RepairRequest   RepairRequest `gorm:"references:id"`
+	RepairRequestID *uint `gorm:"uniqueIndex"`
+	RepairRequest   RepairRequest
 
 	RecieptHistories []RecieptHistory `gorm:"foreignKey:WorkReceiveID"`
 	// foreignkey to PartsPurchase

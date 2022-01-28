@@ -84,8 +84,8 @@ function WarranteeCreate() {
     };
     
     const getWorkReceive= async() => {   
-        const id = 1;
-        fetch(`${apiUrl}/work_receives/1`, requestOptions)
+        const uid = localStorage.getItem("uid");
+        fetch(`${apiUrl}/work_receives/${uid}`, requestOptions)
           .then((response) => response.json())
           .then((res) => {
             if (res.data) {

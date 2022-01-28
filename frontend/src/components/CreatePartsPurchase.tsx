@@ -22,7 +22,7 @@ import { MuiPickersUtilsProvider, KeyboardDateTimePicker } from '@material-ui/pi
 import DateFnsUtils from "@date-io/date-fns";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 
-import NavBarEmployee from './NavBar_employee';
+import NavBar from './NavBar';
 
 import { WorkReceiveInterface } from '../models/IWorkReceive';
 import { EmployeeInterface } from '../models/IEmployee';
@@ -207,7 +207,7 @@ export default function CreatePartsPurchase() {
 
     return (
         <Container className={classes.Container} maxWidth="md">
-            <NavBarEmployee />
+            <NavBar />
             <div className={classes.drawerHeader} />
             <Snackbar open={success} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="success">

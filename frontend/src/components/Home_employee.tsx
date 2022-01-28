@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBarEmployee from './NavBar_employee';
+import NavBar from './NavBar';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import Container from "@material-ui/core/Container";
 
@@ -26,7 +26,7 @@ export default function HomeEmployee() {
     const classes = useStyles();
     return (
         <div>
-            <NavBarEmployee />
+            <NavBar />
             <div className={classes.drawerHeader}/>
 
             <Container className={classes.container} maxWidth="md">

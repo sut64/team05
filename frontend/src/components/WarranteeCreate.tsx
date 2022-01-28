@@ -9,7 +9,7 @@ import { WarranteeInterface } from "../models/IWarrantee";
 import { WorkReceiveInterface } from "../models/IWorkReceive";
 import { WarranteeTypeInterface } from "../models/IWarranteeType";
 import { EmployeeInterface } from "../models/IEmployee";
-import NavBar from "./NavBar_employee";
+import NavBar from "./NavBar";
 
 
 function Alert(props: AlertProps) {
@@ -220,7 +220,7 @@ function WarranteeCreate() {
                 </Box>
 
                 <Divider/>
-                <NavBar/>
+              
                     
                 <Box paddingTop="3%">
                     <Grid container spacing={3} className={classes.root} alignItems="center">

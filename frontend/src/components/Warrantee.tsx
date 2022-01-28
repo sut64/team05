@@ -6,7 +6,7 @@ import { Link as RouterLink } from "react-router-dom";
 import  Paper  from "@material-ui/core/Paper";
 import moment from "moment";
 import { WarranteeInterface } from "../models/IWarrantee";
-import NavBar from "./NavBar_employee";
+import NavBar from "./NavBar";
 
 
 const useStyles = makeStyles((theme:Theme) => createStyles({
@@ -49,7 +49,6 @@ function Warrantee() {
 
     return (
         <div>
-            <NavBar/>
             <Container className={classes.container} maxWidth="md">
             <NavBar/>
                 <Box display="flex">

@@ -36,7 +36,7 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 import { green } from '@material-ui/core/colors';
 
-import NavBarEmployee from "./NavBar_employee";
+import NavBar from "./NavBar";
 
 const useStyles = makeStyles((theme: Theme) =>
 
@@ -99,7 +99,7 @@ function RepairHistories() {
     <div>
       
       <Container className={classes.container} maxWidth="md">
-      <NavBarEmployee />
+      <NavBar />
       <Typography component="div" style={{ height: '13vh' }} />
         <Box display="flex">
           <Box flexGrow={1}>

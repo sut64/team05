@@ -11,6 +11,7 @@ import { WarranteeTypeInterface } from "../models/IWarranteeType";
 import { EmployeeInterface } from "../models/IEmployee";
 import NavBar from "./NavBar_employee";
 
+
 function Alert(props: AlertProps) {
     return <MuiAlert elevation={6} variant="filled" {...props}/>
 }
@@ -198,6 +199,7 @@ function WarranteeCreate() {
                 <Divider/>
 
                 <Grid container spacing={3} className={classes.root}>
+                <NavBarEmployee />
                     
                     <Grid container xs={4} direction="column" alignItems="center" justifyContent="center" style={{marginTop: "5%"}}>
                         <Typography

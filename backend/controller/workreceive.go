@@ -19,24 +19,24 @@ func CreateWorkReceive(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	// 10: ค้นหา Employee ด้วย id
+	// : ค้นหา Employee ด้วย id
 	if tx := entity.DB().Where("id = ?", workRecive.EmployeeID).First(&employee); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Employee not found"})
 		return
 	}
-	// 11: ค้นหา workPlace ด้วย id
+	// : ค้นหา workPlace ด้วย id
 	if tx := entity.DB().Where("id = ?", workRecive.WorkPlaceID).First(&workPlace); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "workPlace not found"})
 		return
 	}
 
-	// 12: ค้นหา repairRequest ด้วย id
+	// : ค้นหา repairRequest ด้วย id
 	if tx := entity.DB().Where("id = ?", workRecive.RepairRequestID).First(&repairRequest); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "repairRequest not found"})
 		return
 	}
 
-	// 12: สร้าง WorkReceive
+	// : สร้าง WorkReceive
 	wr := entity.WorkReceive{
 		FinishedDate: workRecive.FinishedDate,
 		Wages:        workRecive.Wages,
@@ -46,7 +46,7 @@ func CreateWorkReceive(c *gin.Context) {
 		WorkPlace:     workPlace,
 		RepairRequest: repairRequest,
 	}
-	// 13: บันทึก
+	// : บันทึก
 	if err := entity.DB().Create(&wr).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -54,7 +54,7 @@ func CreateWorkReceive(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": wr})
 }
 
-// GET /user/:id
+// GET
 func GetWorkReceive(c *gin.Context) {
 	var workrecive entity.WorkReceive
 	id := c.Param("id")
@@ -66,7 +66,7 @@ func GetWorkReceive(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": workrecive})
 }
 
-// GET /users
+// GET
 func ListWorkReceives(c *gin.Context) {
 	var workrecive []entity.WorkReceive
 
@@ -78,7 +78,7 @@ func ListWorkReceives(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": workrecive})
 }
 
-// DELETE /users/:id
+// DELETE
 func DeleteWorkReceive(c *gin.Context) {
 	id := c.Param("id")
 	if tx := entity.DB().Exec("DELETE FROM work_receives WHERE id = ?", id); tx.RowsAffected == 0 {
@@ -89,7 +89,7 @@ func DeleteWorkReceive(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": id})
 }
 
-// PATCH /users
+// PATCH
 func UpdateWorkReceive(c *gin.Context) {
 	var workrecive entity.WorkReceive
 	if err := c.ShouldBindJSON(&workrecive); err != nil {
@@ -109,7 +109,7 @@ func UpdateWorkReceive(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"data": workrecive})
 }
-func GetWorkrecivewithEmployee(c *gin.Context) {
+func GetWorkreceivewithEmployee(c *gin.Context) {
 	var workrecive []entity.WorkReceive
 	employeeid := c.Param("employeeid")
 	if err := entity.DB().Preload("Employee").Raw("SELECT * FROM work_receives WHERE employee_id = ?", employeeid).Find(&workrecive).Error; err != nil {

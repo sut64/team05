@@ -8,9 +8,9 @@ import (
 
 type Customer struct {
 	gorm.Model
-	Name           string
-	ID_Customer    string `gorm:"uniqueIndex"`
-	Password       string
+	Name           	string
+	Email    		string `gorm:"uniqueIndex"`
+	Password       	string
 	RepairRequests []RepairRequest `gorm:"foreignKey:CustomerID"`
 }
 type RepairType struct {
@@ -57,12 +57,12 @@ type Employee struct {
 	Email       string
 	PhoneNumber string
 	Password    string
-	// 1 employee can create many Workrecive
+	// 1 employee can create many Workreceive
 
-	Workrecives []WorkReceive `gorm:"foreignKey:EmployeeID"`
+	WorkReceives []WorkReceive `gorm:"foreignKey:EmployeeID"`
 
 	// 1 employee can create many RecieptHistory
-	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID`
+	RecieptHistories []RecieptHistory `gorm:"foreignkey:EmployeeID"`
 }
 
 type WorkPlace struct {
@@ -86,30 +86,30 @@ type WorkReceive struct {
 	RepairRequestID *uint
 	RepairRequest   RepairRequest `gorm:"references:id"`
 
-	RecieptHistories []RecieptHistory `gorm:"foreignKey:WorkreciveID"`
+	RecieptHistories []RecieptHistory `gorm:"foreignKey:WorkReceiveID"`
 	// foreignkey to PartsPurchase
-	PartsPurchases []PartsPurchase `gorm:"foreignKey:WorkreciveID"`
+	PartsPurchases []PartsPurchase `gorm:"foreignKey:WorkReceiveID"`
 }
 
 type PaidBy struct {
 	gorm.Model
 	Name             string
-	RecieptHistories []RecieptHistory `gorm:"foreignkey:RecieptHistoryID`
+	RecieptHistories []RecieptHistory `gorm:"foreignkey:PaidByID"`
 }
 
 type RecieptHistory struct {
 	gorm.Model
-	RecipetCode  string
+	RecieptCode  string
 	RecieptPrice float32
 	RecieptDate  time.Time
 
-	EmployeeID   *uint
-	Employee     Employee
-	WorkreciveID *uint
+	EmployeeID *uint
+	Employee   Employee
 
-	Workrecive WorkReceive `gorm:"references:id"`
-	PaidByID   *uint
-	PaidBy     PaidBy `gorm:"references:id"`
+	WorkReceiveID *uint
+	WorkReceive   WorkReceive `gorm:"references:id"`
+	PaidByID      *uint
+	PaidBy        PaidBy `gorm:"references:id"`
 }
 
 type PurchasingCompany struct {
@@ -124,12 +124,12 @@ type PartsPurchase struct {
 	Quantity     uint
 	PartsPrice   float32
 	PurchaseTime time.Time
-	//ความสัมพันธ์กับ PurchasingCompany, Workrecive, Employee
+	//ความสัมพันธ์กับ PurchasingCompany, Workreceive, Employee
 	ShoppingID *uint
 	Shopping   PurchasingCompany `gorm:"references:id"`
 
-	WorkreciveID *uint
-	Workrecive   WorkReceive `gorm:"references:id"`
+	WorkReceiveID *uint
+	WorkReceive   WorkReceive `gorm:"references:id"`
 
 	EditorID *uint
 	Editor   Employee `gorm:"references:id"`
@@ -148,7 +148,7 @@ type RepairHistory struct {
 	gorm.Model
 	Problem   string
 	Solution  string
-	Success   bool
+	Success   *bool
 	Timestamp time.Time
 
 	RepairRequestID *uint

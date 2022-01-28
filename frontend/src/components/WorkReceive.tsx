@@ -13,7 +13,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { WorkReceiveInterface } from "../models/IWorkReceive";
-import NavBarEmployee from './NavBar_employee';
+import NavBarEmployee from "./NavBar_employee";
 
 import moment from 'moment';
  
@@ -37,13 +37,16 @@ const useStyles = makeStyles((theme: Theme) =>
 function WorkReceive() {
  const classes = useStyles();
  const [workreceives, setWorkReceive] = React.useState<WorkReceiveInterface[]>([]);
- 
- const getUsers = async () => {
+ const requestOptions = {
+
+  method: "GET",
+  headers: {  
+  Authorization: `Bearer ${localStorage.getItem("token")}`,
+  "Content-Type": "application/json", },
+
+};
+ const getData = async () => {
    const apiUrl = "http://localhost:8080/WorkReceives";
-   const requestOptions = {
-     method: "GET",
-     headers: { "Content-Type": "application/json" },
-   };
  
    fetch(apiUrl, requestOptions)
      .then((response) => response.json())
@@ -58,14 +61,14 @@ function WorkReceive() {
  };
  
  useEffect(() => {
-   getUsers();
+  getData();
  }, []);
  
  return (
    <div>
-     <NavBarEmployee/>
      <div className={classes.drawerHeader}/>
      <Container className={classes.container} maxWidth="md">
+     <NavBarEmployee />
        <Box display="flex">
          <Box flexGrow={1}>
            <Typography
@@ -80,7 +83,7 @@ function WorkReceive() {
          <Box>
            <Button
              component={RouterLink}
-             to="/WorkRecive_C"
+             to="/WorkReceive_C"
              variant="contained"
              color="primary"
            >
@@ -93,7 +96,7 @@ function WorkReceive() {
            <TableHead>
              <TableRow>
                <TableCell align="center" width="5%">
-                 ID
+                 ลำดับที่
                </TableCell>
                <TableCell align="center" width="15%">
                  รหัสงานซ่อม

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
@@ -16,22 +16,64 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-
-//---------Icon----------- 
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import Grid from "@material-ui/core/Grid";
+import Tooltip from '@material-ui/core/Tooltip';
+import Container from "@material-ui/core/Container";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 import HomeIcon from '@material-ui/icons/Home';
 import BuildIcon from '@material-ui/icons/Build';
+import SaveRoundedIcon from '@material-ui/icons/SaveRounded';
+import ReceiptIcon from '@material-ui/icons/Receipt';
+import StorefrontIcon from '@material-ui/icons/Storefront';
+import WorkTwoToneIcon from '@material-ui/icons/WorkTwoTone';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
-
+import SignIn from './SignIn';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+
+
     root: {
       display: 'flex',
     },
+    navlink: { color: "white", textDecoration: "none" },
+
+    tooltip: {
+      backgroundColor: '#f5f5f9',
+      color: 'rgba(0, 0, 0, 0.87)',
+      maxWidth: 3000,
+      fontSize: theme.typography.pxToRem(12),
+      border: '1px solid #dadde9',
+    },
+
+    center: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: 'center',
+
+    },
+
+    iconcenter: {
+      justifyContent: "center",
+      alignItems: 'center',
+      margin: theme.spacing(2)
+    },
+
+    large: {
+      width: theme.spacing(12),
+      height: theme.spacing(12),
+      margin: theme.spacing(2)
+    },
+
+    container: { margin: theme.spacing(1) },
+
     appBar: {
       transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.sharp,
@@ -91,18 +133,51 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function NavBarEmployee() {
+
+  const [employeeName, setEmployeeName] = React.useState<String>("");
+  const [token, setToken] = React.useState<String>("");
+  const [role, setRole] = React.useState<String>("");
+
   const menu = [
     { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
-    { name: "ระบบที่ 1", icon: <LabelImportantIcon />, path: "/" },
-    { name: "ระบบที่ 2", icon: <LabelImportantIcon />, path: "/" },
-    { name: "ระบบที่ 3", icon: <LabelImportantIcon />, path: "/" },
-    { name: "ระบบที่ 4", icon: <LabelImportantIcon />, path: "/" },
-    { name: "ระบบที่ 5", icon: <LabelImportantIcon />, path: "/" },
-    { name: "ออกจากระบบ", icon: <ExitToAppIcon />, path: "/SignIn" },
+    { name: "ระบบรับงานซ่อม", icon: <WorkTwoToneIcon />, path: "/WorkReceive" },
+    { name: "ระบบบันทึกการใช้อะไหล่ในการซ่อมคอมพิวเตอร์", icon: <StorefrontIcon />, path: "/PartsPurchase" },
+    { name: "ระบบบันทึกใบแจ้งชำระเงิน", icon: <ReceiptIcon />, path: "/reciept_histories" },
+    { name: "ระบบบันทึกข้อมูลรับประกันการซ่อม", icon: <AssignmentIcon />, path: "/warrantee" },
+    { name: "ระบบบันทึกประวัติซ่อม", icon: <SaveRoundedIcon />, path: "/repair_histories" },
   ];
+
+  const menu2 = [
+    { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
+    { name: "ระบบแจ้งซ่อม", icon: <WorkTwoToneIcon />, path: "/RepairRequestTable" },
+  ];
+
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+
+  useEffect(() => {
+
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    const employeeName = localStorage.getItem("name");
+    if (token && employeeName) {
+      setToken(token);
+      setEmployeeName(employeeName);
+      //  {console.log(localStorage.getItem("name"));
+      // console.log(employeeName);}
+    }
+    if (role){
+      setRole(role);
+    }
+  }, []);
+
+
+
+  const signout = () => {
+    localStorage.clear();
+    window.location.href = "/";
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -112,57 +187,214 @@ export default function NavBarEmployee() {
     setOpen(false);
   };
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            ระบบแจ้งซ่อมคอมพิวเตอร์
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <BuildIcon />พนักงานรร้านซ่อมคอมพิวเตอร์
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          {menu.map((item) => (
-            <Link to={item.path} key={item.name} className={classes.a}>
-              <ListItem button key={item.name}>
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.name} />
-              </ListItem>
-            </Link>
-          ))}
-        </List>
-      </Drawer>
-    </div>
-  );
+  if (role === "employee") {
+    return (
+      <div className={classes.root}>
+
+        <CssBaseline />
+        <AppBar
+          position="fixed"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
+          <Toolbar>
+
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap style={{ flexGrow: 1 }} >
+              ระบบแจ้งซ่อมคอมพิวเตอร์
+            </Typography>
+
+            <Tooltip arrow
+
+
+              className={classes.tooltip} interactive
+
+              title={
+                <Container>
+
+                  <Grid className={classes.center}>
+
+
+                    <Avatar className={classes.large} > {employeeName.substring(0, 1)} </Avatar>
+                  </Grid>
+
+                  <Grid className={classes.center}>
+                    <Typography variant="subtitle2" gutterBottom> Login as: พนักงานร้าน</Typography>
+                  </Grid>
+
+                  <Grid className={classes.center}>
+                    <Typography variant="subtitle1" gutterBottom
+                    >
+                      {employeeName}
+                    </Typography>
+                  </Grid>
+
+
+                  <Grid className={classes.center}>
+                    <Button className={classes.container}
+                      variant="contained"
+                      color="default"
+                      size="medium"
+                      onClick={signout}>
+
+                      Logout</Button>
+                  </Grid>
+
+                </Container>
+
+              }
+            >
+
+              <Avatar className={classes.container} > {employeeName.substring(0, 1)} </Avatar>
+
+            </Tooltip>
+
+          </Toolbar>
+        </AppBar>
+
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.drawerHeader}>
+            <BuildIcon className={classes.iconcenter} /> พนักงานร้านซ่อมคอมพิวเตอร์
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
+          </div>
+          <Divider />
+          <List>
+            {menu.map((item) => (
+              <Link to={item.path} key={item.name} className={classes.a}>
+                <ListItem button key={item.name}>
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.name} />
+                </ListItem>
+              </Link>
+            ))}
+          </List>
+        </Drawer>
+      </div>
+    );
+  }
+  if (role === "customer") {
+
+    return (
+      <div className={classes.root}>
+
+        <CssBaseline />
+        <AppBar
+          position="fixed"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
+          <Toolbar>
+
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap style={{ flexGrow: 1 }} >
+              ระบบแจ้งซ่อมคอมพิวเตอร์
+            </Typography>
+
+            <Tooltip arrow
+
+
+              className={classes.tooltip} interactive
+
+              title={
+                <Container>
+
+                  <Grid className={classes.center}>
+
+
+                    <Avatar className={classes.large} > {employeeName.substring(0, 1)} </Avatar>
+                  </Grid>
+
+                  <Grid className={classes.center}>
+                    <Typography variant="subtitle2" gutterBottom> Login as: ลูกค้า</Typography>
+                  </Grid>
+
+                  <Grid className={classes.center}>
+                    <Typography variant="subtitle1" gutterBottom
+                    >
+                      {employeeName}
+                    </Typography>
+                  </Grid>
+
+
+                  <Grid className={classes.center}>
+                    <Button className={classes.container}
+                      variant="contained"
+                      color="default"
+                      size="medium"
+                      onClick={signout}>
+
+                      Logout</Button>
+                  </Grid>
+
+                </Container>
+
+              }
+            >
+
+              <Avatar className={classes.container} > {employeeName.substring(0, 1)} </Avatar>
+
+            </Tooltip>
+
+          </Toolbar>
+        </AppBar>
+
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.drawerHeader}>
+            <BuildIcon className={classes.iconcenter} /> ลูกค้า
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
+          </div>
+          <Divider />
+          <List>
+            {menu2.map((item) => (
+              <Link to={item.path} key={item.name} className={classes.a}>
+                <ListItem button key={item.name}>
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.name} />
+                </ListItem>
+              </Link>
+            ))}
+          </List>
+        </Drawer>
+      </div>
+    );
+  }
+  return <SignIn />;
 }

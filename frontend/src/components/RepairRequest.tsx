@@ -52,10 +52,9 @@ const useStyles = makeStyles((theme: Theme) =>
   
 export default function NativeSelects() {
   const classes = useStyles();
-  //const loginUser = localStorage.getItem("cid");
   
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const [customers, setCustomers] = useState<CustomersInterface[]>([]);
+  const [customers, setCustomers] = useState<CustomersInterface>();
   const [repairtypes, setRepairTypes] = useState<RepairTypesInterface[]>([]);
   const [urgencys, setUrgencys] = useState<UrgenciesInterface[]>([]);
   const [repairrequest, setRepairRequests] = useState<Partial<RepairRequestsInterface>>({});
@@ -100,12 +99,15 @@ const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }
     setSelectedDate(date);
   }
   const getCustomers = async () => {
-    fetch(`${apiUrl}/customers`, requestOptions)
-    //fetch(`${apiUrl}/customer/find_with_customerID/${loginUser}`, requestOptions)
+    let uid = localStorage.getItem("uid");
+    fetch(`${apiUrl}/customer/${uid}`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
+        repairrequest.CustomerID = res.data.ID
         if (res.data) {
           setCustomers(res.data);
+          console.log(repairrequest.Customer);
+          console.log(repairrequest.CustomerID);
         } else {
           console.log("else");
         }
@@ -214,16 +216,15 @@ const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }
                 native
                 value={repairrequest.CustomerID}
                 onChange={handleChange}
-                disabled={false}
+                disabled={true}
                 inputProps={{
                   name: "CustomerID",
                 }}
               >
-              {customers.map((item: CustomersInterface) => (
-                  <option value={item.ID} key={item.ID}>
-                    {item.Name}
-                  </option>
-                ))}
+        
+              <option value={customers?.ID} key={customers?.ID}>
+                  {customers?.Name}
+                </option>
               </Select>
               </FormControl>
           </Grid>
@@ -238,6 +239,9 @@ const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }
                  name: "RepairTypeID",
                 }}
               >
+                <option aria-label="None" value="">
+                  กรุณาเลือกประเภทการขอแจ้งซ่อม
+                </option>
                 {repairtypes.map((item: RepairTypesInterface) => (
                   <option value={item.ID} key={item.ID}>
                     {item.Name}
@@ -257,6 +261,9 @@ const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }
                   name: "UrgencyID",
                 }}
               >
+                <option aria-label="None" value="">
+                  กรุณาเลือกความเร่งด่วน
+                </option>
                 {urgencys.map((item: UrgenciesInterface) => (
                   <option value={item.ID} key={item.ID}>
                     {item.Name}

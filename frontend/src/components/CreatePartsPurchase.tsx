@@ -161,7 +161,6 @@ export default function CreatePartsPurchase() {
         getPurchasingCompany();
         getWorkReceive();
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const convertType = (data: string | number | undefined) => {

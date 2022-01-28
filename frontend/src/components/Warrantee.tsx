@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import { Container, createStyles, makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Theme, Typography } from "@material-ui/core";
+import { Container, createStyles, makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Theme, Typography, Dialog, Accordion, AccordionDetails, AccordionSummary, Collapse } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import  Button  from "@material-ui/core/Button";
 import { Link as RouterLink } from "react-router-dom";
 import  Paper  from "@material-ui/core/Paper";
 import moment from "moment";
 import { WarranteeInterface } from "../models/IWarrantee";
-import NavBarEmployee from "./NavBar_employee";
+import NavBar from "./NavBar_employee";
+
 
 const useStyles = makeStyles((theme:Theme) => createStyles({
     container: {marginTop: theme.spacing(10)},
@@ -16,35 +17,39 @@ const useStyles = makeStyles((theme:Theme) => createStyles({
 
 function Warrantee() {
     const classes = useStyles();
-    const [users, setUsers] = React.useState<WarranteeInterface[]>([]);
+    const [warrantee, setWarrantee] = React.useState<WarranteeInterface[]>([]);
 
-    // const getUsers = async() => {
-    //     const apiUrl = "http://localhost:8080/users";
-    //     const requestOptions = {
-    //         method: "GET",
-    //         headers: { "Content-Type": "application/json"},
-    //     };
+    const apiUrl = "http://localhost:8080";
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json"
+        },
+    }
 
-    //     fetch(apiUrl, requestOptions)
-    //         .then((response) => response.json())
-    //         .then((res) => {
-    //             if(res.data) {
-    //                 // console.log(res.data);
-    //                 setUsers(res.data);
-    //                 // console.log(users.map);
-    //             }
-    //             else {
-    //                 console.log("can not get data");
-    //             }
-    //         });
-    // };
+    const getWarrantee = async() => {
+        fetch(`${apiUrl}/warrantees`, requestOptions)
+            .then((response) => response.json())
+            .then((res) => {
+                if(res.data) {
+                    // console.log(res.data);
+                    setWarrantee(res.data);
+                    
+                }
+                else {
+                    console.log("cannot get warrantee");
+                }
+            })
+    }
 
-    // useEffect(() => {
-    //     getUsers();
-    // }, []);
+    useEffect(() => {
+        getWarrantee();
+    }, []);
 
     return (
         <div>
+            <NavBar/>
             <Container className={classes.container} maxWidth="md">
             <NavBarEmployee />
                 <Box display="flex">
@@ -76,35 +81,43 @@ function Warrantee() {
                                 <TableCell align="center" width="5%">
                                     ID
                                 </TableCell>
-                                <TableCell align="center" width="25%">
+                                <TableCell align="center" width="10%">
                                     Code
                                 </TableCell>
-                                <TableCell align="center" width="25%">
+                                <TableCell align="center" width="10%">
+                                    Warrantee Type
+                                </TableCell>
+                                <TableCell align="center" width="10%">
                                     Maximumn Amount
                                 </TableCell>
-                                <TableCell align="center" width="25%">
+                                <TableCell align="center" width="10%">
                                     End of Warrantee
                                 </TableCell>
+                                <TableCell align="center" width="15%">
+                                    Guarantor
+                                </TableCell>
                                 <TableCell align="center" width="20%">
-                                    ใส่ปุ่ม
+                                    Warranty Parts
                                 </TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {users.map((user:WarranteeInterface) => (
-                                <TableRow key={user.ID}>
-                                    <TableCell align="right">{user.ID}</TableCell>
-                                    <TableCell align="left" size="medium">
-                                        {user.FirstName}
+                            {warrantee.map((warrantee:WarranteeInterface) => (
+                                <TableRow key={warrantee.ID}>
+                                    <TableCell align="center">{warrantee.ID}</TableCell>
+                                    <TableCell align="center" size="medium">
+                                        {warrantee.ID_Warrantee}
                                     </TableCell>
-                                    <TableCell align="left">{user.LastName}</TableCell>
-                                    <TableCell align="left">{user.Age}</TableCell>
-                                    <TableCell align="left">{user.Email}</TableCell>
+                                    <TableCell align="center">{warrantee.WarranteeType.Description}</TableCell>
+                                    <TableCell align="center">{warrantee.MaximumAmount}</TableCell>
                                     <TableCell align="center">
-                                        {moment(user.BirthDay).format("DD/MM/YYYY")}
+                                        {moment(warrantee.EndOfWarrantee).format("DD/MM/YYYY")}
                                     </TableCell>
+                                    <TableCell align="center">{warrantee.Employee.Name}</TableCell>
+                                    <TableCell align="center">{warrantee.WarrantyPart}</TableCell>
                                 </TableRow>
                             ))}
+
                         </TableBody>
                     </Table>
                 </TableContainer>

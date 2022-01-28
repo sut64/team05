@@ -1,8 +1,19 @@
+import { WorkReceiveInterface } from "./IWorkReceive";
+import { EmployeeInterface } from "./IEmployee";
+import { WarranteeTypeInterface } from "./IWarranteeType";
 export interface WarranteeInterface {
-    ID: string,
-    FirstName: string,
-    LastName: string,
-    Email: string,
-    Age: number,
-    BirthDay: Date | null
+    ID: number,
+    ID_Warrantee: string,
+    EndOfWarrantee: Date | null
+    WarrantyPart: string,
+    MaximumAmount: number,
+
+    EmployeeID: number,
+    Employee: EmployeeInterface,
+
+    WorkReceiveID: number,
+    WorkReceive: WorkReceiveInterface,
+
+    WarranteeTypeID: number,
+    WarranteeType: WarranteeTypeInterface
 }

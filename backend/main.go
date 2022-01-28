@@ -62,8 +62,6 @@ func main() {
 			protected.POST("/employees", controller.CreateEmployee)
 			protected.PATCH("/employees", controller.UpdateEmployee)
 			protected.DELETE("/employees/:id", controller.DeleteEmployee)
-			// ohm
-			protected.GET("/employee/email/:email", controller.GetEmployeeNameByEmail)
 
 			//Repairhistory Routes
 			protected.GET("/repair_histories", controller.ListRepairHistories)
@@ -79,7 +77,7 @@ func main() {
 			protected.GET("/WorkPlaces", controller.ListWorkPlace)
 			protected.GET("/RepairRequestsNotInWorkReceive", controller.ListRepairRequestNotINWorkReceive)
 			// ohm
-			protected.GET("/work_receives/:id", controller.ListWorkReceiveWithNoDuplicateID)
+			protected.GET("/work_receives", controller.ListWorkReceiveWithNoDuplicateID)
 
 			// paidby Routes
 			protected.GET("/paidbies", controller.ListPaidBies)

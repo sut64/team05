@@ -48,7 +48,7 @@ import { EmployeeInterface } from "../models/IEmployee";
 
 import { RepairHistoriesInterface } from "../models/IRepairHistory";
 
-import NavBarEmployee from "./NavBar_employee";
+import NavBar from "./NavBar";
 
 import { now } from "moment";
 
@@ -251,7 +251,7 @@ function RepairHistoryCreate() {
   return (
 
     <Container className={classes.container} maxWidth="sm">
-      <NavBarEmployee />
+      <NavBar />
       <Typography component="div" style={{ height: '3vh' }} />
       <Snackbar open={success} autoHideDuration={6000} onClose={handleClose}>
 

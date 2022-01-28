@@ -30,7 +30,7 @@ import moment from 'moment';
 
 import { EmployeeInterface } from "../models/IEmployee"
 import { RecieptHistorysInterface } from "../models/IRecieptHistory"
-import NavBarEmployee from "./NavBar_employee";
+import NavBar from "./NavBar";
 import { format } from 'date-fns'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -94,7 +94,7 @@ function History() {
 
   return (
     <div>
-      <NavBarEmployee />
+      <NavBar />
       <Typography component="div" style={{ height: '12vh' }} />
 
       <Container className={classes.container} maxWidth="md">
@@ -106,7 +106,7 @@ function History() {
               color="primary"
               gutterBottom
             >
-              รายการประวัติใบแจ้งชำระเงิน
+              รายการประวัติใบเสร็จรับเงิน
             </Typography>
           </Box>
           <Box>
@@ -116,7 +116,7 @@ function History() {
               variant="contained"
               color="primary"
             >
-              สร้างประวัติใบแจ้งชำระเงิน
+              สร้างประวัติใบเสร็จรับเงิน
             </Button>
           </Box>
         </Box>

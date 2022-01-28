@@ -31,6 +31,7 @@ import ReceiptIcon from '@material-ui/icons/Receipt';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import WorkTwoToneIcon from '@material-ui/icons/WorkTwoTone';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import PresentToAllTwoToneIcon from '@material-ui/icons/PresentToAllTwoTone';
 
 import SignIn from './SignIn';
 
@@ -132,24 +133,24 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function NavBarEmployee() {
+export default function NavBar() {
 
   const [employeeName, setEmployeeName] = React.useState<String>("");
   const [token, setToken] = React.useState<String>("");
   const [role, setRole] = React.useState<String>("");
 
-  const menu = [
+  const menu_employee = [
     { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
     { name: "ระบบรับงานซ่อม", icon: <WorkTwoToneIcon />, path: "/WorkReceive" },
     { name: "ระบบบันทึกการใช้อะไหล่ในการซ่อมคอมพิวเตอร์", icon: <StorefrontIcon />, path: "/PartsPurchase" },
-    { name: "ระบบบันทึกใบแจ้งชำระเงิน", icon: <ReceiptIcon />, path: "/reciept_histories" },
+    { name: "ระบบบันทึกใบเสร็จรับเงิน", icon: <ReceiptIcon />, path: "/reciept_histories" },
     { name: "ระบบบันทึกข้อมูลรับประกันการซ่อม", icon: <AssignmentIcon />, path: "/warrantee" },
     { name: "ระบบบันทึกประวัติซ่อม", icon: <SaveRoundedIcon />, path: "/repair_histories" },
   ];
 
-  const menu2 = [
+  const menu_customer = [
     { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
-    { name: "ระบบแจ้งซ่อม", icon: <WorkTwoToneIcon />, path: "/RepairRequestTable" },
+    { name: "ระบบแจ้งซ่อม", icon: <PresentToAllTwoToneIcon />, path: "/RepairRequestTable" },
   ];
 
   const classes = useStyles();
@@ -278,7 +279,7 @@ export default function NavBarEmployee() {
           </div>
           <Divider />
           <List>
-            {menu.map((item) => (
+            {menu_employee.map((item) => (
               <Link to={item.path} key={item.name} className={classes.a}>
                 <ListItem button key={item.name}>
                   <ListItemIcon>{item.icon}</ListItemIcon>
@@ -383,7 +384,7 @@ export default function NavBarEmployee() {
           </div>
           <Divider />
           <List>
-            {menu2.map((item) => (
+            {menu_customer.map((item) => (
               <Link to={item.path} key={item.name} className={classes.a}>
                 <ListItem button key={item.name}>
                   <ListItemIcon>{item.icon}</ListItemIcon>

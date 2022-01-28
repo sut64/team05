@@ -26,7 +26,7 @@ import { RepairRequestsInterface } from "../models/IRepairRequest";
 import { WorkplaceInterface } from "../models/IWorkplace";
 import { WorkReceiveInterface } from "../models/IWorkReceive";
 import 'date-fns'
-import NavBarEmployee from './NavBar_employee';
+import NavBar from './NavBar';
 const Alert = (props: AlertProps) => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 };
@@ -206,7 +206,7 @@ return (
         <div className={classes.drawerHeader}/>
     
     <Container className={classes.container} maxWidth="md">
-    <NavBarEmployee/>
+    <NavBar/>
              <Snackbar open={success} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">
           บันทึกข้อมูลสำเร็จ

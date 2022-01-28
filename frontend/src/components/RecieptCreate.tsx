@@ -28,7 +28,7 @@ import { EmployeeInterface } from "../models/IEmployee"
 import { PaidBiesInterface } from "../models/IPaidBy"
 import { RecieptHistorysInterface } from "../models/IRecieptHistory"
 import { WorkReceiveInterface } from "../models/IWorkReceive"
-import NavBarEmployee from "./NavBar_employee";
+import NavBarEmployee from "./NavBar";
 
 const Alert = (props: AlertProps) => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -222,7 +222,7 @@ function ReciptHistory() {
               color="primary"
               gutterBottom
             >
-              ระบบบันทึกใบแจ้งชำระเงิน
+              ระบบบันทึกใบเสร็จรับเงิน
             </Typography>
           </Box>
         </Box>

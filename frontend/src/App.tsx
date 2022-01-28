@@ -4,9 +4,7 @@ import SignIn from './components/SignIn';
 import WarranteeCreate from "./components/WarranteeCreate";
 import Warrantee from "./components/Warrantee";
 import HomeEmployee from './components/Home_employee';
-import HomeCustomer from './components/Home_Customer';
 import RepairRequest from './components/RepairRequest';
-import NavBar_Employee from "./components/NavBar_employee";
 import PartsPurchase from './components/PartsPurchase';
 import CreatePartsPurchase from './components/CreatePartsPurchase';
 import RepairHis from "./components/RepairHis";
@@ -35,7 +33,6 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<HomeEmployee />} /> 
-          <Route path="/customer" element={<HomeCustomer />} />
           <Route path="/RepairRequest" element={<RepairRequest />} /> 
           <Route path="/RepairRequestTable" element={<RepairRequestTable />} /> 
           <Route path="/PartsPurchase" element={<PartsPurchase />} /> 

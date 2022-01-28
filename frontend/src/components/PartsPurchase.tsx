@@ -14,7 +14,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { format } from 'date-fns'
 
-import NavBarEmployee from "./NavBar_employee";
+import NavBar from "./NavBar";
 import { PartsPurchaseInterface } from "../models/IPartsPurchase";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -66,7 +66,7 @@ export default function PartsPurchase() {
 
     return (
         <div>
-            <NavBarEmployee />
+            <NavBar />
             <div className={classes.drawerHeader} />
             <Container className={classes.container} maxWidth="md">
                 <Box display="flex">

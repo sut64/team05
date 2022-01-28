@@ -382,7 +382,8 @@ function RepairHistoryCreate() {
           </Grid>
           <Grid item xs={7}>
           <FormControlLabel
-              control={<Checkbox checked={state.Success} 
+              
+              control={<Checkbox 
               id="Success"
               onChange={handleCheckboxChange            
               }

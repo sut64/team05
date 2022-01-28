@@ -63,7 +63,7 @@ func CreateRepairHistory(c *gin.Context) {
 func GetRepairHistory(c *gin.Context) {
 	var repairhistory entity.RepairHistory
 	id := c.Param("id")
-	if err := entity.DB().Joins("RepairRequest").Preload("Difficulty").Preload("Editor").Raw("SELECT * FROM repair_histories WHERE id = ?", id).Find(&repairhistory).Error; err != nil {
+	if err := entity.DB().Preload("Editor").Preload("RepairRequest").Preload("Difficulty").Raw("SELECT * FROM repair_histories WHERE id = ?", id).Find(&repairhistory).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -75,7 +75,7 @@ func GetRepairHistory(c *gin.Context) {
 // fix 1to1
 func ListRepairHistories(c *gin.Context) {
 	var repairhistories []entity.RepairHistory
-	if err := entity.DB().Joins("RepairRequest").Preload("Difficulty").Preload("Editor").Raw("SELECT * FROM repair_histories").Find(&repairhistories).Error; err != nil {
+	if err := entity.DB().Preload("Editor").Preload("RepairRequest").Preload("Difficulty").Raw("SELECT * FROM repair_histories").Find(&repairhistories).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}

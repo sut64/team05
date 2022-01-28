@@ -84,17 +84,20 @@ func SetupDatabase() {
 	db.Raw("SELECT * FROM employees WHERE email = ?", "rinrada_lady27@outlook.com").Scan(&em3)
 
 	//Customer Data
-
-	db.Model(&Customer{}).Create(&Customer{
+	rinrin := Customer{
 		Name:     "RinRin",
 		Email:    "rinrin123@hotmail.com",
 		Password: string(password),
-	})
-	db.Model(&Customer{}).Create(&Customer{
+	}
+	db.Model(&Customer{}).Create(&rinrin)
+  
+	dada := Customer{
 		Name:     "Dada",
 		Email:    "dada123@hotmail.com",
 		Password: string(password),
-	})
+	}
+	db.Model(&Customer{}).Create(&dada)
+
 	software := RepairType{
 		Name: "software",
 	}
@@ -146,6 +149,9 @@ func SetupDatabase() {
 
 	//RepairRequest Data
 	RR001 := RepairRequest{
+		Customer:    rinrin,
+		RepairType:  hardware,
+		Urgency:     semiurgency,
 		Device:      "Acer Computer",
 		Lifetime:    3,
 		Issue:       "คอมพิวเตอร์เปิดไม่ติด",
@@ -154,6 +160,9 @@ func SetupDatabase() {
 	db.Model(&RepairRequest{}).Create(&RR001)
 
 	RR002 := RepairRequest{
+		Customer:    dada,
+		RepairType:  hardware,
+		Urgency:     semiurgency,
 		Device:      "Brother CPx703 Printer",
 		Lifetime:    1,
 		Issue:       "Printer ถ่ายเอกสาร แล้วตัวอักษรเพี้ยน",
@@ -196,6 +205,9 @@ func SetupDatabase() {
 	db.Model(&WorkPlace{}).Create(&workplace3)
 
 	rwork1 := RepairRequest{
+		Customer:    rinrin,
+		RepairType:  other,
+		Urgency:     nonurgency,
 		Device:      "ACER Monitor",
 		Lifetime:    1,
 		Issue:       "ไม่ทราบปัญหา",
@@ -203,6 +215,9 @@ func SetupDatabase() {
 	}
 	db.Model(&RepairRequest{}).Create(&rwork1)
 	rwork2 := RepairRequest{
+		Customer:    dada,
+		RepairType:  other,
+		Urgency:     semiurgency,
 		Device:      "ASUS Monitor",
 		Lifetime:    1,
 		Issue:       "ไม่ทราบปัญหา",
@@ -210,6 +225,9 @@ func SetupDatabase() {
 	}
 	db.Model(&RepairRequest{}).Create(&rwork2)
 	rwork3 := RepairRequest{
+		Customer:    rinrin,
+		RepairType:  other,
+		Urgency:     semiurgency,
 		Device:      "ACER Printer",
 		Lifetime:    1,
 		Issue:       "ไม่ทราบปัญหา",
@@ -217,6 +235,9 @@ func SetupDatabase() {
 	}
 	db.Model(&RepairRequest{}).Create(&rwork3)
 	rwork4 := RepairRequest{
+		Customer:    dada,
+		RepairType:  other,
+		Urgency:     nonurgency,
 		Device:      "Razor Mouse",
 		Lifetime:    1,
 		Issue:       "ไม่ทราบปัญหา",
@@ -224,6 +245,9 @@ func SetupDatabase() {
 	}
 	db.Model(&RepairRequest{}).Create(&rwork4)
 	rwork5 := RepairRequest{
+		Customer:    dada,
+		RepairType:  other,
+		Urgency:     semiurgency,
 		Device:      "Razor Keyboard",
 		Lifetime:    1,
 		Issue:       "ไม่ทราบปัญหา",

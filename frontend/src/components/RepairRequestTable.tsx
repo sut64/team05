@@ -146,7 +146,7 @@ function RepairRequestTable() {
                   อุปกรณ์
                 </TableCell>
                 <TableCell align="center" width="10%">
-                    อายุการใช้งาน
+                    อายุการใช้งาน (เดือน)
                 </TableCell>
                 <TableCell align="center" width="10%">
                  ปัญหา

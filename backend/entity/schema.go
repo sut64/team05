@@ -41,7 +41,7 @@ type RepairRequest struct {
 	Urgency   Urgency `gorm:"references:id"`
 
 	//fix 1to1
-	//RepairHistory []RepairHistory `gorm:"foreignKey:EditorID"`
+	RepairHistory *RepairHistory `gorm:"foreignKey:RepairRequestID"`
 
 	//RepairRequstID *uint
 	//RepairRequest  []RepairRequest `gorm:"references:id"`
@@ -152,8 +152,8 @@ type RepairHistory struct {
 	Success   *bool
 	Timestamp time.Time
 
-	RepairRequestID *uint
-	RepairRequest   RepairRequest `gorm:"references:ID"`
+	RepairRequestID *uint `gorm:"uniqueIndex"`
+	RepairRequest   RepairRequest
 	EditorID        *uint
 	Editor          Employee `gorm:"references:ID"`
 	DifficultyID    *uint

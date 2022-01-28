@@ -85,8 +85,8 @@ func GetWarrantee(c *gin.Context) {
 	var warrantee entity.Warrantee
 	id := c.Param("id")
 
-	if err := entity.DB().Preload("Employee").Joins("WorkReceice").Preload("WarranteeType").Raw("SELECT * FROM warrantees WHERE id = ?", id).Find(&warrantee).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"errorishere": err.Error()})
+	if err := entity.DB().Preload("Employee").Preload("WorkReceive").Preload("WarranteeType").Raw("SELECT * FROM warrantees WHERE id = ?", id).Find(&warrantee).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -99,8 +99,8 @@ func GetWarrantee(c *gin.Context) {
 // GET /warrantees
 func ListWarrantees(c *gin.Context) {
 	var warrantee []entity.Warrantee
-	if err := entity.DB().Preload("Employee").Joins("WorkReceice").Preload("WarranteeType").Raw("SELECT * FROM warrantees").Find(&warrantee).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"errorishere": err.Error()})
+	if err := entity.DB().Preload("Employee").Preload("WorkReceive").Preload("WarranteeType").Raw("SELECT * FROM warrantees").Find(&warrantee).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 

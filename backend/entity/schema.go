@@ -8,9 +8,9 @@ import (
 
 type Customer struct {
 	gorm.Model
-	Name           	string
-	Email    		string `gorm:"uniqueIndex"`
-	Password       	string
+	Name           string
+	Email          string `gorm:"uniqueIndex"`
+	Password       string
 	RepairRequests []RepairRequest `gorm:"foreignKey:CustomerID"`
 }
 type RepairType struct {
@@ -63,6 +63,9 @@ type Employee struct {
 
 	// 1 employee can create many RecieptHistory
 	RecieptHistories []RecieptHistory `gorm:"foreignkey:EmployeeID"`
+
+	// (ohm) 1 employee can create many Warrantee
+	Warrantee []Warrantee `gorm:"foreignkey:EmployeeID"`
 }
 
 type WorkPlace struct {
@@ -89,6 +92,8 @@ type WorkReceive struct {
 	RecieptHistories []RecieptHistory `gorm:"foreignKey:WorkReceiveID"`
 	// foreignkey to PartsPurchase
 	PartsPurchases []PartsPurchase `gorm:"foreignKey:WorkReceiveID"`
+
+	Warrantee *Warrantee `gorm:"foreignKey:WorkReceiveID"`
 }
 
 type PaidBy struct {
@@ -168,7 +173,7 @@ type Warrantee struct {
 	MaximumAmount  float32 `sql:"type:decimal(10,2);"`
 
 	// WorkReceiveID is foreignkey
-	WorkReceiveID *uint
+	WorkReceiveID *uint       `gorm:"uniqueIndex"`
 	WorkReceive   WorkReceive `gorm:"references:ID"`
 
 	// EmployeeID is foreignkey

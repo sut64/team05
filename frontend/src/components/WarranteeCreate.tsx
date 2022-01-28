@@ -44,13 +44,28 @@ function WarranteeCreate() {
         // window.location.reload();
     }
 
+    const [disable, setDisable] = React.useState(false);
+
+
     const handleInputChange = (event: React.ChangeEvent<{name?: string; value: any}>) => {
         
         const name = event.target.name as keyof typeof warrantee;
-        // console.log("name" , name)
         const { value } = event.target;
-        // console.log(name, value)
         setWarrantee({...warrantee, [name]: value})
+    }
+
+    const handleSelectChange = (event: React.ChangeEvent<{name?: string; value: any}>) => {
+        
+        const name = event.target.name as keyof typeof warrantee;
+        const { value } = event.target;
+        setWarrantee({...warrantee, [name]: value})
+
+        if(value == "2") {
+            setDisable(true)
+        }
+        else {
+            setDisable(false)
+        }
     }
 
     const handleDateChange = (date: Date | null) => {
@@ -120,7 +135,6 @@ function WarranteeCreate() {
         return val;
     }
     
-    
 
     function submit() {
         let validWarranteePart = false;
@@ -135,6 +149,10 @@ function WarranteeCreate() {
         if (warrantee.WorkReceiveID === undefined && workReceive.length !== 0) {
             warrantee.WorkReceiveID = workReceive[0].ID;
         }
+        if (warrantee.WarrantyPart === undefined && disable) {
+            warrantee.WarrantyPart = "ไม่มี";
+        }
+        
 
         let data = {
             ID_Warrantee: warrantee.ID_Warrantee = "",
@@ -157,8 +175,10 @@ function WarranteeCreate() {
                 validWarranteePart = true;
             }
 
-            console.log(validMaximumAmount)
-            console.log(validWarranteePart)
+            console.log(warrantee.WarrantyPart)
+
+            // console.log(validMaximumAmount)
+            // console.log(validWarranteePart)
 
         const requestOptions = {
             method: "POST",
@@ -191,6 +211,7 @@ function WarranteeCreate() {
         }
     }
 
+    
     return (
         <Container className={classes.container} maxWidth="md">
             <NavBar/>
@@ -283,6 +304,7 @@ function WarranteeCreate() {
                                         <option aria-label="None" value="">
                                             No Work Available
                                         </option>): <br/>}
+
                                     {workReceive.map((item: WorkReceiveInterface) => (
                                         <option value={item.ID} key={item.ID}>
                                             {item.WorkCode}
@@ -315,9 +337,8 @@ function WarranteeCreate() {
                                     name="WarranteeTypeID"
                                     variant="outlined"                            
                                     value={warrantee.WarranteeTypeID}
-                                    onChange={handleInputChange}
+                                    onChange={handleSelectChange}
                                 >
-
                                     {warranteeType.map((item: WarranteeTypeInterface) => (
                                         <option value={item.ID} key={item.ID}>
                                             {item.Description}
@@ -345,17 +366,30 @@ function WarranteeCreate() {
                         <Grid item xs={5}>
                             <FormControl fullWidth variant="outlined">
 
-                                <TextField
-                                    name="WarrantyPart"
-                                    variant="outlined"
-                                    type="string"
-                                    size="medium" 
-                                    multiline
-                                    maxRows={2}                           
-                                    value={warrantee.WarrantyPart || ""}
-                                    onChange={handleInputChange}
-                                />  
-                            
+                                {disable ? (
+                                    <TextField
+                                        name="WarrantyPart"
+                                        variant="outlined"
+                                        type="string"
+                                        size="medium" 
+                                        multiline
+                                        maxRows={2}                           
+                                        value="ไม่มี"
+                                        disabled={disable}
+                                    />
+                                    ):(
+                                        <TextField
+                                            name="WarrantyPart"
+                                            variant="outlined"
+                                            type="string"
+                                            size="medium" 
+                                            multiline
+                                            maxRows={2}                           
+                                            value={warrantee.WarrantyPart || ""}
+                                            onChange={handleInputChange}
+                                    />
+                                    )
+                                }
                             </FormControl>
                         </Grid>
                     </Grid>  

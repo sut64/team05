@@ -120,14 +120,12 @@ func GetWorkreceivewithEmployee(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": workrecive})
 }
 
-// (ohm) GET /work_recives/:id
+// (ohm) GET /work_recives
 func ListWorkReceiveWithNoDuplicateID(c *gin.Context) {
 	var workrecive []entity.WorkReceive
-	id := c.Param("id")
 
-	// ค้นหา club ทั้งหมดที่นักษาที่กำลังใช้งานระบบไม่ได้เป็นสมาชิกอยู่
-	// ค้นหาเฉพาะชื่อ club ไม่รวม FK
-	if err := entity.DB().Raw("SELECT * FROM work_receives WHERE id NOT IN (SELECT work_receive_id FROM warrantees WHERE id = ?)", id).Find(&workrecive).Error; err != nil {
+	// ค้นหา work receive ทั้งหมดที่ไม่มีในข้อมูล warrantee
+	if err := entity.DB().Raw("SELECT * FROM work_receives WHERE id NOT IN (SELECT DISTINCT work_receive_id FROM warrantees)").Find(&workrecive).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"errorishere": err.Error()})
 		return
 	}

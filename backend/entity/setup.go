@@ -372,14 +372,14 @@ func SetupDatabase() {
 	})
 
 	db.Model(&Warrantee{}).Create(&Warrantee{
-		ID_Warrantee:   "G123456",
+		ID_Warrantee:   "G000002",
 		EndOfWarrantee: time.Date(2024, 01, 30, 00, 00, 00, 000, time.UTC),
 		WarrantyPart:   " power supply",
 		MaximumAmount:  2500.0,
 
 		WorkReceive: work2,
 
-		Employee: Employee1,
+		Employee: Employee2,
 
 		WarranteeType: partsInsurance,
 	})

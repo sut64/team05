@@ -409,4 +409,38 @@ func SetupDatabase() {
 	})
 
 	// ohm
+
+	// boom
+	db.Model(&PartsPurchase{}).Create(&PartsPurchase{
+		Parts: "Anet Part Step Motor",     
+		Quantity: 2, 
+		PartsPrice: 1250.50,
+		PurchaseTime : time.Date(2022, 01, 8, 13, 45, 34, 000, time.UTC),
+
+		Shopping: shopping3,
+		WorkReceive: work2,
+		Editor: Employee2,
+	})
+
+	db.Model(&PartsPurchase{}).Create(&PartsPurchase{
+		Parts: "Anet Part Nozzle Brass 0.4",     
+		Quantity: 12, 
+		PartsPrice: 384.50,
+		PurchaseTime : time.Date(2022, 01, 9, 11, 00, 23, 000, time.UTC),
+
+		Shopping: shopping4,
+		WorkReceive: work2,
+		Editor: Employee2,
+	})
+
+	db.Model(&PartsPurchase{}).Create(&PartsPurchase{
+		Parts: "A61L-0001-0093 Fanuc CRT Display Module",     
+		Quantity: 1, 
+		PartsPrice: 4232.00,
+		PurchaseTime : time.Date(2022, 01, 12, 14, 32, 10, 000, time.UTC),
+
+		Shopping: shopping2,
+		WorkReceive: work1,
+		Editor: Employee1,
+	})
 }

@@ -1,8 +1,8 @@
 package controller
 
 import (
-	// "fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/sut64/team05/entity"
@@ -39,11 +39,34 @@ func CreateWarrantee(c *gin.Context) {
 		return
 	}
 
+	// auto generate id_warrantee
+	var id int
+	if err := entity.DB().Raw("SELECT COUNT(id) FROM warrantees").Find(&id).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "id of warrantee not found"})
+		return
+	}
+	if id == 0 {
+		warrantee.ID_Warrantee = "G000001"
+	} else {
+		if err := entity.DB().Raw("SELECT MAX(id) FROM warrantees").Find(&id).Error; err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "id of warrantee not found"})
+			return
+		}
+		id_warrantee := strconv.Itoa(id + 1)
+		for i := 0; len(id_warrantee) < 6; i++ {
+			id_warrantee = "0" + id_warrantee
+		}
+		id_warrantee = "G" + id_warrantee
+
+		warrantee.ID_Warrantee = id_warrantee
+	}
+
 	// สร้าง Warrantee
 	w := entity.Warrantee{
 		Employee:       employee,                 // โยงความสัมพันธ์กับ Entity Employee
 		WorkReceive:    workReceive,              // โยงความสัมพันธ์กับ Entity WorkRecive
 		WarranteeType:  warranteeType,            // โยงความสัมพันธ์กับ Entity WarranteeType
+		ID_Warrantee:   warrantee.ID_Warrantee,   // ตั้งค่าฟิลด์ ID_Warrantee
 		WarrantyPart:   warrantee.WarrantyPart,   // ตั้งค่าฟิลด์ WarrantyPart
 		MaximumAmount:  warrantee.MaximumAmount,  // ตั้งค่าฟิลด์ MaximumAmount
 		EndOfWarrantee: warrantee.EndOfWarrantee, // ตั้งค่าฟิลด์ EndOfWarrantee
@@ -61,19 +84,23 @@ func CreateWarrantee(c *gin.Context) {
 func GetWarrantee(c *gin.Context) {
 	var warrantee entity.Warrantee
 	id := c.Param("id")
-	if err := entity.DB().Raw("SELECT * FROM users WhERE id = ?", id).Scan(&warrantee).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+
+	if err := entity.DB().Preload("Employee").Joins("WorkReceice").Preload("WarranteeType").Raw("SELECT * FROM warrantees WHERE id = ?", id).Find(&warrantee).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"errorishere": err.Error()})
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{"data": warrantee})
+
+	// preload เป็นการดึงข้อมูลมาจาก FK ของตารางที่ใช้ในคำสั่ง Raw
+
 }
 
 // GET /warrantees
 func ListWarrantees(c *gin.Context) {
 	var warrantee []entity.Warrantee
-	if err := entity.DB().Raw("SELECT * FROM users").Scan(&warrantee).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	if err := entity.DB().Preload("Employee").Joins("WorkReceice").Preload("WarranteeType").Raw("SELECT * FROM warrantees").Find(&warrantee).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"errorishere": err.Error()})
 		return
 	}
 
@@ -83,7 +110,7 @@ func ListWarrantees(c *gin.Context) {
 // DELETE /warrantees/:id
 func DeleteWarrantee(c *gin.Context) {
 	id := c.Param("id")
-	if tx := entity.DB().Exec("DELETE FROM users WHERE id = ?", id); tx.RowsAffected == 0 {
+	if tx := entity.DB().Exec("DELETE FROM warrantees WHERE id = ?", id); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "user not found"})
 		return
 	}

@@ -76,6 +76,8 @@ func main() {
 			protected.POST("/WorkReceives", controller.CreateWorkReceive)
 			protected.GET("/WorkPlaces", controller.ListWorkPlace)
 			protected.GET("/RepairRequestsNotInWorkReceive", controller.ListRepairRequestNotINWorkReceive)
+			// ohm
+			protected.GET("/work_receives", controller.ListWorkReceiveWithNoDuplicateID)
 
 			// paidby Routes
 			protected.GET("/paidbies", controller.ListPaidBies)
@@ -93,12 +95,26 @@ func main() {
 
 			//purchasingCompany
 			protected.GET("/purchasingCompany", controller.ListPurchasingCompany)
+
+			// Warrantee Routes
+			protected.GET("/warrantees", controller.ListWarrantees)
+			protected.GET("/warrantee/:id", controller.GetWarrantee)
+			protected.POST("/warrantee", controller.CreateWarrantee)
+			protected.PATCH("/warrantee", controller.UpdateWarrantee)
+			protected.DELETE("/warrantee/:id", controller.DeleteWarrantee)
+
+			// WarranteeType Routes
+			protected.GET("/warrantee_types", controller.ListWarranteeType)
+			protected.GET("/warrantee_type/:id", controller.GetWarranteeType)
+			protected.POST("/warrantee_type", controller.CreateWarranteeType)
+			protected.PATCH("/warrantee_type", controller.UpdateWarranteeType)
+			protected.DELETE("/warrantee_type/:id", controller.DeleteWarranteeType)
 		}
 
 		// Authentication Routes
 		r.POST("/login_employee", controller.LoginByEmployee)
 		r.POST("/login_customer", controller.LoginByCustomer)
-		
+
 		//Run server
 		r.Run()
 	}

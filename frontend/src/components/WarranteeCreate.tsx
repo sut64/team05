@@ -41,7 +41,7 @@ function WarranteeCreate() {
         }
         setSuccess(false);
         setError(false);
-        window.location.reload();
+        // window.location.reload();
     }
 
     const handleInputChange = (event: React.ChangeEvent<{name?: string; value: any}>) => {
@@ -68,9 +68,8 @@ function WarranteeCreate() {
     };
 
     const getEmployee = async() => {
-        localStorage.setItem("employee_email", "rinrada_lady27@outlook.com")
-        const employee_email = localStorage.getItem("employee_email");
-        fetch(`${apiUrl}/employee/email/${employee_email}`, requestOptions)
+        const uid = localStorage.getItem("uid")
+        fetch(`${apiUrl}/employee/${uid}`, requestOptions)
           .then((response) => response.json())
           .then((res) => {
             if (res.data) {
@@ -84,8 +83,7 @@ function WarranteeCreate() {
     };
     
     const getWorkReceive= async() => {   
-        const id = 1;
-        fetch(`${apiUrl}/work_receives/1`, requestOptions)
+        fetch(`${apiUrl}/work_receives`, requestOptions)
           .then((response) => response.json())
           .then((res) => {
             if (res.data) {
@@ -117,12 +115,17 @@ function WarranteeCreate() {
          getWarranteeType();
      }, [])
 
-     const convertType = (data: string | number | undefined) => {
+    const convertTypeInt = (data: string | number | undefined) => {
         let val = typeof data === "string" ? parseInt(data) : data;
         return val;
-    } 
+    }
+    
+    
 
     function submit() {
+        let validWarranteePart = false;
+        let validMaximumAmount = false;
+
         if (warrantee.WarranteeTypeID === undefined) {
             warrantee.WarranteeTypeID = warranteeType[0].ID;
         }
@@ -136,36 +139,56 @@ function WarranteeCreate() {
         let data = {
             ID_Warrantee: warrantee.ID_Warrantee = "",
             EndOfWarrantee: selectedDate,
-            WarrantyPart: warrantee.WarrantyPart ?? "",
-            MaximumAmount: typeof warrantee.MaximumAmount === "string" ? parseFloat(warrantee.MaximumAmount) : 0,
+            WarrantyPart: warrantee.WarrantyPart,
+            MaximumAmount: typeof warrantee.MaximumAmount === "string" ? parseFloat(warrantee.MaximumAmount) : undefined,
             
-            WorkReceiveID: convertType(warrantee.WorkReceiveID),
-            EmployeeID: convertType(warrantee.EmployeeID = employee.ID),
-            WarranteeTypeID: convertType(warrantee.WarranteeTypeID),
+            WorkReceiveID: convertTypeInt(warrantee.WorkReceiveID),
+            EmployeeID: convertTypeInt(warrantee.EmployeeID = employee.ID),
+            WarranteeTypeID: convertTypeInt(warrantee.WarranteeTypeID),
         };
         // console.log(warrantee.EmployeeID, warrantee.WorkReceiveID, warrantee.WarranteeTypeID);
-        
+
+            console.log(warrantee.WarrantyPart !== undefined)
+            console.log(warrantee.MaximumAmount !== undefined)
+            if(warrantee.MaximumAmount !== undefined ) {
+                validMaximumAmount = true
+            }
+            if(warrantee.WarrantyPart !== undefined) {
+                validWarranteePart = true;
+            }
+
+            console.log(validMaximumAmount)
+            console.log(validWarranteePart)
 
         const requestOptions = {
             method: "POST",
             headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
                 "Content-Type": "application/json"
               },
             body: JSON.stringify(data),
         };
         console.log(JSON.stringify(data));
 
-        fetch(`${apiUrl}/warrantee`, requestOptions)
+        console.log(validMaximumAmount && validWarranteePart)
+
+        if(validMaximumAmount && validWarranteePart) {
+            fetch(`${apiUrl}/warrantee`, requestOptions)
             .then((response) => response.json())
             .then((res) => {
                 if(res.data) {
                     // console.log(res.data);
                     setSuccess(true);
+                    window.location.reload();
                 }
                 else {
                     setError(true);
                 }
             })
+        }
+        else {
+            setError(true);
+        }
     }
 
     return (

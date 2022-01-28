@@ -197,173 +197,194 @@ function WarranteeCreate() {
                 </Box>
 
                 <Divider/>
-
-                <Grid container spacing={3} className={classes.root}>
                 <NavBar/>
                     
-                    <Grid container xs={4} direction="column" alignItems="center" justifyContent="center" style={{marginTop: "5%"}}>
-                        <Typography
-                        component="h2"
-                        variant="h6"
-                        color="primary"
-                        gutterBottom
-                        align="center"
-                        >
-                        ผู้บันทึกข้อมูล
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={8} style={{marginTop: "5%"}}>
-                        {/* <p>ผู้บันทึกข้อมูล</p> */}
-                        <FormControl fullWidth variant="outlined">
-                            <Select
-                                native
-                                name="Name"
-                                variant="outlined"
-                                value={employee.Name}
-                                onChange={handleInputChange}
-                                disabled
+                <Box paddingTop="3%">
+                    <Grid container spacing={3} className={classes.root} alignItems="center">
+                        <Grid item xs={6}>
+                            <Typography
+                            component="h2"
+                            variant="h6"
+                            color="primary"
+                            gutterBottom
+                            align="center"
                             >
-                                <option value={employee.ID} key={employee.ID}>
-                                    {employee.Name}
-                                </option>
-                             
-                            </Select>  
-                        </FormControl>
-                    </Grid>
+                            ผู้บันทึกข้อมูล
+                            </Typography>
+                        </Grid>
 
-                    <Grid container xs={4} direction="column" alignItems="center" justifyContent="center">
-                        <Typography
-                        component="h2"
-                        variant="h6"
-                        color="primary"
-                        gutterBottom
-                        align="center"
-                        >
-                        งานที่ซ่อม
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={8}>
-                        {/* <p>งานที่ซ่อม</p> */}
-                        <FormControl fullWidth variant="outlined">
-                            <Select
-                                native
-                                name="WorkReceiveID"
-                                variant="outlined"                            
-                                value={warrantee.WorkReceiveID}
-                                onChange={handleInputChange}
-                                disabled={workReceive.length === 0 ? true:false}
-                            >
-                                {workReceive.length === 0 ? (
-                                    <option aria-label="None" value="">
-                                        No Work Available
-                                    </option>): <br/>}
-                                {workReceive.map((item: WorkReceiveInterface) => (
-                                    <option value={item.ID} key={item.ID}>
-                                        {item.WorkCode}
+                        <Grid item xs={5}>
+                            <FormControl fullWidth variant="outlined">
+                                <Select
+                                    native
+                                    name="Name"
+                                    variant="outlined"
+                                    value={employee.Name}
+                                    onChange={handleInputChange}
+                                    disabled
+                                >
+                                    <option value={employee.ID} key={employee.ID}>
+                                        {employee.Name}
                                     </option>
-                                ))}
-                            </Select>
-                        </FormControl>
-                    </Grid>
-                    
-                    <Grid container xs={4} direction="column" alignItems="center" justifyContent="center">
-                        <Typography
-                        component="h2"
-                        variant="h6"
-                        color="primary"
-                        gutterBottom
-                        align="center"
-                        >
-                        รูปแบบการรับประกัน
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={8}>
-                        {/* <p>รูปแบบการรับประกัน</p> */}
-                        <FormControl fullWidth variant="outlined">
-                            <Select
-                                native
-                                name="WarranteeTypeID"
-                                variant="outlined"                            
-                                value={warrantee.WarranteeTypeID}
-                                onChange={handleInputChange}
                                 
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                    </Grid> 
+
+
+                    <Grid container spacing={3} className={classes.root} alignItems="center">
+                        <Grid item xs={6}>
+                            <Typography
+                                component="h2"
+                                variant="h6"
+                                color="primary"
+                                gutterBottom
+                                align="center"
                             >
-                                {warranteeType.map((item: WarranteeTypeInterface) => (
-                                    <option value={item.ID} key={item.ID}>
-                                        {item.Description}
-                                    </option>
-                                ))}
-                            </Select>   
-                        </FormControl>
-                    </Grid>
+                                งานที่ซ่อม
+                            </Typography>
+                        </Grid>
 
-                    <Grid container xs={4} direction="column" alignItems="center" justifyContent="center">
-                        <Typography
-                        component="h2"
-                        variant="h6"
-                        color="primary"
-                        gutterBottom
-                        align="center"
-                        >
-                        อะไหล่ที่ประกันได้
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={8}>
-                        {/* <p>อะไหล่ที่ประกันได้</p> */}
-                        <FormControl fullWidth variant="outlined">
-                            <TextField
-                                name="WarrantyPart"
-                                variant="outlined"
-                                type="string"
-                                size="medium" 
-                                multiline
-                                maxRows={2}                           
-                                value={warrantee.WarrantyPart || ""}
-                                onChange={handleInputChange}
-                            />  
-                        </FormControl>
-                    </Grid>
+                        <Grid item xs={5}>
+                            <FormControl fullWidth variant="outlined">
+                                <Select
+                                    native
+                                    name="WorkReceiveID"
+                                    variant="outlined"                            
+                                    value={warrantee.WorkReceiveID}
+                                    onChange={handleInputChange}
+                                    disabled={workReceive.length === 0 ? true:false}
+                                >
+                                    {workReceive.length === 0 ? (
+                                        <option aria-label="None" value="">
+                                            No Work Available
+                                        </option>): <br/>}
+                                    {workReceive.map((item: WorkReceiveInterface) => (
+                                        <option value={item.ID} key={item.ID}>
+                                            {item.WorkCode}
+                                        </option>
+                                    ))}
 
-                    <Grid container xs={4} direction="column" alignItems="center" justifyContent="center">
-                        <Typography
-                        component="h2"
-                        variant="h6"
-                        color="primary"
-                        gutterBottom
-                        align="center"
-                        >
-                        วงเงินสูงสุด
-                        </Typography>
+                                </Select>
+                            </FormControl>
+                        </Grid>
                     </Grid>
+          
+                    <Grid container spacing={3} className={classes.root} alignItems="center">
+                        <Grid item xs={6}>
+                            <Typography
+                            component="h2"
+                            variant="h6"
+                            color="primary"
+                            gutterBottom
+                            align="center"
+                            >
+                            รูปแบบการรับประกัน
+                            </Typography>
+                        </Grid>
 
-                    <Grid item xs={8}>
-                        {/* <p>วงเงินสูงสุด</p> */}
-                        <FormControl fullWidth variant="outlined">
-                            <TextField
-                                name="MaximumAmount"
-                                variant="outlined"
-                                type="number"
-                                size="medium"
-                                value={warrantee.MaximumAmount || ""}
-                                onChange={handleInputChange}
-                            />
-                        </FormControl>
-                    </Grid>
+                        <Grid item xs={5}>
+                            <FormControl fullWidth variant="outlined">
 
-                    <Grid container xs={4} direction="column" alignItems="center" justifyContent="center">
-                        <Typography
-                        component="h2"
-                        variant="h6"
-                        color="primary"
-                        gutterBottom
-                        align="center"
-                        >
-                        วันที่หมดประกัน
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={8}>
-                        {/* <p>วันที่หมดประกัน</p> */}
-                        <FormControl fullWidth variant="outlined">
+                                <Select
+                                    native
+                                    name="WarranteeTypeID"
+                                    variant="outlined"                            
+                                    value={warrantee.WarranteeTypeID}
+                                    onChange={handleInputChange}
+                                >
+
+                                    {warranteeType.map((item: WarranteeTypeInterface) => (
+                                        <option value={item.ID} key={item.ID}>
+                                            {item.Description}
+                                        </option>
+                                    ))}
+                                </Select>
+                            
+                            </FormControl>
+                        </Grid>
+                    </Grid>  
+            
+                    <Grid container spacing={3} className={classes.root} alignItems="center">
+                        <Grid item xs={6}>
+                            <Typography
+                            component="h2"
+                            variant="h6"
+                            color="primary"
+                            gutterBottom
+                            align="center"
+                            >
+                            อะไหล่ที่ประกันได้
+                            </Typography>
+                        </Grid>
+
+                        <Grid item xs={5}>
+                            <FormControl fullWidth variant="outlined">
+
+                                <TextField
+                                    name="WarrantyPart"
+                                    variant="outlined"
+                                    type="string"
+                                    size="medium" 
+                                    multiline
+                                    maxRows={2}                           
+                                    value={warrantee.WarrantyPart || ""}
+                                    onChange={handleInputChange}
+                                />  
+                            
+                            </FormControl>
+                        </Grid>
+                    </Grid>  
+
+
+                    <Grid container spacing={3} className={classes.root} alignItems="center">
+                        <Grid item xs={6}>
+                            <Typography
+                            component="h2"
+                            variant="h6"
+                            color="primary"
+                            gutterBottom
+                            align="center"
+                            >
+                            วงเงินสูงสุด
+                            </Typography>
+                        </Grid>
+
+                        <Grid item xs={5}>
+                            <FormControl fullWidth variant="outlined">
+
+                                <TextField
+                                    name="MaximumAmount"
+                                    variant="outlined"
+                                    type="number"
+                                    size="medium"
+                                    value={warrantee.MaximumAmount || ""}
+                                    onChange={handleInputChange}
+                                />
+                            
+                            </FormControl>
+                        </Grid>
+                    </Grid>  
+
+
+                    <Grid container spacing={3} className={classes.root} alignItems="center">
+                        <Grid item xs={6} >
+                            <Typography
+                            component="h2"
+                            variant="h6"
+                            color="primary"
+                            gutterBottom
+                            align="center"
+                            >
+                                วันที่หมดประกัน
+                            </Typography>
+                        </Grid>
+
+                        <Grid item xs={5}>
+                            <Box paddingLeft="6%" paddingRight="6%">
+                            <FormControl fullWidth variant="outlined">
+
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardDatePicker
                                     margin="normal"
@@ -376,23 +397,28 @@ function WarranteeCreate() {
                                     }}
                                 />
                             </MuiPickersUtilsProvider>
-                        </FormControl>
-                    </Grid>
 
-                    <Grid item xs={12}>
-                        <Button component={RouterLink} to="/warrantee" variant="contained">
-                            Back
-                        </Button>
-                        <Button
-                            style={{float: "right"}}
-                            onClick={submit}
-                            variant="contained"
-                            color="primary"
-                        >
-                            Submit
-                        </Button>
+                            </FormControl>
+                            </Box>
+                        </Grid>    
+                    </Grid>   
+
+                    <Grid container spacing={3} className={classes.root}>
+                        <Grid item xs={12}>
+                            <Button component={RouterLink} to="/warrantee" variant="contained">
+                                Back
+                            </Button>
+                            <Button
+                                style={{float: "right"}}
+                                onClick={submit}
+                                variant="contained"
+                                color="primary"
+                            >
+                                Submit
+                            </Button>         
+                        </Grid>
                     </Grid>
-                </Grid>
+                </Box>
             </Paper>
         </Container>
     );

@@ -8,9 +8,9 @@ import (
 
 type Customer struct {
 	gorm.Model
-	Name           	string
-	Email    		string `gorm:"uniqueIndex"`
-	Password       	string
+	Name           string
+	Email          string `gorm:"uniqueIndex"`
+	Password       string
 	RepairRequests []RepairRequest `gorm:"foreignKey:CustomerID"`
 }
 type RepairType struct {
@@ -40,13 +40,14 @@ type RepairRequest struct {
 	UrgencyID *uint
 	Urgency   Urgency `gorm:"references:id"`
 
-	//1 editor can be in many repairHistories
-	RepairHistory []RepairHistory `gorm:"foreignKey:EditorID"`
+	//fix 1to1
+	//RepairHistory []RepairHistory `gorm:"foreignKey:EditorID"`
 
 	//RepairRequstID *uint
 	//RepairRequest  []RepairRequest `gorm:"references:id"`
 
-	WorkReceives []WorkReceive `gorm:"foreignKey:RepairRequestID"`
+	//fix 1to1
+	//WorkReceives WorkReceive `gorm:"foreignKey:RepairRequestID"`
 }
 
 //bank
@@ -57,8 +58,8 @@ type Employee struct {
 	Email       string
 	PhoneNumber string
 	Password    string
-	// 1 employee can create many Workreceive
 
+	// 1 employee can create many Workreceive
 	WorkReceives []WorkReceive `gorm:"foreignKey:EmployeeID"`
 
 	// 1 employee can create many RecieptHistory

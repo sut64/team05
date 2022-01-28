@@ -43,6 +43,10 @@ func SetupDatabase() {
 	db = database
 	password, err := bcrypt.GenerateFromPassword([]byte("232345"), 14)
 
+	if err != nil {
+		panic("cannot create password")
+	}
+
 	//Employee Data
 
 	Employee1 := Employee{
@@ -87,9 +91,9 @@ func SetupDatabase() {
 		Password: string(password),
 	})
 	db.Model(&Customer{}).Create(&Customer{
-		Name:        "Dada",
-		Email: "dada123@hotmail.com",
-		Password:    string(password),
+		Name:     "Dada",
+		Email:    "dada123@hotmail.com",
+		Password: string(password),
 	})
 	software := RepairType{
 		Name: "software",
@@ -259,6 +263,29 @@ func SetupDatabase() {
 	}
 	db.Model(&WorkReceive{}).Create(&work2)
 
+	// ohm
+	work3 := WorkReceive{
+		WorkCode:      "W2535",
+		Wages:         75.50,
+		FinishedDate:  time.Now(),
+		WorkPlace:     workplace2,
+		Employee:      Employee1,
+		RepairRequest: rwork1,
+	}
+	db.Model(&WorkReceive{}).Create(&work3)
+
+	work4 := WorkReceive{
+		WorkCode:      "W2595",
+		Wages:         95.00,
+		FinishedDate:  time.Now(),
+		WorkPlace:     workplace3,
+		Employee:      Employee3,
+		RepairRequest: rwork4,
+	}
+	db.Model(&WorkReceive{}).Create(&work4)
+
+	// ohm
+
 	//RecieptHistory
 	pay1 := PaidBy{
 		Name: "banking",
@@ -314,4 +341,48 @@ func SetupDatabase() {
 		Name: "KSSKORATจำหน่ายอุปกรณ์คอมพิวเตอร์",
 	}
 	db.Model(&PurchasingCompany{}).Create(&shopping5)
+
+	// ohm
+	partsInsurance := WarranteeType{
+		Description: "Parts Insurance",
+	}
+	db.Model(&WarranteeType{}).Create(&partsInsurance)
+
+	wageInsurance := WarranteeType{
+		Description: "Wage Insurance",
+	}
+	db.Model(&WarranteeType{}).Create(&wageInsurance)
+
+	partsAndWageInsurance := WarranteeType{
+		Description: "Parts Insurance and Wage Insurance",
+	}
+	db.Model(&WarranteeType{}).Create(&partsAndWageInsurance)
+
+	db.Model(&Warrantee{}).Create(&Warrantee{
+		ID_Warrantee:   "G000001",
+		EndOfWarrantee: time.Date(2025, 07, 10, 00, 00, 00, 000, time.UTC),
+		WarrantyPart:   " power supply",
+		MaximumAmount:  2500.0,
+
+		WorkReceive: work1,
+
+		Employee: Employee1,
+
+		WarranteeType: partsInsurance,
+	})
+
+	db.Model(&Warrantee{}).Create(&Warrantee{
+		ID_Warrantee:   "G123456",
+		EndOfWarrantee: time.Date(2024, 01, 30, 00, 00, 00, 000, time.UTC),
+		WarrantyPart:   " power supply",
+		MaximumAmount:  2500.0,
+
+		WorkReceive: work2,
+
+		Employee: Employee1,
+
+		WarranteeType: partsInsurance,
+	})
+
+	// ohm
 }

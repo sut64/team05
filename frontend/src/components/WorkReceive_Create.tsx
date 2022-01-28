@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme: Theme) =>
    paper: {padding: theme.spacing(2),color: theme.palette.text.secondary},
    formControl: {
     margin: theme.spacing(1),
-    minWidth: 240,
+    minWidth: 220,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -221,12 +221,12 @@ return (
         <Paper elevation={3}>
         <Divider />
         <Grid container spacing={3} className={classes.root}>
-        <Grid item xs={6} alignItems="center">
+        <Grid item xs={2} alignItems="center">
           <Box display="flex"  color="text.primary">
             <Box flexGrow={2} pt={3} pl={5} >
           <Typography
             component="h2"
-            variant="h6"
+            variant="body2"
             color="inherit"
             gutterBottom
           >
@@ -235,7 +235,7 @@ return (
             </Box >
             </Box>
           </Grid>
-           <Grid item xs={6}  alignItems="flex-start" >
+           <Grid item xs={4}  alignItems="flex-start" >
           <Box flexGrow={2}  pt={1.5}>
           <FormControl className={classes.formControl}>
          <Select
@@ -258,12 +258,12 @@ return (
       </FormControl>           
       </Box>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={2}>
           <Box display="flex"  color="text.primary">
             <Box flexGrow={2} pt={3} pl={5}>
           <Typography
             component="h2"
-            variant="h6"
+            variant="body2"
             color="inherit"
             gutterBottom>
           ลักษณะการซ่อม
@@ -271,7 +271,7 @@ return (
             </Box >
             </Box>
           </Grid>
-          <Grid item xs={6} >
+          <Grid item xs={4} >
           <Box flexGrow={2}  pt={1.5}>
           <FormControl className={classes.formControl}>
         <Select
@@ -294,21 +294,21 @@ return (
         </Select>
       </FormControl>         </Box>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={2}>
           <Box display="flex"  color="text.primary">
             <Box flexGrow={2}  pt={3} pl={5}>
           <Typography
             component="h2"
-            variant="h6"
+            variant="body2"
             color="inherit"
             gutterBottom
           >
-          พนักงานรร้านซ่อมคอมพิวเตอร์
+          พนักงาน
           </Typography>
          </Box >
          </Box>
           </Grid> 
-          <Grid item xs={6}>
+          <Grid item xs={4}>
           <Box flexGrow={2}  pt={1.5}>
           <FormControl className={classes.formControl} disabled>
         <Select
@@ -325,12 +325,12 @@ return (
       </Box>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={2}>
           <Box display="flex"  color="text.primary">
             <Box flexGrow={2}  pt={3} pl={5}>
           <Typography
             component="h2"
-            variant="h6"
+            variant="body2"
             color="inherit"
             gutterBottom
           >
@@ -339,7 +339,7 @@ return (
          </Box >
          </Box>
           </Grid> 
-          <Grid item xs={6}>
+          <Grid item xs={4}>
           <Box flexGrow={2}  pt={1.5}>
           <FormControl className={classes.formControl} disabled>
        <TextField
@@ -352,12 +352,12 @@ return (
        </FormControl>         </Box>
           </Grid>
           
-          <Grid item xs={6}>
+          <Grid item xs={2}>
           <Box display="flex"  color="text.primary">
             <Box flexGrow={2}  pt={3} pl={5}>
           <Typography
             component="h2"
-            variant="h6"
+            variant="body2"
             color="inherit"
             gutterBottom
           >
@@ -366,7 +366,7 @@ return (
          </Box >
          </Box>
           </Grid> 
-          <Grid item xs={6}>
+          <Grid item xs={4}>
           <Box flexGrow={2}  pt={1.5}>
           <FormControl className={classes.formControl} disabled>
        <TextField
@@ -379,22 +379,22 @@ return (
        </FormControl>         </Box>
           </Grid>
          
-          <Grid item xs={6} >
+          <Grid item xs={2} >
               <Box pl={5}  alignItems="center">
               <Typography
             component="h2"
-            variant="h6"
+            variant="body2"
             color="inherit"
-
+            gutterBottom
           >
           วันที่งานจะเสร็จ
           </Typography>
               </Box>
           </Grid>
 
-          <Grid item xs={6} alignItems="flex-start">
+          <Grid item xs={4} alignItems="flex-start">
 
-           <Box pl={1}>
+           <Box pt={3}>
             <FormControl  variant="outlined"> 
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <DatePicker value={selectedDate} onChange={handleDateChange}  format="dd/MM/yyyy"/>
@@ -404,30 +404,31 @@ return (
  
           </Grid> 
 
-          <Grid item xs={6}>
-          <Box padding={4}>
+          <Grid item xs={3}>
+          <Box padding={2}>
           <Button
               component={RouterLink}
               to="/WorkReceive"
               variant="contained"
+                fullWidth
             >
               กลับ
             </Button>
             </Box>
  
           </Grid>
+          <Grid item xs={3}/>
           <Grid item xs={6}>
-            <Box pr={4} pt={4}>
+            <Box pr={2} pt={2}>
             <Button
  
-            //   style={{ float: "right" }}
                onClick={submit}
               variant="contained"
               color="secondary"
               size="large"
               fullWidth
             >
-                         ยืนยัน                
+                         ยืนยันการรับงาน              
             </Button>
             </Box>
  

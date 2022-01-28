@@ -69,18 +69,18 @@ function WorkReceive() {
      <div className={classes.drawerHeader}/>
      <Container className={classes.container} maxWidth="md">
      <NavBarEmployee />
-       <Box display="flex">
+       <Box display="flex" pt={1}>
          <Box flexGrow={1}>
            <Typography
-             component="h2"
-             variant="h6"
-             color="primary"
+             component="h3"
+             variant="h4"
+             color="textPrimary"
              gutterBottom
            >
              ระบบรับงานซ่อม
            </Typography>
          </Box>
-         <Box>
+         <Box pt={2}>
            <Button
              component={RouterLink}
              to="/WorkReceive_C"
@@ -95,8 +95,8 @@ function WorkReceive() {
          <Table className={classes.table} aria-label="simple table">
            <TableHead>
              <TableRow>
-               <TableCell align="center" width="5%">
-                 ลำดับที่
+               <TableCell align="right" width="5%">
+                 ลำดับ
                </TableCell>
                <TableCell align="center" width="15%">
                  รหัสงานซ่อม
@@ -121,7 +121,7 @@ function WorkReceive() {
            <TableBody>
              {workreceives.map((work: WorkReceiveInterface) => (
                <TableRow key={work.ID}>
-                 <TableCell align="right">{work.ID}</TableCell>
+                 <TableCell align="left">{work.ID}</TableCell>
                  <TableCell align="center" size="medium">
                    {work.WorkCode}
                  </TableCell>

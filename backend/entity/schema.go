@@ -1,8 +1,10 @@
 package entity
 
 import (
+	"fmt"
 	"time"
 
+	"github.com/asaskevich/govalidator"
 	"gorm.io/gorm"
 )
 
@@ -152,10 +154,10 @@ type Difficulty struct {
 
 type RepairHistory struct {
 	gorm.Model
-	Problem   string
-	Solution  string
+	Problem   string `valid:"stringlength(5|50)~Problem must be longer than 5 characters"`
+	Solution  string `valid:"stringlength(5|50)~Solution must be longer than 5 characters"`
 	Success   *bool
-	Timestamp time.Time
+	Timestamp time.Time `valid:"timelength~Timestamp must be in present"`
 
 	RepairRequestID *uint `gorm:"uniqueIndex"`
 	RepairRequest   RepairRequest
@@ -195,3 +197,23 @@ type WarranteeType struct {
 }
 
 // ohm
+
+func init() {
+	govalidator.CustomTypeTagMap.Set("timelength", func(i interface{}, context interface{}) bool {
+		t := i.(time.Time)
+		g1 := t.Add(24 * time.Hour)
+		g2 := t.Add(-24 * time.Hour)
+		g3 := time.Now()
+		return g3.Before(g1) && g3.After(g2)
+
+	})
+
+}
+
+func CheckNullBool(t *bool) (bool, error) {
+	if t == nil {
+		return false, fmt.Errorf("Success cannot be blank")
+	} else {
+		return true, nil
+	}
+}

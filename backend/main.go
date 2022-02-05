@@ -27,6 +27,8 @@ func main() {
 			protected.PATCH("/repair_requests", controller.UpdateRepairRequest)
 			protected.DELETE("/repair_requests/:id", controller.DeleteRepairRequest)
 
+			protected.GET("/repair_request_notin_repair_histories", controller.ListRepairRequestNotINRepairHistory)
+
 			// RepairType Routes
 			protected.GET("/repair_types", controller.ListRepairtypes)
 			protected.GET("/repair_type/:id", controller.GetRepairtype)

@@ -50,19 +50,7 @@ import { RepairHistoriesInterface } from "../models/IRepairHistory";
 
 import NavBar from "./NavBar";
 
-import Table from "@material-ui/core/Table";
-
-import TableBody from "@material-ui/core/TableBody";
-
-import TableCell from "@material-ui/core/TableCell";
-
-import TableContainer from "@material-ui/core/TableContainer";
-
-import TableRow from "@material-ui/core/TableRow";
-
-import TableHead from "@material-ui/core/TableHead";
-
-import { format } from 'date-fns'
+import { now } from "moment";
 
 const Alert = (props: AlertProps) => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -77,7 +65,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
     container: { marginTop: theme.spacing(8) },
 
-    paper: { padding: theme.spacing(3), color: theme.palette.text.secondary },
+    paper: { padding: theme.spacing(2), color: theme.palette.text.secondary },
 
     formControl: {
       margin: theme.spacing(0),
@@ -98,13 +86,6 @@ const useStyles = makeStyles((theme: Theme) =>
       minWidth: 120,
     },
 
-    table: { minWidth: 650 },
-    tableSpace: { marginTop: 20 },
-
-    textRight: {
-      textAlign: 'right',
-  },
-
   })
 
 );
@@ -122,7 +103,6 @@ function RepairHistoryCreate() {
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
-  const [errorMessage, seterrorMessage] = useState("");
 
   const apiUrl = "http://localhost:8080";
 
@@ -207,7 +187,7 @@ function RepairHistoryCreate() {
   };
 
   const getRepairRequests = async () => {
-    fetch(`${apiUrl}/repair_request_notin_repair_histories`, requestOptions)
+    fetch(`${apiUrl}/repair_requests`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
         if (res.data) {
@@ -259,11 +239,9 @@ function RepairHistoryCreate() {
         if (res.data) {
           console.log("บันทึกได้")
           setSuccess(true);
-          seterrorMessage("");
         } else {
           console.log("บันทึกไม่ได้")
           setError(true);
-          seterrorMessage(res.error);
         }
       });
   }
@@ -272,7 +250,7 @@ function RepairHistoryCreate() {
 
   return (
 
-    <Container className={classes.container} maxWidth="md">
+    <Container className={classes.container} maxWidth="sm">
       <NavBar />
       <Typography component="div" style={{ height: '3vh' }} />
       <Snackbar open={success} autoHideDuration={6000} onClose={handleClose}>
@@ -283,45 +261,10 @@ function RepairHistoryCreate() {
       </Snackbar>
       <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
-          บันทึกข้อมูลไม่สำเร็จ :{errorMessage}
+          บันทึกข้อมูลไม่สำเร็จ
         </Alert>
 
       </Snackbar>
-
-      <TableContainer component={Paper} className={classes.tableSpace}>
-                <Table className={classes.table} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="center" width="10%">
-                                ลำดับ
-                            </TableCell>
-                            <TableCell align="center" width="20%">
-                                ชื่อรายการซ่อม
-                            </TableCell>
-                            <TableCell align="center" width="20%">
-                                ประเภทการซ่อม
-                            </TableCell>
-                            <TableCell align="center" width="30%">
-                                ปัญหาที่แจ้งเข้ามา
-                            </TableCell>
-                            <TableCell align="center" width="20%">
-                                วันที่แจ้งซ่อม
-                            </TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {RepairRequests.map((item: RepairRequestsInterface) => (
-                            <TableRow key={item.ID}>
-                              <TableCell align="center" >{item.ID}</TableCell>
-                                <TableCell align="center" >{item.Device}</TableCell>
-                                <TableCell align="center" >{item.RepairType.Name}</TableCell>
-                                <TableCell align="center" >{item.Issue}</TableCell>
-                                <TableCell align="center" >{format((new Date(item.RequestDate)), 'dd MMMM yyyy hh:mm a')}</TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer><br />
 
       <Paper className={classes.paper}>
 
@@ -345,11 +288,11 @@ function RepairHistoryCreate() {
         <Typography component="div" style={{ height: '4vh' }} />
         <Grid container spacing={2} className={classes.root}>
 
-          <Grid item xs={4} className={classes.textRight}>
+          <Grid item xs={5}>
+
             <p>รายการแจ้งซ่อม</p>
           </Grid>
-          <Grid item xs={1} />
-          <Grid item xs={6}>
+          <Grid item xs={7}>
 
             <FormControl variant="outlined" fullWidth>
               <Select
@@ -374,12 +317,11 @@ function RepairHistoryCreate() {
 
           </Grid>
 
-          <Grid item xs={4} className={classes.textRight}>
+          <Grid item xs={5}>
             <p>ปัญหา</p>
           </Grid>
 
-          <Grid item xs={1} />
-          <Grid item xs={6}>
+          <Grid item xs={7}>
             <FormControl fullWidth variant="outlined">
 
               <TextField
@@ -404,12 +346,11 @@ function RepairHistoryCreate() {
             </FormControl>
           </Grid>
 
-          <Grid item xs={4} className={classes.textRight}>
+          <Grid item xs={5}>
             <p>การแก้ปัญหา</p>
           </Grid>
 
-          <Grid item xs={1} />
-          <Grid item xs={6}>
+          <Grid item xs={7}>
             <FormControl fullWidth variant="outlined">
 
               <TextField
@@ -436,11 +377,10 @@ function RepairHistoryCreate() {
 
 
             {/*LOOK HERE*/}
-          <Grid item xs={4} className={classes.textRight}>
+          <Grid item xs={5}>
             <p>ความสำเร็จงานซ่อม</p>
           </Grid>
-          <Grid item xs={1} />
-          <Grid item xs={6}>
+          <Grid item xs={7}>
           <FormControlLabel
               
               control={<Checkbox 
@@ -458,11 +398,10 @@ function RepairHistoryCreate() {
             {/*LOOK HERE*/}
 
 
-         <Grid item xs={4} className={classes.textRight}>
+          <Grid item xs={5}>
             <p>ระดับความยากของงานซ่อม</p>
           </Grid>
-          <Grid item xs={1} />
-          <Grid item xs={6}>
+          <Grid item xs={7}>
             <FormControl fullWidth variant="outlined">
 
               <Select
@@ -486,11 +425,10 @@ function RepairHistoryCreate() {
             </FormControl>
           </Grid>
 
-          <Grid item xs={4} className={classes.textRight}>
+          <Grid item xs={5}>
             <p>ผู้แก้ไข</p>
           </Grid>
-          <Grid item xs={1} />
-          <Grid item xs={6}>
+          <Grid item xs={7}>
             <FormControl variant="outlined" className={classes.formControl} fullWidth disabled>
 
               <InputLabel htmlFor="outlined-edited-native-simple"></InputLabel>
@@ -521,11 +459,10 @@ function RepairHistoryCreate() {
 
           </Grid>
 
-          <Grid item xs={4} className={classes.textRight}>
+          <Grid item xs={5}>
             <p>เวลาที่บันทึก</p>
           </Grid>
-          <Grid item xs={1} />
-          <Grid item xs={6}>
+          <Grid item xs={7}>
             <FormControl variant="outlined" fullWidth >
 
             <MuiPickersUtilsProvider utils={DateFnsUtils}>

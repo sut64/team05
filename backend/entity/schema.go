@@ -3,6 +3,7 @@ package entity
 import (
 	"time"
 
+	"github.com/asaskevich/govalidator"
 	"gorm.io/gorm"
 )
 
@@ -168,22 +169,22 @@ type RepairHistory struct {
 // ohm
 type Warrantee struct {
 	gorm.Model
-	ID_Warrantee   string `gorm:"uniqueIndex"`
-	EndOfWarrantee time.Time
-	WarrantyPart   string
-	MaximumAmount  float32 `sql:"type:decimal(10,2);"`
+	ID_Warrantee   string    `gorm:"uniqueIndex"`
+	EndOfWarrantee time.Time `valid:"future~End of Warrantee must be in the future"`
+	WarrantyPart   string    `valid:"required~Warrantee Part cannot be blank, noonlyspace~Warrantee Part must not caontain only space"`
+	MaximumAmount  float32   `sql:"type:decimal(10,2);" valid:"nonnegative~Maximum Amount cannot be negative number, required~Maximum Amount must not be zero"`
 
 	// WorkReceiveID is foreignkey
 	WorkReceiveID *uint       `gorm:"uniqueIndex"`
-	WorkReceive   WorkReceive `gorm:"references:ID"`
+	WorkReceive   WorkReceive `gorm:"references:ID" valid:"-"`
 
 	// EmployeeID is foreignkey
 	EmployeeID *uint
-	Employee   Employee `gorm:"references:ID"`
+	Employee   Employee `gorm:"references:ID" valid:"-"`
 
 	// WarranteeTypeID is foreignkey
 	WarranteeTypeID *uint
-	WarranteeType   WarranteeType `gorm:"references:ID"`
+	WarranteeType   WarranteeType `gorm:"references:ID" valid:"-"`
 }
 
 type WarranteeType struct {
@@ -195,3 +196,26 @@ type WarranteeType struct {
 }
 
 // ohm
+func init() {
+	govalidator.CustomTypeTagMap.Set("future", func(i interface{}, context interface{}) bool {
+		t := i.(time.Time)
+		return t.After(time.Now())
+	})
+
+	govalidator.CustomTypeTagMap.Set("nonnegative", func(i interface{}, context interface{}) bool {
+		d := i.(float32)
+		return d >= 0.0
+	})
+
+	govalidator.CustomTypeTagMap.Set("noonlyspace", func(i interface{}, context interface{}) bool {
+		s := i.(string)
+		len := len(s)
+		countSpace := 0
+		for i := 0; i < len; i++ {
+			if string(s[i]) == " " {
+				countSpace++
+			}
+		}
+		return countSpace != len
+	})
+}

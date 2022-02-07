@@ -3,7 +3,7 @@ import { makeStyles, Theme, createStyles, Container, Snackbar, Paper, Box, Typog
 import MuiAlert, {AlertProps} from "@material-ui/lab/Alert";
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns"
-import {Link as RouterLink} from "react-router-dom"
+import { Link as RouterLink } from "react-router-dom"
 
 import { WarranteeInterface } from "../models/IWarrantee";
 import { WorkReceiveInterface } from "../models/IWorkReceive";
@@ -34,6 +34,7 @@ function WarranteeCreate() {
 
     const [success, setSuccess] = React.useState(false);
     const [error, setError] = React.useState(false);
+    const [errorMessage, setErrorMessage] = React.useState("");
 
     const handleClose = (event?: React.SyntheticEvent, reson?: string) => {
         if(reson === "clickaway") {
@@ -41,7 +42,7 @@ function WarranteeCreate() {
         }
         setSuccess(false);
         setError(false);
-        // window.location.reload();
+        window.location.reload();
     }
 
     const [disable, setDisable] = React.useState(false);
@@ -89,7 +90,6 @@ function WarranteeCreate() {
           .then((res) => {
             if (res.data) {
               setEmployee(res.data);
-            //   console.log(res.data.ID, res.data.Name, res.data.Email)
             }
             else {
               console.log("cannot get employee");
@@ -137,8 +137,6 @@ function WarranteeCreate() {
     
 
     function submit() {
-        let validWarranteePart = false;
-        let validMaximumAmount = false;
 
         if (warrantee.WarranteeTypeID === undefined) {
             warrantee.WarranteeTypeID = warranteeType[0].ID;
@@ -153,7 +151,6 @@ function WarranteeCreate() {
             warrantee.WarrantyPart = "ไม่มี";
         }
         
-
         let data = {
             ID_Warrantee: warrantee.ID_Warrantee = "",
             EndOfWarrantee: selectedDate,
@@ -164,21 +161,6 @@ function WarranteeCreate() {
             EmployeeID: convertTypeInt(warrantee.EmployeeID = employee.ID),
             WarranteeTypeID: convertTypeInt(warrantee.WarranteeTypeID),
         };
-        // console.log(warrantee.EmployeeID, warrantee.WorkReceiveID, warrantee.WarranteeTypeID);
-
-            console.log(warrantee.WarrantyPart !== undefined)
-            console.log(warrantee.MaximumAmount !== undefined)
-            if(warrantee.MaximumAmount !== undefined ) {
-                validMaximumAmount = true
-            }
-            if(warrantee.WarrantyPart !== undefined) {
-                validWarranteePart = true;
-            }
-
-            console.log(warrantee.WarrantyPart)
-
-            // console.log(validMaximumAmount)
-            // console.log(validWarranteePart)
 
         const requestOptions = {
             method: "POST",
@@ -190,25 +172,18 @@ function WarranteeCreate() {
         };
         console.log(JSON.stringify(data));
 
-        console.log(validMaximumAmount && validWarranteePart)
-
-        if(validMaximumAmount && validWarranteePart) {
-            fetch(`${apiUrl}/warrantee`, requestOptions)
+        fetch(`${apiUrl}/warrantee`, requestOptions)
             .then((response) => response.json())
             .then((res) => {
                 if(res.data) {
-                    // console.log(res.data);
                     setSuccess(true);
-                    window.location.reload();
+                    setErrorMessage("");
                 }
                 else {
                     setError(true);
+                    setErrorMessage(res.error);
                 }
             })
-        }
-        else {
-            setError(true);
-        }
     }
 
     
@@ -222,7 +197,7 @@ function WarranteeCreate() {
             </Snackbar>
             <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="error">
-                    บันทึกข้อไม่มูลสำเร็จ
+                    บันทึกข้อไม่มูลสำเร็จ: {errorMessage}
                 </Alert>
             </Snackbar>
 
@@ -416,7 +391,7 @@ function WarranteeCreate() {
                                     variant="outlined"
                                     type="number"
                                     size="medium"
-                                    value={warrantee.MaximumAmount || ""}
+                                    value={warrantee.MaximumAmount || 0}
                                     onChange={handleInputChange}
                                 />
                             

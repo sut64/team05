@@ -27,6 +27,12 @@ import { WorkplaceInterface } from "../models/IWorkplace";
 import { WorkReceiveInterface } from "../models/IWorkReceive";
 import 'date-fns'
 import NavBar from './NavBar';
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
 const Alert = (props: AlertProps) => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 };
@@ -52,6 +58,8 @@ const useStyles = makeStyles((theme: Theme) =>
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  table: { minWidth: 650 },
+  tableSpace: { marginTop: 20 },
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
@@ -78,7 +86,7 @@ function WorkReceiveCreate() {
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
-    
+  const [errorMsg,setErrorMsg] = useState("")
   const apiUrl = "http://localhost:8080";
   const loginEmp = localStorage.getItem("uid");
 
@@ -198,6 +206,7 @@ console.log(requestOptions);
           getRepairRequest();
         } else {
           setError(true);
+          setErrorMsg(res.error);
         }
       });
   }
@@ -214,10 +223,42 @@ return (
       </Snackbar>
       <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
-          บันทึกข้อมูลไม่สำเร็จ
+          บันทึกข้อมูลไม่สำเร็จ: {errorMsg}
         </Alert>
       </Snackbar>
         <h1>ระบบรับงานซ่อม</h1>
+        <TableContainer component={Paper} className={classes.tableSpace}>
+                <Table className={classes.table} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+
+                            <TableCell align="left" width="30%">
+                                Device
+                            </TableCell>
+                            <TableCell align="left" width="35%">
+                                Issue
+                            </TableCell>
+                            <TableCell align="left" width="10%">
+                                Customer
+                            </TableCell>
+                            <TableCell align="center" width="15%">
+                            Urgency
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {repairRequest.map((item: RepairRequestsInterface) => (
+                            <TableRow key={item.ID}>
+                                <TableCell align="left" >{item.Device}</TableCell>
+                                <TableCell align="left" >{item.Issue}</TableCell>
+                                <TableCell align="left" >{item.Customer.Name}</TableCell>
+                                <TableCell align="center" >{item.Urgency.Name}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <br />
         <Paper elevation={3}>
         <Divider />
         <Grid container spacing={3} className={classes.root}>
@@ -239,6 +280,7 @@ return (
           <Box flexGrow={2}  pt={1.5}>
           <FormControl className={classes.formControl}>
          <Select
+                 native
          variant="outlined"
                 value={workReceives.RepairRequestID}
                 onChange={handleChange}
@@ -247,6 +289,9 @@ return (
                 }}
             
            > 
+                             <option value= {0} key= {0}>
+
+                  </option>
                 {repairRequest.map((item: RepairRequestsInterface) => (
                   <option value={item.ID} key={item.ID}>
                     {item.Device}
@@ -275,6 +320,7 @@ return (
           <Box flexGrow={2}  pt={1.5}>
           <FormControl className={classes.formControl}>
         <Select
+        native
         variant="outlined"
           value={workReceives.WorkPlace}
           onChange={handleChange}
@@ -283,7 +329,9 @@ return (
             name: "WorkPlaceID",
           }}
         >
+                             <option value= {0} key= {0}>
 
+                  </option>
                 {workPlace.map((item: WorkplaceInterface) => (
 
                   <option value={item.ID}>

@@ -79,9 +79,9 @@ type WorkPlace struct {
 
 type WorkReceive struct {
 	gorm.Model
-	WorkCode     string  `gorm:"uniqueIndex"`
-	Wages        float32 `sql:"type:decimal(7,2);"`
-	FinishedDate time.Time
+	WorkCode     string    `gorm:"uniqueIndex" valid:"matches(^[W]\\d{4}$)"`
+	FinishedDate time.Time `valid:"future~FinishedDate must be in the future"`
+	Wages        float32   `valid:"wages~Wages must between 100.00 and 10000.00"`
 
 	EmployeeID *uint
 	Employee   Employee `gorm:"references:id"`
@@ -206,6 +206,16 @@ func init() {
 		g3 := time.Now()
 		return g3.Before(g1) && g3.After(g2)
 
+	})
+
+	govalidator.CustomTypeTagMap.Set("wages", func(i interface{}, context interface{}) bool {
+		w := i.(float32)
+		return govalidator.InRangeFloat32(w, 100.00, 10000.00)
+	})
+
+	govalidator.CustomTypeTagMap.Set("future", func(i interface{}, context interface{}) bool {
+		t := i.(time.Time)
+		return t.After(time.Now())
 	})
 
 }

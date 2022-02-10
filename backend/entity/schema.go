@@ -80,16 +80,16 @@ type WorkPlace struct {
 type WorkReceive struct {
 	gorm.Model
 	WorkCode     string    `gorm:"uniqueIndex" valid:"matches(^[W]\\d{4}$)~WorkCode: does not validate as matches(^[W]\\d{4}$),required"`
-	FinishedDate time.Time `valid:"future~FinishedDate must be in the future,required"`
+	FinishedDate time.Time `valid:"wr_future~FinishedDate must be in the future,required"`
 	Wages        float32   `valid:"wages~Wages must between 100.00 and 10000.00,required"`
 
 	EmployeeID *uint
-	Employee   Employee `gorm:"references:id"`
+	Employee   Employee `gorm:"references:id" valid:"-"`
 
 	WorkPlaceID *uint
-	WorkPlace   WorkPlace `gorm:"references:id"`
+	WorkPlace   WorkPlace `gorm:"references:id" valid:"-"`
 
-	RepairRequestID *uint `gorm:"uniqueIndex"`
+	RepairRequestID *uint `gorm:"uniqueIndex" valid:"-"`
 	RepairRequest   RepairRequest
 
 	RecieptHistories []RecieptHistory `gorm:"foreignKey:WorkReceiveID"`
@@ -233,7 +233,7 @@ func init() {
 		return govalidator.InRangeFloat32(w, 100.00, 10000.00)
 	})
 
-	govalidator.CustomTypeTagMap.Set("future", func(i interface{}, context interface{}) bool {
+	govalidator.CustomTypeTagMap.Set("wr_future", func(i interface{}, context interface{}) bool {
 		t := i.(time.Time)
 		tt := t.Add(7 * time.Hour)
 		t2 := time.Now()

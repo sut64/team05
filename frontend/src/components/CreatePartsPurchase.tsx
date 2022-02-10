@@ -290,7 +290,7 @@ export default function CreatePartsPurchase() {
                                     </option>
                                     {WorkReceive.map((item: WorkReceiveInterface) => (
                                         <option value={item.ID} key={item.ID}>
-                                            {item.WorkCode} | {item.RepairRequest.Device}
+                                            {item.WorkCode}
                                         </option>
                                     ))}
                                 </NativeSelect>

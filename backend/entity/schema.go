@@ -128,10 +128,10 @@ type PurchasingCompany struct {
 
 type PartsPurchase struct {
 	gorm.Model
-	Parts        string
-	Quantity     uint
-	PartsPrice   float32
-	PurchaseTime time.Time
+	Parts        string `valid:"required~parts cannot be blank"`
+	Quantity     int `valid:"positiveUint~Quantity must be integer more then 0,required~Quantity must be integer more then 0"`
+	PartsPrice   float32 `valid:"positiveFloat~Price must be float more then 0,required~Price must be float more then 0"`
+	PurchaseTime time.Time `valid:"past~PurchaseTime must not be in the future"`
 	//ความสัมพันธ์กับ PurchasingCompany, Workreceive, Employee
 	ShoppingID *uint
 	Shopping   PurchasingCompany `gorm:"references:id"`
@@ -208,6 +208,26 @@ func init() {
 
 	})
 
+	govalidator.CustomTypeTagMap.Set("past", func(i interface{}, context interface{}) bool {
+		t := i.(time.Time)
+		return t.Before(time.Now())
+	})
+	
+	govalidator.CustomTypeTagMap.Set("positiveUint", func(i interface{}, context interface{}) bool {
+		switch v := i.(type) { // this validates a field against the value in another field, i.e. dependent validation
+		case int:
+		  return v >= 1
+		}
+		return false
+	})
+	govalidator.CustomTypeTagMap.Set("positiveFloat", func(i interface{}, context interface{}) bool {		
+		switch v := i.(type) { // this validates a field against the value in another field, i.e. dependent validation
+		case float32:
+			return v > 0 
+		}
+		return false
+	})
+	
 	govalidator.CustomTypeTagMap.Set("wages", func(i interface{}, context interface{}) bool {
 		w := i.(float32)
 		return govalidator.InRangeFloat32(w, 100.00, 10000.00)

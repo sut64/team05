@@ -69,7 +69,7 @@ func TestLifetimeMustBePositiveIntegerAndMoreZero(t *testing.T) {
 	g.Expect(err).ToNot(BeNil())
 
 	// err.Error ต้องมี error message แสดงออกมา
-	g.Expect(err.Error()).To(Equal("Lifetime must be greater than or equal 0"))
+	g.Expect(err.Error()).To(Equal("Lifetime must be positive"))
 }
 func TestIssueNotBlankAndMustLess(t *testing.T) {
 	g := NewGomegaWithT(t)

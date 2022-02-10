@@ -79,9 +79,9 @@ type WorkPlace struct {
 
 type WorkReceive struct {
 	gorm.Model
-	WorkCode     string    `gorm:"uniqueIndex" valid:"matches(^[W]\\d{4}$)~WorkCode: does not validate as matches(^[W]\\d{4}$),required"`
-	FinishedDate time.Time `valid:"wr_future~FinishedDate must be in the future,required"`
-	Wages        float32   `valid:"wages~Wages must between 100.00 and 10000.00,required"`
+	WorkCode     string    `gorm:"uniqueIndex" valid:"matches(^[W]\\d{4}$)~WorkCode: does not validate as matches(^[W]\\d{4}$),required~WorkCode: does not validate as matches(^[W]\\d{4}$)"`
+	FinishedDate time.Time `valid:"wr_future~FinishedDate must be in the future,required~wr_future~FinishedDate must be in the future"`
+	Wages        float32   `valid:"wages~Wages must between 100.00 and 10000.00,required~Wages must between 100.00 and 10000.00"`
 
 	EmployeeID *uint
 	Employee   Employee `gorm:"references:id" valid:"-"`
@@ -89,8 +89,8 @@ type WorkReceive struct {
 	WorkPlaceID *uint
 	WorkPlace   WorkPlace `gorm:"references:id" valid:"-"`
 
-	RepairRequestID *uint
-	RepairRequest   RepairRequest `gorm:"uniqueIndex" valid:"-"`
+	RepairRequestID *uint         `gorm:"uniqueIndex"`
+	RepairRequest   RepairRequest `valid:"-"`
 
 	RecieptHistories []RecieptHistory `gorm:"foreignKey:WorkReceiveID"`
 	// foreignkey to PartsPurchase

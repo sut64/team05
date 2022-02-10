@@ -24,7 +24,7 @@ func TestWorkRecivePass(t *testing.T) {
 		Device:      "ACER",
 		Lifetime:    1,
 		Issue:       "Don't Know",
-		RequestDate: time.Now(),
+		RequestDate: time.Date(2021, 11, 19, 17, 30, 00, 000, time.UTC),
 	}
 	// ข้อมูลถูกต้องหมดทุก field
 	work := WorkReceive{
@@ -61,13 +61,13 @@ func TestWorkRiciveWagesInRange(t *testing.T) {
 		Device:      "ACER",
 		Lifetime:    1,
 		Issue:       "Don't Know",
-		RequestDate: time.Now(),
+		RequestDate: time.Date(2021, 11, 19, 17, 30, 00, 000, time.UTC),
 	}
 	fixtures := []float32{
 		100000.00,
 		50.00,
 		-20.00,
-		// 0,
+		0,
 	}
 	for _, fixture := range fixtures {
 		work := WorkReceive{
@@ -109,7 +109,7 @@ func TestWorkRiceiveDateNotinPast(t *testing.T) {
 		Device:      "ACER",
 		Lifetime:    1,
 		Issue:       "Don't Know",
-		RequestDate: time.Now(),
+		RequestDate: time.Date(2021, 11, 19, 17, 30, 00, 000, time.UTC),
 	}
 
 	work := WorkReceive{
@@ -150,7 +150,7 @@ func TestWorkRiceiveWorkCodeMatchFormat(t *testing.T) {
 		Device:      "ACER",
 		Lifetime:    1,
 		Issue:       "Don't Know",
-		RequestDate: time.Now(),
+		RequestDate: time.Date(2021, 11, 19, 17, 30, 00, 000, time.UTC),
 	}
 	fixtures := []string{
 		"W123",

@@ -1,9 +1,7 @@
 package controller
 
 import (
-	"fmt"
 	"net/http"
-	"reflect"
 	"strconv"
 
 	"github.com/asaskevich/govalidator"
@@ -23,8 +21,6 @@ func CreateWarrantee(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
-	fmt.Println(reflect.TypeOf(warrantee.MaximumAmount))
 
 	// ค้นหา employee ด้วย id
 	if tx := entity.DB().Where("id = ?", warrantee.EmployeeID).First(&employee); tx.RowsAffected == 0 {

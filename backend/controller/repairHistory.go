@@ -3,6 +3,7 @@ package controller
 import (
 	"net/http"
 
+	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 	"github.com/sut64/team05/entity"
 )
@@ -48,6 +49,17 @@ func CreateRepairHistory(c *gin.Context) {
 		Success:       repairhistory.Success,   // ตั้งค่าฟิลด์ Sucess
 		Editor:        editor,                  // โยงความสัมพันธ์กับ Entity Employee
 		Timestamp:     repairhistory.Timestamp, // ตั้งค่าฟิลด์ Timestamp
+	}
+
+	// validation part in controller
+	if _, err := govalidator.ValidateStruct(jah); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if _, err := entity.CheckNullBool(jah.Success); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
 
 	// 12: save

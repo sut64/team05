@@ -169,6 +169,16 @@ func SetupDatabase() {
 		RequestDate: time.Date(2021, 12, 30, 15, 40, 55, 000, time.UTC),
 	}
 	db.Model(&RepairRequest{}).Create(&RR002)
+	RR003 := RepairRequest{
+		Customer:    dada,
+		RepairType:  hardware,
+		Urgency:     semiurgency,
+		Device:      "Scanner HP",
+		Lifetime:    1,
+		Issue:       "Scan แล้วตัวอักษรเพี้ยน",
+		RequestDate: time.Date(2021, 12, 30, 15, 40, 55, 000, time.UTC),
+	}
+	db.Model(&RepairRequest{}).Create(&RR003)
 
 	//RepairHistory
 	db.Model(&RepairHistory{}).Create(&RepairHistory{

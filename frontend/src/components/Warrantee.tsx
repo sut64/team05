@@ -83,7 +83,7 @@ function Warrantee() {
                                 <TableCell align="center" width="10%">
                                     Code
                                 </TableCell>
-                                <TableCell align="center" width="10%">
+                                <TableCell align="center" width="20%">
                                     Warrantee Type
                                 </TableCell>
                                 <TableCell align="center" width="10%">

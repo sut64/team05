@@ -3,6 +3,7 @@ package controller
 import (
 	"fmt"
 	"net/http"
+	"reflect"
 	"strconv"
 
 	"github.com/asaskevich/govalidator"
@@ -23,7 +24,8 @@ func CreateWarrantee(c *gin.Context) {
 		return
 	}
 
-	fmt.Println(warrantee.MaximumAmount)
+	fmt.Println(reflect.TypeOf(warrantee.MaximumAmount))
+
 	// ค้นหา employee ด้วย id
 	if tx := entity.DB().Where("id = ?", warrantee.EmployeeID).First(&employee); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "employee not found"})

@@ -3,6 +3,7 @@ package controller
 import (
 	"net/http"
 
+	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 	"github.com/sut64/team05/entity"
 )
@@ -46,6 +47,11 @@ func CreateWorkReceive(c *gin.Context) {
 		WorkPlace:     workPlace,
 		RepairRequest: repairRequest,
 	}
+	if _, err := govalidator.ValidateStruct(wr); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
 	// : บันทึก
 	if err := entity.DB().Create(&wr).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -125,8 +131,8 @@ func ListWorkReceiveWithNoDuplicateID(c *gin.Context) {
 	var workrecive []entity.WorkReceive
 
 	// ค้นหา work receive ทั้งหมดที่ไม่มีในข้อมูล warrantee
-	if err := entity.DB().Raw("SELECT * FROM work_receives WHERE id NOT IN (SELECT DISTINCT work_receive_id FROM warrantees)").Find(&workrecive).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"errorishere": err.Error()})
+	if err := entity.DB().Preload("Employee").Preload("RepairRequest").Raw("SELECT * FROM work_receives WHERE id NOT IN (SELECT DISTINCT work_receive_id FROM warrantees)").Find(&workrecive).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 

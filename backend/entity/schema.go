@@ -1,6 +1,7 @@
 package entity
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/asaskevich/govalidator"
@@ -78,9 +79,9 @@ type WorkPlace struct {
 
 type WorkReceive struct {
 	gorm.Model
-	WorkCode     string  `gorm:"uniqueIndex"`
-	Wages        float32 `sql:"type:decimal(7,2);"`
-	FinishedDate time.Time
+	WorkCode     string    `gorm:"uniqueIndex" valid:"matches(^[W]\\d{4}$)"`
+	FinishedDate time.Time `valid:"future~FinishedDate must be in the future"`
+	Wages        float32   `valid:"wages~Wages must between 100.00 and 10000.00"`
 
 	EmployeeID *uint
 	Employee   Employee `gorm:"references:id"`
@@ -153,10 +154,10 @@ type Difficulty struct {
 
 type RepairHistory struct {
 	gorm.Model
-	Problem   string
-	Solution  string
+	Problem   string `valid:"stringlength(5|50)~Problem must be longer than 5 characters"`
+	Solution  string `valid:"stringlength(5|50)~Solution must be longer than 5 characters"`
 	Success   *bool
-	Timestamp time.Time
+	Timestamp time.Time `valid:"timelength~Timestamp must be in present"`
 
 	RepairRequestID *uint `gorm:"uniqueIndex"`
 	RepairRequest   RepairRequest
@@ -196,7 +197,23 @@ type WarranteeType struct {
 }
 
 // ohm
+
 func init() {
+	govalidator.CustomTypeTagMap.Set("timelength", func(i interface{}, context interface{}) bool {
+		t := i.(time.Time)
+		g1 := t.Add(24 * time.Hour)
+		g2 := t.Add(-24 * time.Hour)
+		g3 := time.Now()
+		return g3.Before(g1) && g3.After(g2)
+
+	})
+
+	govalidator.CustomTypeTagMap.Set("wages", func(i interface{}, context interface{}) bool {
+		w := i.(float32)
+		return govalidator.InRangeFloat32(w, 100.00, 10000.00)
+	})
+
+	// ohm
 	govalidator.CustomTypeTagMap.Set("future", func(i interface{}, context interface{}) bool {
 		t := i.(time.Time)
 		return t.After(time.Now())
@@ -218,4 +235,13 @@ func init() {
 		}
 		return countSpace != len
 	})
+	// ohm
+}
+
+func CheckNullBool(t *bool) (bool, error) {
+	if t == nil {
+		return false, fmt.Errorf("Success cannot be blank")
+	} else {
+		return true, nil
+	}
 }

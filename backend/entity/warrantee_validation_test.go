@@ -14,7 +14,7 @@ func TestWarranteePass(t *testing.T) {
 
 	warrantee := Warrantee{
 		ID_Warrantee:   "G123456",
-		EndOfWarrantee: time.Now().Add(1),
+		EndOfWarrantee: time.Now().Add(24 * time.Hour),
 		WarrantyPart:   "ram, power supply",
 		MaximumAmount:  2530.50,
 	}
@@ -35,7 +35,7 @@ func TestWarranteePartNoBlank(t *testing.T) {
 
 	warrantee := Warrantee{
 		ID_Warrantee:   "G123456",
-		EndOfWarrantee: time.Now().Add(1),
+		EndOfWarrantee: time.Now().Add(24 * time.Hour),
 		WarrantyPart:   "",
 		MaximumAmount:  2530.50,
 	}
@@ -59,7 +59,7 @@ func TestMaximumAmountNotNegative(t *testing.T) {
 
 	warrantee := Warrantee{
 		ID_Warrantee:   "G123456",
-		EndOfWarrantee: time.Now().Add(1),
+		EndOfWarrantee: time.Now().Add(24 * time.Hour),
 		WarrantyPart:   "ram, power supply",
 		MaximumAmount:  -2530.50,
 	}
@@ -79,7 +79,7 @@ func TestEndOfWarranteeMustBeInTheFuture(t *testing.T) {
 
 	warrantee := Warrantee{
 		ID_Warrantee:   "G123456",
-		EndOfWarrantee: time.Now().Add(-1),
+		EndOfWarrantee: time.Now().Add(-24 * time.Hour),
 		WarrantyPart:   "ram, power supply",
 		MaximumAmount:  2530.50,
 	}
@@ -99,7 +99,7 @@ func TestWarranteePartMustNotContainOnlySpace(t *testing.T) {
 
 	warrantee := Warrantee{
 		ID_Warrantee:   "G123456",
-		EndOfWarrantee: time.Now().Add(1),
+		EndOfWarrantee: time.Now().Add(24 * time.Hour),
 		WarrantyPart:   "     ",
 		MaximumAmount:  2530.50,
 	}

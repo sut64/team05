@@ -132,5 +132,3 @@ func TestMaximumAmountMustNotBeZero(t *testing.T) {
 
 	g.Expect(err.Error()).To(Equal("Maximum Amount must not be zero"))
 }
-
-//

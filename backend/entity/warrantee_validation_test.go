@@ -119,7 +119,7 @@ func TestMaximumAmountMustNotBeZero(t *testing.T) {
 
 	warrantee := Warrantee{
 		ID_Warrantee:   "G123456",
-		EndOfWarrantee: time.Now().Add(1),
+		EndOfWarrantee: time.Now().Add(24 * time.Hour),
 		WarrantyPart:   "ram, power supply",
 		MaximumAmount:  0,
 	}

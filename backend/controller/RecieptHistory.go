@@ -3,6 +3,7 @@ package controller
 import (
 	"net/http"
 
+	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 	"github.com/sut64/team05/entity"
 )
@@ -46,6 +47,12 @@ func CreateRecieptHistory(c *gin.Context) {
 		RecieptCode:  reciepthistory.RecieptCode,
 		RecieptPrice: reciepthistory.RecieptPrice,
 		RecieptDate:  reciepthistory.RecieptDate,
+	}
+
+	// แทรกการ validate ไว้ช่วงนี้ของ controller
+	if _, err := govalidator.ValidateStruct(RH); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
 
 	// 14: บันทึก

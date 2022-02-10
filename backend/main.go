@@ -73,7 +73,6 @@ func main() {
 			protected.DELETE("/repair_histories/:id", controller.DeleteRepairHistory)
 
 			//WorkReceive Routes
-			protected.GET("/workreceives/employees/:employeeid", controller.GetWorkreceivewithEmployee)
 			protected.GET("/WorkReceives", controller.ListWorkReceives)
 			protected.POST("/WorkReceives", controller.CreateWorkReceive)
 			protected.GET("/WorkPlaces", controller.ListWorkPlace)

@@ -1,0 +1,1271 @@
+{
+  "id": "ff2fe1ea-ca54-4c9e-9c3c-54fcb4e5fe9b",
+  "version": "2.0",
+  "name": "repairrequest",
+  "url": "http://localhost:3000/",
+  "tests": [{
+    "id": "8fb3e32b-3b99-4854-8fc5-4812cd62010b",
+    "name": "B6210540 - ตรวจสอบ Device ต้องไม่เป็นข้อมูลตัวอักษรที่ว่างเเละตัวอักษรยาวไม่เกิน 100 ตัว",
+    "commands": [{
+      "id": "36ae9081-ce68-4a85-b9eb-73aa95e0f06c",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a3d7054d-79ef-42d0-b8f3-f192c8478984",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8128bb06-c481-4109-a840-f2a001487015",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-menuButton-27 .MuiSvgIcon-root",
+      "targets": [
+        ["css=.makeStyles-menuButton-27 .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "0c83ffbc-11e1-4e5e-a576-d83a4a4f468f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-a-34:nth-child(2) .MuiTypography-root",
+      "targets": [
+        ["css=.makeStyles-a-34:nth-child(2) .MuiTypography-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[2]/div/div[2]/span", "xpath:idRelative"],
+        ["xpath=//a[2]/div/div[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ระบบแจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "fb3c2a4d-6134-4472-97dd-d2135cf372e6",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div[3]/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ร้องขอเเจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "be6cdf07-6557-4bd0-a3a3-974a09234773",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div[3]/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ร้องขอเเจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "da186067-1d65-4b38-9d78-0a92fd117efa",
+      "comment": "",
+      "command": "click",
+      "target": "name=RepairTypeID",
+      "targets": [
+        ["name=RepairTypeID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='RepairTypeID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[2]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "293b8292-d90e-4b87-96ef-9668ae3a5770",
+      "comment": "",
+      "command": "select",
+      "target": "name=RepairTypeID",
+      "targets": [],
+      "value": "label=hardware"
+    }, {
+      "id": "59232f1b-a4d8-4cd0-8922-1f94fdcab78c",
+      "comment": "",
+      "command": "click",
+      "target": "name=UrgencyID",
+      "targets": [
+        ["name=UrgencyID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='UrgencyID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[3]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1cb0be6c-155a-4e52-9286-6d03239d87fc",
+      "comment": "",
+      "command": "select",
+      "target": "name=UrgencyID",
+      "targets": [],
+      "value": "label=semi-urgency"
+    }, {
+      "id": "2eeaf77b-bbc5-45b9-9c97-a937df648553",
+      "comment": "",
+      "command": "click",
+      "target": "id=Lifetime",
+      "targets": [
+        ["id=Lifetime", "id"],
+        ["css=#Lifetime", "css:finder"],
+        ["xpath=//input[@id='Lifetime']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[5]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9eb4403d-e411-4168-9931-a67b68953705",
+      "comment": "",
+      "command": "type",
+      "target": "id=Lifetime",
+      "targets": [
+        ["id=Lifetime", "id"],
+        ["css=#Lifetime", "css:finder"],
+        ["xpath=//input[@id='Lifetime']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[5]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "15"
+    }, {
+      "id": "7ef1e21b-6ba8-4155-b7f9-de956b38ef58",
+      "comment": "",
+      "command": "click",
+      "target": "id=Issue",
+      "targets": [
+        ["id=Issue", "id"],
+        ["css=#Issue", "css:finder"],
+        ["xpath=//input[@id='Issue']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[6]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c9fc7b30-5362-459c-b4b7-2838c874272a",
+      "comment": "",
+      "command": "type",
+      "target": "id=Issue",
+      "targets": [
+        ["id=Issue", "id"],
+        ["css=#Issue", "css:finder"],
+        ["xpath=//input[@id='Issue']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[6]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "Error"
+    }, {
+      "id": "fc49ef22-c916-4ff6-9ca6-44caa5dd1500",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'เเจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9797abe0-ea25-4201-bd81-35b0d1ca359e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-root",
+      "targets": [
+        ["css=.MuiAlert-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a31f78c2-7162-4aac-bbbc-e3baa5e562eb",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกการขอเเจ้งซ่อมคอมพิวเตอร์ไม่สำเร็จ : Device cannot be blank and less than 100 characters"
+    }]
+  }, {
+    "id": "e050024f-3955-4e03-aec6-b80bb67c0f3c",
+    "name": "B6210540 - ตรวจสอบ Issue ต้องไม่เป็นข้อมูลตัวอักษรที่ว่างเเละตัวอักษรยาวไม่เกิน 200 ตัว",
+    "commands": [{
+      "id": "140a22d2-4b0c-44f1-80b2-0f170fb14658",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cb47b033-942e-45a7-bf26-9dd4ee5c0b20",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "882x658",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9731633a-f2a7-4dc0-bfe2-854a61d8fe5b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-menuButton-27 .MuiSvgIcon-root",
+      "targets": [
+        ["css=.makeStyles-menuButton-27 .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "8bc912cb-aaec-4bae-aaa2-db6f7ebae658",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.makeStyles-a-34:nth-child(2) .MuiTypography-root",
+      "targets": [
+        ["css=.makeStyles-a-34:nth-child(2) .MuiTypography-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[2]/div/div[2]/span", "xpath:idRelative"],
+        ["xpath=//a[2]/div/div[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ระบบแจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5fed48b4-1281-4a23-9e80-449ce333d36b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-a-34:nth-child(2) .MuiTypography-root",
+      "targets": [
+        ["css=.makeStyles-a-34:nth-child(2) .MuiTypography-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[2]/div/div[2]/span", "xpath:idRelative"],
+        ["xpath=//a[2]/div/div[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ระบบแจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "03e35635-3641-4bb1-8e5a-0761ebdbdf1d",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div[3]/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ร้องขอเเจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0d0447d7-3e1a-43c5-ad26-d0e4b8a15ef9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div[3]/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ร้องขอเเจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "467d7f99-f30f-4cbd-96fd-aa7d481c5681",
+      "comment": "",
+      "command": "click",
+      "target": "name=RepairTypeID",
+      "targets": [
+        ["name=RepairTypeID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='RepairTypeID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[2]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "25de6a92-fffa-4718-a579-9d8c940138b5",
+      "comment": "",
+      "command": "select",
+      "target": "name=RepairTypeID",
+      "targets": [],
+      "value": "label=software"
+    }, {
+      "id": "d74998ee-a422-4d3d-9210-9abbe7e523a7",
+      "comment": "",
+      "command": "click",
+      "target": "name=UrgencyID",
+      "targets": [
+        ["name=UrgencyID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='UrgencyID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[3]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "35d15d4f-79d9-4fe2-af78-128f7d1a5b45",
+      "comment": "",
+      "command": "select",
+      "target": "name=UrgencyID",
+      "targets": [],
+      "value": "label=semi-urgency"
+    }, {
+      "id": "9632fcf0-cb96-4bb0-a07e-785b8441b7ee",
+      "comment": "",
+      "command": "click",
+      "target": "id=Device",
+      "targets": [
+        ["id=Device", "id"],
+        ["css=#Device", "css:finder"],
+        ["xpath=//input[@id='Device']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[4]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "31df3c84-3e96-4f9d-9961-5dac2eac01fb",
+      "comment": "",
+      "command": "type",
+      "target": "id=Device",
+      "targets": [
+        ["id=Device", "id"],
+        ["css=#Device", "css:finder"],
+        ["xpath=//input[@id='Device']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[4]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Acer"
+    }, {
+      "id": "1cd88f26-d16c-47a2-b133-6059f6069314",
+      "comment": "",
+      "command": "click",
+      "target": "id=Lifetime",
+      "targets": [
+        ["id=Lifetime", "id"],
+        ["css=#Lifetime", "css:finder"],
+        ["xpath=//input[@id='Lifetime']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[5]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "30d11e36-901b-4d46-8398-3db3b5deb626",
+      "comment": "",
+      "command": "type",
+      "target": "id=Lifetime",
+      "targets": [
+        ["id=Lifetime", "id"],
+        ["css=#Lifetime", "css:finder"],
+        ["xpath=//input[@id='Lifetime']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[5]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "12"
+    }, {
+      "id": "42234686-c5d0-4b50-ae6f-62544d122877",
+      "comment": "",
+      "command": "click",
+      "target": "id=Issue",
+      "targets": [
+        ["id=Issue", "id"],
+        ["css=#Issue", "css:finder"],
+        ["xpath=//input[@id='Issue']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[6]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3d76300c-a097-4900-9088-4378cd5aff8e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiGrid-root:nth-child(8)",
+      "targets": [
+        ["css=.MuiGrid-root:nth-child(8)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[8]", "xpath:idRelative"],
+        ["xpath=//div[8]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "870211da-f18d-437d-b6bc-72b726118d1e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'เเจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "dba8157f-2dd9-4b44-8a44-41f3047c1c98",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-root",
+      "targets": [
+        ["css=.MuiAlert-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8e9da95d-c918-478f-9ced-7c419e2cc3bb",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกการขอเเจ้งซ่อมคอมพิวเตอร์ไม่สำเร็จ : Issue cannot be blank and less than 200 characters"
+    }]
+  }, {
+    "id": "b4711120-944a-4903-9626-d5cb86135a43",
+    "name": "B6210540 - ตรวจสอบ Lifetime ต้องไม่เป็นค่าว่างเเละไม่เป็นค่าลบ",
+    "commands": [{
+      "id": "147b8b74-fdcd-4e66-93f0-e9783d76ce3a",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a8202aa9-ac69-4b3c-b8bd-c250fb566671",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4d0be89a-65c2-45a6-96b5-e890ad4afecc",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.makeStyles-menuButton-27 .MuiSvgIcon-root",
+      "targets": [
+        ["css=.makeStyles-menuButton-27 .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "d19f6384-97fd-48ec-9da4-e9ecc969ba46",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-menuButton-27 .MuiSvgIcon-root",
+      "targets": [
+        ["css=.makeStyles-menuButton-27 .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "b242449e-eaa9-437b-9220-c185a18c69b7",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.makeStyles-menuButton-27 .MuiSvgIcon-root",
+      "targets": [
+        ["css=.makeStyles-menuButton-27 .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "e2fa3c4d-a841-4162-ad8f-8b4bbfd8d660",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-a-34:nth-child(2) .MuiListItemIcon-root",
+      "targets": [
+        ["css=.makeStyles-a-34:nth-child(2) .MuiListItemIcon-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[2]/div/div", "xpath:idRelative"],
+        ["xpath=//a[2]/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "01b3468e-6d00-46ef-8b22-734b5e46cc29",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div[3]/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ร้องขอเเจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1cb79028-69ae-440f-a2bc-9dfc49b5e022",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div[3]/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ร้องขอเเจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3ea251a1-595b-4386-b655-7ad8b32f1ec7",
+      "comment": "",
+      "command": "click",
+      "target": "name=RepairTypeID",
+      "targets": [
+        ["name=RepairTypeID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='RepairTypeID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[2]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c5da0b5c-c1ba-4805-8c06-4e5db7c44466",
+      "comment": "",
+      "command": "select",
+      "target": "name=RepairTypeID",
+      "targets": [],
+      "value": "label=software and hardware"
+    }, {
+      "id": "2065e979-70b4-435b-8648-fda6c5d11d75",
+      "comment": "",
+      "command": "click",
+      "target": "name=UrgencyID",
+      "targets": [
+        ["name=UrgencyID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='UrgencyID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[3]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "75d415a4-83e1-4b43-9b15-b98ce0ceda76",
+      "comment": "",
+      "command": "select",
+      "target": "name=UrgencyID",
+      "targets": [],
+      "value": "label=urgency"
+    }, {
+      "id": "9e185005-8942-4d38-816e-e7fb9771ded1",
+      "comment": "",
+      "command": "click",
+      "target": "id=Device",
+      "targets": [
+        ["id=Device", "id"],
+        ["css=#Device", "css:finder"],
+        ["xpath=//input[@id='Device']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[4]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0e60433a-0409-4b14-926b-44c49d9dd88d",
+      "comment": "",
+      "command": "type",
+      "target": "id=Device",
+      "targets": [
+        ["id=Device", "id"],
+        ["css=#Device", "css:finder"],
+        ["xpath=//input[@id='Device']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[4]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "MSI"
+    }, {
+      "id": "8eba385a-618a-4421-9cf7-c34e223a5bed",
+      "comment": "",
+      "command": "click",
+      "target": "id=Lifetime",
+      "targets": [
+        ["id=Lifetime", "id"],
+        ["css=#Lifetime", "css:finder"],
+        ["xpath=//input[@id='Lifetime']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[5]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3a10505c-6b16-40e8-a765-483dd7df693b",
+      "comment": "",
+      "command": "type",
+      "target": "id=Lifetime",
+      "targets": [
+        ["id=Lifetime", "id"],
+        ["css=#Lifetime", "css:finder"],
+        ["xpath=//input[@id='Lifetime']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[5]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "-1"
+    }, {
+      "id": "2d4bfc37-f11d-4428-8dda-bfb8a5c00868",
+      "comment": "",
+      "command": "click",
+      "target": "id=Issue",
+      "targets": [
+        ["id=Issue", "id"],
+        ["css=#Issue", "css:finder"],
+        ["xpath=//input[@id='Issue']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[6]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c4d8fef2-087e-411a-8f60-82aacb9cb981",
+      "comment": "",
+      "command": "click",
+      "target": "id=Issue",
+      "targets": [
+        ["id=Issue", "id"],
+        ["css=#Issue", "css:finder"],
+        ["xpath=//input[@id='Issue']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[6]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8e1f011a-d59b-4cf0-99c1-404aa388b2e6",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-containedPrimary",
+      "targets": [
+        ["css=.MuiButton-containedPrimary", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[8]/button", "xpath:idRelative"],
+        ["xpath=//div[8]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'เเจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1fc40f2c-0c76-4917-aa7b-066f99369958",
+      "comment": "",
+      "command": "type",
+      "target": "id=Issue",
+      "targets": [
+        ["id=Issue", "id"],
+        ["css=#Issue", "css:finder"],
+        ["xpath=//input[@id='Issue']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[6]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "Error"
+    }, {
+      "id": "12c85d65-14e2-4994-8596-fe4c8ce257ea",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-containedPrimary",
+      "targets": [
+        ["css=.MuiButton-containedPrimary", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[8]/button", "xpath:idRelative"],
+        ["xpath=//div[8]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'เเจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e0f9ab78-1034-4bfc-bc37-b6d2060743ba",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiButton-containedPrimary",
+      "targets": [
+        ["css=.MuiButton-containedPrimary", "css:finder"],
+        ["xpath=(//button[@type='button'])[5]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div[2]/div[8]/button", "xpath:idRelative"],
+        ["xpath=//div[8]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'เเจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "74993ebe-4c68-4f48-8def-65b75de0226e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-root",
+      "targets": [
+        ["css=.MuiAlert-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "08f9c3db-3a86-48bc-bbe5-35b1b01f6712",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกการขอเเจ้งซ่อมคอมพิวเตอร์ไม่สำเร็จ : Lifetime must be positive"
+    }]
+  }, {
+    "id": "6a1eef6f-5896-4d1f-bc97-ddccb4252f5b",
+    "name": "B6210540 - ตรวจสอบว่าบันทึกข้อมูลสำเร็จ",
+    "commands": [{
+      "id": "92ec1e25-1937-476c-8d08-20dd6e7bba82",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5bb9a61f-7c7b-47ad-b784-625b07ccf48a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "48e41033-45e2-4ac9-a18d-8ea671ca1a2d",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.makeStyles-menuButton-27",
+      "targets": [
+        ["css=.makeStyles-menuButton-27", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/header/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d79569c8-ea1d-4d74-83d2-6b042a9b0ee9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-menuButton-27",
+      "targets": [
+        ["css=.makeStyles-menuButton-27", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/header/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "70adcef7-0312-42a9-aadf-5ff2cb5ff23e",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.makeStyles-menuButton-27",
+      "targets": [
+        ["css=.makeStyles-menuButton-27", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/header/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "439bf36d-d1d3-41a1-8b6f-3e07c1ce1850",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.makeStyles-a-34:nth-child(2) .MuiTypography-root",
+      "targets": [
+        ["css=.makeStyles-a-34:nth-child(2) .MuiTypography-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[2]/div/div[2]/span", "xpath:idRelative"],
+        ["xpath=//a[2]/div/div[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ระบบแจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "57fcdc1d-1fcc-49f5-817b-b7121b540295",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-a-34:nth-child(2) .MuiTypography-root",
+      "targets": [
+        ["css=.makeStyles-a-34:nth-child(2) .MuiTypography-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[2]/div/div[2]/span", "xpath:idRelative"],
+        ["xpath=//a[2]/div/div[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ระบบแจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "53408a76-288a-4c8f-bf84-62a364e3c84e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div[3]/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ร้องขอเเจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "80808130-28ac-470a-a358-ee1f11c8072d",
+      "comment": "",
+      "command": "click",
+      "target": "name=RepairTypeID",
+      "targets": [
+        ["name=RepairTypeID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='RepairTypeID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[2]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d1ff039e-75ea-4477-adc5-c5b0a1f932fa",
+      "comment": "",
+      "command": "select",
+      "target": "name=RepairTypeID",
+      "targets": [],
+      "value": "label=hardware"
+    }, {
+      "id": "51e0a2d6-80f9-466e-a5ab-dba19301ac63",
+      "comment": "",
+      "command": "click",
+      "target": "name=UrgencyID",
+      "targets": [
+        ["name=UrgencyID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='UrgencyID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[3]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "78b39dac-fc76-4f04-b601-cd66c4f96dec",
+      "comment": "",
+      "command": "select",
+      "target": "name=UrgencyID",
+      "targets": [],
+      "value": "label=semi-urgency"
+    }, {
+      "id": "7da00b00-1329-41dc-9d49-c2d29e0c8272",
+      "comment": "",
+      "command": "click",
+      "target": "id=Device",
+      "targets": [
+        ["id=Device", "id"],
+        ["css=#Device", "css:finder"],
+        ["xpath=//input[@id='Device']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[4]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "39597fa8-1f2c-4b47-a8c9-9de1306dd009",
+      "comment": "",
+      "command": "click",
+      "target": "id=Device",
+      "targets": [
+        ["id=Device", "id"],
+        ["css=#Device", "css:finder"],
+        ["xpath=//input[@id='Device']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[4]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4e8363ef-e8b7-4875-8d88-7c26d9ae83a6",
+      "comment": "",
+      "command": "type",
+      "target": "id=Device",
+      "targets": [
+        ["id=Device", "id"],
+        ["css=#Device", "css:finder"],
+        ["xpath=//input[@id='Device']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[4]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Acer"
+    }, {
+      "id": "261a05b1-4196-4c1a-ae23-6fb3a6279850",
+      "comment": "",
+      "command": "click",
+      "target": "id=Lifetime",
+      "targets": [
+        ["id=Lifetime", "id"],
+        ["css=#Lifetime", "css:finder"],
+        ["xpath=//input[@id='Lifetime']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[5]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cbb72a6d-d4e2-46ed-a0e8-170e1b736b5e",
+      "comment": "",
+      "command": "type",
+      "target": "id=Lifetime",
+      "targets": [
+        ["id=Lifetime", "id"],
+        ["css=#Lifetime", "css:finder"],
+        ["xpath=//input[@id='Lifetime']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[5]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "12"
+    }, {
+      "id": "b88f630d-fe19-47a9-b184-173dfbccf549",
+      "comment": "",
+      "command": "click",
+      "target": "id=Issue",
+      "targets": [
+        ["id=Issue", "id"],
+        ["css=#Issue", "css:finder"],
+        ["xpath=//input[@id='Issue']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[6]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b7fe5ed4-9439-4443-8569-9d07fbd42002",
+      "comment": "",
+      "command": "type",
+      "target": "id=Issue",
+      "targets": [
+        ["id=Issue", "id"],
+        ["css=#Issue", "css:finder"],
+        ["xpath=//input[@id='Issue']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[6]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "Error"
+    }, {
+      "id": "7ebda6a9-134e-46a3-95a1-4033116dab8c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'เเจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4827a238-a182-45a5-81fa-785bb9963cd8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-root",
+      "targets": [
+        ["css=.MuiAlert-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "50c9fae6-2927-4132-ba4b-d1d1f34791d3",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกการขอเเจ้งซ่อมคอมพิวเตอร์สำเร็จ"
+    }]
+  }, {
+    "id": "ca902507-61d6-48e8-96c8-38e408883c57",
+    "name": "B6210540 - ตรวจสอบเวลา RequestDate ต้องเป็นเวลาในอดีต",
+    "commands": [{
+      "id": "d5e97da6-d526-4121-8239-d65d8c370b71",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "98e27cc3-295b-4ec1-b463-7104dc7cc40b",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0ebe7a55-8449-4879-a098-de4d329c406a",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.makeStyles-menuButton-27",
+      "targets": [
+        ["css=.makeStyles-menuButton-27", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/header/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "81f50b76-a264-454f-93a2-b68e4d7cd039",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-menuButton-27",
+      "targets": [
+        ["css=.makeStyles-menuButton-27", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/header/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "620b8aad-92ef-4d4b-8621-e073c0aa72de",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.makeStyles-menuButton-27",
+      "targets": [
+        ["css=.makeStyles-menuButton-27", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/header/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "47390f94-2333-46b7-a171-f1bb6c3af494",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-a-34:nth-child(2) .MuiTypography-root",
+      "targets": [
+        ["css=.makeStyles-a-34:nth-child(2) .MuiTypography-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[2]/div/div[2]/span", "xpath:idRelative"],
+        ["xpath=//a[2]/div/div[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ระบบแจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ac2beddb-8b0b-4d0a-8343-9d1754c3d1ee",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div[3]/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ร้องขอเเจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e1f98024-db55-4314-9d58-e99c426e6eb2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div[3]/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ร้องขอเเจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d6f5cf49-9702-4296-8447-22af754b6ec8",
+      "comment": "",
+      "command": "click",
+      "target": "name=RepairTypeID",
+      "targets": [
+        ["name=RepairTypeID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='RepairTypeID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[2]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ae32f71b-59aa-4d1f-b6e1-5b8aa80a798a",
+      "comment": "",
+      "command": "select",
+      "target": "name=RepairTypeID",
+      "targets": [],
+      "value": "label=software"
+    }, {
+      "id": "298a47bd-2d71-48ad-a45f-3cbd1603888f",
+      "comment": "",
+      "command": "click",
+      "target": "name=UrgencyID",
+      "targets": [
+        ["name=UrgencyID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='UrgencyID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[3]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fb4e3cd4-2fbf-4f75-85ec-a407311b7d30",
+      "comment": "",
+      "command": "select",
+      "target": "name=UrgencyID",
+      "targets": [],
+      "value": "label=nonurgency"
+    }, {
+      "id": "2d3fda90-c39b-49df-9282-243922342052",
+      "comment": "",
+      "command": "click",
+      "target": "id=Device",
+      "targets": [
+        ["id=Device", "id"],
+        ["css=#Device", "css:finder"],
+        ["xpath=//input[@id='Device']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[4]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "72d865fa-2c01-4f36-b9a8-10f4f0175229",
+      "comment": "",
+      "command": "type",
+      "target": "id=Device",
+      "targets": [
+        ["id=Device", "id"],
+        ["css=#Device", "css:finder"],
+        ["xpath=//input[@id='Device']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[4]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "MSI"
+    }, {
+      "id": "542e3f2c-48ec-4936-b7c4-5d10acc26730",
+      "comment": "",
+      "command": "click",
+      "target": "id=Lifetime",
+      "targets": [
+        ["id=Lifetime", "id"],
+        ["css=#Lifetime", "css:finder"],
+        ["xpath=//input[@id='Lifetime']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[5]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "63958185-d675-48ca-b2c1-be2127b275d1",
+      "comment": "",
+      "command": "type",
+      "target": "id=Lifetime",
+      "targets": [
+        ["id=Lifetime", "id"],
+        ["css=#Lifetime", "css:finder"],
+        ["xpath=//input[@id='Lifetime']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[5]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "11"
+    }, {
+      "id": "f29fd73b-eb90-400a-883b-78709d7b6a21",
+      "comment": "",
+      "command": "click",
+      "target": "id=Issue",
+      "targets": [
+        ["id=Issue", "id"],
+        ["css=#Issue", "css:finder"],
+        ["xpath=//input[@id='Issue']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[6]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b3d1a55d-eb1f-4f56-ac0d-09c1d9fbf8d7",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiInputAdornment-root path:nth-child(1)",
+      "targets": [
+        ["css=.MuiInputAdornment-root path:nth-child(1)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "f5538a41-1b2e-48dc-8bf6-b1e0b565ee48",
+      "comment": "",
+      "command": "type",
+      "target": "id=Issue",
+      "targets": [
+        ["id=Issue", "id"],
+        ["css=#Issue", "css:finder"],
+        ["xpath=//input[@id='Issue']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[6]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "error"
+    }, {
+      "id": "dd0c2c10-eeeb-40bf-9929-bb99d04e0465",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiInputAdornment-root path:nth-child(1)",
+      "targets": [
+        ["css=.MuiInputAdornment-root path:nth-child(1)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "a9bb3549-2a6b-4d66-9a00-14c0334ce0b9",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiInputAdornment-root path:nth-child(1)",
+      "targets": [
+        ["css=.MuiInputAdornment-root path:nth-child(1)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "63e56c78-9d5c-4c95-840e-f773e747d05d",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiPickersCalendar-week:nth-child(5) > div:nth-child(2) .MuiTypography-root",
+      "targets": [
+        ["css=.MuiPickersCalendar-week:nth-child(5) > div:nth-child(2) .MuiTypography-root", "css:finder"],
+        ["xpath=//div[5]/div[2]/button/span/p", "xpath:position"],
+        ["xpath=//p[contains(.,'28')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c8c181c2-33b5-4c08-b1dd-77d1ab256fc2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiPickersCalendar-week:nth-child(5) > div:nth-child(2) .MuiTypography-root",
+      "targets": [
+        ["css=.MuiPickersCalendar-week:nth-child(5) > div:nth-child(2) .MuiTypography-root", "css:finder"],
+        ["xpath=//div[5]/div[2]/button/span/p", "xpath:position"],
+        ["xpath=//p[contains(.,'28')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "536b16b1-1ffb-454c-a2ce-bf0a2a3c730e",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/button[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9a993f33-9c52-477d-9907-c2cb1705e0b8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/button[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1f27c588-7f70-4b5d-b8de-a0fa11e5d79b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'เเจ้งซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b26f9b54-e27f-429f-b73f-22260d74609b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-root",
+      "targets": [
+        ["css=.MuiAlert-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d7eb01c6-f082-4316-852a-47ef01816b39",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกการขอเเจ้งซ่อมคอมพิวเตอร์ไม่สำเร็จ : RequestDate must be in the past"
+    }]
+  }],
+  "suites": [{
+    "id": "6493b294-d0ae-4403-b6b8-83a22d7bd8c4",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:3000/"],
+  "plugins": []
+}

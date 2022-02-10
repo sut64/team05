@@ -60,6 +60,7 @@ export default function NativeSelects() {
   const [repairrequest, setRepairRequests] = useState<Partial<RepairRequestsInterface>>({});
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const apiUrl = "http://localhost:8080";
   const requestOptions = {
     method: "GET",
@@ -173,9 +174,11 @@ const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }
       .then((res) => {
         if (res.data) {
           setSuccess(true);
+          setErrorMessage("");
         } else {
           console.log(res)
           setError(true);
+          setErrorMessage(res.error);
         }
       });
   }
@@ -191,7 +194,7 @@ const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }
       </Snackbar>
       <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
-          บันทึกการขอเเจ้งซ่อมคอมพิวเตอร์ไม่สำเร็จ
+          บันทึกการขอเเจ้งซ่อมคอมพิวเตอร์ไม่สำเร็จ : {errorMessage}
         </Alert>
       </Snackbar>
       <Paper className={classes.paper}>
@@ -287,7 +290,7 @@ const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }
             </FormControl>
           </Grid>
           <Grid item xs={6}>
-            <p>อายุการใช้งาน</p>
+            <p>อายุการใช้งาน(เดือน)</p>
             <FormControl fullWidth variant="outlined">
               <TextField
                 id="Lifetime"

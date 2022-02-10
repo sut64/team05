@@ -326,7 +326,7 @@ const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }
                   value={selectedDate}
                   onChange={handleDateChange}
                   //ปรับ true เพื่อใช้ testing
-                  disabled={true}
+                  disabled={false}
                   label="กรุณาเลือกวันที่และเวลา"
                   minDate={new Date("2018-01-01T00:00")}
                   format="yyyy/MM/dd hh:mm a"

@@ -3,6 +3,7 @@ package entity
 import (
 	"time"
 
+	"github.com/asaskevich/govalidator"
 	"gorm.io/gorm"
 )
 
@@ -90,7 +91,7 @@ type WorkReceive struct {
 	RepairRequestID *uint `gorm:"uniqueIndex"`
 	RepairRequest   RepairRequest
 
-	RecieptHistories []RecieptHistory `gorm:"foreignKey:WorkReceiveID"`
+	RecieptHistory *RecieptHistory `gorm:"foreignKey:WorkReceiveID"`
 	// foreignkey to PartsPurchase
 	PartsPurchases []PartsPurchase `gorm:"foreignKey:WorkReceiveID"`
 
@@ -112,7 +113,7 @@ type RecieptHistory struct {
 	EmployeeID *uint
 	Employee   Employee
 
-	WorkReceiveID *uint
+	WorkReceiveID *uint       `gorm:"uniqueIndex"`
 	WorkReceive   WorkReceive `gorm:"references:id"`
 	PaidByID      *uint
 	PaidBy        PaidBy `gorm:"references:id"`
@@ -195,3 +196,14 @@ type WarranteeType struct {
 }
 
 // ohm
+
+func init() {
+	govalidator.CustomTypeTagMap.Set("float", func(i interface{}, o interface{}) bool {
+		fl := i.(float32)
+		return fl >= 0
+	})
+	govalidator.CustomTypeTagMap.Set("pastandpresent", func(i interface{}, o interface{}) bool {
+		t := i.(time.Time)
+		return t.Before(time.Now())
+	})
+}

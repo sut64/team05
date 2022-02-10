@@ -22,7 +22,12 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { MuiPickersUtilsProvider, KeyboardDateTimePicker, } from "@material-ui/pickers";
 import { useEffect, useState } from "react";
-
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
 
 import { EmployeeInterface } from "../models/IEmployee"
 import { PaidBiesInterface } from "../models/IPaidBy"
@@ -57,6 +62,8 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: theme.spacing(1),
       minWidth: 120,
     },
+    table: { minWidth: 650 },
+        tableSpace: { marginTop: 20 },
 
   })
 
@@ -125,7 +132,7 @@ function ReciptHistory() {
   };
 
   const getWorkReceives = async () => {
-    fetch(`${apiUrl}/workreceives/employees/${Employees?.ID}`, requestOptions)
+    fetch(`${apiUrl}/WorkReceives`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
         if (res.data) {
@@ -210,6 +217,39 @@ function ReciptHistory() {
           บันทึกข้อมูลไม่สำเร็จ
         </Alert>
       </Snackbar>
+
+      <TableContainer component={Paper} className={classes.tableSpace}>
+                <Table className={classes.table} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align="left" width="10%">
+                                WorkCode
+                            </TableCell>
+                            <TableCell align="left" width="20%">
+                                Device
+                            </TableCell>
+                            <TableCell align="center" width="30%">
+                                Issue
+                            </TableCell>
+                            <TableCell align="center" width="40%">
+                                repairer
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {WorkReceives.map((item: WorkReceiveInterface) => (
+                            <TableRow key={item.ID}>
+                                <TableCell align="left" >{item.WorkCode}</TableCell>
+                                <TableCell align="left" >{item.RepairRequest.Device}</TableCell>
+                                <TableCell align="left" >{item.RepairRequest.Issue}</TableCell>
+                                <TableCell align="center" >{item.Employee.Name}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer><br />
+
+      
          
       
       <Typography component="div" style={{ height: '13vh' }} />
@@ -252,7 +292,6 @@ function ReciptHistory() {
                 value={RecieptHistory.WorkReceiveID}
                 onChange={handleChange}
                 label="WorkReceiveID"
-                onOpen={getWorkReceives}//เมื่อไหร่ combobox เปิดทำงาน
                 inputProps={{
                   name: 'WorkReceiveID',
                 }}

@@ -28,10 +28,10 @@ type Urgency struct {
 type RepairRequest struct {
 	gorm.Model
 
-	Device      string
-	Lifetime    uint
-	Issue       string
-	RequestDate time.Time
+	Device      string    `valid:"stringlength(1|100)~Device cannot be blank and less than 100 characters,required~Device cannot be blank and less than 100 characters"`
+	Lifetime    int       `valid:"ispositive~Lifetime must be positive,required~Lifetime must be positive"`
+	Issue       string    `valid:"stringlength(1|200)~Issue cannot be blank and less than 200 characters,required~Issue cannot be blank and less than 200 characters"`
+	RequestDate time.Time `valid:"past~RequestDate must be in the past"`
 
 	CustomerID *uint
 	Customer   Customer `gorm:"references:id"`
@@ -128,19 +128,19 @@ type PurchasingCompany struct {
 
 type PartsPurchase struct {
 	gorm.Model
-	Parts        string `valid:"required~parts cannot be blank"`
-	Quantity     int `valid:"positiveUint~Quantity must be integer more then 0,required~Quantity must be integer more then 0"`
-	PartsPrice   float32 `valid:"positiveFloat~Price must be float more then 0,required~Price must be float more then 0"`
+	Parts        string    `valid:"required~parts cannot be blank"`
+	Quantity     int       `valid:"positiveUint~Quantity must be integer more then 0,required~Quantity must be integer more then 0"`
+	PartsPrice   float32   `valid:"positiveFloat~Price must be float more then 0,required~Price must be float more then 0"`
 	PurchaseTime time.Time `valid:"past~PurchaseTime must not be in the future"`
 	//ความสัมพันธ์กับ PurchasingCompany, Workreceive, Employee
 	ShoppingID *uint
-	Shopping   PurchasingCompany `gorm:"references:id"`
+	Shopping   PurchasingCompany `gorm:"references:id" valid:"-"`
 
 	WorkReceiveID *uint
-	WorkReceive   WorkReceive `gorm:"references:id"`
+	WorkReceive   WorkReceive `gorm:"references:id" valid:"-"`
 
 	EditorID *uint
-	Editor   Employee `gorm:"references:id"`
+	Editor   Employee `gorm:"references:id" valid:"-"`
 }
 
 type Difficulty struct {
@@ -212,22 +212,22 @@ func init() {
 		t := i.(time.Time)
 		return t.Before(time.Now())
 	})
-	
+
 	govalidator.CustomTypeTagMap.Set("positiveUint", func(i interface{}, context interface{}) bool {
 		switch v := i.(type) { // this validates a field against the value in another field, i.e. dependent validation
 		case int:
-		  return v >= 1
+			return v >= 1
 		}
 		return false
 	})
-	govalidator.CustomTypeTagMap.Set("positiveFloat", func(i interface{}, context interface{}) bool {		
+	govalidator.CustomTypeTagMap.Set("positiveFloat", func(i interface{}, context interface{}) bool {
 		switch v := i.(type) { // this validates a field against the value in another field, i.e. dependent validation
 		case float32:
-			return v > 0 
+			return v > 0
 		}
 		return false
 	})
-	
+
 	govalidator.CustomTypeTagMap.Set("wages", func(i interface{}, context interface{}) bool {
 		w := i.(float32)
 		return govalidator.InRangeFloat32(w, 100.00, 10000.00)
@@ -238,6 +238,9 @@ func init() {
 		tt := t.Add(7 * time.Hour)
 		t2 := time.Now()
 		return !(tt.Before(t2))
+	})
+	govalidator.CustomTypeTagMap.Set("ispositive", func(i interface{}, context interface{}) bool {
+		return i.(int) > 0
 	})
 
 }

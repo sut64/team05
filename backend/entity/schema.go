@@ -34,13 +34,13 @@ type RepairRequest struct {
 	RequestDate time.Time `valid:"past~RequestDate must be in the past"`
 
 	CustomerID *uint
-	Customer   Customer `gorm:"references:id"`
+	Customer   Customer `gorm:"references:id" valid:"-"`
 
 	RepairTypeID *uint
-	RepairType   RepairType `gorm:"references:id"`
+	RepairType   RepairType `gorm:"references:id" valid:"-"`
 
 	UrgencyID *uint
-	Urgency   Urgency `gorm:"references:id"`
+	Urgency   Urgency `gorm:"references:id" valid:"-"`
 
 	//fix 1to1
 	RepairHistory *RepairHistory `gorm:"foreignKey:RepairRequestID"`
@@ -89,8 +89,8 @@ type WorkReceive struct {
 	WorkPlaceID *uint
 	WorkPlace   WorkPlace `gorm:"references:id" valid:"-"`
 
-	RepairRequestID *uint `gorm:"uniqueIndex" valid:"-"`
-	RepairRequest   RepairRequest
+	RepairRequestID *uint
+	RepairRequest   RepairRequest `gorm:"uniqueIndex" valid:"-"`
 
 	RecieptHistories []RecieptHistory `gorm:"foreignKey:WorkReceiveID"`
 	// foreignkey to PartsPurchase
@@ -160,12 +160,12 @@ type RepairHistory struct {
 	Success   *bool
 	Timestamp time.Time `valid:"timelength~Timestamp must be in present"`
 
-	RepairRequestID *uint `gorm:"uniqueIndex"`
-	RepairRequest   RepairRequest
+	RepairRequestID *uint         `gorm:"uniqueIndex" valid:"-"`
+	RepairRequest   RepairRequest `gorm:"references:ID" valid:"-"`
 	EditorID        *uint
-	Editor          Employee `gorm:"references:ID"`
+	Editor          Employee `gorm:"references:ID" valid:"-"`
 	DifficultyID    *uint
-	Difficulty      Difficulty `gorm:"references:ID"`
+	Difficulty      Difficulty `gorm:"references:ID" valid:"-"`
 }
 
 // ohm
@@ -178,15 +178,15 @@ type Warrantee struct {
 
 	// WorkReceiveID is foreignkey
 	WorkReceiveID *uint       `gorm:"uniqueIndex"`
-	WorkReceive   WorkReceive `gorm:"references:ID"`
+	WorkReceive   WorkReceive `gorm:"references:ID" valid:"-"`
 
 	// EmployeeID is foreignkey
 	EmployeeID *uint
-	Employee   Employee `gorm:"references:ID"`
+	Employee   Employee `gorm:"references:ID" valid:"-"`
 
 	// WarranteeTypeID is foreignkey
 	WarranteeTypeID *uint
-	WarranteeType   WarranteeType `gorm:"references:ID"`
+	WarranteeType   WarranteeType `gorm:"references:ID" valid:"-"`
 }
 
 type WarranteeType struct {

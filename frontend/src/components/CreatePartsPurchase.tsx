@@ -86,6 +86,7 @@ export default function CreatePartsPurchase() {
 
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleDateChange = (date: Date | null) => {
         console.log(date);
@@ -197,8 +198,10 @@ export default function CreatePartsPurchase() {
             .then((res) => {
                 if (res.data) {
                     setSuccess(true);
+                    setErrorMessage("")
                 } else {
                     setError(true);
+                    setErrorMessage(res.error)
                     console.log(res)
                 }
             });
@@ -215,7 +218,7 @@ export default function CreatePartsPurchase() {
             </Snackbar>
             <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="error">
-                    บันทึกข้อมูลไม่สำเร็จ
+                    บันทึกข้อมูลไม่สำเร็จ : {errorMessage}
                 </Alert>
             </Snackbar>
             <TableContainer component={Paper} className={classes.tableSpace}>

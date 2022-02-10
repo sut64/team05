@@ -107,17 +107,18 @@ type PaidBy struct {
 
 type RecieptHistory struct {
 	gorm.Model
-	RecieptCode  string
-	RecieptPrice float32
-	RecieptDate  time.Time
+	RecieptCode  string    `valid:"matches(^[R]\\d{4}$)"`
+	RecieptPrice float32   `valid:"positiveFloat~RecieptPrice must be >= 0"`
+	RecieptDate  time.Time `valid:"pastandpresent~RecieptDate must be in the pastandpresent"`
 
 	EmployeeID *uint
-	Employee   Employee
+	Employee   Employee `valid:"-"`
 
-	WorkReceiveID *uint
-	WorkReceive   WorkReceive `gorm:"references:id"`
-	PaidByID      *uint
-	PaidBy        PaidBy `gorm:"references:id"`
+	WorkReceiveID *uint       `gorm:"uniqueIndex" `
+	WorkReceive   WorkReceive `gorm:"references:id" valid:"-"`
+
+	PaidByID *uint
+	PaidBy   PaidBy `gorm:"references:id" valid:"-"`
 }
 
 type PurchasingCompany struct {
@@ -241,6 +242,10 @@ func init() {
 	})
 	govalidator.CustomTypeTagMap.Set("ispositive", func(i interface{}, context interface{}) bool {
 		return i.(int) > 0
+	})
+	govalidator.CustomTypeTagMap.Set("pastandpresent", func(i interface{}, o interface{}) bool {
+		t := i.(time.Time)
+		return t.Before(time.Now())
 	})
 
 }

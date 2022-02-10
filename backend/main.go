@@ -80,6 +80,8 @@ func main() {
 			protected.GET("/RepairRequestsNotInWorkReceive", controller.ListRepairRequestNotINWorkReceive)
 			// ohm
 			protected.GET("/work_receives", controller.ListWorkReceiveWithNoDuplicateID)
+			//bang
+			protected.GET("/workreceivesbybang", controller.ListRecieptHistoryNotINWorkReceive)
 
 			// paidby Routes
 			protected.GET("/paidbies", controller.ListPaidBies)

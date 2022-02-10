@@ -134,13 +134,13 @@ type PartsPurchase struct {
 	PurchaseTime time.Time `valid:"past~PurchaseTime must not be in the future"`
 	//ความสัมพันธ์กับ PurchasingCompany, Workreceive, Employee
 	ShoppingID *uint
-	Shopping   PurchasingCompany `gorm:"references:id"`
+	Shopping   PurchasingCompany `gorm:"references:id" valid:"-"`
 
 	WorkReceiveID *uint
-	WorkReceive   WorkReceive `gorm:"references:id"`
+	WorkReceive   WorkReceive `gorm:"references:id" valid:"-"`
 
 	EditorID *uint
-	Editor   Employee `gorm:"references:id"`
+	Editor   Employee `gorm:"references:id" valid:"-"`
 }
 
 type Difficulty struct {

@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
-import { makeStyles, Theme, createStyles, Container, Snackbar, Paper, Box, Typography, Divider, Grid, FormControl, TextField, Button, Select } from "@material-ui/core";
+import { makeStyles, Theme, createStyles, Container, Snackbar, Paper, Box, Typography, Divider, Grid, FormControl, TextField, Button, Select, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination } from "@material-ui/core";
 import MuiAlert, {AlertProps} from "@material-ui/lab/Alert";
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns"
-import {Link as RouterLink} from "react-router-dom"
+import { Link as RouterLink } from "react-router-dom"
 
 import { WarranteeInterface } from "../models/IWarrantee";
 import { WorkReceiveInterface } from "../models/IWorkReceive";
 import { WarranteeTypeInterface } from "../models/IWarranteeType";
 import { EmployeeInterface } from "../models/IEmployee";
 import NavBar from "./NavBar";
+import moment from "moment";
 
 
 function Alert(props: AlertProps) {
@@ -18,9 +19,15 @@ function Alert(props: AlertProps) {
 
 const useStyles = makeStyles((theme:Theme) => createStyles({
     root: {flexGrow: 1},
-    container: {marginTop: theme.spacing(12)},
-    paper: {padding: theme.spacing(2), 
-    color: theme.palette.text.secondary},
+    container: {marginTop: theme.spacing(10)},
+    paper: {
+        padding: theme.spacing(2), 
+        color: theme.palette.text.secondary,
+        // marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(3),
+    },
+    table: {minWidth: 650},
+    tableSpace: {marginTop: 0},
 }));
 
 function WarranteeCreate() {
@@ -34,6 +41,21 @@ function WarranteeCreate() {
 
     const [success, setSuccess] = React.useState(false);
     const [error, setError] = React.useState(false);
+    const [errorMessage, setErrorMessage] = React.useState("");
+
+    const [disable, setDisable] = React.useState(false);
+
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(4);
+
+    const handleChangePage = (event: unknown, newPage: number) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
 
     const handleClose = (event?: React.SyntheticEvent, reson?: string) => {
         if(reson === "clickaway") {
@@ -41,30 +63,27 @@ function WarranteeCreate() {
         }
         setSuccess(false);
         setError(false);
-        // window.location.reload();
+        window.location.reload();
     }
-
-    const [disable, setDisable] = React.useState(false);
-
 
     const handleInputChange = (event: React.ChangeEvent<{name?: string; value: any}>) => {
         
         const name = event.target.name as keyof typeof warrantee;
         const { value } = event.target;
-        setWarrantee({...warrantee, [name]: value})
+        setWarrantee({...warrantee, [name]: value});
     }
 
     const handleSelectChange = (event: React.ChangeEvent<{name?: string; value: any}>) => {
         
         const name = event.target.name as keyof typeof warrantee;
         const { value } = event.target;
-        setWarrantee({...warrantee, [name]: value})
+        setWarrantee({...warrantee, [name]: value});
 
         if(value == "2") {
-            setDisable(true)
+            setDisable(true);
         }
         else {
-            setDisable(false)
+            setDisable(false);
         }
     }
 
@@ -89,7 +108,6 @@ function WarranteeCreate() {
           .then((res) => {
             if (res.data) {
               setEmployee(res.data);
-            //   console.log(res.data.ID, res.data.Name, res.data.Email)
             }
             else {
               console.log("cannot get employee");
@@ -137,8 +155,6 @@ function WarranteeCreate() {
     
 
     function submit() {
-        let validWarranteePart = false;
-        let validMaximumAmount = false;
 
         if (warrantee.WarranteeTypeID === undefined) {
             warrantee.WarranteeTypeID = warranteeType[0].ID;
@@ -149,11 +165,10 @@ function WarranteeCreate() {
         if (warrantee.WorkReceiveID === undefined && workReceive.length !== 0) {
             warrantee.WorkReceiveID = workReceive[0].ID;
         }
-        if (warrantee.WarrantyPart === undefined && disable) {
+        if (warrantee.WarrantyPart === undefined && disable || disable) {
             warrantee.WarrantyPart = "ไม่มี";
         }
         
-
         let data = {
             ID_Warrantee: warrantee.ID_Warrantee = "",
             EndOfWarrantee: selectedDate,
@@ -164,21 +179,6 @@ function WarranteeCreate() {
             EmployeeID: convertTypeInt(warrantee.EmployeeID = employee.ID),
             WarranteeTypeID: convertTypeInt(warrantee.WarranteeTypeID),
         };
-        // console.log(warrantee.EmployeeID, warrantee.WorkReceiveID, warrantee.WarranteeTypeID);
-
-            console.log(warrantee.WarrantyPart !== undefined)
-            console.log(warrantee.MaximumAmount !== undefined)
-            if(warrantee.MaximumAmount !== undefined ) {
-                validMaximumAmount = true
-            }
-            if(warrantee.WarrantyPart !== undefined) {
-                validWarranteePart = true;
-            }
-
-            console.log(warrantee.WarrantyPart)
-
-            // console.log(validMaximumAmount)
-            // console.log(validWarranteePart)
 
         const requestOptions = {
             method: "POST",
@@ -190,27 +190,19 @@ function WarranteeCreate() {
         };
         console.log(JSON.stringify(data));
 
-        console.log(validMaximumAmount && validWarranteePart)
-
-        if(validMaximumAmount && validWarranteePart) {
-            fetch(`${apiUrl}/warrantee`, requestOptions)
+        fetch(`${apiUrl}/warrantee`, requestOptions)
             .then((response) => response.json())
             .then((res) => {
                 if(res.data) {
-                    // console.log(res.data);
                     setSuccess(true);
-                    window.location.reload();
+                    setErrorMessage("");
                 }
                 else {
                     setError(true);
+                    setErrorMessage(res.error);
                 }
             })
-        }
-        else {
-            setError(true);
-        }
     }
-
     
     return (
         <Container className={classes.container} maxWidth="md">
@@ -222,9 +214,58 @@ function WarranteeCreate() {
             </Snackbar>
             <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="error">
-                    บันทึกข้อไม่มูลสำเร็จ
+                    บันทึกข้อไม่มูลสำเร็จ: {errorMessage}
                 </Alert>
             </Snackbar>
+
+            <TableContainer component={Paper} className={classes.tableSpace} style={{maxHeight: 269}}>
+                <Table className={classes.table} stickyHeader aria-label="sticky table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align="center" width="15%">
+                                Work Code
+                            </TableCell>
+                            <TableCell align="center" width="20%">
+                                Device
+                            </TableCell>
+                            <TableCell align="center" width="25%">
+                                Issue
+                            </TableCell>
+                            <TableCell align="center" width="15%">
+                                Finish Date
+                            </TableCell>
+                            <TableCell align="center" width="25%">
+                                Repairer
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {workReceive.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((workReceive:WorkReceiveInterface) => (
+                            <TableRow key={workReceive.ID}>
+                                <TableCell align="center" size="medium">
+                                    {workReceive.WorkCode}
+                                </TableCell>
+                                <TableCell align="center">{workReceive.RepairRequest.Device}</TableCell>
+                                <TableCell align="center">{workReceive.RepairRequest.Issue}</TableCell>
+                                <TableCell align="center">
+                                    {moment(workReceive.FinishedDate).format("DD/MM/YYYY")}
+                                </TableCell>
+                                <TableCell align="center">{workReceive.Employee.Name}</TableCell>
+                            </TableRow>
+                        ))}
+
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <TablePagination
+                rowsPerPageOptions={[2, 4, 8]}
+                component="div"
+                count={workReceive.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+            />
 
             <Paper className={classes.paper}>
                 <Box display="flex">
@@ -241,8 +282,7 @@ function WarranteeCreate() {
                 </Box>
 
                 <Divider/>
-              
-                    
+    
                 <Box paddingTop="3%">
                     <Grid container spacing={3} className={classes.root} alignItems="center">
                         <Grid item xs={6}>

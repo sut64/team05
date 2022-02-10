@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 	"github.com/sut64/team05/entity"
 )
@@ -70,6 +71,11 @@ func CreateWarrantee(c *gin.Context) {
 		WarrantyPart:   warrantee.WarrantyPart,   // ตั้งค่าฟิลด์ WarrantyPart
 		MaximumAmount:  warrantee.MaximumAmount,  // ตั้งค่าฟิลด์ MaximumAmount
 		EndOfWarrantee: warrantee.EndOfWarrantee, // ตั้งค่าฟิลด์ EndOfWarrantee
+	}
+
+	if _, err := govalidator.ValidateStruct(w); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
 
 	if err := entity.DB().Save(&w).Error; err != nil {

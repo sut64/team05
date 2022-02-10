@@ -121,8 +121,8 @@ func ListWorkReceiveWithNoDuplicateID(c *gin.Context) {
 	var workrecive []entity.WorkReceive
 
 	// ค้นหา work receive ทั้งหมดที่ไม่มีในข้อมูล warrantee
-	if err := entity.DB().Raw("SELECT * FROM work_receives WHERE id NOT IN (SELECT DISTINCT work_receive_id FROM warrantees)").Find(&workrecive).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"errorishere": err.Error()})
+	if err := entity.DB().Preload("Employee").Preload("RepairRequest").Raw("SELECT * FROM work_receives WHERE id NOT IN (SELECT DISTINCT work_receive_id FROM warrantees)").Find(&workrecive).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 

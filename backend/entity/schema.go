@@ -28,19 +28,19 @@ type Urgency struct {
 type RepairRequest struct {
 	gorm.Model
 
-	Device      string
-	Lifetime    uint
-	Issue       string
-	RequestDate time.Time
+	Device      string    `valid:"stringlength(1|100)~Device cannot be blank and less than 100 characters,required~Device cannot be blank and less than 100 characters"`
+	Lifetime    int       `valid:"ispositive~Lifetime must be positive,required~Lifetime must be positive"`
+	Issue       string    `valid:"stringlength(1|200)~Issue cannot be blank and less than 200 characters,required~Issue cannot be blank and less than 200 characters"`
+	RequestDate time.Time `valid:"past~RequestDate must be in the past"`
 
 	CustomerID *uint
-	Customer   Customer `gorm:"references:id"`
+	Customer   Customer `gorm:"references:id" valid:"-"`
 
 	RepairTypeID *uint
-	RepairType   RepairType `gorm:"references:id"`
+	RepairType   RepairType `gorm:"references:id" valid:"-"`
 
 	UrgencyID *uint
-	Urgency   Urgency `gorm:"references:id"`
+	Urgency   Urgency `gorm:"references:id" valid:"-"`
 
 	//fix 1to1
 	RepairHistory *RepairHistory `gorm:"foreignKey:RepairRequestID"`
@@ -79,18 +79,18 @@ type WorkPlace struct {
 
 type WorkReceive struct {
 	gorm.Model
-	WorkCode     string    `gorm:"uniqueIndex" valid:"matches(^[W]\\d{4}$)"`
-	FinishedDate time.Time `valid:"future~FinishedDate must be in the future"`
-	Wages        float32   `valid:"wages~Wages must between 100.00 and 10000.00"`
+	WorkCode     string    `gorm:"uniqueIndex" valid:"matches(^[W]\\d{4}$)~WorkCode: does not validate as matches(^[W]\\d{4}$),required~WorkCode: does not validate as matches(^[W]\\d{4}$)"`
+	FinishedDate time.Time `valid:"wr_future~FinishedDate must be in the future,required~wr_future~FinishedDate must be in the future"`
+	Wages        float32   `valid:"wages~Wages must between 100.00 and 10000.00,required~Wages must between 100.00 and 10000.00"`
 
 	EmployeeID *uint
-	Employee   Employee `gorm:"references:id"`
+	Employee   Employee `gorm:"references:id" valid:"-"`
 
 	WorkPlaceID *uint
-	WorkPlace   WorkPlace `gorm:"references:id"`
+	WorkPlace   WorkPlace `gorm:"references:id" valid:"-"`
 
-	RepairRequestID *uint `gorm:"uniqueIndex"`
-	RepairRequest   RepairRequest
+	RepairRequestID *uint         `gorm:"uniqueIndex"`
+	RepairRequest   RepairRequest `valid:"-"`
 
 	RecieptHistories []RecieptHistory `gorm:"foreignKey:WorkReceiveID"`
 	// foreignkey to PartsPurchase
@@ -107,17 +107,18 @@ type PaidBy struct {
 
 type RecieptHistory struct {
 	gorm.Model
-	RecieptCode  string
-	RecieptPrice float32
-	RecieptDate  time.Time
+	RecieptCode  string    `valid:"matches(^[R]\\d{4}$)"`
+	RecieptPrice float32   `valid:"positiveFloat~RecieptPrice must be >= 0"`
+	RecieptDate  time.Time `valid:"pastandpresent~RecieptDate must be in the pastandpresent"`
 
 	EmployeeID *uint
-	Employee   Employee
+	Employee   Employee `valid:"-"`
 
-	WorkReceiveID *uint
-	WorkReceive   WorkReceive `gorm:"references:id"`
-	PaidByID      *uint
-	PaidBy        PaidBy `gorm:"references:id"`
+	WorkReceiveID *uint       `gorm:"uniqueIndex" `
+	WorkReceive   WorkReceive `gorm:"references:id" valid:"-"`
+
+	PaidByID *uint
+	PaidBy   PaidBy `gorm:"references:id" valid:"-"`
 }
 
 type PurchasingCompany struct {
@@ -128,19 +129,19 @@ type PurchasingCompany struct {
 
 type PartsPurchase struct {
 	gorm.Model
-	Parts        string
-	Quantity     uint
-	PartsPrice   float32
-	PurchaseTime time.Time
+	Parts        string    `valid:"required~parts cannot be blank"`
+	Quantity     int       `valid:"positiveUint~Quantity must be integer more then 0,required~Quantity must be integer more then 0"`
+	PartsPrice   float32   `valid:"positiveFloat~Price must be float more then 0,required~Price must be float more then 0"`
+	PurchaseTime time.Time `valid:"past~PurchaseTime must not be in the future"`
 	//ความสัมพันธ์กับ PurchasingCompany, Workreceive, Employee
 	ShoppingID *uint
-	Shopping   PurchasingCompany `gorm:"references:id"`
+	Shopping   PurchasingCompany `gorm:"references:id" valid:"-"`
 
 	WorkReceiveID *uint
-	WorkReceive   WorkReceive `gorm:"references:id"`
+	WorkReceive   WorkReceive `gorm:"references:id" valid:"-"`
 
 	EditorID *uint
-	Editor   Employee `gorm:"references:id"`
+	Editor   Employee `gorm:"references:id" valid:"-"`
 }
 
 type Difficulty struct {
@@ -159,12 +160,12 @@ type RepairHistory struct {
 	Success   *bool
 	Timestamp time.Time `valid:"timelength~Timestamp must be in present"`
 
-	RepairRequestID *uint `gorm:"uniqueIndex"`
-	RepairRequest   RepairRequest
+	RepairRequestID *uint         `gorm:"uniqueIndex" valid:"-"`
+	RepairRequest   RepairRequest `gorm:"references:ID" valid:"-"`
 	EditorID        *uint
-	Editor          Employee `gorm:"references:ID"`
+	Editor          Employee `gorm:"references:ID" valid:"-"`
 	DifficultyID    *uint
-	Difficulty      Difficulty `gorm:"references:ID"`
+	Difficulty      Difficulty `gorm:"references:ID" valid:"-"`
 }
 
 // ohm
@@ -208,9 +209,44 @@ func init() {
 
 	})
 
+	govalidator.CustomTypeTagMap.Set("past", func(i interface{}, context interface{}) bool {
+		t := i.(time.Time)
+		return t.Before(time.Now())
+	})
+
+	govalidator.CustomTypeTagMap.Set("positiveUint", func(i interface{}, context interface{}) bool {
+		switch v := i.(type) { // this validates a field against the value in another field, i.e. dependent validation
+		case int:
+			return v >= 1
+		}
+		return false
+	})
+	govalidator.CustomTypeTagMap.Set("positiveFloat", func(i interface{}, context interface{}) bool {
+		switch v := i.(type) { // this validates a field against the value in another field, i.e. dependent validation
+		case float32:
+			return v > 0
+		}
+		return false
+	})
+
 	govalidator.CustomTypeTagMap.Set("wages", func(i interface{}, context interface{}) bool {
 		w := i.(float32)
 		return govalidator.InRangeFloat32(w, 100.00, 10000.00)
+	})
+
+	govalidator.CustomTypeTagMap.Set("wr_future", func(i interface{}, context interface{}) bool {
+
+		t := i.(time.Time)
+		tt := t.Add(7 * time.Hour)
+		t2 := time.Now()
+		return !(tt.Before(t2))
+	})
+	govalidator.CustomTypeTagMap.Set("ispositive", func(i interface{}, context interface{}) bool {
+		return i.(int) > 0
+	})
+	govalidator.CustomTypeTagMap.Set("pastandpresent", func(i interface{}, o interface{}) bool {
+		t := i.(time.Time)
+		return t.Before(time.Now())
 	})
 
 	// ohm

@@ -116,16 +116,6 @@ func UpdateWorkReceive(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": workrecive})
 }
 
-func GetWorkreceivewithEmployee(c *gin.Context) {
-	var workrecive []entity.WorkReceive
-	employeeid := c.Param("employeeid")
-	if err := entity.DB().Preload("Employee").Raw("SELECT * FROM work_receives WHERE employee_id = ?", employeeid).Find(&workrecive).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-	c.JSON(http.StatusOK, gin.H{"data": workrecive})
-}
-
 // (ohm) GET /work_recives
 func ListWorkReceiveWithNoDuplicateID(c *gin.Context) {
 	var workrecive []entity.WorkReceive
@@ -133,6 +123,19 @@ func ListWorkReceiveWithNoDuplicateID(c *gin.Context) {
 	// ค้นหา work receive ทั้งหมดที่ไม่มีในข้อมูล warrantee
 	if err := entity.DB().Preload("Employee").Preload("RepairRequest").Raw("SELECT * FROM work_receives WHERE id NOT IN (SELECT DISTINCT work_receive_id FROM warrantees)").Find(&workrecive).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"data": workrecive})
+}
+
+// (bang) GET /work_recives
+func ListRecieptHistoryNotINWorkReceive(c *gin.Context) {
+	var workrecive []entity.WorkReceive
+
+	// ค้นหา work receive ทั้งหมดที่ไม่มีในข้อมูล reciepthistory
+	if err := entity.DB().Preload("RepairRequest").Preload("Employee").Raw("SELECT * FROM work_receives WHERE id NOT IN (SELECT DISTINCT work_receive_id FROM reciept_histories)").Find(&workrecive).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"errorishere": err.Error()})
 		return
 	}
 

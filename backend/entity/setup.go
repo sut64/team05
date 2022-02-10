@@ -76,6 +76,15 @@ func SetupDatabase() {
 	}
 	db.Model(&Employee{}).Create(&Employee3)
 
+	Employee4 := Employee{
+		Name:        "Phattarapong Pimhom",
+		Age:         21,
+		Email:       "BoomerTnT@hotmail.com",
+		PhoneNumber: "0123456789",
+		Password:    string(password),
+	}
+	db.Model(&Employee{}).Create(&Employee4)
+
 	var em1 Employee
 	var em2 Employee
 	var em3 Employee
@@ -317,6 +326,16 @@ func SetupDatabase() {
 		Name: "prompay",
 	}
 	db.Model(&PaidBy{}).Create(&pay2)
+
+	pay3 := PaidBy{
+		Name: "paypal",
+	}
+	db.Model(&PaidBy{}).Create(&pay3)
+
+	pay4 := PaidBy{
+		Name: "cash",
+	}
+	db.Model(&PaidBy{}).Create(&pay4)
 
 	reciept1 := RecieptHistory{
 		RecieptCode:  "R1234",

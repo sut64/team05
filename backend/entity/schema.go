@@ -79,9 +79,9 @@ type WorkPlace struct {
 
 type WorkReceive struct {
 	gorm.Model
-	WorkCode     string  `gorm:"uniqueIndex"`
-	Wages        float32 `sql:"type:decimal(7,2);"`
-	FinishedDate time.Time
+	WorkCode     string    `gorm:"uniqueIndex" valid:"matches(^[W]\\d{4}$)~WorkCode: does not validate as matches(^[W]\\d{4}$),required"`
+	FinishedDate time.Time `valid:"future~FinishedDate must be in the future,required"`
+	Wages        float32   `valid:"wages~Wages must between 100.00 and 10000.00,required"`
 
 	EmployeeID *uint
 	Employee   Employee `gorm:"references:id"`
@@ -212,6 +212,7 @@ func init() {
 		t := i.(time.Time)
 		return t.Before(time.Now())
 	})
+	
 	govalidator.CustomTypeTagMap.Set("positiveUint", func(i interface{}, context interface{}) bool {
 		switch v := i.(type) { // this validates a field against the value in another field, i.e. dependent validation
 		case int:
@@ -225,6 +226,18 @@ func init() {
 			return v > 0 
 		}
 		return false
+	})
+	
+	govalidator.CustomTypeTagMap.Set("wages", func(i interface{}, context interface{}) bool {
+		w := i.(float32)
+		return govalidator.InRangeFloat32(w, 100.00, 10000.00)
+	})
+
+	govalidator.CustomTypeTagMap.Set("future", func(i interface{}, context interface{}) bool {
+		t := i.(time.Time)
+		tt := t.Add(7 * time.Hour)
+		t2 := time.Now()
+		return !(tt.Before(t2))
 	})
 
 }

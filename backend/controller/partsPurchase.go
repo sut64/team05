@@ -3,6 +3,7 @@ package controller
 import (
 	"net/http"
 
+	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 	"github.com/sut64/team05/entity"
 )
@@ -42,6 +43,12 @@ func CreatePartsPurchase(c *gin.Context) {
 		Shopping:     shopping,
 		WorkReceive:  workreceive,
 		Editor:       editor,
+	}
+
+	// ขั้นตอนการ validate ที่นำมาจาก unit test
+	if _, err := govalidator.ValidateStruct(newPartsPurchase); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
 
 	//12 save

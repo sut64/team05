@@ -34,6 +34,19 @@ func TestRecieptCodeMustBeInvalidPattern(t *testing.T) {
 		"R12345",
 		"R123456",
 		"R123",
+		"R*123",
+		"A1234",
+		"r1234",
+		"*1234",
+		"/1234",
+		"-A1234",
+		"R-1234",
+		"R!234",
+		"R.1234",
+		"RR1234",
+		"R+1234",
+		"R-1234",
+		"R 1234",
 	}
 
 	for _, fixture := range fixtures {

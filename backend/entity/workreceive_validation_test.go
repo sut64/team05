@@ -156,6 +156,7 @@ func TestWorkRiceiveWorkCodeMatchFormat(t *testing.T) {
 		"W123",
 		"W12345",
 		"A1234",
+		"WABC",
 	}
 	for _, fixture := range fixtures {
 		work := WorkReceive{

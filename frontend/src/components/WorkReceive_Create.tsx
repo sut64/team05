@@ -290,7 +290,7 @@ return (
             
            > 
                              <option value= {0} key= {0}>
-
+                  โปรดเลือกงานที่ต้องการับ
                   </option>
                 {repairRequest.map((item: RepairRequestsInterface) => (
                   <option value={item.ID} key={item.ID}>
@@ -330,7 +330,7 @@ return (
           }}
         >
                              <option value= {0} key= {0}>
-
+                             โปรดเลือกลักษณะการซ่อม
                   </option>
                 {workPlace.map((item: WorkplaceInterface) => (
 
@@ -445,7 +445,7 @@ return (
            <Box pt={3}>
             <FormControl  variant="outlined"> 
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <DatePicker value={selectedDate} onChange={handleDateChange}  format="dd/MM/yyyy"/>
+                <DatePicker value={selectedDate} onChange={handleDateChange}  format="dd/MM/yyyy" />
               </MuiPickersUtilsProvider>
             </FormControl>
             </Box>

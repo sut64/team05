@@ -84,3 +84,21 @@ func ListRecieptHistorys(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"data": reciepthistorys})
 }
+
+// DELETE /users/:id
+
+func DeleteRecieptHistory(c *gin.Context) {
+
+	id := c.Param("id")
+
+	if tx := entity.DB().Exec("DELETE FROM reciept_histories WHERE id = ?", id); tx.RowsAffected == 0 {
+
+		c.JSON(http.StatusBadRequest, gin.H{"error": "reciepthistory not found"})
+
+		return
+
+	}
+
+	c.JSON(http.StatusOK, gin.H{"data": id})
+
+}

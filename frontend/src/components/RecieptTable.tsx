@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Link as RouterLink } from "react-router-dom";
 
@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
 import Container from "@material-ui/core/Container";
-
+import { useEffect, useState } from "react";
 import Paper from "@material-ui/core/Paper";
 
 import Box from "@material-ui/core/Box";
@@ -32,10 +32,18 @@ import { EmployeeInterface } from "../models/IEmployee"
 import { RecieptHistorysInterface } from "../models/IRecieptHistory"
 import NavBar from "./NavBar";
 import { format } from 'date-fns'
+import { setDefaultResultOrder } from "dns/promises";
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles((theme: Theme) =>
 
   createStyles({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+      },
+    },
 
     container: { marginTop: theme.spacing(2) },
 
@@ -54,7 +62,10 @@ function History() {
   const classes = useStyles();
 
   const [RecieptHistories, setRecieptHistories] = React.useState<RecieptHistorysInterface[]>([]);
-
+  
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [CheckPaidby, setCheckPaidby] = React.useState<EmployeeInterface>();
 
   const apiUrl = "http://localhost:8080";
@@ -68,6 +79,31 @@ function History() {
 
   };
 
+  const DeleteRecieptHistory = (index :number) =>{
+    let id = RecieptHistories[index].ID;
+  
+  const requestOptionofdelete = {
+
+    method: "DELETE",
+    headers: {  
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+    "Content-Type": "application/json", },
+
+  };
+
+  fetch(`${apiUrl}/reciept_history/${id}`, requestOptionofdelete)
+    .then((response) => response.json())
+    .then((res) => {
+        if(res.data) {
+          setSuccess(true);
+          setErrorMessage("");
+        }
+        else {
+          setError(true);
+          setErrorMessage(res.error);
+        }
+    })
+  }
   
   const getRecieptHistories = async () => {
     fetch(`${apiUrl}/reciept_histories`, requestOptions)
@@ -82,6 +118,7 @@ function History() {
         }
       });
   };
+
 
   useEffect(() => {
     
@@ -145,11 +182,14 @@ function History() {
                 <TableCell align="center" width="15%">
                   Time
                 </TableCell>
+                <TableCell align="center" width="10%">
+                  Delete
+                </TableCell>
                 
               </TableRow>
             </TableHead>
             <TableBody>
-              {RecieptHistories.map((item: RecieptHistorysInterface) => (
+              {RecieptHistories.map((item: RecieptHistorysInterface, index) => (
                 <TableRow key={item.ID}>
                   <TableCell align="center" width="10%">{item.ID}</TableCell>
                   <TableCell align="center" width="10%">{item.Employee.Name}</TableCell>
@@ -158,7 +198,13 @@ function History() {
                   <TableCell align="center">{item.RecieptPrice}</TableCell>
                   <TableCell align="center">{item.RecieptCode}</TableCell>
                   <TableCell align="center">{format((new Date(item.RecieptDate)), 'dd MMMM yyyy hh:mm a')}</TableCell> 
+                  <TableCell align="center"><IconButton aria-label="delete"  
+                                                onClick={() => DeleteRecieptHistory(index)}> 
+                                                <DeleteIcon />
+                                            </IconButton>
+                  </TableCell>
                 </TableRow>
+                
               ))}
             </TableBody>
           </Table>

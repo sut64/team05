@@ -129,7 +129,6 @@ type PurchasingCompany struct {
 
 type PartsPurchase struct {
 	gorm.Model
-	//validation
 	Parts        string    `valid:"required~parts cannot be blank"`
 	Quantity     int       `valid:"positiveUint~Quantity must be integer more then 0,required~Quantity must be integer more then 0"`
 	PartsPrice   float32   `valid:"positiveFloat~Price must be float more then 0,required~Price must be float more then 0"`

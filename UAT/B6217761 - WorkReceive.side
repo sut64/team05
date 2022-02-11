@@ -1,0 +1,1070 @@
+{
+  "id": "44dc8d1e-ba07-4a78-9641-566550ceb7ba",
+  "version": "2.0",
+  "name": "work_receive",
+  "url": "http://localhost:3000/",
+  "tests": [{
+    "id": "0764738d-6051-4ab4-b098-92da9807424d",
+    "name": "B6217761_บันทึกข้อมูล work_receive สำเร็จ",
+    "commands": [{
+      "id": "1a88176b-2625-47e9-8578-26e8f1790b14",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1ab7bda2-3761-4100-8156-a2efa457f846",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1054x808",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "59a44346-98c9-48f3-8d57-867d37e3fe9e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-menuButton-27 .MuiSvgIcon-root",
+      "targets": [
+        ["css=.makeStyles-menuButton-27 .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "1098335f-546a-4b2e-9be8-9f535c269391",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-a-34:nth-child(2) .MuiTypography-root",
+      "targets": [
+        ["css=.makeStyles-a-34:nth-child(2) .MuiTypography-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[2]/div/div[2]/span", "xpath:idRelative"],
+        ["xpath=//a[2]/div/div[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ระบบรับงานซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "86352142-4fb2-4bf6-91f3-8bfb5111b733",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'เลือกรับงาน')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "15f8d7ae-60a5-48ac-a333-2b73963be390",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'เลือกรับงาน')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b24c7ef6-a8d4-4a01-9192-06b2ac4624ae",
+      "comment": "",
+      "command": "click",
+      "target": "name=RepairRequestID",
+      "targets": [
+        ["name=RepairRequestID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='RepairRequestID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[2]/div/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7988a4b0-3ccc-40df-8c30-ad44df775c3f",
+      "comment": "",
+      "command": "select",
+      "target": "name=RepairRequestID",
+      "targets": [],
+      "value": "label=Acer Computer"
+    }, {
+      "id": "e193f36e-b71a-4b7f-9a6a-2da63c91fb34",
+      "comment": "",
+      "command": "click",
+      "target": "name=WorkPlaceID",
+      "targets": [
+        ["name=WorkPlaceID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='WorkPlaceID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[4]/div/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "335f566f-96e8-4716-93e2-0dade1f0b91e",
+      "comment": "",
+      "command": "select",
+      "target": "name=WorkPlaceID",
+      "targets": [],
+      "value": "label=On site"
+    }, {
+      "id": "8cf5f1bc-b07f-41fe-8055-027c200ac24a",
+      "comment": "",
+      "command": "click",
+      "target": "name=Wages",
+      "targets": [
+        ["name=Wages", "name"],
+        ["css=.Mui-focused > .MuiInputBase-input", "css:finder"],
+        ["xpath=//input[@name='Wages']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[8]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "872125c2-7f3d-4e6c-be0c-0978def94a74",
+      "comment": "",
+      "command": "type",
+      "target": "name=Wages",
+      "targets": [
+        ["name=Wages", "name"],
+        ["css=.Mui-focused > .MuiInputBase-input", "css:finder"],
+        ["xpath=//input[@name='Wages']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[8]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "290.75"
+    }, {
+      "id": "5a968706-d2b4-4a66-ba08-b017a299d423",
+      "comment": "",
+      "command": "click",
+      "target": "name=WorkCode",
+      "targets": [
+        ["name=WorkCode", "name"],
+        ["css=.Mui-focused > .MuiInputBase-input", "css:finder"],
+        ["xpath=//input[@name='WorkCode']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[10]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[10]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "44c0a54b-7873-45d6-b5ec-4d70bd85974c",
+      "comment": "",
+      "command": "type",
+      "target": "name=WorkCode",
+      "targets": [
+        ["name=WorkCode", "name"],
+        ["css=.Mui-focused > .MuiInputBase-input", "css:finder"],
+        ["xpath=//input[@name='WorkCode']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[10]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[10]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "W7645"
+    }, {
+      "id": "e918834f-6a86-4c0d-9e26-85b8bf923b45",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiInput-input",
+      "targets": [
+        ["css=.MuiInput-input", "css:finder"],
+        ["xpath=//input[@value='10/02/2022']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[12]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[12]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1032e9d0-c52c-4791-b70d-592e556d9266",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiPickersCalendar-week:nth-child(3) > div:nth-child(6) .MuiIconButton-label",
+      "targets": [
+        ["css=.MuiPickersCalendar-week:nth-child(3) > div:nth-child(6) .MuiIconButton-label", "css:finder"],
+        ["xpath=//div[3]/div[6]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'18')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1467a2d2-6b38-42b3-b0de-cd8b7c86e91a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[2]/button[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3a1553f0-0527-4462-b182-92801c20dd71",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-containedSecondary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedSecondary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[15]/div/button/span", "xpath:idRelative"],
+        ["xpath=//div[15]/div/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ยืนยันการรับงาน')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "27a254d2-d75d-428d-a5c4-58fd47bab9ab",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-root",
+      "targets": [
+        ["css=.MuiAlert-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ddc35af8-c27a-4787-a05d-7472b16b9ac9",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกข้อมูลสำเร็จ"
+    }, {
+      "id": "f2a15ab7-8998-4e1c-a4a0-6503d6356d02",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "b365b56b-a6fa-4df3-9f39-f53d98c26d0e",
+    "name": "B6217761_ตรวจสอบวันที่ work_receive ต้องเป็นวันที่ในอนาคต",
+    "commands": [{
+      "id": "7cfc778f-22db-47a0-9283-f3673613af96",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0f1ded40-373b-47a2-a085-a4351a933345",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1054x808",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "029b5906-c78e-435d-8dab-a612051e94d1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-menuButton-27 .MuiSvgIcon-root",
+      "targets": [
+        ["css=.makeStyles-menuButton-27 .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "cca970d7-167d-46e6-bf52-4bce2f8f16ab",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-a-34:nth-child(2) .MuiTypography-root",
+      "targets": [
+        ["css=.makeStyles-a-34:nth-child(2) .MuiTypography-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[2]/div/div[2]/span", "xpath:idRelative"],
+        ["xpath=//a[2]/div/div[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ระบบรับงานซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "03e247fd-9129-428c-8f3d-97d56bd1dee6",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'เลือกรับงาน')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "77ef9563-fb64-4a12-963e-7b3a66c23e6e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'เลือกรับงาน')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1f999bee-cdff-4f91-abbf-a6b1db154d4a",
+      "comment": "",
+      "command": "click",
+      "target": "name=RepairRequestID",
+      "targets": [
+        ["name=RepairRequestID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='RepairRequestID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[2]/div/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b58c6449-7a21-4abd-9713-865477b0ffbb",
+      "comment": "",
+      "command": "select",
+      "target": "name=RepairRequestID",
+      "targets": [],
+      "value": "label=Brother CPx703 Printer"
+    }, {
+      "id": "84e770ed-e214-4757-a99f-29eead271787",
+      "comment": "",
+      "command": "click",
+      "target": "name=WorkPlaceID",
+      "targets": [
+        ["name=WorkPlaceID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='WorkPlaceID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[4]/div/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f8ab8e16-fc7b-48d7-9a95-bd9d73687be1",
+      "comment": "",
+      "command": "select",
+      "target": "name=WorkPlaceID",
+      "targets": [],
+      "value": "label=On site"
+    }, {
+      "id": "b3d0150d-312d-4304-9319-2b34e7c5857e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root-82",
+      "targets": [
+        ["css=.MuiBox-root-82", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[8]/div", "xpath:idRelative"],
+        ["xpath=//div[8]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "59c3f387-d923-4bdf-ae14-b996312b0dea",
+      "comment": "",
+      "command": "click",
+      "target": "name=Wages",
+      "targets": [
+        ["name=Wages", "name"],
+        ["css=.Mui-focused > .MuiInputBase-input", "css:finder"],
+        ["xpath=//input[@name='Wages']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[8]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a3de5ea7-21b9-4493-83ea-68ff65db75e0",
+      "comment": "",
+      "command": "type",
+      "target": "name=Wages",
+      "targets": [
+        ["name=Wages", "name"],
+        ["css=.Mui-focused > .MuiInputBase-input", "css:finder"],
+        ["xpath=//input[@name='Wages']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[8]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "150.50"
+    }, {
+      "id": "60e6ac25-631a-4998-9614-79befb17d924",
+      "comment": "",
+      "command": "click",
+      "target": "name=WorkCode",
+      "targets": [
+        ["name=WorkCode", "name"],
+        ["css=.Mui-focused > .MuiInputBase-input", "css:finder"],
+        ["xpath=//input[@name='WorkCode']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[10]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[10]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3f3e048d-3173-4e42-81f2-7912c129473a",
+      "comment": "",
+      "command": "type",
+      "target": "name=WorkCode",
+      "targets": [
+        ["name=WorkCode", "name"],
+        ["css=.Mui-focused > .MuiInputBase-input", "css:finder"],
+        ["xpath=//input[@name='WorkCode']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[10]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[10]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "W5634"
+    }, {
+      "id": "fab7e3bb-efc3-42a0-aae2-b0e91a3f86d5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiInput-input",
+      "targets": [
+        ["css=.MuiInput-input", "css:finder"],
+        ["xpath=//input[@value='10/02/2022']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[12]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[12]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b6900109-d099-43f2-aec0-c137dc699303",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiPickersCalendar-week:nth-child(1) > div:nth-child(3) .MuiIconButton-label",
+      "targets": [
+        ["css=.MuiPickersCalendar-week:nth-child(1) > div:nth-child(3) .MuiIconButton-label", "css:finder"],
+        ["xpath=//div[3]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "74477cb6-05d5-4adb-ae78-31b29fa07c04",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[2]/button[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "da5c79e4-b942-4f55-b9a6-c8f809bb860f",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-containedSecondary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedSecondary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[15]/div/button/span", "xpath:idRelative"],
+        ["xpath=//div[15]/div/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ยืนยันการรับงาน')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "280d8988-c14d-4162-aaf5-5485a576f8e5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-containedSecondary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedSecondary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[15]/div/button/span", "xpath:idRelative"],
+        ["xpath=//div[15]/div/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ยืนยันการรับงาน')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "66e0ce13-86fb-46a9-a9ab-ea172d2a0fe6",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiButton-containedSecondary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedSecondary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[4]/div/div[15]/div/button/span", "xpath:idRelative"],
+        ["xpath=//div[15]/div/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ยืนยันการรับงาน')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1e6c3b52-3327-4385-a4e5-567a2dcd1746",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-root",
+      "targets": [
+        ["css=.MuiAlert-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "791317c9-6a6f-4bd6-9a6d-52dd9ce88a67",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกข้อมูลไม่สำเร็จ: FinishedDate must be in the future"
+    }, {
+      "id": "52122539-dda5-453f-8e99-edb54b32f34a",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "720e7f19-cc6a-40e5-ac33-727e8e7255a9",
+    "name": "B6217761_ตรวจสอบ float work_receive ต้องมีค่าอยู่ระหว่าง 100.00 ถึง 10000.00",
+    "commands": [{
+      "id": "a0410555-8a00-4236-85d7-9ddb22adb5f1",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ced06bbd-16e2-4d01-a6e0-7ea2539c35f8",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1054x808",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c14eb239-71c9-4f6e-973e-7b6ce1564b58",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-menuButton-27 .MuiSvgIcon-root",
+      "targets": [
+        ["css=.makeStyles-menuButton-27 .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "e73db500-19d6-4593-bf8d-a8b863e89065",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-a-34:nth-child(2) > .MuiButtonBase-root",
+      "targets": [
+        ["css=.makeStyles-a-34:nth-child(2) > .MuiButtonBase-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[2]/div", "xpath:idRelative"],
+        ["xpath=//a[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c2be541a-e6b1-4fe5-8d1d-654367515383",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root-48",
+      "targets": [
+        ["css=.MuiBox-root-48", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e62af408-db0c-4157-a927-fdcf97ae0ab3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'เลือกรับงาน')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "08b1f536-64b2-4958-bce6-59b6c1f9f81e",
+      "comment": "",
+      "command": "click",
+      "target": "name=RepairRequestID",
+      "targets": [
+        ["name=RepairRequestID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='RepairRequestID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[2]/div/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f199fc14-5222-4572-8da2-22389339a009",
+      "comment": "",
+      "command": "select",
+      "target": "name=RepairRequestID",
+      "targets": [],
+      "value": "label=Brother CPx703 Printer"
+    }, {
+      "id": "95f64266-0058-41d1-b531-49b2a77eab6b",
+      "comment": "",
+      "command": "click",
+      "target": "name=WorkPlaceID",
+      "targets": [
+        ["name=WorkPlaceID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='WorkPlaceID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[4]/div/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3cc5845f-a02f-4006-a07f-4cbbdf1a908c",
+      "comment": "",
+      "command": "select",
+      "target": "name=WorkPlaceID",
+      "targets": [],
+      "value": "label=On site"
+    }, {
+      "id": "170178eb-875b-4e83-9d92-7aaf3b6f0787",
+      "comment": "",
+      "command": "click",
+      "target": "name=Wages",
+      "targets": [
+        ["name=Wages", "name"],
+        ["css=.Mui-focused > .MuiInputBase-input", "css:finder"],
+        ["xpath=//input[@name='Wages']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[8]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3ce00a64-2608-4b40-8ada-7b7fc6c4cbe0",
+      "comment": "",
+      "command": "type",
+      "target": "name=Wages",
+      "targets": [
+        ["name=Wages", "name"],
+        ["css=.Mui-focused > .MuiInputBase-input", "css:finder"],
+        ["xpath=//input[@name='Wages']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[8]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "20.50"
+    }, {
+      "id": "a186179d-6e4f-4c11-a81b-68865fdf393c",
+      "comment": "",
+      "command": "click",
+      "target": "name=WorkCode",
+      "targets": [
+        ["name=WorkCode", "name"],
+        ["css=.Mui-focused > .MuiInputBase-input", "css:finder"],
+        ["xpath=//input[@name='WorkCode']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[10]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[10]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8a62d126-1553-4d22-96e4-7763716d71b1",
+      "comment": "",
+      "command": "type",
+      "target": "name=WorkCode",
+      "targets": [
+        ["name=WorkCode", "name"],
+        ["css=.Mui-focused > .MuiInputBase-input", "css:finder"],
+        ["xpath=//input[@name='WorkCode']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[10]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[10]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "W7632"
+    }, {
+      "id": "a04d0fbc-b36e-47da-a2b7-aecf5b4df6f6",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiInput-input",
+      "targets": [
+        ["css=.MuiInput-input", "css:finder"],
+        ["xpath=//input[@value='10/02/2022']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[12]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[12]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5cac511d-09cb-4ef7-b9b2-26c148221f8e",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "8f2e773f-4d18-4bba-9239-d7003923ca5b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "30c20f65-e48a-41ef-ab27-2dfbb69449b2",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "00f38083-c12a-423e-bbbd-9fcdf7af9e25",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiPickersCalendar-week:nth-child(1) > div:nth-child(3) .MuiTypography-root",
+      "targets": [
+        ["css=.MuiPickersCalendar-week:nth-child(1) > div:nth-child(3) .MuiTypography-root", "css:finder"],
+        ["xpath=//div[3]/button/span/p", "xpath:position"],
+        ["xpath=//p[contains(.,'1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6a9d6481-5d17-4a72-baa3-55d04aea3fd4",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[2]/button[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "efeb411b-4b7e-4f81-9f3d-37705912fb74",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-containedSecondary",
+      "targets": [
+        ["css=.MuiButton-containedSecondary", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[15]/div/button", "xpath:idRelative"],
+        ["xpath=//div[15]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'ยืนยันการรับงาน')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "de635cfc-7d27-472c-820b-22f23131144a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-containedSecondary",
+      "targets": [
+        ["css=.MuiButton-containedSecondary", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[15]/div/button", "xpath:idRelative"],
+        ["xpath=//div[15]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'ยืนยันการรับงาน')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ec512e80-922d-4e3c-a62f-71d4c3cb5720",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiButton-containedSecondary",
+      "targets": [
+        ["css=.MuiButton-containedSecondary", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[4]/div/div[15]/div/button", "xpath:idRelative"],
+        ["xpath=//div[15]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'ยืนยันการรับงาน')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8b0ebc98-9c03-4582-8aa4-a2d8e80743c1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-root",
+      "targets": [
+        ["css=.MuiAlert-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7283f1ec-6bdd-4be6-b745-e04ea65977a6",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกข้อมูลไม่สำเร็จ: Wages must between 100.00 and 10000.00"
+    }, {
+      "id": "c6b820aa-32f8-41cf-8df3-aa0c57482fb0",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "8e2b6081-4062-4beb-aca4-5a17ba16b015",
+    "name": "B6217761_ตรวจสอบ String work_receive ต้องตรงตามรูปแบบ",
+    "commands": [{
+      "id": "fb24d377-127a-4913-ba23-690ba825a731",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0f1bcaea-fed0-48cc-9b9f-c59be9e07458",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1054x808",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c669ccb0-33f3-4025-ba6a-6c8414973c3d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-menuButton-27 .MuiSvgIcon-root",
+      "targets": [
+        ["css=.makeStyles-menuButton-27 .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "796a533b-ba28-42a9-a16b-c6a3964a8bb5",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.makeStyles-a-34:nth-child(2) > .MuiButtonBase-root",
+      "targets": [
+        ["css=.makeStyles-a-34:nth-child(2) > .MuiButtonBase-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[2]/div", "xpath:idRelative"],
+        ["xpath=//a[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ca187196-d909-4f52-8b0f-fbfd946628cb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-a-34:nth-child(2) > .MuiButtonBase-root",
+      "targets": [
+        ["css=.makeStyles-a-34:nth-child(2) > .MuiButtonBase-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[2]/div", "xpath:idRelative"],
+        ["xpath=//a[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "38143913-30bb-4507-84ed-3466e6766ade",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'เลือกรับงาน')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3ad5d249-f168-41e8-a323-b5b7a8105c1a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'เลือกรับงาน')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5103a84e-d715-48bf-8a4b-489a764e9821",
+      "comment": "",
+      "command": "click",
+      "target": "name=RepairRequestID",
+      "targets": [
+        ["name=RepairRequestID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='RepairRequestID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[2]/div/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "baf911aa-e37d-454b-8130-ebf998452e30",
+      "comment": "",
+      "command": "select",
+      "target": "name=RepairRequestID",
+      "targets": [],
+      "value": "label=Brother CPx703 Printer"
+    }, {
+      "id": "32ffcf2f-438b-48fe-9088-d739b7804585",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root-70",
+      "targets": [
+        ["css=.MuiBox-root-70", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[4]/div", "xpath:idRelative"],
+        ["xpath=//div[4]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d52dd15d-a70e-4c03-bf92-e1f93d6bfccb",
+      "comment": "",
+      "command": "click",
+      "target": "name=WorkPlaceID",
+      "targets": [
+        ["name=WorkPlaceID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='WorkPlaceID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[4]/div/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "33a90ffd-9be4-40b0-8162-bde24cbcef86",
+      "comment": "",
+      "command": "select",
+      "target": "name=WorkPlaceID",
+      "targets": [],
+      "value": "label=On site"
+    }, {
+      "id": "0500b07c-949e-40d3-b756-53a46d241b17",
+      "comment": "",
+      "command": "click",
+      "target": "name=Wages",
+      "targets": [
+        ["name=Wages", "name"],
+        ["css=.Mui-focused > .MuiInputBase-input", "css:finder"],
+        ["xpath=//input[@name='Wages']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[8]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0275c011-bbda-4f59-b30c-2889990f5f6a",
+      "comment": "",
+      "command": "type",
+      "target": "name=Wages",
+      "targets": [
+        ["name=Wages", "name"],
+        ["css=.Mui-focused > .MuiInputBase-input", "css:finder"],
+        ["xpath=//input[@name='Wages']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[8]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "150.50"
+    }, {
+      "id": "e1fc7221-3414-42f0-a0c3-bda5fd0b24e8",
+      "comment": "",
+      "command": "click",
+      "target": "name=WorkCode",
+      "targets": [
+        ["name=WorkCode", "name"],
+        ["css=.Mui-focused > .MuiInputBase-input", "css:finder"],
+        ["xpath=//input[@name='WorkCode']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[10]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[10]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "98d46565-167a-4b8f-9dab-e6091055201a",
+      "comment": "",
+      "command": "type",
+      "target": "name=WorkCode",
+      "targets": [
+        ["name=WorkCode", "name"],
+        ["css=.Mui-focused > .MuiInputBase-input", "css:finder"],
+        ["xpath=//input[@name='WorkCode']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[10]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[10]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "W516"
+    }, {
+      "id": "5bc5f860-8204-403c-b810-e84dad404d84",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiInput-input",
+      "targets": [
+        ["css=.MuiInput-input", "css:finder"],
+        ["xpath=//input[@value='10/02/2022']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[12]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[12]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "af673f35-5a8f-412c-bde8-bd1f634189c1",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButtonBase-root:nth-child(3) path:nth-child(1)",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(3) path:nth-child(1)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "99f61654-9dff-4801-a4bd-4eb1c608843d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(3) path:nth-child(1)",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(3) path:nth-child(1)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "7d2028c8-4f40-4875-826b-47c3bbeaf05c",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiButtonBase-root:nth-child(3) path:nth-child(1)",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(3) path:nth-child(1)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "d3f46036-58ab-42d6-8710-604ee51c52b3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiPickersCalendar-week:nth-child(1) > div:nth-child(3) .MuiIconButton-label",
+      "targets": [
+        ["css=.MuiPickersCalendar-week:nth-child(1) > div:nth-child(3) .MuiIconButton-label", "css:finder"],
+        ["xpath=//div[3]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ef7ca2b8-f2e0-4bb1-9427-b73c5d520493",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[2]/button[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a7f257e2-2a9a-4d3a-aacc-3a5cdb758efd",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-containedSecondary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedSecondary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div/div[15]/div/button/span", "xpath:idRelative"],
+        ["xpath=//div[15]/div/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ยืนยันการรับงาน')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d2b50c8b-47e3-439a-9df6-fe84a51d19e5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "147624c5-d298-4f1c-9310-9a0f2eac3145",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกข้อมูลไม่สำเร็จ: WorkCode: does not validate as matches(^[W]\\d{4}$)"
+    }, {
+      "id": "fe2f855e-2852-4fd2-9d24-a29a8ce9bede",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "c618c80b-d40c-4699-8a84-680bc3ab2262",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:3000/"],
+  "plugins": []
+}

@@ -15,7 +15,6 @@ import clsx from 'clsx';
 import Collapse from '@material-ui/core/Collapse';
 import CardHeader from '@material-ui/core/CardHeader';
 import Grid from "@material-ui/core/Grid";
-import { Link as RouterLink } from "react-router-dom";
 
 import pic1 from '../pictures/SonicFixComputer.png';
 import pic2 from '../pictures/istockphoto-1159368222-612x612.jpg';
@@ -94,10 +93,8 @@ export default function HomeEmployee() {
 
   return (
     <div>
-      {/* ห้ามแตะ มีผลต่อ UAT testing */}
       <NavBar />
       <div className={classes.drawerHeader} />
-      {/* ห้ามแตะ มีผลต่อ UAT testing */}
 
       <Container className={classes.container} maxWidth="lg">
       <Typography component="div" style={{ height: '5vh' }} />
@@ -161,7 +158,7 @@ export default function HomeEmployee() {
                 subheader="นายภานุวัฒน์ สุวรรณ์"
               />
               <br />
-              <CardActionArea component={RouterLink} to="/WorkReceive_C">
+              <CardActionArea>
                 <CardMedia
                   component="img"
                   alt="Contemplative Reptile"
@@ -211,7 +208,7 @@ export default function HomeEmployee() {
                 title="ระบบบันทึกการใช้อะไหล่ในการซ่อมคอมพิวเตอร์"
                 subheader="นายภัทรพงษ์ พิมหอม"
               />
-              <CardActionArea component={RouterLink} to="/PartsPurchase">
+              <CardActionArea>
                 <CardMedia
                   component="img"
                   alt="Contemplative Reptile"
@@ -257,9 +254,7 @@ export default function HomeEmployee() {
                 title="ระบบบันทึกใบเสร็จรับเงิน"
                 subheader="นายบุญญฤทธิ์ สุขมงคล"
               />
-              <CardActionArea  
-              component={RouterLink}
-              to="/reciept_histories">
+              <CardActionArea>
                 <CardMedia
                   component="img"
                   height="200"
@@ -309,7 +304,7 @@ export default function HomeEmployee() {
                 title="ระบบบันทึกข้อมูลรับประกันการซ่อม"
                 subheader="นายรชพล พงศ์กิตติศักดิ์"
               />
-              <CardActionArea component={RouterLink} to="/warrantee">
+              <CardActionArea>
                 <CardMedia
                   component="img"
                   alt="Contemplative Reptile"
@@ -361,7 +356,7 @@ export default function HomeEmployee() {
                 title="ระบบบันทึกการซ่อมคอมพิวเตอร์"
                 subheader="นางสาวรินรดา วัฒนชนสรณ์"
               />
-              <CardActionArea component={RouterLink} to="/repair_histories">
+              <CardActionArea>
                 <CardMedia
                   component="img"
                   alt="RepairHistory"

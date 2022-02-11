@@ -382,7 +382,7 @@ export default function CreatePartsPurchase() {
                             </FormControl>
                         </Grid>
                         <Grid item xs={3} className={classes.textRight}>
-                            <h4>ร้านที่ซื้ออะไหล่</h4>
+                            <h4>เวลาที่ซื้ออะไหล่</h4>
                         </Grid>
                         <Grid item xs={9}>
                             <FormControl fullWidth variant="outlined">

@@ -14,6 +14,16 @@ import RecieptCreate from './components/RecieptCreate'
 import WorkReceive from './components/WorkReceive';
 import WorkReceive_C from './components/WorkReceive_Create';
 import RepairRequestTable from './components/RepairRequestTable';
+import { createTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+const theme = createTheme({
+  palette: {
+      primary: {
+          main: '#181a52',
+      },
+  },
+});
 
 function App() {
 
@@ -31,6 +41,7 @@ function App() {
   return (
     <Router>
       <div>
+      <ThemeProvider theme={theme}> 
         <Routes>
           <Route path="/" element={<HomeEmployee />} /> 
           <Route path="/RepairRequest" element={<RepairRequest />} /> 
@@ -50,6 +61,7 @@ function App() {
 
 
         </Routes>
+        </ThemeProvider> 
       </div>
     </Router>
   );

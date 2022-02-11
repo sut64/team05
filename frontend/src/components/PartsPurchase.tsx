@@ -12,10 +12,11 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { format } from 'date-fns'
+import { format } from 'date-fns';
 
 import NavBar from "./NavBar";
 import { PartsPurchaseInterface } from "../models/IPartsPurchase";
+
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -69,70 +70,70 @@ export default function PartsPurchase() {
             <NavBar />
             <div className={classes.drawerHeader} />
             <Container className={classes.container} maxWidth="md">
-                <Box display="flex">
-                    <Box flexGrow={1}>
-                        <Typography
-                            component="h4"
-                            variant="h4"
-                            color="primary"
-                            gutterBottom
-                        >
-                            ระบบบันทึกการใช้อะไหล่ในการซ่อมคอมพิวเตอร์
-                        </Typography>
+                    <Box display="flex">
+                        <Box flexGrow={1}>
+                            <Typography
+                                component="h4"
+                                variant="h4"
+                                color="primary"
+                                gutterBottom
+                            >
+                                ระบบบันทึกการใช้อะไหล่ในการซ่อมคอมพิวเตอร์
+                            </Typography>
+                        </Box>
+                        <Box>
+                            <Button
+                                component={RouterLink}
+                                to="/PartsPurchase/create"
+                                variant="contained"
+                                color="primary"
+                            >
+                                เพิ่มบันทึก
+                            </Button>
+                        </Box>
                     </Box>
-                    <Box>
-                        <Button
-                            component={RouterLink}
-                            to="/PartsPurchase/create"
-                            variant="contained"
-                            color="primary"
-                        >
-                            เพิ่มบันทึก
-                        </Button>
-                    </Box>
-                </Box>
-                <TableContainer component={Paper} className={classes.tableSpace}>
-                    <Table className={classes.table} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell align="left" width="20%">
-                                    workrecive
-                                </TableCell>
-                                <TableCell align="left" width="15%">
-                                    part
-                                </TableCell>
-                                <TableCell align="center" width="10%">
-                                    quantity
-                                </TableCell>
-                                <TableCell align="center" width="10%">
-                                    price
-                                </TableCell>
-                                <TableCell align="center" width="10%">
-                                    shop
-                                </TableCell>
-                                <TableCell align="center" width="15%">
-                                    editor
-                                </TableCell>
-                                <TableCell align="center" width="20%">
-                                    purchase Time
-                                </TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {PartsPurchases.map((item: PartsPurchaseInterface) => (
-                                <TableRow key={item.ID}>
-                                    <TableCell align="left" >{item.WorkReceive.WorkCode}</TableCell>
-                                    <TableCell align="left" >{item.Parts}</TableCell>
-                                    <TableCell align="center" >{item.Quantity}</TableCell>
-                                    <TableCell align="center" >{item.PartsPrice}</TableCell>
-                                    <TableCell align="center" >{item.Shopping.Name}</TableCell>
-                                    <TableCell align="center" >{item.Editor.Name}</TableCell>
-                                    <TableCell align="center" >{format((new Date(item.PurchaseTime)), 'dd MMMM yyyy hh:mm a')}</TableCell>
+                    <TableContainer component={Paper} className={classes.tableSpace}>
+                        <Table className={classes.table} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="left" width="20%">
+                                        workrecive
+                                    </TableCell>
+                                    <TableCell align="left" width="15%">
+                                        part
+                                    </TableCell>
+                                    <TableCell align="center" width="10%">
+                                        quantity
+                                    </TableCell>
+                                    <TableCell align="center" width="10%">
+                                        price
+                                    </TableCell>
+                                    <TableCell align="center" width="10%">
+                                        shop
+                                    </TableCell>
+                                    <TableCell align="center" width="15%">
+                                        editor
+                                    </TableCell>
+                                    <TableCell align="center" width="20%">
+                                        purchase Time
+                                    </TableCell>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                            </TableHead>
+                            <TableBody>
+                                {PartsPurchases.map((item: PartsPurchaseInterface) => (
+                                    <TableRow key={item.ID}>
+                                        <TableCell align="left" >{item.WorkReceive.WorkCode}</TableCell>
+                                        <TableCell align="left" >{item.Parts}</TableCell>
+                                        <TableCell align="center" >{item.Quantity}</TableCell>
+                                        <TableCell align="center" >{item.PartsPrice}</TableCell>
+                                        <TableCell align="center" >{item.Shopping.Name}</TableCell>
+                                        <TableCell align="center" >{item.Editor.Name}</TableCell>
+                                        <TableCell align="center" >{format((new Date(item.PurchaseTime)), 'dd MMMM yyyy hh:mm a')}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
             </Container>
         </div>
     );

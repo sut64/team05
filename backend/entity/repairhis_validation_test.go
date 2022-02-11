@@ -136,6 +136,9 @@ func TestDateMustBeValid(t *testing.T) {
 
 	fixtures := []time.Time{
 		((time.Now()).Add(36 * time.Hour)),
+		((time.Now()).Add(25 * time.Hour)),
+		((time.Now()).Add(-25 * time.Hour)),
+		((time.Now()).Add(-36 * time.Hour)),
 		time.Date(2024, 02, 02, 17, 7, 00, 000, time.UTC),
 	}
 

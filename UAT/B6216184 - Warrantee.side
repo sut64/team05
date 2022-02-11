@@ -940,6 +940,6 @@
     "timeout": 300,
     "tests": ["05587001-7dcd-4393-9be3-82fb91b0e190"]
   }],
-  "urls": ["http://localhost:3000/", "http://localhost:3001/"],
+  "urls": ["http://localhost:3000/"],
   "plugins": []
 }

@@ -68,9 +68,7 @@ function History() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [errorMessagedelete, setErrorMessagedelete] = useState("");
-  const [successdelete, setSuccessdelete] = useState(false);
-  const [errordelete, setErrordelete] = useState(false);
+  const [hasDelete, setHasDelete] = React.useState(false);
 
   const apiUrl = "http://localhost:8080";
 
@@ -82,8 +80,8 @@ function History() {
     if (reason === "clickaway") {
       return;
     }
-    setSuccessdelete(false);
-    setErrordelete(false);
+    setSuccess(false);
+    setError(false);
   };
 
   const requestOptions = {
@@ -111,17 +109,18 @@ function History() {
     .then((response) => response.json())
     .then((res) => {
         if(res.data) {
-          setSuccessdelete(true);
-          setErrorMessagedelete("");
+          setSuccess(true);
+          setHasDelete(true);
         }
         else {
           setError(true);
-          setErrorMessagedelete(res.error);
+          setErrorMessage(res.error);
         }
     })
   }
   
   const getRecieptHistories = async () => {
+    setHasDelete(false);
     fetch(`${apiUrl}/reciept_histories`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
@@ -129,14 +128,22 @@ function History() {
         if (res.data) {
           setRecieptHistories(res.data);
           
+          
         } else {
           console.log("else");
         }
       });
   };
 
+  useEffect(() => {
+    if(hasDelete) {
+      getRecieptHistories();
+    }
+}, [hasDelete ? getRecieptHistories:undefined]);
+
 
   useEffect(() => {
+    
     
     getRecieptHistories();
 
@@ -152,9 +159,14 @@ function History() {
       <Typography component="div" style={{ height: '12vh' }} />
 
       <Container className={classes.container} maxWidth="md">
-      <Snackbar open={successdelete} autoHideDuration={6000} onClose={handleClose}>
+      <Snackbar open={success} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">
           ลบข้อมูลสำเร็จ
+        </Alert>
+      </Snackbar>
+      <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error">
+          ลบข้อมูลไม่สำเร็จ {errorMessage}
         </Alert>
       </Snackbar>
         <Box display="flex">

@@ -11,6 +11,8 @@ import { WarranteeTypeInterface } from "../models/IWarranteeType";
 import { EmployeeInterface } from "../models/IEmployee";
 import NavBar from "./NavBar";
 import moment from "moment";
+import { datePickerDefaultProps } from "@material-ui/pickers/constants/prop-types";
+import { time } from "console";
 
 
 function Alert(props: AlertProps) {
@@ -42,6 +44,9 @@ function WarranteeCreate() {
     const [success, setSuccess] = React.useState(false);
     const [error, setError] = React.useState(false);
     const [errorMessage, setErrorMessage] = React.useState("");
+    const [workReceiveChange, setWorkReceiveChange] = React.useState(false);
+    const [warranteeTypeChange, setWarranteeTypeChange] = React.useState(false);
+    const [employeeChange, setEmployeeChange] = React.useState(false);
 
     const [disable, setDisable] = React.useState(false);
 
@@ -63,7 +68,7 @@ function WarranteeCreate() {
         }
         setSuccess(false);
         setError(false);
-        window.location.reload();
+        // window.location.reload();
     }
 
     const handleInputChange = (event: React.ChangeEvent<{name?: string; value: any}>) => {
@@ -73,6 +78,7 @@ function WarranteeCreate() {
         setWarrantee({...warrantee, [name]: value});
     }
 
+    // this handle for in case of select wage insurance 
     const handleSelectChange = (event: React.ChangeEvent<{name?: string; value: any}>) => {
         
         const name = event.target.name as keyof typeof warrantee;
@@ -102,6 +108,7 @@ function WarranteeCreate() {
     };
 
     const getEmployee = async() => {
+        setEmployeeChange(false);
         const uid = localStorage.getItem("uid")
         fetch(`${apiUrl}/employee/${uid}`, requestOptions)
           .then((response) => response.json())
@@ -115,7 +122,8 @@ function WarranteeCreate() {
           });
     };
     
-    const getWorkReceive= async() => {   
+    const getWorkReceive= async() => {
+        setWorkReceiveChange(false);   
         fetch(`${apiUrl}/work_receives`, requestOptions)
           .then((response) => response.json())
           .then((res) => {
@@ -129,7 +137,7 @@ function WarranteeCreate() {
      };
 
     const getWarranteeType = async() => {
-
+        setWarranteeTypeChange(false);
         fetch(`${apiUrl}/warrantee_types`, requestOptions)
           .then((response) => response.json())
           .then((res) => {
@@ -142,11 +150,29 @@ function WarranteeCreate() {
           });
      }; 
 
-     useEffect(() => {
+    // useEffect for re-fetch date when submit data
+    useEffect(() => {
+        if(employeeChange) {
+            getEmployee();
+        }
+        if(workReceiveChange) {
+            getWorkReceive();
+        }
+        if(warranteeTypeChange) {
+            getWarranteeType();
+        }
+    }, [
+        employeeChange ? employee:undefined,
+        workReceiveChange ? workReceive:undefined,
+        warranteeTypeChange ? warranteeType:undefined,
+    ]);
+
+    // useEffect for first load data 
+    useEffect(() => {
          getEmployee();
          getWorkReceive();
          getWarranteeType();
-     }, [])
+    }, []);
 
     const convertTypeInt = (data: string | number | undefined) => {
         let val = typeof data === "string" ? parseInt(data) : data;
@@ -156,15 +182,19 @@ function WarranteeCreate() {
 
     function submit() {
 
+        // select first item in combobox
         if (warrantee.WarranteeTypeID === undefined) {
             warrantee.WarranteeTypeID = warranteeType[0].ID;
         }
         if (warrantee.EmployeeID === undefined) {
             warrantee.EmployeeID = employee.ID;
         }
+
+        // handle of work recive data, in case have no any data after fetch data
         if (warrantee.WorkReceiveID === undefined && workReceive.length !== 0) {
             warrantee.WorkReceiveID = workReceive[0].ID;
         }
+        // handle of warranty part data, in case select wage insurance
         if (warrantee.WarrantyPart === undefined && disable || disable) {
             warrantee.WarrantyPart = "ไม่มี";
         }
@@ -188,7 +218,7 @@ function WarranteeCreate() {
               },
             body: JSON.stringify(data),
         };
-        console.log(JSON.stringify(data));
+        // console.log(JSON.stringify(data));
 
         fetch(`${apiUrl}/warrantee`, requestOptions)
             .then((response) => response.json())
@@ -196,6 +226,16 @@ function WarranteeCreate() {
                 if(res.data) {
                     setSuccess(true);
                     setErrorMessage("");
+
+                    // set state for re-fetch data
+                    setEmployeeChange(true);
+                    setWorkReceiveChange(true);
+                    setWarranteeTypeChange(true);
+
+                    // reset textfield when submit
+                    setWarrantee({WarrantyPart: "", MaximumAmount: 0});
+                    // reset date picker when submit
+                    setSelectedDate(new Date());
                 }
                 else {
                     setError(true);
@@ -214,7 +254,7 @@ function WarranteeCreate() {
             </Snackbar>
             <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="error">
-                    บันทึกข้อไม่มูลสำเร็จ: {errorMessage}
+                    บันทึกข้อมูลไม่สำเร็จ: {errorMessage}
                 </Alert>
             </Snackbar>
 
@@ -393,13 +433,13 @@ function WarranteeCreate() {
                     <Grid container spacing={3} className={classes.root} alignItems="center">
                         <Grid item xs={6}>
                             <Typography
-                            component="h2"
-                            variant="h6"
-                            color="primary"
-                            gutterBottom
-                            align="center"
+                                component="h2"
+                                variant="h6"
+                                color="primary"
+                                gutterBottom
+                                align="center"
                             >
-                            อะไหล่ที่ประกันได้
+                                อะไหล่ที่ประกันได้
                             </Typography>
                         </Grid>
 

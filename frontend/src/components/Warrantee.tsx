@@ -1,13 +1,19 @@
 import React, { useEffect } from "react";
-import { Container, createStyles, makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Theme, Typography, Dialog, Accordion, AccordionDetails, AccordionSummary, Collapse } from "@material-ui/core";
+import { Container, createStyles, makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Theme, Typography, Snackbar, IconButton } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import  Button  from "@material-ui/core/Button";
 import { Link as RouterLink } from "react-router-dom";
 import  Paper  from "@material-ui/core/Paper";
 import moment from "moment";
-import { WarranteeInterface } from "../models/IWarrantee";
 import NavBar from "./NavBar";
+import MuiAlert, {AlertProps} from "@material-ui/lab/Alert";
+import DeleteIcon from "@material-ui/icons/Delete"
 
+import { WarranteeInterface } from "../models/IWarrantee";
+
+function Alert(props: AlertProps) {
+    return <MuiAlert elevation={6} variant="filled" {...props}/>
+}
 
 const useStyles = makeStyles((theme:Theme) => createStyles({
     container: {marginTop: theme.spacing(10)},
@@ -16,8 +22,22 @@ const useStyles = makeStyles((theme:Theme) => createStyles({
 }));
 
 function Warrantee() {
-    const classes = useStyles();
+    const classes = useStyles()
     const [warrantee, setWarrantee] = React.useState<WarranteeInterface[]>([]);
+
+    const [success, setSuccess] = React.useState(false);
+    const [error, setError] = React.useState(false);
+    const [errorMessage, setErrorMessage] = React.useState("");
+    const [hasDelete, setHasDelete] = React.useState(false);
+
+    const handleClose = (event?: React.SyntheticEvent, reson?: string) => {
+        if(reson === "clickaway") {
+            return;
+        }
+        setSuccess(false);
+        setError(false);
+        // window.location.reload();
+    }
 
     const apiUrl = "http://localhost:8080";
     const requestOptions = {
@@ -29,6 +49,7 @@ function Warrantee() {
     }
 
     const getWarrantee = async() => {
+        setHasDelete(false);
         fetch(`${apiUrl}/warrantees`, requestOptions)
             .then((response) => response.json())
             .then((res) => {
@@ -43,14 +64,62 @@ function Warrantee() {
             })
     }
 
+    const deleteWarrantee = (index :number) => {
+        let id = warrantee[index].ID;
+
+        console.log(warrantee[index].ID)
+
+        const deleteOptions = {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                "Content-Type": "application/json"
+            },
+        };
+
+        fetch(`${apiUrl}/warrantee/${id}`, deleteOptions)
+            .then((response) => response.json())
+            .then((res) => {
+                if(res.data) {
+                    setSuccess(true);
+                    setErrorMessage("");
+
+                    // set state for re-fetch data
+                    setHasDelete(true);
+                }
+                else {
+                    setError(true);
+                    setErrorMessage(res.error);
+                }
+            })
+    }
+
+    // useEffect for re-fetch date when delete data
+    useEffect(() => {
+        if(hasDelete) {
+            getWarrantee();
+        }
+    }, [hasDelete ? warrantee:undefined]);
+
+    // useEffect for first load data 
     useEffect(() => {
         getWarrantee();
-    }, []);
+    }, [])
 
     return (
         <div>
             <Container className={classes.container} maxWidth="md">
             <NavBar/>
+                <Snackbar open={success} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="success">
+                        ลบข้อมูลสำเร็จ
+                    </Alert>
+                </Snackbar>
+                <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="error">
+                        ลบข้อมูลไม่สำเร็จ: {errorMessage}
+                    </Alert>
+                </Snackbar>
                 <Box display="flex">
                     <Box flexGrow={1}>
                         <Typography
@@ -80,13 +149,13 @@ function Warrantee() {
                                 <TableCell align="center" width="5%">
                                     ID
                                 </TableCell>
-                                <TableCell align="center" width="10%">
+                                <TableCell align="center" width="5%">
                                     Code
                                 </TableCell>
-                                <TableCell align="center" width="20%">
+                                <TableCell align="center" width="15%">
                                     Warrantee Type
                                 </TableCell>
-                                <TableCell align="center" width="10%">
+                                <TableCell align="center" width="5%">
                                     Maximumn Amount
                                 </TableCell>
                                 <TableCell align="center" width="10%">
@@ -98,10 +167,13 @@ function Warrantee() {
                                 <TableCell align="center" width="20%">
                                     Warranty Parts
                                 </TableCell>
+                                <TableCell align="center" width="5%">
+                                    Delete
+                                </TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {warrantee.map((warrantee:WarranteeInterface) => (
+                            {warrantee.map((warrantee:WarranteeInterface, index) => (
                                 <TableRow key={warrantee.ID}>
                                     <TableCell align="center">{warrantee.ID}</TableCell>
                                     <TableCell align="center" size="medium">
@@ -114,6 +186,16 @@ function Warrantee() {
                                     </TableCell>
                                     <TableCell align="center">{warrantee.Employee.Name}</TableCell>
                                     <TableCell align="center">{warrantee.WarrantyPart}</TableCell>
+                                    <TableCell align="center"> 
+                                        <Box>
+                                            <IconButton
+                                                onClick={() => deleteWarrantee(index)}
+                                                aria-label="delete"
+                                            >
+                                                <DeleteIcon/>
+                                            </IconButton>
+                                        </Box>
+                                    </TableCell>
                                 </TableRow>
                             ))}
 

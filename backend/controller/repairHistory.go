@@ -106,6 +106,16 @@ func DeleteRepairHistory(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": id})
 }
 
+// DELETE /repair_histories/:id-lastest
+func DeleteLastestRepairHistory(c *gin.Context) {
+
+	if tx := entity.DB().Exec("DELETE FROM repair_histories WHERE ID=(SELECT MAX(id) FROM repair_histories)"); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "can't delete lastest repairhistory"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"data": "Delete Successfully"})
+}
+
 // PATCH /repair_histories
 func UpdateRepairHistory(c *gin.Context) {
 	var repairhistory entity.RepairHistory

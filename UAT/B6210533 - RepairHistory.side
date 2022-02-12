@@ -1,11 +1,11 @@
 {
   "id": "dbe93c08-c238-4cbc-9044-d8161ee6031c",
   "version": "2.0",
-  "name": "repairhis2",
+  "name": "B6210533 - RepairHistory",
   "url": "http://localhost:3000/",
   "tests": [{
     "id": "4a1204b3-d508-4803-8bec-779a59041b06",
-    "name": "Case ถูกหมด",
+    "name": "B6210533 - บันทึกข้อมูล RepairHistory สำเร็จ",
     "commands": [{
       "id": "34628f7a-f30f-4abd-9144-2846f6b74edc",
       "comment": "",
@@ -438,7 +438,7 @@
     }]
   }, {
     "id": "3eb2935e-0851-4ac4-a75c-24c33a449c86",
-    "name": "Success เป็นค่าว่าง",
+    "name": "B6210533 - ตรวจสอบ Success ต้องไม่เป็นค่าว่าง",
     "commands": [{
       "id": "28f8ae9f-43cc-4c7b-8155-82baa61fe214",
       "comment": "",
@@ -622,7 +622,7 @@
     }]
   }, {
     "id": "06a557a1-55f6-42eb-8411-480c1fe886cd",
-    "name": "Timestamp ไม่เป็นปัจจุบัน",
+    "name": "B6210533 - ตรวจสอบ Timestamp ต้องเป็นช่วงเวลาปัจจุบัน",
     "commands": [{
       "id": "7672bb23-7f1f-4e0a-990e-387b238e84de",
       "comment": "",
@@ -953,7 +953,7 @@
     }]
   }, {
     "id": "cd5f6823-bd10-431e-8e2a-508b2f55557e",
-    "name": "Problem ต่ำกว่า 5 อักษร",
+    "name": "B6210533 - ตรวจสอบ Problem ต้องไม่ต่ำกว่า 5 อักษร",
     "commands": [{
       "id": "cb2fdcd0-aa7e-4ea4-871b-6c95bae980f8",
       "comment": "",
@@ -1182,7 +1182,7 @@
     }]
   }, {
     "id": "73e73293-bb68-4bba-8c68-af57df163d93",
-    "name": "Solution ต่ำกว่า 5 อักษร ",
+    "name": "B6210533 - ตรวจสอบ Solution ต้องไม่ต่ำกว่า 5 อักษร ",
     "commands": [{
       "id": "b2ffae6f-d0cc-4691-9758-c620d894b927",
       "comment": "",

@@ -71,6 +71,7 @@ func main() {
 			protected.POST("/repair_histories", controller.CreateRepairHistory)
 			protected.PATCH("/repair_histories", controller.UpdateRepairHistory)
 			protected.DELETE("/repair_histories/:id", controller.DeleteRepairHistory)
+			protected.DELETE("/repair_histories_delete_lastest", controller.DeleteLastestRepairHistory)
 
 			//WorkReceive Routes
 			protected.GET("/WorkReceives", controller.ListWorkReceives)

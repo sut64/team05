@@ -148,7 +148,7 @@ function RepairHistories() {
                 <TableCell align="center" width="20%">
                   การแก้ปัญหา
                 </TableCell>
-                <TableCell align="center" width="10%">
+                <TableCell align="center" width="5%">
                   ความสำเร็จ
                 </TableCell>
                 <TableCell align="center" width="5%">
@@ -157,7 +157,7 @@ function RepairHistories() {
                 <TableCell align="center" width="10%">
                   ผู้แก้ไข
                 </TableCell>
-                <TableCell align="center" width="15%">
+                <TableCell align="center" width="20%">
                   วันที่และเวลา
                 </TableCell>
               </TableRow>

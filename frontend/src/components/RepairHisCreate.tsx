@@ -122,6 +122,8 @@ function RepairHistoryCreate() {
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
+  const [deleteError, setDeleteError] = useState(false);
   const [errorMessage, seterrorMessage] = useState("");
 
   const apiUrl = "http://localhost:8080";
@@ -147,6 +149,14 @@ function RepairHistoryCreate() {
     }
     setSuccess(false);
     setError(false);
+  };
+
+  const handleClose2 = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setDeleteSuccess(false);
+    setDeleteError(false);
   };
 
   const handleChange = (
@@ -227,7 +237,34 @@ function RepairHistoryCreate() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  ///////////////////////////////
   
+  function deleteLastest() {
+    const requestOptionsDelete = {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+      
+    };
+
+    fetch(`${apiUrl}/repair_histories_delete_lastest`, requestOptionsDelete)
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.data) {
+          console.log("ลบข้อมูลล่าสุดได้")
+          setDeleteSuccess(true);
+          seterrorMessage("");
+        } else {
+          console.log("ลบข้อมูลล่าสุดไม่ได้")
+          setDeleteError(true);
+          seterrorMessage("Delete Unsuccesful");
+        }
+      });
+  }
+
+  //////////////////////////////
   const convertType = (data: string | number | undefined) => {
     let val = typeof data === "string" ? parseInt(data) : data;
     return val;
@@ -276,16 +313,28 @@ function RepairHistoryCreate() {
       <NavBar />
       <Typography component="div" style={{ height: '3vh' }} />
       <Snackbar open={success} autoHideDuration={6000} onClose={handleClose}>
-
         <Alert onClose={handleClose} severity="success">
           บันทึกข้อมูลสำเร็จ
         </Alert>
       </Snackbar>
+
       <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
           บันทึกข้อมูลไม่สำเร็จ :{errorMessage}
         </Alert>
+      </Snackbar>
 
+
+      <Snackbar open={deleteSuccess} autoHideDuration={6000} onClose={handleClose2}>
+        <Alert onClose={handleClose2} severity="success">
+          ลบข้อมูลสำเร็จ
+        </Alert>
+      </Snackbar>
+
+      <Snackbar open={deleteError} autoHideDuration={6000} onClose={handleClose2}>
+        <Alert onClose={handleClose2} severity="error">
+          ลบข้อมมูลไม่สำเร็จ :{errorMessage}
+        </Alert>
       </Snackbar>
 
       <TableContainer component={Paper} className={classes.tableSpace}>
@@ -554,6 +603,15 @@ function RepairHistoryCreate() {
               Back
             </Button>
 
+            <Button className={classes.buttonControl}
+              style={{ float: "right" }}
+              variant="contained"
+              
+              size="large"
+              onClick={deleteLastest}
+            > ลบประวัติล่าสุด
+            </Button>
+            
             <Button className={classes.buttonControl}
               style={{ float: "right" }}
               variant="contained"

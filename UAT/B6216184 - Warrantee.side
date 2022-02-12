@@ -7,73 +7,64 @@
     "id": "05587001-7dcd-4393-9be3-82fb91b0e190",
     "name": "B6216184 - บันทึกข้อมูล Warrantee สำเร็จ",
     "commands": [{
-      "id": "2636fd50-66ac-4bd5-8281-7c06387895ad",
+      "id": "222e834c-5bf6-4ab3-a49c-333dcc49ca86",
       "comment": "",
       "command": "open",
       "target": "/",
       "targets": [],
       "value": ""
     }, {
-      "id": "2477d9dd-a6aa-4066-9be3-35df57fcf59e",
+      "id": "4e23ab3f-c770-4434-8e2f-a73442676bc9",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1519x805",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "aa92ac9c-3123-4cc2-8f88-ee0cfba21808",
       "comment": "",
       "command": "click",
-      "target": "css=.makeStyles-menuButton-27 .MuiSvgIcon-root",
+      "target": "css=.makeStyles-menuButton-30 .MuiSvgIcon-root",
       "targets": [
-        ["css=.makeStyles-menuButton-27 .MuiSvgIcon-root", "css:finder"]
+        ["css=.makeStyles-menuButton-30 .MuiSvgIcon-root", "css:finder"]
       ],
       "value": ""
     }, {
-      "id": "930265ca-d602-40b6-b348-6466ae655fbc",
+      "id": "609e86ef-cdb8-4fdb-bf6e-4186942114b5",
       "comment": "",
       "command": "click",
-      "target": "css=.makeStyles-a-34:nth-child(5) .MuiTypography-root",
+      "target": "css=.makeStyles-a-37:nth-child(5) .MuiTypography-root",
       "targets": [
-        ["css=.makeStyles-a-34:nth-child(5) .MuiTypography-root", "css:finder"],
+        ["css=.makeStyles-a-37:nth-child(5) .MuiTypography-root", "css:finder"],
         ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[5]/div/div[2]/span", "xpath:idRelative"],
         ["xpath=//a[5]/div/div[2]/span", "xpath:position"],
         ["xpath=//span[contains(.,'ระบบบันทึกข้อมูลรับประกันการซ่อม')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
-      "id": "8f437479-a04f-46c9-a29c-92fad75643fd",
-      "comment": "",
-      "command": "runScript",
-      "target": "window.scrollTo(0,0)",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "13148dd7-b69c-456c-8bdb-7966b4397990",
+      "id": "18aceb0b-dd2e-4c2f-b425-3c590aa20b81",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButton-label",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
       "targets": [
-        ["css=.MuiButton-label", "css:finder"],
-        ["xpath=//div[@id='root']/div/div/div[2]/div[2]/div[2]/a/span", "xpath:idRelative"],
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div[2]/div[2]/a/span", "xpath:idRelative"],
         ["xpath=//a/span", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "1519bd3e-14bf-4752-95a4-9cf3ef6e9fcf",
-      "comment": "",
-      "command": "runScript",
-      "target": "window.scrollTo(0,0)",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "8c5f3525-4a45-4969-b389-043f604d5198",
+      "id": "d56ecdaf-6c6b-4152-8ce5-18e044c97746",
       "comment": "",
       "command": "click",
-      "target": "name=WarrantyPart",
+      "target": "css=.MuiInputBase-multiline",
       "targets": [
-        ["name=WarrantyPart", "name"],
-        ["css=.MuiInputBase-inputMultiline:nth-child(1)", "css:finder"],
-        ["xpath=//textarea[@name='WarrantyPart']", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div[4]/div[2]/div/div/div/textarea", "xpath:idRelative"],
-        ["xpath=//textarea", "xpath:position"]
+        ["css=.MuiInputBase-multiline", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[4]/div[2]/div[4]/div[2]/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div[4]/div[2]/div/div/div", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "cecd9055-3138-4e28-b039-12fb9675d378",
+      "id": "61e0f4b5-7beb-45d6-a6d7-16956f3775d6",
       "comment": "",
       "command": "type",
       "target": "name=WarrantyPart",
@@ -81,21 +72,25 @@
         ["name=WarrantyPart", "name"],
         ["css=.MuiInputBase-inputMultiline:nth-child(1)", "css:finder"],
         ["xpath=//textarea[@name='WarrantyPart']", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div[4]/div[2]/div/div/div/textarea", "xpath:idRelative"],
+        ["xpath=//div[@id='root']/div/div/div[4]/div[2]/div[4]/div[2]/div/div/div/textarea", "xpath:idRelative"],
         ["xpath=//textarea", "xpath:position"]
       ],
       "value": "ram"
     }, {
-      "id": "733cb3d6-163d-442a-a484-707fc1804132",
+      "id": "8477fc47-71b6-4c8c-890a-3a76dcf08b33",
       "comment": "",
-      "command": "mouseOver",
-      "target": "css=.MuiInputAdornment-root path:nth-child(1)",
+      "command": "click",
+      "target": "name=MaximumAmount",
       "targets": [
-        ["css=.MuiInputAdornment-root path:nth-child(1)", "css:finder"]
+        ["name=MaximumAmount", "name"],
+        ["css=.Mui-focused > .MuiInputBase-input", "css:finder"],
+        ["xpath=//input[@name='MaximumAmount']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[4]/div[2]/div[5]/div[2]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "e0c78378-2095-4635-b38d-546a3f392149",
+      "id": "507380a8-9243-4b62-80a9-db2ccc7bbd9a",
       "comment": "",
       "command": "type",
       "target": "name=MaximumAmount",
@@ -103,30 +98,24 @@
         ["name=MaximumAmount", "name"],
         ["css=.Mui-focused > .MuiInputBase-input", "css:finder"],
         ["xpath=//input[@name='MaximumAmount']", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div[5]/div[2]/div/div/div/input", "xpath:idRelative"],
-        ["xpath=//input", "xpath:position"]
+        ["xpath=//div[@id='root']/div/div/div[4]/div[2]/div[5]/div[2]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
       ],
       "value": "1200"
     }, {
-      "id": "15425cb1-96d9-4177-94d5-7b3afdb23435",
+      "id": "a3fb3f91-8654-4b5c-af65-8aa03b30aad4",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiInputAdornment-root path:nth-child(1)",
+      "target": "css=.MuiInputAdornment-root > .MuiButtonBase-root",
       "targets": [
-        ["css=.MuiInputAdornment-root path:nth-child(1)", "css:finder"]
+        ["css=.MuiInputAdornment-root > .MuiButtonBase-root", "css:finder"],
+        ["xpath=(//button[@type='button'])[5]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[4]/div[2]/div[6]/div[2]/div/div/div/div/div/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/div/div/button", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "8e94076e-d3fb-4556-8933-2408e0cb7f2d",
-      "comment": "",
-      "command": "mouseOut",
-      "target": "css=.MuiInputAdornment-root path:nth-child(1)",
-      "targets": [
-        ["css=.MuiInputAdornment-root path:nth-child(1)", "css:finder"]
-      ],
-      "value": ""
-    }, {
-      "id": "b35d5e7e-c22d-4b40-a5dd-0eba4c27ebb5",
+      "id": "81319aba-171e-4943-a279-848f68ae5c83",
       "comment": "",
       "command": "mouseOver",
       "target": "css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root",
@@ -135,7 +124,7 @@
       ],
       "value": ""
     }, {
-      "id": "f5b9fb27-42a7-4853-b541-f123b93503bf",
+      "id": "304bde4e-bd32-4cc6-8e87-bbc69d823f5a",
       "comment": "",
       "command": "click",
       "target": "css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root",
@@ -144,7 +133,7 @@
       ],
       "value": ""
     }, {
-      "id": "ef25a189-6fb0-44b6-ae6c-0b005369b67d",
+      "id": "7f291aa4-e4d6-450f-ab8e-2c8b960642f2",
       "comment": "",
       "command": "click",
       "target": "css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root",
@@ -153,7 +142,16 @@
       ],
       "value": ""
     }, {
-      "id": "95a736f8-51c5-4d09-af41-eee7a5045acd",
+      "id": "0487857d-03d0-4c4f-89ad-9212b7599796",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "7fb8308f-f47f-479f-a18c-dc79c645f859",
       "comment": "",
       "command": "doubleClick",
       "target": "css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root",
@@ -162,7 +160,7 @@
       ],
       "value": ""
     }, {
-      "id": "3338ddb0-f1db-428a-a2dc-73fc4721f6e8",
+      "id": "57b81ade-9a62-4b71-9068-34a6246f16bc",
       "comment": "",
       "command": "mouseOut",
       "target": "css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root",
@@ -171,40 +169,18 @@
       ],
       "value": ""
     }, {
-      "id": "38edf028-5d5b-4a14-8d9b-111bc25a2096",
-      "comment": "",
-      "command": "mouseOver",
-      "target": "css=.MuiPickersCalendar-week:nth-child(1) > div:nth-child(7) > .MuiButtonBase-root",
-      "targets": [
-        ["css=.MuiPickersCalendar-week:nth-child(1) > div:nth-child(7) > .MuiButtonBase-root", "css:finder"],
-        ["xpath=(//button[@type='button'])[17]", "xpath:attributes"],
-        ["xpath=//div[7]/button", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "0a16304a-53ae-4582-bc95-87ace292fcf3",
+      "id": "9d1fe337-18bb-4be2-8fdc-1263ede85c3e",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiPickersCalendar-week:nth-child(1) > div:nth-child(7) > .MuiButtonBase-root",
+      "target": "css=.MuiPickersCalendar-week:nth-child(1) > div:nth-child(7) .MuiIconButton-label",
       "targets": [
-        ["css=.MuiPickersCalendar-week:nth-child(1) > div:nth-child(7) > .MuiButtonBase-root", "css:finder"],
-        ["xpath=(//button[@type='button'])[17]", "xpath:attributes"],
-        ["xpath=//div[7]/button", "xpath:position"]
+        ["css=.MuiPickersCalendar-week:nth-child(1) > div:nth-child(7) .MuiIconButton-label", "css:finder"],
+        ["xpath=//div[7]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'7')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
-      "id": "eab65b6c-e25e-454c-b1aa-71d59f5f5bd3",
-      "comment": "",
-      "command": "mouseOut",
-      "target": "css=.MuiPickersDay-daySelected",
-      "targets": [
-        ["css=.MuiPickersDay-daySelected", "css:finder"],
-        ["xpath=(//button[@type='button'])[17]", "xpath:attributes"],
-        ["xpath=//div[7]/button", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "779c88b6-faf3-4abd-b924-7a14920ecde8",
+      "id": "908ec11f-e74f-46c5-afc3-71bcf9234df1",
       "comment": "",
       "command": "click",
       "target": "css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label",
@@ -215,18 +191,40 @@
       ],
       "value": ""
     }, {
-      "id": "f82ba901-1fcb-40a0-868a-6ebd2b3864f7",
+      "id": "a5c1641b-a85c-46e5-b08d-4025b409dc16",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[4]/div[2]/div[7]/div/button/span", "xpath:idRelative"],
+        ["xpath=//div[7]/div/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a6b75877-e4fb-4430-9bd3-1997888abb75",
       "comment": "",
       "command": "click",
       "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
       "targets": [
         ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
-        ["xpath=//div[@id='root']/div/div/div[2]/div[3]/div[7]/div/button/span", "xpath:idRelative"],
+        ["xpath=//div[@id='root']/div/div/div[4]/div[2]/div[7]/div/button/span", "xpath:idRelative"],
         ["xpath=//div[7]/div/button/span", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "27c9fecd-099c-40fa-b166-6b486cf79205",
+      "id": "9c4251c2-38c1-4284-a6dc-9c3205834ec3",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[5]/div[2]/div[7]/div/button/span", "xpath:idRelative"],
+        ["xpath=//div[7]/div/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d4e0fe15-94bc-4611-8369-84d285c07923",
       "comment": "",
       "command": "click",
       "target": "css=.MuiAlert-root",
@@ -237,7 +235,7 @@
       ],
       "value": ""
     }, {
-      "id": "fce05964-2c1f-472d-90b5-bcb9b6194c40",
+      "id": "dfec0435-d82a-4f8d-b7bb-8501cc579c2e",
       "comment": "",
       "command": "assertText",
       "target": "css=.MuiAlert-message",
@@ -247,6 +245,66 @@
         ["xpath=//div[2]/div/div[2]", "xpath:position"]
       ],
       "value": "บันทึกข้อมูลสำเร็จ"
+    }, {
+      "id": "6bbcd7ef-c2d2-47c9-9418-02227baa171d",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButtonBase-root:nth-child(1) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(1) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[5]/div[2]/div[7]/div/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c29601bf-8054-4928-8d29-81d9609e9595",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(1) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(1) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[5]/div[2]/div[7]/div/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5b2f6f35-d372-43d7-a4a8-98c3ec0f962d",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,0)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a8a57a55-4dea-47c3-9f78-8cd5fe7f8895",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root-96 path",
+      "targets": [
+        ["css=.MuiBox-root-96 path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "9b2a89ae-6b7b-4a0f-8c44-30f4d4528073",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-root",
+      "targets": [
+        ["css=.MuiAlert-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f3424ad9-3201-4a26-9629-570773f11ad8",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": "ลบข้อมูลสำเร็จ"
     }]
   }, {
     "id": "3c126d47-ecf6-4ff6-91a4-b27847690864",
@@ -259,10 +317,17 @@
       "targets": [],
       "value": ""
     }, {
+      "id": "fb81050d-2499-487d-b8a8-f552d5e5f6fb",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1519x805",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "3bfd0b65-6ac4-488e-b7e2-d159d2b2f9fe",
       "comment": "",
       "command": "click",
-      "target": "css=.makeStyles-menuButton-27",
+      "target": "css=.makeStyles-menuButton-30",
       "targets": [
         ["css=.makeStyles-menuButton-27", "css:finder"],
         ["xpath=//button[@type='button']", "xpath:attributes"],
@@ -274,7 +339,7 @@
       "id": "115ae783-b472-4348-a25c-a6bde25b5138",
       "comment": "",
       "command": "click",
-      "target": "css=.makeStyles-a-34:nth-child(5) .MuiTypography-root",
+      "target": "css=.makeStyles-a-37:nth-child(5) .MuiTypography-root",
       "targets": [
         ["css=.makeStyles-a-34:nth-child(5) .MuiTypography-root", "css:finder"],
         ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[5]/div/div[2]/span", "xpath:idRelative"],
@@ -436,90 +501,95 @@
         ["xpath=//div[@id='root']/div/div/div[2]/div/div[2]", "xpath:idRelative"],
         ["xpath=//div[2]/div/div[2]", "xpath:position"]
       ],
-      "value": "บันทึกข้อไม่มูลสำเร็จ: End of Warrantee must be in the future"
+      "value": "บันทึกข้อมูลไม่สำเร็จ: End of Warrantee must be in the future"
     }]
   }, {
     "id": "92ae592a-8c69-43ff-935d-cd9f0fbb833b",
     "name": "B6216184 - ตรวจสอบ WarranteePart ต้องไม่เป็น string ว่าง",
     "commands": [{
-      "id": "dd6ab8ab-e212-49fa-84fa-742d2d7b52d7",
+      "id": "401707ed-cf79-4c55-8b63-d61fc44de0b7",
       "comment": "",
       "command": "open",
       "target": "/",
       "targets": [],
       "value": ""
     }, {
-      "id": "52220564-7585-40bf-8cb9-3cebbd9feb38",
+      "id": "c686f401-8141-4502-a040-d4ad494a9f8f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1519x805",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cc7c6be4-f369-4d9f-926a-af42d4eafe1d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-menuButton-30 path",
+      "targets": [
+        ["css=.makeStyles-menuButton-30 path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "42ee045a-8756-4f6b-b5c6-83eba6f0bb07",
       "comment": "",
       "command": "mouseOver",
-      "target": "css=.makeStyles-menuButton-27",
+      "target": "css=.makeStyles-a-37:nth-child(5) .MuiTypography-root",
       "targets": [
-        ["css=.makeStyles-menuButton-27", "css:finder"],
-        ["xpath=//button[@type='button']", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/div/div/header/div/button", "xpath:idRelative"],
-        ["xpath=//button", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "72ccdb74-3d4b-4a5e-a523-f519e5eccd48",
-      "comment": "",
-      "command": "click",
-      "target": "css=.makeStyles-menuButton-27",
-      "targets": [
-        ["css=.makeStyles-menuButton-27", "css:finder"],
-        ["xpath=//button[@type='button']", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/div/div/header/div/button", "xpath:idRelative"],
-        ["xpath=//button", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "d444e2d2-1610-45bd-addf-c914121024d8",
-      "comment": "",
-      "command": "mouseOut",
-      "target": "css=.makeStyles-menuButton-27",
-      "targets": [
-        ["css=.makeStyles-menuButton-27", "css:finder"],
-        ["xpath=//button[@type='button']", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/div/div/header/div/button", "xpath:idRelative"],
-        ["xpath=//button", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "3247d32b-c625-4173-9cdb-b121d02b0c5f",
-      "comment": "",
-      "command": "click",
-      "target": "css=.makeStyles-a-34:nth-child(5) .MuiTypography-root",
-      "targets": [
-        ["css=.makeStyles-a-34:nth-child(5) .MuiTypography-root", "css:finder"],
+        ["css=.makeStyles-a-37:nth-child(5) .MuiTypography-root", "css:finder"],
         ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[5]/div/div[2]/span", "xpath:idRelative"],
         ["xpath=//a[5]/div/div[2]/span", "xpath:position"],
         ["xpath=//span[contains(.,'ระบบบันทึกข้อมูลรับประกันการซ่อม')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
-      "id": "3c8a7579-f864-4959-8e0a-d47e3ef03e40",
-      "comment": "",
-      "command": "mouseOver",
-      "target": "css=.MuiButton-label",
-      "targets": [
-        ["css=.MuiButton-label", "css:finder"],
-        ["xpath=//div[@id='root']/div/div/div/div[2]/div[2]/a/span", "xpath:idRelative"],
-        ["xpath=//a/span", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "bdc14851-bed3-4888-9209-af6aa619d48c",
+      "id": "5237c562-6291-4e97-90e5-4e48466b6cac",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButton-label",
+      "target": "css=.makeStyles-a-37:nth-child(5) .MuiTypography-root",
       "targets": [
-        ["css=.MuiButton-label", "css:finder"],
+        ["css=.makeStyles-a-37:nth-child(5) .MuiTypography-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[5]/div/div[2]/span", "xpath:idRelative"],
+        ["xpath=//a[5]/div/div[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ระบบบันทึกข้อมูลรับประกันการซ่อม')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d7c79405-ca31-4b44-a020-b3963fb5b0f5",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
         ["xpath=//div[@id='root']/div/div/div/div[2]/div[2]/a/span", "xpath:idRelative"],
         ["xpath=//a/span", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "be32e918-31df-4645-a216-17def93c1104",
+      "id": "d734e736-5e20-4694-909b-3b74daa37507",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div[2]/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "61e0771f-632a-4b00-96a6-f861822039fb",
+      "comment": "",
+      "command": "click",
+      "target": "name=WarrantyPart",
+      "targets": [
+        ["name=WarrantyPart", "name"],
+        ["css=.MuiInputBase-inputMultiline:nth-child(1)", "css:finder"],
+        ["xpath=//textarea[@name='WarrantyPart']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[4]/div[2]/div[4]/div[2]/div/div/div/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "42e10c32-a6b2-4dec-8469-2149dc304bcb",
       "comment": "",
       "command": "click",
       "target": "name=MaximumAmount",
@@ -532,7 +602,7 @@
       ],
       "value": ""
     }, {
-      "id": "e718599a-a6dc-46a6-a725-bf792c72f070",
+      "id": "ce41b811-a404-4ac6-a138-8647d3803bfd",
       "comment": "",
       "command": "mouseOver",
       "target": "css=.MuiInputAdornment-root path:nth-child(1)",
@@ -541,7 +611,7 @@
       ],
       "value": ""
     }, {
-      "id": "55fdb34f-cb90-4b28-ab50-707dcb0b52fb",
+      "id": "2d41a1c5-28eb-4bf8-8398-7484fc41ec26",
       "comment": "",
       "command": "type",
       "target": "name=MaximumAmount",
@@ -554,7 +624,7 @@
       ],
       "value": "1200"
     }, {
-      "id": "8121f093-3c94-4fb1-a9e2-611b5aa95b63",
+      "id": "fd28faaa-f68e-4f9b-8994-740262cb7eb2",
       "comment": "",
       "command": "click",
       "target": "css=.MuiInputAdornment-root path:nth-child(1)",
@@ -563,7 +633,7 @@
       ],
       "value": ""
     }, {
-      "id": "8d59cc4e-2443-452f-841c-c6ca8d69921b",
+      "id": "4335bb5a-7d94-4c94-bfa2-40bd8439bf48",
       "comment": "",
       "command": "mouseOut",
       "target": "css=.MuiInputAdornment-root path:nth-child(1)",
@@ -572,16 +642,7 @@
       ],
       "value": ""
     }, {
-      "id": "e005ed60-7474-446a-aecf-b2f69c1adef9",
-      "comment": "",
-      "command": "mouseOver",
-      "target": "css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root",
-      "targets": [
-        ["css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root", "css:finder"]
-      ],
-      "value": ""
-    }, {
-      "id": "31081f65-900f-4b60-812c-8f74851f05a1",
+      "id": "a14c5a5b-609f-4ebd-a74d-49e6f2692c7e",
       "comment": "",
       "command": "click",
       "target": "css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root",
@@ -590,7 +651,7 @@
       ],
       "value": ""
     }, {
-      "id": "7919d50e-e6fe-4f05-b7a8-d7af0d39e6c0",
+      "id": "d437da84-9e60-4ec8-88ce-969cf645a7c5",
       "comment": "",
       "command": "click",
       "target": "css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root",
@@ -599,7 +660,16 @@
       ],
       "value": ""
     }, {
-      "id": "9c542b52-f886-49a3-9192-ab1e81ae26e9",
+      "id": "75d083e2-1b30-4bd4-87ef-9a85ba27a1e5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "fee155cc-fc4e-41a4-ac68-ad4fe52f7315",
       "comment": "",
       "command": "doubleClick",
       "target": "css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root",
@@ -608,26 +678,18 @@
       ],
       "value": ""
     }, {
-      "id": "d2c54270-3da8-4fda-bc5b-11b46ef1e4cb",
-      "comment": "",
-      "command": "mouseOut",
-      "target": "css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root",
-      "targets": [
-        ["css=.MuiButtonBase-root:nth-child(3) .MuiSvgIcon-root", "css:finder"]
-      ],
-      "value": ""
-    }, {
-      "id": "ccd815d2-89dd-4097-9750-5b6257fde056",
+      "id": "989d7e6f-f3af-462a-b174-576a3b30cda0",
       "comment": "",
       "command": "click",
       "target": "css=.MuiPickersCalendar-week:nth-child(1) > div:nth-child(7) .MuiIconButton-label",
       "targets": [
         ["css=.MuiPickersCalendar-week:nth-child(1) > div:nth-child(7) .MuiIconButton-label", "css:finder"],
-        ["xpath=//div[7]/button/span", "xpath:position"]
+        ["xpath=//div[7]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'7')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
-      "id": "7cff7e52-f1d4-4e21-b353-c1353f97b1be",
+      "id": "86589c8e-de56-49af-97ec-4b10da13d5c7",
       "comment": "",
       "command": "click",
       "target": "css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label",
@@ -638,40 +700,19 @@
       ],
       "value": ""
     }, {
-      "id": "a669537e-91d0-47f0-9419-f1827562d916",
-      "comment": "",
-      "command": "mouseOver",
-      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
-      "targets": [
-        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
-        ["xpath=//div[@id='root']/div/div/div[4]/div[2]/div[7]/div/button/span", "xpath:idRelative"],
-        ["xpath=//div[7]/div/button/span", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "5e91d12a-8619-4922-920d-da1118d12664",
+      "id": "bb4ac4cf-86d5-4715-9748-7c38415cb3bd",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "target": "css=.MuiButton-containedPrimary",
       "targets": [
-        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
-        ["xpath=//div[@id='root']/div/div/div[4]/div[2]/div[7]/div/button/span", "xpath:idRelative"],
-        ["xpath=//div[7]/div/button/span", "xpath:position"]
+        ["css=.MuiButton-containedPrimary", "css:finder"],
+        ["xpath=(//button[@type='button'])[6]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[4]/div[2]/div[7]/div/button", "xpath:idRelative"],
+        ["xpath=//div[7]/div/button", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "c7e359e4-234b-4835-b93b-1b9fce64ed22",
-      "comment": "",
-      "command": "mouseOut",
-      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
-      "targets": [
-        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
-        ["xpath=//div[@id='root']/div/div/div[5]/div[2]/div[7]/div/button/span", "xpath:idRelative"],
-        ["xpath=//div[7]/div/button/span", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "6a0a13d9-daa5-4e24-a904-8e771ea87bf0",
+      "id": "cada5d06-0ef4-41de-9713-367c2a57b707",
       "comment": "",
       "command": "click",
       "target": "css=.MuiAlert-root",
@@ -681,6 +722,17 @@
         ["xpath=//div[2]/div", "xpath:position"]
       ],
       "value": ""
+    }, {
+      "id": "17e4b31d-449b-4e3c-8720-6aad5dde8eaf",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกข้อมูลไม่สำเร็จ: Warrantee Part cannot be blank"
     }]
   }, {
     "id": "cf732f7d-dba6-4e8b-a50d-0dba5e2a26a4",
@@ -693,10 +745,17 @@
       "targets": [],
       "value": ""
     }, {
+      "id": "b9e429d2-359e-446a-9b1d-5749927a269f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1519x805",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "9df1e327-988b-4ef8-a7ad-e25d3d4644da",
       "comment": "",
       "command": "mouseOver",
-      "target": "css=.makeStyles-menuButton-27 .MuiSvgIcon-root",
+      "target": "css=.makeStyles-menuButton-30 .MuiSvgIcon-root",
       "targets": [
         ["css=.makeStyles-menuButton-27 .MuiSvgIcon-root", "css:finder"]
       ],
@@ -705,7 +764,7 @@
       "id": "1282bd6a-f8b8-4656-9f3e-5a2e90ae207f",
       "comment": "",
       "command": "click",
-      "target": "css=.makeStyles-menuButton-27 .MuiSvgIcon-root",
+      "target": "css=.makeStyles-menuButton-30 .MuiSvgIcon-root",
       "targets": [
         ["css=.makeStyles-menuButton-27 .MuiSvgIcon-root", "css:finder"]
       ],
@@ -714,7 +773,7 @@
       "id": "a2665f00-3745-4fa0-8136-239172a255b2",
       "comment": "",
       "command": "mouseOut",
-      "target": "css=.makeStyles-menuButton-27 .MuiSvgIcon-root",
+      "target": "css=.makeStyles-menuButton-30 .MuiSvgIcon-root",
       "targets": [
         ["css=.makeStyles-menuButton-27 .MuiSvgIcon-root", "css:finder"]
       ],
@@ -723,7 +782,7 @@
       "id": "c3737e83-ab63-43f9-9dc2-5aa1c1a61dff",
       "comment": "",
       "command": "click",
-      "target": "css=.makeStyles-a-34:nth-child(5) .MuiTypography-root",
+      "target": "css=.makeStyles-a-37:nth-child(5) .MuiTypography-root",
       "targets": [
         ["css=.makeStyles-a-34:nth-child(5) .MuiTypography-root", "css:finder"],
         ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[5]/div/div[2]/span", "xpath:idRelative"],
@@ -929,7 +988,7 @@
         ["xpath=//div[@id='root']/div/div/div[2]/div/div[2]", "xpath:idRelative"],
         ["xpath=//div[2]/div/div[2]", "xpath:position"]
       ],
-      "value": "บันทึกข้อไม่มูลสำเร็จ: Maximum Amount cannot be negative number"
+      "value": "บันทึกข้อมูลไม่สำเร็จ: Maximum Amount cannot be negative number"
     }]
   }],
   "suites": [{
@@ -940,6 +999,6 @@
     "timeout": 300,
     "tests": ["05587001-7dcd-4393-9be3-82fb91b0e190"]
   }],
-  "urls": ["http://localhost:3000/"],
+  "urls": ["http://localhost:3000/", "http://localhost:3001/"],
   "plugins": []
 }

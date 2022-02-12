@@ -74,19 +74,18 @@ const useStyles = makeStyles((theme: Theme) =>
 function WorkReceiveCreate() {
   const classes = useStyles();
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-
-
   const [Employees, setEmployee] = useState<EmployeeInterface>();
-
   const [repairRequest, setRepairRequest] = useState<RepairRequestsInterface[]>([]);
   const [workPlace, setWorkplaces] = useState<WorkplaceInterface[]>([]);
-  const [workReceives, setWorkReceives] = useState<Partial<WorkReceiveInterface>>(
-    {}
-  );
+  const [workReceives, setWorkReceives] = useState<Partial<WorkReceiveInterface>>({});
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [errorMsg,setErrorMsg] = useState("")
+
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
+  const [deleteError, setDeleteError] = useState(false);
+
   const apiUrl = "http://localhost:8080";
   const loginEmp = localStorage.getItem("uid");
 
@@ -106,7 +105,13 @@ console.log(requestOptions);
     setSuccess(false);
     setError(false);
   };
-
+  const handleClose_delete = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setDeleteSuccess(false);
+    setDeleteError(false);
+  };
   const handleChange = (
     event: React.ChangeEvent<{ name?: string; value: unknown|Number }>
   ) => {
@@ -176,7 +181,31 @@ console.log(requestOptions);
     return val;
   };
 
+  function deleteLastest() {
+    const requestOptionsDelete = {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
 
+    };
+
+    fetch(`${apiUrl}/WorkReceives_delete`, requestOptionsDelete)
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.data) {
+
+          setDeleteSuccess(true);
+          setErrorMsg("");
+          getRepairRequest();
+        } else {
+
+          setDeleteError(true);
+          setErrorMsg("Delete Unsuccesful");
+        }
+      });
+  }
   function submit() {
     
   let data = {
@@ -224,6 +253,16 @@ return (
       <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
           บันทึกข้อมูลไม่สำเร็จ: {errorMsg}
+        </Alert>
+      </Snackbar>
+      <Snackbar open={deleteError} autoHideDuration={6000} onClose={handleClose_delete}>
+        <Alert onClose={handleClose_delete} severity="error">
+          ลบข้อมูลไม่สำเร็จ: {errorMsg}
+        </Alert>
+      </Snackbar>
+      <Snackbar open={deleteSuccess} autoHideDuration={6000} onClose={handleClose_delete}>
+        <Alert onClose={handleClose_delete} severity="success">
+          ลบข้อมูลสำเร็จ
         </Alert>
       </Snackbar>
         <h1>ระบบรับงานซ่อม</h1>
@@ -452,27 +491,40 @@ return (
  
           </Grid> 
 
-          <Grid item xs={3}>
+          <Grid item xs={1}>
           <Box padding={2}>
           <Button
               component={RouterLink}
               to="/WorkReceive"
               variant="contained"
-                fullWidth
+                
+                color="primary"
             >
               กลับ
             </Button>
             </Box>
  
           </Grid>
-          <Grid item xs={3}/>
+
+          <Grid item xs={3}>
+            <Box padding={2}>
+          <Button
+            onClick={deleteLastest}
+            variant="contained"
+                color="secondary"
+            >
+              ลบข้อมุลล่าสุด
+            </Button>
+            </Box>
+            </Grid>
+            <Grid item xs={2}></Grid>
           <Grid item xs={6}>
             <Box pr={2} pt={2}>
             <Button
  
                onClick={submit}
               variant="contained"
-              color="secondary"
+              
               size="large"
               fullWidth
             >
@@ -481,7 +533,7 @@ return (
             </Box>
  
           </Grid>
- 
+          
         </Grid>
 
 

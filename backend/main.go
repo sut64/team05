@@ -78,6 +78,7 @@ func main() {
 			protected.POST("/WorkReceives", controller.CreateWorkReceive)
 			protected.GET("/WorkPlaces", controller.ListWorkPlace)
 			protected.GET("/RepairRequestsNotInWorkReceive", controller.ListRepairRequestNotINWorkReceive)
+			protected.DELETE("/WorkReceives_delete", controller.DeleteLastestWorkReceive)
 			// ohm
 			protected.GET("/work_receives", controller.ListWorkReceiveWithNoDuplicateID)
 			//bang

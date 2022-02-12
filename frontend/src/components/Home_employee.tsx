@@ -98,7 +98,7 @@ export default function HomeEmployee() {
 
       <Container className={classes.container} maxWidth="lg">
       <Typography component="div" style={{ height: '5vh' }} />
-        <h1 style={{ textAlign: "center" }}>ระบบบันทึกประวัติการซ่อมคอมพิวเตอร์</h1>
+        <h1 style={{ textAlign: "center" }}>ระบบแจ้งซ่อมคอมพิวเตอร์</h1>
         <Typography component="div" style={{ height: '1vh' }} />
 
 

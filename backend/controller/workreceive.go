@@ -141,3 +141,13 @@ func ListRecieptHistoryNotINWorkReceive(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"data": workrecive})
 }
+
+// DELETE /repair_histories/:id-lastest
+func DeleteLastestWorkReceive(c *gin.Context) {
+
+	if tx := entity.DB().Exec("DELETE FROM work_receives WHERE ID=(SELECT MAX(id) FROM work_receives)"); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "can't delete lastest Work Receive"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"data": "Delete Successfully"})
+}

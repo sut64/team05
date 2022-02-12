@@ -25,6 +25,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 
 import TableRow from "@material-ui/core/TableRow";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 
 import moment from 'moment';
 
@@ -66,9 +68,23 @@ function History() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [CheckPaidby, setCheckPaidby] = React.useState<EmployeeInterface>();
+  const [errorMessagedelete, setErrorMessagedelete] = useState("");
+  const [successdelete, setSuccessdelete] = useState(false);
+  const [errordelete, setErrordelete] = useState(false);
 
   const apiUrl = "http://localhost:8080";
+
+  const Alert = (props: AlertProps) => {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  };
+
+  const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setSuccessdelete(false);
+    setErrordelete(false);
+  };
 
   const requestOptions = {
 
@@ -95,12 +111,12 @@ function History() {
     .then((response) => response.json())
     .then((res) => {
         if(res.data) {
-          setSuccess(true);
-          setErrorMessage("");
+          setSuccessdelete(true);
+          setErrorMessagedelete("");
         }
         else {
           setError(true);
-          setErrorMessage(res.error);
+          setErrorMessagedelete(res.error);
         }
     })
   }
@@ -132,9 +148,15 @@ function History() {
   return (
     <div>
       <NavBar />
+
       <Typography component="div" style={{ height: '12vh' }} />
 
       <Container className={classes.container} maxWidth="md">
+      <Snackbar open={successdelete} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success">
+          ลบข้อมูลสำเร็จ
+        </Alert>
+      </Snackbar>
         <Box display="flex">
           <Box flexGrow={1}>
             <Typography

@@ -435,24 +435,6 @@
         ["css=.MuiSvgIcon-fontSizeSmall", "css:finder"]
       ],
       "value": ""
-    }, {
-      "id": "e7643896-f92f-4181-a033-aa2d05c3cbe1",
-      "comment": "",
-      "command": "mouseOut",
-      "target": "css=.MuiSvgIcon-fontSizeSmall",
-      "targets": [
-        ["css=.MuiSvgIcon-fontSizeSmall", "css:finder"]
-      ],
-      "value": ""
-    }, {
-      "id": "936aec49-52db-4aea-b868-8f14303caebd",
-      "comment": "",
-      "command": "click",
-      "target": "css=.MuiSvgIcon-fontSizeSmall",
-      "targets": [
-        ["css=.MuiSvgIcon-fontSizeSmall", "css:finder"]
-      ],
-      "value": ""
     }]
   }, {
     "id": "3eb2935e-0851-4ac4-a75c-24c33a449c86",

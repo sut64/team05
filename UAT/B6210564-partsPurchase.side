@@ -24,7 +24,7 @@
       "id": "e4770267-0990-4cba-94f4-468a4f582006",
       "comment": "",
       "command": "mouseOver",
-      "target": "css=.makeStyles-menuButton-27 path",
+      "target": "css=.makeStyles-menuButton-30 path",
       "targets": [
         ["css=.makeStyles-menuButton-27 path", "css:finder"]
       ],
@@ -33,7 +33,7 @@
       "id": "04551137-72e5-4c66-b518-c06f8cc98c2e",
       "comment": "",
       "command": "click",
-      "target": "css=.makeStyles-menuButton-27 path",
+      "target": "css=.makeStyles-menuButton-30 path",
       "targets": [
         ["css=.makeStyles-menuButton-27 path", "css:finder"]
       ],
@@ -42,7 +42,7 @@
       "id": "84dfff2d-481e-4e18-b542-ecc1c37ab044",
       "comment": "",
       "command": "mouseOut",
-      "target": "css=.makeStyles-menuButton-27 path",
+      "target": "css=.makeStyles-menuButton-30 path",
       "targets": [
         ["css=.makeStyles-menuButton-27 path", "css:finder"]
       ],
@@ -51,7 +51,7 @@
       "id": "d19dd52f-58d3-453c-8188-39c99da93cbc",
       "comment": "",
       "command": "click",
-      "target": "css=.makeStyles-a-34:nth-child(3) .MuiTypography-root",
+      "target": "css=.makeStyles-a-37:nth-child(3) .MuiTypography-root",
       "targets": [
         ["css=.makeStyles-a-34:nth-child(3) .MuiTypography-root", "css:finder"],
         ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[3]/div/div[2]/span", "xpath:idRelative"],
@@ -294,17 +294,6 @@
       ],
       "value": "122.23"
     }, {
-      "id": "64d66212-8f07-47ce-8b51-d3096ccdb547",
-      "comment": "",
-      "command": "click",
-      "target": "css=.makeStyles-paper-52",
-      "targets": [
-        ["css=.makeStyles-paper-52", "css:finder"],
-        ["xpath=//div[@id='root']/div/div/div[4]", "xpath:idRelative"],
-        ["xpath=//div[4]", "xpath:position"]
-      ],
-      "value": ""
-    }, {
       "id": "4dfd6d4a-5bf3-4c62-b947-94d592d057b2",
       "comment": "",
       "command": "click",
@@ -360,7 +349,7 @@
       "id": "47b00e88-329b-469a-a471-9b8e5e098bf2",
       "comment": "",
       "command": "click",
-      "target": "css=.makeStyles-menuButton-27 path",
+      "target": "css=.makeStyles-menuButton-30 path",
       "targets": [
         ["css=.makeStyles-menuButton-27 path", "css:finder"]
       ],
@@ -369,7 +358,7 @@
       "id": "f8fcea42-27b2-45dc-a69a-c832d3d7978b",
       "comment": "",
       "command": "click",
-      "target": "css=.makeStyles-a-34:nth-child(3) .MuiTypography-root",
+      "target": "css=.makeStyles-a-37:nth-child(3) .MuiTypography-root",
       "targets": [
         ["css=.makeStyles-a-34:nth-child(3) .MuiTypography-root", "css:finder"],
         ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[3]/div/div[2]/span", "xpath:idRelative"],
@@ -673,7 +662,7 @@
       "id": "6c122e2f-e45c-4259-9735-2b6947f183a1",
       "comment": "",
       "command": "click",
-      "target": "css=.makeStyles-menuButton-27 .MuiSvgIcon-root",
+      "target": "css=.makeStyles-menuButton-30 .MuiSvgIcon-root",
       "targets": [
         ["css=.makeStyles-menuButton-27 .MuiSvgIcon-root", "css:finder"]
       ],
@@ -682,7 +671,7 @@
       "id": "dcc847d8-c4bd-4f98-bb41-60a62b985232",
       "comment": "",
       "command": "click",
-      "target": "css=.makeStyles-a-34:nth-child(3) .MuiTypography-root",
+      "target": "css=.makeStyles-a-37:nth-child(3) .MuiTypography-root",
       "targets": [
         ["css=.makeStyles-a-34:nth-child(3) .MuiTypography-root", "css:finder"],
         ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[3]/div/div[2]/span", "xpath:idRelative"],
@@ -951,7 +940,7 @@
       "id": "3990ab26-2880-4c1e-a0f2-010f25d3bc75",
       "comment": "",
       "command": "click",
-      "target": "css=.makeStyles-menuButton-27",
+      "target": "css=.makeStyles-menuButton-30",
       "targets": [
         ["css=.makeStyles-menuButton-27", "css:finder"],
         ["xpath=//button[@type='button']", "xpath:attributes"],
@@ -963,7 +952,7 @@
       "id": "408a1791-e1c4-46b1-aff8-4a722730f703",
       "comment": "",
       "command": "mouseOver",
-      "target": "css=.makeStyles-a-34:nth-child(3) .MuiTypography-root",
+      "target": "css=.makeStyles-a-37:nth-child(3) .MuiTypography-root",
       "targets": [
         ["css=.makeStyles-a-34:nth-child(3) .MuiTypography-root", "css:finder"],
         ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[3]/div/div[2]/span", "xpath:idRelative"],
@@ -975,7 +964,7 @@
       "id": "113ddc69-1548-4209-a3f8-25ac215d196d",
       "comment": "",
       "command": "click",
-      "target": "css=.makeStyles-a-34:nth-child(3) .MuiTypography-root",
+      "target": "css=.makeStyles-a-37:nth-child(3) .MuiTypography-root",
       "targets": [
         ["css=.makeStyles-a-34:nth-child(3) .MuiTypography-root", "css:finder"],
         ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[3]/div/div[2]/span", "xpath:idRelative"],
@@ -1258,7 +1247,7 @@
       "id": "2bd7e731-043b-4598-9d9d-b244dd3b9e9d",
       "comment": "",
       "command": "click",
-      "target": "css=.makeStyles-menuButton-27 .MuiSvgIcon-root",
+      "target": "css=.makeStyles-menuButton-30 .MuiSvgIcon-root",
       "targets": [
         ["css=.makeStyles-menuButton-27 .MuiSvgIcon-root", "css:finder"]
       ],
@@ -1267,7 +1256,7 @@
       "id": "7afd8fa1-e2e6-4fbb-bb8d-74fc4d841319",
       "comment": "",
       "command": "click",
-      "target": "css=.makeStyles-a-34:nth-child(3) .MuiTypography-root",
+      "target": "css=.makeStyles-a-37:nth-child(3) .MuiTypography-root",
       "targets": [
         ["css=.makeStyles-a-34:nth-child(3) .MuiTypography-root", "css:finder"],
         ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[3]/div/div[2]/span", "xpath:idRelative"],

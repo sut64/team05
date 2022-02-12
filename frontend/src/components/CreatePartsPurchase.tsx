@@ -89,7 +89,7 @@ export default function CreatePartsPurchase() {
     const [errorMessage, setErrorMessage] = useState("");
 
     const handleDateChange = (date: Date | null) => {
-        console.log(date);
+        //console.log(date);
         setSelectedDate(date);
     };
     const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
@@ -199,10 +199,11 @@ export default function CreatePartsPurchase() {
                 if (res.data) {
                     setSuccess(true);
                     setErrorMessage("")
+                    //console.log(res.data)
                 } else {
                     setError(true);
                     setErrorMessage(res.error)
-                    console.log(res)
+                    //console.log(res)
                 }
             });
     }

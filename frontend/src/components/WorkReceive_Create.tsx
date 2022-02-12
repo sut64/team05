@@ -513,7 +513,7 @@ return (
             variant="contained"
                 color="secondary"
             >
-              ลบข้อมุลล่าสุด
+              ลบข้อมูลล่าสุด
             </Button>
             </Box>
             </Grid>

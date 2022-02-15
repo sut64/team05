@@ -317,30 +317,34 @@ func SetupDatabase() {
 	db.Model(&WorkReceive{}).Create(&work4)
 
 	//RecieptHistory
+	payno := PaidBy{
+		Name: "None",
+	}
+	db.Model(&PaidBy{}).Create(&payno)
 	pay1 := PaidBy{
-		Name: "banking",
+		Name: "Banking",
 	}
 	db.Model(&PaidBy{}).Create(&pay1)
 
 	pay2 := PaidBy{
-		Name: "prompay",
+		Name: "Prompay",
 	}
 	db.Model(&PaidBy{}).Create(&pay2)
 
 	pay3 := PaidBy{
-		Name: "paypal",
+		Name: "Paypal",
 	}
 	db.Model(&PaidBy{}).Create(&pay3)
 
 	pay4 := PaidBy{
-		Name: "cash",
+		Name: "Cash",
 	}
 	db.Model(&PaidBy{}).Create(&pay4)
 
 	reciept1 := RecieptHistory{
 		RecieptCode:  "R1234",
 		RecieptPrice: 1000.50,
-		RecieptDate:  time.Now(),
+		RecieptDate:  time.Date(2022, 01, 30, 10, 30, 00, 000, time.UTC),
 		Employee:     Employee1,
 		WorkReceive:  work1,
 		PaidBy:       pay1,
@@ -350,7 +354,7 @@ func SetupDatabase() {
 	reciept2 := RecieptHistory{
 		RecieptCode:  "R4321",
 		RecieptPrice: 5000.25,
-		RecieptDate:  time.Now(),
+		RecieptDate:  time.Date(2022, 02, 10, 14, 20, 00, 000, time.UTC),
 		Employee:     Employee2,
 		WorkReceive:  work2,
 		PaidBy:       pay2,

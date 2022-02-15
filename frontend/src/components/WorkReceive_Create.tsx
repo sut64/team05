@@ -329,7 +329,7 @@ return (
             
            > 
                              <option value= {0} key= {0}>
-                  โปรดเลือกงานที่ต้องการับ
+                  โปรดเลือกงานที่ต้องการรับ
                   </option>
                 {repairRequest.map((item: RepairRequestsInterface) => (
                   <option value={item.ID} key={item.ID}>

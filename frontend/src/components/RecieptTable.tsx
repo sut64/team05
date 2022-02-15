@@ -198,13 +198,13 @@ function History() {
                 <TableCell align="center" width="5%">
                   Order
                 </TableCell>
-                <TableCell align="center" width="20%">
+                <TableCell align="center" width="25%">
                   Employee
                 </TableCell>
-                <TableCell align="center" width="15%">
+                <TableCell align="center" width="10%">
                   CodeWork
                 </TableCell>
-                <TableCell align="center" width="15%">
+                <TableCell align="center" width="10%">
                   Payment
                 </TableCell>
                 <TableCell align="center" width="10%">
@@ -213,10 +213,10 @@ function History() {
                 <TableCell align="center" width="15%">
                   ReciptCode
                 </TableCell>
-                <TableCell align="center" width="15%">
+                <TableCell align="center" width="20%">
                   Time
                 </TableCell>
-                <TableCell align="center" width="10%">
+                <TableCell align="center" width="5%">
                   Delete
                 </TableCell>
                 
@@ -225,13 +225,13 @@ function History() {
             <TableBody>
               {RecieptHistories.map((item: RecieptHistorysInterface, index) => (
                 <TableRow key={item.ID}>
-                  <TableCell align="center" width="10%">{item.ID}</TableCell>
-                  <TableCell align="center" width="10%">{item.Employee.Name}</TableCell>
+                  <TableCell align="center" width="5%">{item.ID}</TableCell>
+                  <TableCell align="center" width="25%">{item.Employee.Name}</TableCell>
                   <TableCell align="center" width="10%">{item.WorkReceive.WorkCode}</TableCell>
-                  <TableCell align="center" width="15%">{item.PaidBy.Name}</TableCell>
+                  <TableCell align="center" width="10%">{item.PaidBy.Name}</TableCell>
                   <TableCell align="center">{item.RecieptPrice}</TableCell>
                   <TableCell align="center">{item.RecieptCode}</TableCell>
-                  <TableCell align="center">{format((new Date(item.RecieptDate)), 'dd MMMM yyyy hh:mm a')}</TableCell> 
+                  <TableCell align="center" width="20%">{format((new Date(item.RecieptDate)), 'dd MMMM yyyy hh:mm a')}</TableCell> 
                   <TableCell align="center"><IconButton aria-label="delete"  
                                                 onClick={() => DeleteRecieptHistory(index)}> 
                                                 <DeleteIcon />

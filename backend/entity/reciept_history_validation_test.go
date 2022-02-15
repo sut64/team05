@@ -30,16 +30,30 @@ func TestRecieptCodeMustBeInvalidPattern(t *testing.T) {
 	g := NewGomegaWithT(t)
 	fixtures := []string{
 		"X6789",
+		"A1234",
+		"B1245",
+
 		"RA999",
+		"R9A99",
+		"R99A9",
+		"R999A",
+
+		"r1234",
+		"rA234",
+		"r1A34",
+		"r12A4",
+		"r123A",
+
 		"R12345",
 		"R123456",
 		"R123",
+
 		"R*123",
-		"A1234",
-		"r1234",
 		"*1234",
 		"/1234",
-		"-A1234",
+		"-A134",
+
+		"Rr1234",
 		"R-1234",
 		"R!234",
 		"R.1234",

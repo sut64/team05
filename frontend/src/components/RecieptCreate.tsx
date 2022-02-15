@@ -336,7 +336,6 @@ function ReciptHistory() {
           }}
         >
           <MenuItem aria-label="None" value="">
-                None
                 </MenuItem>
                 {PaidBies.map((item: PaidBiesInterface) => (
                   <MenuItem value={item.ID} key={item.ID}>

@@ -175,7 +175,7 @@ type Warrantee struct {
 	ID_Warrantee   string    `gorm:"uniqueIndex"`
 	EndOfWarrantee time.Time `valid:"future~End of Warrantee must be in the future"`
 	WarrantyPart   string    `valid:"required~Warrantee Part cannot be blank, noonlyspace~Warrantee Part must not caontain only space"`
-	MaximumAmount  float32   `sql:"type:decimal(10,2);" valid:"nonnegative~Maximum Amount cannot be negative number, required~Maximum Amount must not be blank"`
+	MaximumAmount  float32   `sql:"type:decimal(10,2);" valid:"nonnegative~Maximum Amount cannot be negative number, required~Maximum Amount must not be zero or blank"`
 
 	// WorkReceiveID is foreignkey
 	WorkReceiveID *uint       `gorm:"uniqueIndex"`

@@ -2,7 +2,6 @@ package entity
 
 import (
 	"testing"
-	// "fmt"
 	"time"
 
 	"github.com/asaskevich/govalidator"
@@ -39,7 +38,7 @@ func TestWorkRiciveWagesInRange(t *testing.T) {
 	}
 	for _, fixture := range fixtures {
 		work := WorkReceive{
-			FinishedDate: time.Date(2023, 11, 19, 17, 30, 00, 000, time.UTC),
+			FinishedDate: time.Now().AddDate(0, 0, 1),
 			Wages:        fixture,
 			WorkCode:     "W1234",
 		}
@@ -62,7 +61,7 @@ func TestWorkRiceiveDateNotinPast(t *testing.T) {
 	g := NewGomegaWithT(t)
 
 	work := WorkReceive{
-		FinishedDate: time.Date(2021, 11, 19, 17, 30, 00, 000, time.UTC),
+		FinishedDate: time.Now().AddDate(0, 0, -1),
 		Wages:        150.50,
 		WorkCode:     "W1234",
 	}
@@ -87,12 +86,13 @@ func TestWorkRiceiveWorkCodeMatchFormat(t *testing.T) {
 		"W123",
 		"W12345",
 		"A1234",
-		"WABC",
+		"WABCฏ",
 		"W123B",
+		"12345",
 	}
 	for _, fixture := range fixtures {
 		work := WorkReceive{
-			FinishedDate: time.Date(2023, 11, 19, 17, 30, 00, 000, time.UTC),
+			FinishedDate: time.Now().AddDate(0, 0, 1),
 			Wages:        150.50,
 			WorkCode:     fixture,
 		}

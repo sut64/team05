@@ -115,7 +115,7 @@ func TestPurchaseTimePurchase(t *testing.T) {
 		Parts: "fwe", 
 		Quantity: 2, 
 		PartsPrice: 321.12,
-		PurchaseTime: time.Date(2022,2,20,12,00,00,000,time.UTC),//ผิด
+		PurchaseTime: time.Now().AddDate(0, 0, 1),//ผิด
 	}
 
 	ok, err := govalidator.ValidateStruct(purchase)

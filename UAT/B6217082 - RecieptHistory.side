@@ -1332,6 +1332,274 @@
       ],
       "value": "บันทึกข้อมูลไม่สำเร็จ: RecieptDate must be in the past and present"
     }]
+  }, {
+    "id": "05bbc1f9-201b-4a70-9d99-a7b3f3409b36",
+    "name": "B6217082 - ตรวจสอบข้อมูล WorkCode ต้องไม่เป็นค่าว่าง",
+    "commands": [{
+      "id": "2c672435-d2c0-44d6-82b4-d763b2d3da33",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a7860183-bcf2-41bb-9757-deb562638aa7",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b6eb0571-39a5-493b-9983-bab5c26a2825",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-menuButton-30 .MuiSvgIcon-root",
+      "targets": [
+        ["css=.makeStyles-menuButton-30 .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "16567633-9b31-4744-82ca-f94593903403",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-a-37:nth-child(4) .MuiTypography-root",
+      "targets": [
+        ["css=.makeStyles-a-37:nth-child(4) .MuiTypography-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div/div/ul/a[4]/div/div[2]/span", "xpath:idRelative"],
+        ["xpath=//a[4]/div/div[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'ระบบบันทึกใบเสร็จรับเงิน')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "eb39558c-ecb8-490d-ad25-c5370cb3e379",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'สร้างประวัติใบเสร็จรับเงิน')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a9e6303d-ca01-4b54-80e9-a0e566fb7d1a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'สร้างประวัติใบเสร็จรับเงิน')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "eccdbf3d-0089-4a89-b244-c12bdab7e3b5",
+      "comment": "",
+      "command": "mouseDown",
+      "target": "css=.MuiInputBase-root > #WorkReceiveID",
+      "targets": [
+        ["css=.MuiInputBase-root > #WorkReceiveID", "css:finder"],
+        ["xpath=//div[@id='WorkReceiveID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[4]/div[2]/div[2]/div[2]/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[2]/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1bceb330-dc44-4970-a03d-905fa5365b7b",
+      "comment": "",
+      "command": "mouseUp",
+      "target": "css=.MuiMenu-list",
+      "targets": [
+        ["css=.MuiMenu-list", "css:finder"],
+        ["xpath=//div[@id='menu-WorkReceiveID']/div[3]/ul", "xpath:idRelative"],
+        ["xpath=//div[3]/ul", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b7687830-3521-4793-9dba-a946f1945155",
+      "comment": "",
+      "command": "click",
+      "target": "css=body",
+      "targets": [
+        ["css=body", "css:finder"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e6473723-6911-4db9-99e7-6d9bb0f4f574",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiListItem-root:nth-child(2)",
+      "targets": [
+        ["css=.MuiListItem-root:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='menu-WorkReceiveID']/div[3]/ul/li", "xpath:idRelative"],
+        ["xpath=//li", "xpath:position"],
+        ["xpath=//li[contains(.,'W1234')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "08f4886d-1601-451e-a44b-343fbc2e8f4a",
+      "comment": "",
+      "command": "mouseDown",
+      "target": "css=.MuiInputBase-root > #PaidByID",
+      "targets": [
+        ["css=.MuiInputBase-root > #PaidByID", "css:finder"],
+        ["xpath=//div[@id='PaidByID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[4]/div[2]/div[3]/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c0d6a13c-2e15-4f89-8a1d-1a07cd346564",
+      "comment": "",
+      "command": "mouseUp",
+      "target": "css=#menu-PaidByID > div:nth-child(1)",
+      "targets": [
+        ["css=#menu-PaidByID > div:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='menu-PaidByID']/div", "xpath:idRelative"],
+        ["xpath=//body/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "36a161fa-7ce0-4633-b1a0-e57d33b4c553",
+      "comment": "",
+      "command": "click",
+      "target": "css=body",
+      "targets": [
+        ["css=body", "css:finder"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6ce1e3ff-2719-493b-b550-6c6bc6337c3d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiListItem-root:nth-child(2)",
+      "targets": [
+        ["css=.MuiListItem-root:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='menu-PaidByID']/div[3]/ul/li[2]", "xpath:idRelative"],
+        ["xpath=//li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'None')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1dd6247b-21aa-4544-bbff-10db92a872b3",
+      "comment": "",
+      "command": "click",
+      "target": "id=RecieptPrice",
+      "targets": [
+        ["id=RecieptPrice", "id"],
+        ["name=RecieptPrice", "name"],
+        ["css=#RecieptPrice", "css:finder"],
+        ["xpath=//input[@id='RecieptPrice']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[4]/div[2]/div[4]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3eaa13e7-b5d3-4d7e-b225-2fc3845a28ac",
+      "comment": "",
+      "command": "type",
+      "target": "id=RecieptPrice",
+      "targets": [
+        ["id=RecieptPrice", "id"],
+        ["name=RecieptPrice", "name"],
+        ["css=#RecieptPrice", "css:finder"],
+        ["xpath=//input[@id='RecieptPrice']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[4]/div[2]/div[4]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "0"
+    }, {
+      "id": "80427bbd-8745-40a9-9cfa-b14e63643ce5",
+      "comment": "",
+      "command": "click",
+      "target": "id=RecieptCode",
+      "targets": [
+        ["id=RecieptCode", "id"],
+        ["name=RecieptCode", "name"],
+        ["css=#RecieptCode", "css:finder"],
+        ["xpath=//input[@id='RecieptCode']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[4]/div[2]/div[5]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9f3bfa12-9201-498d-a684-748feedad1d4",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiInputAdornment-root path:nth-child(1)",
+      "targets": [
+        ["css=.MuiInputAdornment-root path:nth-child(1)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "bf810823-8872-4692-bbe3-854693593262",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiInputAdornment-root path:nth-child(1)",
+      "targets": [
+        ["css=.MuiInputAdornment-root path:nth-child(1)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "0228fd51-2c24-4dce-858e-9571162c915b",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiInputAdornment-root path:nth-child(1)",
+      "targets": [
+        ["css=.MuiInputAdornment-root path:nth-child(1)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "4ff1a3ac-d409-42ac-82cb-fefd1abd7885",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/button[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b324a1f3-8527-4544-9159-22b71028bdab",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-containedPrimary",
+      "targets": [
+        ["css=.MuiButton-containedPrimary", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[4]/div[2]/div[7]/button", "xpath:idRelative"],
+        ["xpath=//div[7]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'บันทึกข้อมูล')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "93bb9dcd-c3f1-4104-b52b-7911ae886f27",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-root",
+      "targets": [
+        ["css=.MuiAlert-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3d509315-88c8-4be4-be7b-13f693661c6e",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกข้อมูลไม่สำเร็จ: RecieptCode: does not validate as matches(^[R]\\d{4}$)"
+    }]
   }],
   "suites": [{
     "id": "7820cad1-e39a-4d13-a80f-19e91a2d3598",

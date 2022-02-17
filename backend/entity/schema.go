@@ -156,8 +156,8 @@ type Difficulty struct {
 
 type RepairHistory struct {
 	gorm.Model
-	Problem   string `valid:"stringlength(5|50)~Problem must be longer than 5 characters"`
-	Solution  string `valid:"stringlength(5|50)~Solution must be longer than 5 characters"`
+	Problem   string `valid:"stringlength(5|100)~Problem must be longer than 5 characters, required~Problem cannot be blank"`
+	Solution  string `valid:"stringlength(5|100)~Solution must be longer than 5 characters, required~Solution cannot be blank"`
 	Success   *bool
 	Timestamp time.Time `valid:"timelength~Timestamp must be in present"`
 

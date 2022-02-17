@@ -68,6 +68,32 @@ func TestProblemLength(t *testing.T) {
 
 }
 
+//ตรวจสอบปัญหา Problem ต้องไม่เป็นค่าว่าง
+func TestProblemNotBlank(t *testing.T) {
+	g := NewGomegaWithT(t)
+	v := true
+
+	repairHistory := RepairHistory{
+		Problem:   "", //ผิด เป็นค่าว่าง
+		Solution:  "ทำการเบิก monitor เพื่อซ่อม",
+		Success:   &v,
+		Timestamp: time.Now(),
+	}
+
+	//ตรวจสอบด้วย govalidator
+	ok, err := govalidator.ValidateStruct(repairHistory)
+
+	//ok ต้องไม่เป็นค่า true แปลว่าต้องจับ error ได้
+	g.Expect(ok).ToNot(BeTrue())
+
+	//err ต้องไม่เป็นค่า nil แปลว่าต้องจับ error ได้
+	g.Expect(err).ToNot(BeNil())
+
+	//err.Error ต้องมี error message แสดงออกมา
+	g.Expect(err.Error()).To(Equal("Problem cannot be blank"))
+
+}
+
 //ตรวจสอบค่าความยาวของ string Solution ถ้าต่ำกว่า 5 อักษรต้องเจอ Error
 func TestSolutionLength(t *testing.T) {
 	g := NewGomegaWithT(t)
@@ -83,7 +109,7 @@ func TestSolutionLength(t *testing.T) {
 	//ข้อมูลต้องถูกหมดทุก field
 	for _, fixture := range fixtures {
 		repairHistory := RepairHistory{
-			Problem:   "ก็ซ่อมๆไปเหอะหน่าแหม่ซีเรียสจริงๆเร้ยย",
+			Problem:   "monitor จอเสีย",
 			Solution:  fixture, //ผิด
 			Success:   &v,
 			Timestamp: time.Now(),
@@ -102,6 +128,32 @@ func TestSolutionLength(t *testing.T) {
 		g.Expect(err.Error()).To(Equal("Solution must be longer than 5 characters"))
 
 	}
+}
+
+//ตรวจสอบการแก้ปัญหา Solution ต้องไม่เป็นค่าว่าง
+func TestSolutionNotBlank(t *testing.T) {
+	g := NewGomegaWithT(t)
+	v := true
+
+	repairHistory := RepairHistory{
+		Problem:   "monitor จอเสีย",
+		Solution:  "", //ผิด เป็นค่าว่าง
+		Success:   &v,
+		Timestamp: time.Now(),
+	}
+
+	//ตรวจสอบด้วย govalidator
+	ok, err := govalidator.ValidateStruct(repairHistory)
+
+	//ok ต้องไม่เป็นค่า true แปลว่าต้องจับ error ได้
+	g.Expect(ok).ToNot(BeTrue())
+
+	//err ต้องไม่เป็นค่า nil แปลว่าต้องจับ error ได้
+	g.Expect(err).ToNot(BeNil())
+
+	//err.Error ต้องมี error message แสดงออกมา
+	g.Expect(err.Error()).To(Equal("Solution cannot be blank"))
+
 }
 
 //ตรวจสอบค่าความสำเร็จงานซ่อม Success ต้องไม่เป็นค่าว่าง

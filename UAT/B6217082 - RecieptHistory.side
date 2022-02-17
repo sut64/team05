@@ -949,7 +949,7 @@
         ["xpath=//div[@id='root']/div/div/div[2]/div/div[2]", "xpath:idRelative"],
         ["xpath=//div[2]/div/div[2]", "xpath:position"]
       ],
-      "value": "บันทึกข้อมูลไม่สำเร็จ: RecieptPrice must be >= 0"
+      "value": "บันทึกข้อมูลไม่สำเร็จ: RecieptPrice must be equal or greater than 0"
     }]
   }, {
     "id": "fecc0adf-f1c1-4f31-9511-3b378cfa2177",
@@ -1330,7 +1330,7 @@
         ["xpath=//div[@id='root']/div/div/div[2]/div/div[2]", "xpath:idRelative"],
         ["xpath=//div[2]/div/div[2]", "xpath:position"]
       ],
-      "value": "บันทึกข้อมูลไม่สำเร็จ: RecieptDate must be in the pastandpresent"
+      "value": "บันทึกข้อมูลไม่สำเร็จ: RecieptDate must be in the past and present"
     }]
   }],
   "suites": [{

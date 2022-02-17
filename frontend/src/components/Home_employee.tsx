@@ -109,7 +109,7 @@ export default function HomeEmployee() {
                 title="ระบบบันทึกการขอแจ้งซ่อมคอมพิวเตอร์"
                 subheader="นายชินาธิป ชนะราวี"
               />
-              <CardActionArea>
+         
                 <CardMedia
                   component="img"
                   alt="Contemplative Reptile"
@@ -127,7 +127,7 @@ export default function HomeEmployee() {
                   ซึ่งจะเก็บไว้เป็นงานแจ้งซ่อมไว้เพื่อทำการซ่อมคอมพิวเตอร์ต่อไป
                   </Typography>
                 </CardContent>
-              </CardActionArea>
+           
               <IconButton
                 className={clsx(classes.expand, {
                   [classes.expandOpen]: expanded1,
@@ -158,7 +158,7 @@ export default function HomeEmployee() {
                 subheader="นายภานุวัฒน์ สุวรรณ์"
               />
               <br />
-              <CardActionArea>
+            
                 <CardMedia
                   component="img"
                   alt="Contemplative Reptile"
@@ -179,7 +179,7 @@ export default function HomeEmployee() {
                     
                   </Typography>
                 </CardContent>
-              </CardActionArea>
+        
               <IconButton
                 className={clsx(classes.expand, {
                   [classes.expandOpen]: expanded2,
@@ -208,7 +208,7 @@ export default function HomeEmployee() {
                 title="ระบบบันทึกการใช้อะไหล่ในการซ่อมคอมพิวเตอร์"
                 subheader="นายภัทรพงษ์ พิมหอม"
               />
-              <CardActionArea>
+           
                 <CardMedia
                   component="img"
                   alt="Contemplative Reptile"
@@ -225,7 +225,7 @@ export default function HomeEmployee() {
                     ของการแจ้งซ่อม, ช่างที่รับซ่อมงานนี้ เพื่อให้ง่ายต่อการเลือกงานที่ช่างซ่อมคอมพิวเตอร์มีในระบบ
                   </Typography>
                 </CardContent>
-              </CardActionArea>
+         
               <IconButton
                 className={clsx(classes.expand, {
                   [classes.expandOpen]: expanded3,
@@ -254,7 +254,7 @@ export default function HomeEmployee() {
                 title="ระบบบันทึกใบเสร็จรับเงิน"
                 subheader="นายบุญญฤทธิ์ สุขมงคล"
               />
-              <CardActionArea>
+          
                 <CardMedia
                   component="img"
                   height="200"
@@ -275,7 +275,7 @@ export default function HomeEmployee() {
                   <br /><br /><br />
                   </Typography>
                 </CardContent>
-              </CardActionArea>
+           
               <IconButton
                 className={clsx(classes.expand, {
                   [classes.expandOpen]: expanded4,
@@ -304,7 +304,7 @@ export default function HomeEmployee() {
                 title="ระบบบันทึกข้อมูลรับประกันการซ่อม"
                 subheader="นายรชพล พงศ์กิตติศักดิ์"
               />
-              <CardActionArea>
+              
                 <CardMedia
                   component="img"
                   alt="Contemplative Reptile"
@@ -326,7 +326,7 @@ export default function HomeEmployee() {
                     <br/><br/>
                   </Typography>
                 </CardContent>
-              </CardActionArea>
+         
               <IconButton
                 className={clsx(classes.expand, {
                   [classes.expandOpen]: expanded5,
@@ -356,7 +356,7 @@ export default function HomeEmployee() {
                 title="ระบบบันทึกการซ่อมคอมพิวเตอร์"
                 subheader="นางสาวรินรดา วัฒนชนสรณ์"
               />
-              <CardActionArea>
+         
                 <CardMedia
                   component="img"
                   alt="RepairHistory"
@@ -376,7 +376,7 @@ export default function HomeEmployee() {
                   <br /><br /><br /><br /><br />
                   </Typography>
                 </CardContent>
-              </CardActionArea >
+         
               <IconButton
                 className={clsx(classes.expand, {
                   [classes.expandOpen]: expanded6,

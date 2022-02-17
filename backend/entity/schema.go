@@ -108,8 +108,8 @@ type PaidBy struct {
 type RecieptHistory struct {
 	gorm.Model
 	RecieptCode  string    `valid:"matches(^[R]\\d{4}$)"`
-	RecieptPrice float32   `valid:"positiveFloat~RecieptPrice must be >= 0"`
-	RecieptDate  time.Time `valid:"pastandpresent~RecieptDate must be in the pastandpresent"`
+	RecieptPrice float32   `valid:"positiveFloat~RecieptPrice must equal or greater than 0"`
+	RecieptDate  time.Time `valid:"pastandpresent~RecieptDate must be in the past and present"`
 
 	EmployeeID *uint
 	Employee   Employee `valid:"-"`

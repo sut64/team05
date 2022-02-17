@@ -36,7 +36,6 @@ function Warrantee() {
         }
         setSuccess(false);
         setError(false);
-        // window.location.reload();
     }
 
     const apiUrl = "http://localhost:8080";

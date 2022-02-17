@@ -11,9 +11,6 @@ import { WarranteeTypeInterface } from "../models/IWarranteeType";
 import { EmployeeInterface } from "../models/IEmployee";
 import NavBar from "./NavBar";
 import moment from "moment";
-import { datePickerDefaultProps } from "@material-ui/pickers/constants/prop-types";
-import { time } from "console";
-
 
 function Alert(props: AlertProps) {
     return <MuiAlert elevation={6} variant="filled" {...props}/>
@@ -25,7 +22,6 @@ const useStyles = makeStyles((theme:Theme) => createStyles({
     paper: {
         padding: theme.spacing(2), 
         color: theme.palette.text.secondary,
-        // marginTop: theme.spacing(2),
         marginBottom: theme.spacing(3),
     },
     table: {minWidth: 650},
@@ -68,7 +64,6 @@ function WarranteeCreate() {
         }
         setSuccess(false);
         setError(false);
-        // window.location.reload();
     }
 
     const handleInputChange = (event: React.ChangeEvent<{name?: string; value: any}>) => {
@@ -195,7 +190,7 @@ function WarranteeCreate() {
             warrantee.WorkReceiveID = workReceive[0].ID;
         }
         // handle of warranty part data, in case select wage insurance
-        if (warrantee.WarrantyPart === undefined && disable || disable) {
+        if ((warrantee.WarrantyPart === undefined && disable) || disable) {
             warrantee.WarrantyPart = "ไม่มี";
         }
         
@@ -464,7 +459,7 @@ function WarranteeCreate() {
                                             type="string"
                                             size="medium" 
                                             multiline
-                                            maxRows={2}                           
+                                            maxRows={2}
                                             value={warrantee.WarrantyPart || ""}
                                             onChange={handleInputChange}
                                     />

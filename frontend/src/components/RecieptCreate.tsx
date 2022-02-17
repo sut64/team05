@@ -349,7 +349,8 @@ function ReciptHistory() {
           <Grid item xs={6}>
            <FormControl fullWidth variant="outlined">
              <TextField id="RecieptPrice" 
-              label="Price" 
+              label="Price"
+              defaultValue="0" 
               variant="outlined"
               size="medium"
               inputProps={{

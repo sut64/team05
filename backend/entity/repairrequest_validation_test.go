@@ -28,11 +28,33 @@ func TestRepairRequestPass(t *testing.T) {
 	// err ต้องเป็น nil แปลว่าไม่มี error
 	g.Expect(err).To(BeNil())
 }
-func TestDeviceNotBlankAndMustLess(t *testing.T) {
+func TestDeviceNotBlank(t *testing.T) {
 	g := NewGomegaWithT(t)
 
 	repairrequest := RepairRequest{
 		Device:      "",
+		Lifetime:    12,
+		Issue:       "จอฟ้า",
+		RequestDate: time.Date(2000, 1, 1, 0, 0, 0, 0, time.UTC),
+	}
+
+	// ตรวจสอบด้วย govalidator
+	ok, err := govalidator.ValidateStruct(repairrequest)
+
+	// ok ต้องไม่เป็นค่า true แปลว่าต้องจับ error ได้
+	g.Expect(ok).ToNot(BeTrue())
+
+	// err ต้องไม่เป็นค่า nil แปลว่าต้องจับ error ได้
+	g.Expect(err).ToNot(BeNil())
+
+	// err.Error ต้องมี error message แสดงออกมา
+	g.Expect(err.Error()).To(Equal("Device cannot be blank and less than 100 characters"))
+}
+func TestDeviceMustLess(t *testing.T) {
+	g := NewGomegaWithT(t)
+
+	repairrequest := RepairRequest{
+		Device:      "AcersAcersAcersAcersAcersAcersAcersAcersAcersAcersAcersAcersAcersAcersAcersAcersAcersAcersAcersAcersAcersAcers",
 		Lifetime:    12,
 		Issue:       "จอฟ้า",
 		RequestDate: time.Date(2000, 1, 1, 0, 0, 0, 0, time.UTC),
@@ -71,13 +93,56 @@ func TestLifetimeMustBePositiveIntegerAndMoreZero(t *testing.T) {
 	// err.Error ต้องมี error message แสดงออกมา
 	g.Expect(err.Error()).To(Equal("Lifetime must be positive"))
 }
-func TestIssueNotBlankAndMustLess(t *testing.T) {
+func TestLifetimeNotBlank(t *testing.T) {
+	g := NewGomegaWithT(t)
+
+	repairrequest := RepairRequest{
+		Device:      "MSI",
+		Lifetime:    0, //0 คือค่า nil
+		Issue:       "จอฟ้า",
+		RequestDate: time.Date(2000, 1, 1, 0, 0, 0, 0, time.UTC),
+	}
+	// ตรวจสอบด้วย govalidator
+	ok, err := govalidator.ValidateStruct(repairrequest)
+
+	// ok ต้องไม่เป็นค่า true แปลว่าต้องจับ error ได้
+	g.Expect(ok).ToNot(BeTrue())
+
+	// err ต้องไม่เป็นค่า nil แปลว่าต้องจับ error ได้
+	g.Expect(err).ToNot(BeNil())
+
+	// err.Error ต้องมี error message แสดงออกมา
+	g.Expect(err.Error()).To(Equal("Lifetime must be positive"))
+}
+func TestIssueNotBlank(t *testing.T) {
 	g := NewGomegaWithT(t)
 
 	repairrequest := RepairRequest{
 		Device:      "MSI",
 		Lifetime:    12,
 		Issue:       "",
+		RequestDate: time.Date(2000, 1, 1, 0, 0, 0, 0, time.UTC),
+	}
+
+	// ตรวจสอบด้วย govalidator
+	ok, err := govalidator.ValidateStruct(repairrequest)
+
+	// ok ต้องไม่เป็นค่า true แปลว่าต้องจับ error ได้
+	g.Expect(ok).ToNot(BeTrue())
+
+	// err ต้องไม่เป็นค่า nil แปลว่าต้องจับ error ได้
+	g.Expect(err).ToNot(BeNil())
+
+	// err.Error ต้องมี error message แสดงออกมา
+	g.Expect(err.Error()).To(Equal("Issue cannot be blank and less than 200 characters"))
+}
+func TestIssueMustLess(t *testing.T) {
+	g := NewGomegaWithT(t)
+
+	repairrequest := RepairRequest{
+		Device:      "MSI",
+		Lifetime:    12,
+		Issue:       "ErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorErrorError",
 		RequestDate: time.Date(2000, 1, 1, 0, 0, 0, 0, time.UTC),
 	}
 

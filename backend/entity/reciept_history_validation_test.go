@@ -97,7 +97,7 @@ func TestRecieptPriceMustBePlus(t *testing.T) {
 
 	g.Expect(err).ToNot(BeNil())
 
-	g.Expect(err.Error()).To(Equal("RecieptPrice must equal or greater than 0"))
+	g.Expect(err.Error()).To(Equal("RecieptPrice must be equal or greater than 0"))
 }
 
 func TestRecieptDatenotfuture(t *testing.T) {

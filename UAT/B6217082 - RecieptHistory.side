@@ -1046,7 +1046,7 @@
       "id": "5baf6b90-3b5f-40a5-a832-8cbdd6bd9c31",
       "comment": "",
       "command": "mouseUp",
-      "target": "css=.MuiButtonBase-root:nth-child(3)",
+      "target": "css=.MuiButtonBase-root:nth-child(2)",
       "targets": [
         ["css=.MuiButtonBase-root:nth-child(3)", "css:finder"],
         ["xpath=//div[@id='menu-WorkReceiveID']/div[3]/ul/li[2]", "xpath:idRelative"],
@@ -1539,15 +1539,6 @@
       "id": "bf810823-8872-4692-bbe3-854693593262",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiInputAdornment-root path:nth-child(1)",
-      "targets": [
-        ["css=.MuiInputAdornment-root path:nth-child(1)", "css:finder"]
-      ],
-      "value": ""
-    }, {
-      "id": "0228fd51-2c24-4dce-858e-9571162c915b",
-      "comment": "",
-      "command": "mouseOut",
       "target": "css=.MuiInputAdornment-root path:nth-child(1)",
       "targets": [
         ["css=.MuiInputAdornment-root path:nth-child(1)", "css:finder"]

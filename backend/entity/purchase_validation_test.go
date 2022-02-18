@@ -32,7 +32,6 @@ func TestPurchasePass(t *testing.T) {
 func TestPurchasePartsNotBlank(t *testing.T) {
 	g := NewGomegaWithT(t)
 
-	// ข้อมูลถูกต้องหมดทุก field
 	purchase := PartsPurchase{
 		Parts: "", //ผิด
 		Quantity: 2,
@@ -110,7 +109,6 @@ func TestPurchasePrice(t *testing.T) {
 func TestPurchaseTimePurchase(t *testing.T) {
 	g := NewGomegaWithT(t)
 
-	// ข้อมูลถูกต้องหมดทุก field
 	purchase := PartsPurchase{
 		Parts: "fwe", 
 		Quantity: 2, 

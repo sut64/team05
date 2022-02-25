@@ -219,7 +219,7 @@ const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }
                 native
                 value={repairrequest.CustomerID}
                 onChange={handleChange}
-                disabled={false}
+                disabled={true}
                 inputProps={{
                   name: "CustomerID",
                 }}
